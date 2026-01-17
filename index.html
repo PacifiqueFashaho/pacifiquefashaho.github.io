@@ -7,213 +7,336 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 24px; }
-    header { padding: 28px 0 10px; }
-    h1 { margin: 0; font-size: 32px; }
-    .tag { margin-top: 6px; color: #444; }
-    .btns a { display: inline-block; margin-right: 10px; margin-top: 12px; padding: 10px 14px; border: 1px solid #111; text-decoration: none; color: #111; border-radius: 8px; }
-    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 14px 0; }
-    h2 { margin: 18px 0 10px; font-size: 20px; }
-    ul { margin: 8px 0 0; padding-left: 18px; }
-    .small { color: #555; font-size: 14px; }
-    footer { margin-top: 26px; padding-top: 12px; border-top: 1px solid #eee; color: #666; font-size: 14px; }
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --text:#e9eefc;
+      --muted:#b9c2dd;
+      --line: rgba(255,255,255,.10);
+      --accent:#6aa9ff;
+      --accent2:#7c5cff;
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 15% 10%, rgba(106,169,255,.25), transparent 60%),
+                  radial-gradient(900px 500px at 80% 20%, rgba(124,92,255,.22), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    /* Top shortcuts bar */
+    .topbar{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.7);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .wrap{
+      max-width: 1000px; margin:0 auto; padding:10px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width: 190px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 22px rgba(106,169,255,.55);
+    }
+    .brand span{font-weight:700; letter-spacing:.2px}
+    nav{
+      display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end;
+    }
+    nav a{
+      text-decoration:none; color:var(--muted);
+      border:1px solid var(--line);
+      padding:8px 10px; border-radius:999px;
+      font-size:13px;
+      transition: .18s ease;
+    }
+    nav a:hover{color:var(--text); border-color: rgba(106,169,255,.35); transform: translateY(-1px);}
+
+    .wrap{max-width:1000px; margin:0 auto; padding: 22px 16px 60px;}
+
+    /* Hero */
+    .hero{
+      display:grid; grid-template-columns: 1.4fr .9fr; gap:18px;
+      align-items:stretch;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){ .hero{grid-template-columns:1fr;} }
+
+    .card{
+      background: rgba(17,26,46,.75);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+
+    .title{font-size:42px; margin:0 0 6px;}
+    @media (max-width: 500px){ .title{font-size:34px;} }
+
+    .subtitle{
+      color:var(--muted);
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .pill{
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border-radius:12px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      color:var(--text);
+      transition:.18s ease;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(106,169,255,.4);}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 24px rgba(106,169,255,.22);
+    }
+
+    .summary{margin-top:14px; color:var(--muted);}
+
+    /* Profile */
+    .profile{
+      display:flex; flex-direction:column; gap:14px;
+      align-items:center; text-align:center;
+    }
+    .avatar{
+      width:130px; height:130px; border-radius:22px;
+      object-fit:cover;
+      border:1px solid var(--line);
+      box-shadow: 0 14px 26px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.06);
+    }
+    .quick{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px;
+      width:100%;
+    }
+    .qcard{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px;
+      color:var(--muted);
+      font-size:13px;
+      transition:.18s ease;
+      cursor:pointer;
+      background: rgba(255,255,255,.03);
+    }
+    .qcard:hover{transform: translateY(-1px); border-color: rgba(124,92,255,.35); color:var(--text);}
+
+    /* Sections */
+    section{scroll-margin-top:80px;}
+    h2{margin:0 0 10px; font-size:20px;}
+    ul{margin: 10px 0 0; padding-left:18px;}
+    .small{color:var(--muted); font-size:13px;}
+
+    /* Projects grid */
+    .grid{
+      display:grid; grid-template-columns: repeat(2, 1fr); gap:14px;
+    }
+    @media (max-width: 860px){ .grid{grid-template-columns:1fr;} }
+    .proj h3{margin:0 0 6px; font-size:16px;}
+    .proj p{margin:0; color:var(--muted); font-size:14px;}
+    .proj .links{margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;}
+    .proj .links a{font-size:13px;}
+
+    /* Reveal animation */
+    .reveal{opacity:0; transform: translateY(10px); transition: .5s ease;}
+    .reveal.show{opacity:1; transform:none;}
+
+    footer{
+      margin-top:22px;
+      color:var(--muted);
+      text-align:center;
+      font-size:13px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Pacifique Fashaho</h1>
-      <div class="tag">Software Developer • Portfolio</div>
-
-      <div class="btns">
-        <a href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="mailto:your-email@example.com">Email</a>
+  <!-- Shortcuts bar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <div class="dot"></div>
+        <span>Pacifique Fashaho</span>
       </div>
-      <p class="small">
-  Entry-level Software Developer with hands-on experience in IT support, data handling, and digital tools.
-  Skilled in Python, JavaScript, and web technologies, with a strong foundation in problem-solving,
-  system support, and data-driven tasks. Motivated to grow in software development, data analysis,
-  and technology-driven projects in professional and humanitarian environments.
-</p>
 
-    </header>
+      <nav>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
 
-    <section class="card">
+  <main class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="card reveal">
+        <h1 class="title">Software Developer</h1>
+        <div class="subtitle">
+          <span class="pill">Python</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">IT Support</span>
+          <span class="pill">Data Tools</span>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="mailto:your-email@example.com">Email</a>
+          <!-- Put your LinkedIn link here later -->
+          <a class="btn" href="#projects">View Projects</a>
+        </div>
+
+        <p class="summary">
+          Entry-level Software Developer with hands-on experience in IT support, data handling, and digital tools.
+          Skilled in Python, JavaScript, and web technologies, with a strong foundation in problem-solving,
+          system support, and data-driven tasks.
+        </p>
+
+        <p class="small">Tip: Use the shortcut menu at the top to jump to any section.</p>
+      </div>
+
+      <div class="card profile reveal">
+        <!-- Change profile.jpg to your real file name -->
+        <img class="avatar" src="profile.jpg" alt="Pacifique Fashaho profile photo">
+
+        <div>
+          <div style="font-weight:700;">Pacifique Fashaho</div>
+          <div class="small">Goma, North Kivu, DR Congo</div>
+        </div>
+
+        <div class="quick">
+          <div class="qcard" onclick="location.href='#certifications'">📜 Certificates</div>
+          <div class="qcard" onclick="location.href='#experience'">💼 Experience</div>
+          <div class="qcard" onclick="location.href='#projects'">🚀 Projects</div>
+          <div class="qcard" onclick="location.href='#contact'">✉️ Contact</div>
+        </div>
+
+        <div class="small">Interactive shortcuts included ✅</div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card reveal" style="margin-top:16px;">
       <h2>Skills</h2>
       <ul>
-        <li>HTML, CSS, JavaScript</li>
-        <li>Python</li>
-        <li>Git & GitHub</li>
+        <li><strong>Web:</strong> HTML, CSS, JavaScript</li>
+        <li><strong>Programming:</strong> Python</li>
+        <li><strong>Tools:</strong> Git & GitHub</li>
+        <li><strong>Data Tools:</strong> Excel, Google Sheets (basic dashboards)</li>
       </ul>
     </section>
 
-    <section class="card">
-  <h2>Certifications</h2>
-  <ul>
-    <li>
-      <strong>Work Smarter with Microsoft Word</strong> — Microsoft (Jan 2026)
-      <div class="small">Credential ID: XHW5D07EZZ22</div>
-    </li>
-
-    <li>
-      <strong>Prepare Data for Exploration</strong> — Google (Dec 2025)
-      <div class="small">
-        Credential ID: 2B0EONPHTZZI •
-        <a href="Coursera 2B0EONPHTZZI.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Python for Data Science, AI & Development</strong> — IBM (Dec 2025)
-      <div class="small">
-        Credential ID: QXMDBTDUU5X0 •
-        <a href="Coursera QXMDBTDUU5X0.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Python for Everybody</strong> — University of Michigan (2025)
-      <div class="small">
-        Credential ID: CHIMXY2J4FT6 •
-        <a href="Coursera CHIMXY2J4FT6.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Technical Support Fundamentals</strong> — Google (Dec 2025)
-      <div class="small">
-        Credential ID: I0OP5NVMPIKB •
-        <a href="Coursera I0OP5NVMPIKB.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Ask Questions to Make Data-Driven Decisions</strong> — Google (Aug 2025)
-      <div class="small">
-        Credential ID: YLIBUF8DC56U •
-        <a href="Coursera YLIBUF8DC56U.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Foundations: Data, Data, Everywhere</strong> — Google (Mar 2025)
-      <div class="small">
-        Credential ID: G01XXM92M6KW •
-        <a href="Coursera G01XXM92M6KW.pdf" target="_blank" rel="noreferrer">View Certificate (PDF)</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Human Resources Management in Humanitarian Context</strong> — Académie Humanitaire asbl (Nov 2025)
-      <div class="small">
-        <a href="Certificat_AH.jpg" target="_blank" rel="noreferrer">View Certificate</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Field Monitoring Agent</strong> — Académie Humanitaire asbl (Oct 2025)
-      <div class="small">
-        <a href="Certificat_AH2.jpg" target="_blank" rel="noreferrer">View Certificate</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Professional Qualification Certificate in IT Support</strong> — INPP (Oct 2024)
-      <div class="small">
-        <a href="Certificat_INPP.jpg" target="_blank" rel="noreferrer">View Certificate</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Google Data Analytics – Certificate Collection</strong>
-      <div class="small">
-        <a href="Google Data Analytics certificates.pdf" target="_blank" rel="noreferrer">Open PDF</a>
-      </div>
-    </li>
-
-    <li>
-      <strong>Coursera Certificates – Collection</strong>
-      <div class="small">
-        <a href="Mes certificats corsera.pdf" target="_blank" rel="noreferrer">Open PDF</a>
-      </div>
-    </li>
-  </ul>
-</section>
-    <section class="card">
-  <h2>Professional Experience</h2>
-
-  <div>
-    <strong>IT Support Assistant</strong><br>
-    <span class="small">
-      High Tech Business · Part-time<br>
-      Mar 2025 – Sep 2025 · Goma, North Kivu, DR Congo (On-site)
-    </span>
-    <ul>
-      <li>Provided hands-on IT support for computers, printers, and local networks in a professional environment.</li>
-      <li>Installed, configured, and maintained Windows operating systems, software applications, and office tools.</li>
-      <li>Diagnosed and resolved hardware and software issues both on-site and remotely, ensuring minimal downtime.</li>
-      <li>Assisted staff with daily technical issues and delivered basic training on Microsoft Office tools and IT best practices.</li>
-      <li>Performed data processing, cleaning, and basic analysis using Microsoft Excel and Google Sheets, including simple dashboards.</li>
-      <li>Followed strict data confidentiality, security procedures, and professional ethics.</li>
-    </ul>
-  </div>
-
-  <div>
-    <strong>Data Enumerator</strong><br>
-    <span class="small">
-      iPeace · Fixed-term Contract<br>
-      Apr 2025 – Jul 2025 · Goma, North Kivu, DR Congo (On-site)
-    </span>
-    <ul>
-      <li>Collected digital field data using tablets and mobile devices through KoboToolbox and ODK.</li>
-      <li>Provided technical support during field activities, including device configuration, application setup, and data synchronization.</li>
-      <li>Resolved connectivity and technical issues in low-network environments.</li>
-      <li>Ensured data accuracy, validation, quality control, and timely submission to central databases.</li>
-      <li>Applied strict data protection, confidentiality, and ethical standards in line with humanitarian principles.</li>
-      <li>Collaborated with field teams and supervisors to ensure smooth data collection operations.</li>
-    </ul>
-  </div>
-
-  <div>
-    <strong>Administrative Assistant</strong><br>
-    <span class="small">
-      Cyber Kivu Net · Part-time<br>
-      Aug 2024 – Mar 2025 · Goma, North Kivu, DR Congo (On-site)
-    </span>
-    <ul>
-      <li>Provided administrative and office support in a multi-user computer environment.</li>
-      <li>Prepared, formatted, printed, scanned, and filed documents using Microsoft Word, Excel, and PDF tools.</li>
-      <li>Assisted clients with online services such as email setup, form submissions, job applications, and official procedures.</li>
-      <li>Maintained basic records, monitored office supplies, and supported daily operations.</li>
-      <li>Delivered first-level IT support for computers, printers, internet connectivity, and office software.</li>
-      <li>Ensured data confidentiality, accuracy, and professional customer service at all times.</li>
-    </ul>
-  </div>
-</section>
-
-    <section class="card">
-      <h2>Projects</h2>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="card reveal" style="margin-top:16px;">
+      <h2>Certifications</h2>
       <ul>
-        <li><strong>Portfolio Website</strong> — This website. (GitHub Pages)</li>
-        <li><strong>To-Do App</strong> — Coming soon (add link to GitHub repo).</li>
+        <li><strong>Work Smarter with Microsoft Word</strong> — Microsoft (Jan 2026) <span class="small">• Credential ID: XHW5D07EZZ22</span></li>
+        <li><strong>Prepare Data for Exploration</strong> — Google (Dec 2025) <span class="small">• <a href="Coursera 2B0EONPHTZZI.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Python for Data Science, AI & Development</strong> — IBM (Dec 2025) <span class="small">• <a href="Coursera QXMDBTDUU5X0.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Python for Everybody</strong> — University of Michigan (2025) <span class="small">• <a href="Coursera CHIMXY2J4FT6.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Technical Support Fundamentals</strong> — Google (Dec 2025) <span class="small">• <a href="Coursera I0OP5NVMPIKB.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Ask Questions to Make Data-Driven Decisions</strong> — Google (Aug 2025) <span class="small">• <a href="Coursera YLIBUF8DC56U.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Foundations: Data, Data, Everywhere</strong> — Google (Mar 2025) <span class="small">• <a href="Coursera G01XXM92M6KW.pdf" target="_blank" rel="noreferrer">View PDF</a></span></li>
+        <li><strong>Human Resources Management in Humanitarian Context</strong> — Académie Humanitaire asbl (Nov 2025) <span class="small">• <a href="Certificat_AH.jpg" target="_blank" rel="noreferrer">View</a></span></li>
+        <li><strong>Field Monitoring Agent</strong> — Académie Humanitaire asbl (Oct 2025) <span class="small">• <a href="Certificat_AH2.jpg" target="_blank" rel="noreferrer">View</a></span></li>
+        <li><strong>IT Support Qualification</strong> — INPP (Oct 2024) <span class="small">• <a href="Certificat_INPP.jpg" target="_blank" rel="noreferrer">View</a></span></li>
       </ul>
     </section>
 
-    <section class="card">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a></p>
-      <p>LinkedIn: <a href="linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank">View Profile</a></p>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="card reveal" style="margin-top:16px;">
+      <h2>Professional Experience</h2>
+
+      <div class="small"><strong>IT Support Assistant</strong> — High Tech Business · Part-time (Mar 2025 – Sep 2025) · Goma, DR Congo</div>
+      <ul>
+        <li>Provided hands-on IT support for computers, printers, and local networks.</li>
+        <li>Installed/configured Windows, applications, and office tools; resolved user issues on-site and remotely.</li>
+        <li>Used Excel/Google Sheets for data cleaning and simple dashboards; respected confidentiality and security procedures.</li>
+      </ul>
+
+      <div class="small" style="margin-top:10px;"><strong>Data Enumerator</strong> — iPeace · Contract (Apr 2025 – Jul 2025) · Goma, DR Congo</div>
+      <ul>
+        <li>Collected digital field data using KoboToolbox and ODK; ensured quality control and timely submission.</li>
+        <li>Supported device configuration and troubleshooting in low-network environments.</li>
+      </ul>
+
+      <div class="small" style="margin-top:10px;"><strong>Administrative Assistant</strong> — Cyber Kivu Net · Part-time (Aug 2024 – Mar 2025) · Goma, DR Congo</div>
+      <ul>
+        <li>Document preparation using Word/Excel/PDF tools; client support for online services.</li>
+        <li>First-level IT support for computers, printers, internet connectivity, and office software.</li>
+      </ul>
     </section>
 
-    <footer>
-      © <span id="y"></span> Pacifique Fashaho
-    </footer>
-  </div>
+    <!-- PROJECTS -->
+    <section id="projects" class="card reveal" style="margin-top:16px;">
+      <h2>Projects</h2>
+
+      <div class="grid">
+        <div class="card proj" style="background: rgba(255,255,255,.03); border-color: var(--line); box-shadow:none;">
+          <h3>Portfolio Website</h3>
+          <p>My personal portfolio built with HTML/CSS and hosted on GitHub Pages.</p>
+          <div class="links">
+            <a class="btn" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer">Live</a>
+            <a class="btn" href="https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io" target="_blank" rel="noreferrer">Code</a>
+          </div>
+        </div>
+
+        <div class="card proj" style="background: rgba(255,255,255,.03); border-color: var(--line); box-shadow:none;">
+          <h3>To-Do App</h3>
+          <p>Coming soon. (Add your GitHub repo link when ready.)</p>
+          <div class="links">
+            <a class="btn" href="#contact">Contact me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card reveal" style="margin-top:16px;">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+      <p class="small">Add LinkedIn for global visibility.</p>
+    </section>
+
+    <footer>© <span id="y"></span> Pacifique Fashaho</footer>
+  </main>
 
   <script>
+    // year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // reveal on scroll
+    const items = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) e.target.classList.add("show");
+      });
+    }, {threshold: 0.12});
+
+    items.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
