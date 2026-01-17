@@ -1,39 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Pacifique Fashaho | Software Developer</title>
-  <meta name="description" content="Pacifique Fashaho – Software Developer Portfolio">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pacifique Fashaho – Software Developer Portfolio" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; line-height: 1.6; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 24px; }
+    header { padding: 28px 0 10px; }
+    h1 { margin: 0; font-size: 32px; }
+    .tag { margin-top: 6px; color: #444; }
+    .btns a { display: inline-block; margin-right: 10px; margin-top: 12px; padding: 10px 14px; border: 1px solid #111; text-decoration: none; color: #111; border-radius: 8px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin: 14px 0; }
+    h2 { margin: 18px 0 10px; font-size: 20px; }
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    .small { color: #555; font-size: 14px; }
+    footer { margin-top: 26px; padding-top: 12px; border-top: 1px solid #eee; color: #666; font-size: 14px; }
+  </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <header>
+      <h1>Pacifique Fashaho</h1>
+      <div class="tag">Software Developer • Portfolio</div>
 
-  <h1>Pacifique Fashaho</h1>
-  <p>Software Developer</p>
+      <div class="btns">
+        <a href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="mailto:your-email@example.com">Email</a>
+      </div>
+      <p class="small">I build projects using programming languages and modern tools.</p>
+    </header>
 
-  <hr>
+    <section class="card">
+      <h2>Skills</h2>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Python</li>
+        <li>Git & GitHub</li>
+      </ul>
+    </section>
 
-  <h2>Skills</h2>
-  <ul>
-    <li>HTML, CSS, JavaScript</li>
-    <li>Python</li>
-    <li>Git & GitHub</li>
-  </ul>
+    <section class="card">
+      <h2>Certifications</h2>
+      <ul>
+        <li>JavaScript Certificate — freeCodeCamp</li>
+        <li>Python Certificate — Coursera</li>
+      </ul>
+      <p class="small">Tip: you can upload certificate PDFs/images to this repo and link them here.</p>
+    </section>
 
-  <h2>Certifications</h2>
-  <ul>
-    <li>JavaScript Certificate – freeCodeCamp</li>
-    <li>Python Certificate – Coursera</li>
-  </ul>
+    <section class="card">
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Portfolio Website</strong> — This website. (GitHub Pages)</li>
+        <li><strong>To-Do App</strong> — Coming soon (add link to GitHub repo).</li>
+      </ul>
+    </section>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>Portfolio Website</li>
-    <li>To-Do App</li>
-  </ul>
+    <section class="card">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+      <p class="small">Add LinkedIn later for more visibility.</p>
+    </section>
 
-  <h2>Contact</h2>
-  <p>Email: your-email@example.com</p>
+    <footer>
+      © <span id="y"></span> Pacifique Fashaho
+    </footer>
+  </div>
 
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
