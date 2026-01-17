@@ -17,6 +17,17 @@
       --accent2:#06b6d4;
       --shadow: 0 10px 25px rgba(0,0,0,.08);
     }
+        /* FORCE LOGO SIZE (works even if other CSS overrides) */
+        .logo{
+          width:44px !important;
+          height:44px !important;
+          object-fit:contain !important;
+          padding:6px !important;
+          border-radius:10px !important;
+          border:1px solid var(--line) !important;
+          background: rgba(255,255,255,.08) !important;
+          flex: 0 0 44px !important;
+        }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -330,7 +341,7 @@
       <h2>Education</h2>
     
       <div class="cert" style="margin-top:10px;">
-        <img src="Uopeople.png" alt="University of the People">
+        <img class="logo" src="Uopeople.png" alt="University of the People">
         <div class="meta">
           <strong>University of the People (UoPeople)</strong>
           <div class="small">BSc Computer Science • Apr 2025 – 2029</div>
