@@ -13,8 +13,8 @@
       --text:#e9eefc;
       --muted:#b9c2dd;
       --line: rgba(255,255,255,.10);
-      --accent:#6aa9ff;
-      --accent2:#7c5cff;
+      --accent:#00d4ff;
+      --accent2:#7c3aed;
       --shadow: 0 18px 40px rgba(0,0,0,.35);
     }
 
@@ -26,9 +26,16 @@
       background: radial-gradient(1200px 600px at 15% 10%, rgba(106,169,255,.25), transparent 60%),
                   radial-gradient(900px 500px at 80% 20%, rgba(124,92,255,.22), transparent 55%),
                   var(--bg);
+      background-size: 200% 200%;
+      animation: bgMove 10s ease infinite;
       color:var(--text);
       line-height:1.6;
     }
+@keyframes bgMove{
+  0%{background-position: 0% 50%;}
+  50%{background-position: 100% 50%;}
+  100%{background-position: 0% 50%;}
+}
 
     /* Top shortcuts bar */
     .topbar{
