@@ -8,14 +8,14 @@
 
   <style>
     :root{
-      --bg:#0b1220;
-      --card:#111a2e;
-      --text:#e9eefc;
-      --muted:#b9c2dd;
-      --line: rgba(255,255,255,.10);
-      --accent:#00d4ff;
-      --accent2:#7c3aed;
-      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:#e5e7eb;
+      --accent:#2563eb;
+      --accent2:#06b6d4;
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
     }
 
     *{box-sizing:border-box}
@@ -23,15 +23,13 @@
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 15% 10%, rgba(106,169,255,.25), transparent 60%),
+      background: linear-gradient(180deg, #ffffff, #f1f5f9);
                   radial-gradient(900px 500px at 80% 20%, rgba(124,92,255,.22), transparent 55%),
                   var(--bg);
       background-size: 200% 200%;
       animation: bgMove 10s ease infinite;
       color:var(--text);
       line-height:1.6;
-      background-size: 200% 200%;
-      animation: bgMove 10s ease infinite;
 
     }
 @keyframes bgMove{
@@ -44,7 +42,7 @@
     .topbar{
       position:sticky; top:0; z-index:10;
       backdrop-filter: blur(10px);
-      background: rgba(11,18,32,.7);
+      background: rgba(255,255,255,.9);
       border-bottom:1px solid var(--line);
     }
     .topbar .wrap{
@@ -177,6 +175,54 @@
       color:var(--muted);
       text-align:center;
       font-size:13px;
+    /* Certificates cards */
+    .cert-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 860px){ .cert-grid{grid-template-columns:1fr;} }
+    
+    .cert{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .cert:hover{
+      transform: translateY(-3px);
+      border-color: rgba(0,212,255,.40);
+    }
+    .cert::after{
+      content:"";
+      position:absolute;
+      inset:-60%;
+      background: radial-gradient(circle at 30% 30%, rgba(0,212,255,.18), transparent 55%);
+      transform: rotate(20deg);
+      opacity:0;
+      transition:.25s ease;
+    }
+    .cert:hover::after{opacity:1;}
+    
+    .cert img{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+      padding:6px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.08);
+    }
+    .cert .meta{flex:1; position:relative; z-index:1;}
+    .cert .meta strong{display:block;}
+    .cert .meta .small{margin-top:4px;}
+
     }
   </style>
 </head>
@@ -214,13 +260,13 @@
 
         <div class="btns">
           <a class="btn primary" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="mailto:your-email@example.com">Email</a>
-          <!-- Put your LinkedIn link here later -->
+          <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a>
+          <p>LinkedIn: <a href="linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank">View Profile</a></p>
           <a class="btn" href="#projects">View Projects</a>
         </div>
 
         <p class="summary">
-          EnComputer Science student at the University of the People (UoPeople) and Junior IT Support & Data Analyst.
+          Computer Science student at the University of the People (UoPeople) and Junior IT Support & Data Analyst.
           Hands-on experience in IT support, data collection, and data handling across SMEs, cybercafé environments,
           and NGO/humanitarian contexts. Skilled with Windows, Microsoft Office, troubleshooting (hardware/software),
           and user support (on-site and remote). Growing skills in Python and SQL for data cleaning, organization,
@@ -363,51 +409,6 @@
           </div>
 
     </section>
-      .cert-grid{
-        display:grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap:14px;
-      }
-      @media (max-width: 860px){ .cert-grid{grid-template-columns:1fr;} }
-      
-      .cert{
-        display:flex;
-        gap:12px;
-        align-items:flex-start;
-        padding:14px;
-        border-radius:16px;
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.03);
-        transition:.2s ease;
-        position:relative;
-        overflow:hidden;
-      }
-      .cert:hover{
-        transform: translateY(-3px);
-        border-color: rgba(0,212,255,.40);
-      }
-      .cert::after{
-        content:"";
-        position:absolute;
-        inset:-60%;
-        background: radial-gradient(circle at 30% 30%, rgba(0,212,255,.18), transparent 55%);
-        transform: rotate(20deg);
-        opacity:0;
-        transition:.25s ease;
-      }
-      .cert:hover::after{opacity:1;}
-      
-      .cert img{
-        width:44px; height:44px;
-        border-radius:12px;
-        object-fit:contain;
-        padding:6px;
-        border:1px solid var(--line);
-        background: rgba(255,255,255,.08);
-      }
-      .cert .meta{flex:1; position:relative; z-index:1;}
-      .cert .meta strong{display:block;}
-      .cert .meta .small{margin-top:4px;}
 
     <!-- EXPERIENCE -->
     <section id="experience" class="card reveal" style="margin-top:16px;">
@@ -460,8 +461,8 @@
     <!-- CONTACT -->
     <section id="contact" class="card reveal" style="margin-top:16px;">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-      <p class="small">Add LinkedIn for global visibility.</p>
+          <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a>
+          <p>LinkedIn: <a href="linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank">View Profile</a></p>
     </section>
 
     <footer>© <span id="y"></span> Pacifique Fashaho</footer>
