@@ -22,8 +22,6 @@
     html{scroll-behavior:smooth}
 
     body{
-      <div class="progress-bar" id="progressBar"></div>
-      <button id="toTop" aria-label="Back to top">↑ Top</button>
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       /* ✅ Multiple backgrounds must be in ONE background declaration */
@@ -73,7 +71,7 @@
   transform: translateY(-2px);
   border-color: rgba(37,99,235,.35);
 }
-.stat .num{
+.stat .stat-num{
   font-size:22px;
   font-weight:800;
   display:block;
@@ -187,11 +185,6 @@
     }
 
     .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
-    <div class="stats">
-      <div class="stat"><span class="num" data-target="2">0</span><span class="label">Projects</span></div>
-      <div class="stat"><span class="num" data-target="8">0</span><span class="label">Certificates</span></div>
-      <div class="stat"><span class="num" data-target="3">0</span><span class="label">Experiences</span></div>
-    </div>
     .btn{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px;
@@ -314,6 +307,8 @@
 </head>
 
 <body>
+ <div class="progress-bar" id="progressBar"></div>
+ <button id="toTop" aria-label="Back to top">↑ Top</button>
   <div class="topbar">
     <div class="wrap">
       <div class="brand">
@@ -357,6 +352,11 @@
           <a class="btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer">LinkedIn</a>
           <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">Email</a>
           <a class="btn" href="#projects">View Projects</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><span class="stat-num" data-target="2">0</span><span class="label">Projects</span></div>
+          <div class="stat"><span class="num" data-target="8">0</span><span class="label">Certificates</span></div>
+          <div class="stat"><span class="num" data-target="3">0</span><span class="label">Experiences</span></div>
         </div>
 
         <p class="summary">
@@ -567,7 +567,6 @@
   
     <div class="btns">
       <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a>
-  
       <a class="btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388"
          target="_blank" rel="noreferrer">
         LinkedIn
@@ -631,7 +630,7 @@
   /* =========================
      2) Live counters
   ========================== */
-  const counters = document.querySelectorAll(".num");
+  const counters = document.querySelectorAll(".stat-num");
 
   function animateCount(el){
     const target = +el.dataset.target;
