@@ -24,7 +24,7 @@
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      /* ✅ Multiple backgrounds must be in ONE background declaration */
+      /* Multiple backgrounds must be in ONE background declaration */
       background:
         radial-gradient(900px 500px at 80% 20%, rgba(124,92,255,.22), transparent 55%),
         linear-gradient(180deg, #ffffff, #f1f5f9),
@@ -562,19 +562,43 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="card reveal" style="margin-top:16px;">
-    <h2>Contact</h2>
-  
-    <div class="btns">
-      <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a>
-      <a class="btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388"
-         target="_blank" rel="noreferrer">
-        LinkedIn
-      </a>
-  
-      <a class="btn" href="tel:+243859477758">+243 859 477 758</a>
-    </div>
-  </section>
+<section id="contact" class="card reveal" style="margin-top:16px;">
+  <h2>Contact</h2>
+
+  <!-- Email pill -->
+  <a class="contact-pill" href="mailto:pacifiquefashaho04@gmail.com">
+    pacifiquefashaho04@gmail.com
+    <span class="pill-arrow">↗</span>
+  </a>
+
+  <!-- Social icons row -->
+  <div class="contact-icons" aria-label="Social links">
+    <!-- Website / Portfolio -->
+    <a class="icon-btn" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer" aria-label="Website">
+      🌐
+    </a>
+
+    <!-- LinkedIn -->
+    <a class="icon-btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+      in
+    </a>
+
+    <!-- Phone -->
+    <a class="icon-btn" href="tel:+243859477758" aria-label="Phone">
+      📞
+    </a>
+
+    <!-- GitHub (optional) -->
+    <a class="icon-btn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer" aria-label="GitHub">
+      ⌂
+    </a>
+  </div>
+
+  <div class="small" style="margin-top:10px; text-align:center;">
+    © <span id="y2"></span> Pacifique Fashaho
+  </div>
+</section>
+
 
     <footer>© <span id="y"></span> Pacifique Fashaho</footer>
   </main>
