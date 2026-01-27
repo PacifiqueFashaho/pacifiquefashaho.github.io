@@ -22,6 +22,8 @@
     html{scroll-behavior:smooth}
 
     body{
+      <div class="progress-bar" id="progressBar"></div>
+      <button id="toTop" aria-label="Back to top">↑ Top</button>
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       /* ✅ Multiple backgrounds must be in ONE background declaration */
@@ -39,6 +41,84 @@
       0%{background-position: 0% 50%;}
       50%{background-position: 100% 50%;}
       100%{background-position: 0% 50%;}
+    }
+/* Typing cursor */
+.cursor{
+  display:inline-block;
+  margin-left:4px;
+  opacity:1;
+  animation: blink 0.9s infinite;
+}
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* Live stats */
+.stats{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.stat{
+  flex:1;
+  min-width:140px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 12px;
+  background: rgba(255,255,255,.6);
+  transition:.2s ease;
+}
+.stat:hover{
+  transform: translateY(-2px);
+  border-color: rgba(37,99,235,.35);
+}
+.stat .num{
+  font-size:22px;
+  font-weight:800;
+  display:block;
+}
+.stat .label{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Scroll progress bar */
+.progress-bar{
+  position:fixed;
+  top:0; left:0;
+  height:4px;
+  width:0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  z-index:9999;
+}
+
+    /* Back to top button */
+    #toTop{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      padding:10px 12px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      color:white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 22px rgba(0,0,0,.18);
+      opacity:0;
+      transform: translateY(10px);
+      transition:.25s ease;
+      z-index:999;
+    }
+    #toTop.show{
+      opacity:1;
+      transform:none;
+    }
+    
+    /* More attractive main buttons */
+    .btn.primary:hover{
+      filter: brightness(1.05);
+      transform: translateY(-2px);
     }
 
     /* Top shortcuts bar */
@@ -107,6 +187,11 @@
     }
 
     .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+    <div class="stats">
+      <div class="stat"><span class="num" data-target="2">0</span><span class="label">Projects</span></div>
+      <div class="stat"><span class="num" data-target="8">0</span><span class="label">Certificates</span></div>
+      <div class="stat"><span class="num" data-target="3">0</span><span class="label">Experiences</span></div>
+    </div>
     .btn{
       display:inline-flex; align-items:center; gap:8px;
       padding:10px 12px;
@@ -203,7 +288,7 @@
     }
     .cert:hover::after{opacity:1;}
 
-    /* ✅ One consistent logo system */
+    /* One consistent logo system */
     .logo-box{
       width:48px;
       height:48px;
@@ -249,8 +334,9 @@
   <main class="wrap">
     <div class="hero">
       <div class="card reveal">
-        <h1 class="title">Data Analyst • Aspiring Data Scientist • Software Developer</h1>
-
+        <h1 class="title">
+          <span id="typing"></span><span class="cursor">|</span>
+        </h1>
         <div class="subtitle">
           <span class="pill">Python</span>
           <span class="pill">SQL</span>
@@ -315,6 +401,7 @@
 
   <div class="cert-grid">
 
+    <!-- Microsoft -->
     <div class="cert">
       <div class="logo-box">
         <img src="Logo_Microsoft.png" alt="Microsoft">
@@ -326,6 +413,7 @@
       </div>
     </div>
 
+    <!-- Google -->
     <div class="cert">
       <div class="logo-box">
         <img src="Logo_Google.png" alt="Google">
@@ -342,6 +430,7 @@
       </div>
     </div>
 
+    <!-- IBM -->
     <div class="cert">
       <div class="logo-box">
         <img src="Logo_IBM.png" alt="IBM">
@@ -358,6 +447,7 @@
       </div>
     </div>
 
+    <!-- University of Michigan -->
     <div class="cert">
       <div class="logo-box">
         <img src="Logo_Umich.png" alt="University of Michigan">
@@ -374,6 +464,39 @@
       </div>
     </div>
 
+    <!-- Académie Humanitaire -->
+    <div class="cert">
+      <div class="logo-box">
+        <img src="Logo_AH_Academie_Humanitaire.png" alt="Académie Humanitaire">
+      </div>
+      <div class="meta">
+        <strong>Human Resources Management in Humanitarian Context</strong>
+        <div class="small">Académie Humanitaire • Nov 2025</div>
+        <div class="small">
+          <a href="Certificat_AH.jpg" target="_blank" rel="noreferrer">
+            View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Académie Humanitaire -->
+    <div class="cert">
+      <div class="logo-box">
+        <img src="Logo_AH_Academie_Humanitaire.png" alt="Académie Humanitaire">
+      </div>
+      <div class="meta">
+        <strong>Field Monitoring Agent</strong>
+        <div class="small">Académie Humanitaire • Oct 2025</div>
+        <div class="small">
+          <a href="Certificat_AH2.jpg" target="_blank" rel="noreferrer">
+            View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INPP -->
     <div class="cert">
       <div class="logo-box">
         <img src="Logo_INPP.png" alt="INPP">
@@ -390,6 +513,7 @@
       </div>
     </div>
 
+    <!-- Coursera Collection -->
     <div class="cert">
       <div class="logo-box">
         <img src="Coursera.png" alt="Coursera">
@@ -406,6 +530,7 @@
 
   </div>
 </section>
+
 
 
     <!-- PROJECTS -->
@@ -456,16 +581,110 @@
   </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+  // year
+  document.getElementById("y").textContent = new Date().getFullYear();
 
-    const items = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add("show");
-      });
-    }, { threshold: 0.12 });
+  // reveal on scroll
+  const items = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) e.target.classList.add("show");
+    });
+  }, {threshold: 0.12});
+  items.forEach(el => io.observe(el));
 
-    items.forEach(el => io.observe(el));
-  </script>
+  /* =========================
+     1) Typing effect
+  ========================== */
+  const typingEl = document.getElementById("typing");
+  const roles = [
+    "Developer",
+    "Data Analyst",
+    "Aspiring Data Scientist",
+    "Software Developer (Python)",
+  ];
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
+  function typeLoop(){
+    const current = roles[roleIndex];
+
+    if(!deleting){
+      typingEl.textContent = current.slice(0, charIndex++);
+      if(charIndex > current.length){
+        deleting = true;
+        setTimeout(typeLoop, 1200);
+        return;
+      }
+    } else {
+      typingEl.textContent = current.slice(0, charIndex--);
+      if(charIndex < 0){
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        charIndex = 0;
+      }
+    }
+
+    setTimeout(typeLoop, deleting ? 45 : 70);
+  }
+  typeLoop();
+
+  /* =========================
+     2) Live counters
+  ========================== */
+  const counters = document.querySelectorAll(".num");
+
+  function animateCount(el){
+    const target = +el.dataset.target;
+    let current = 0;
+    const step = Math.max(1, Math.floor(target / 60));
+
+    const interval = setInterval(() => {
+      current += step;
+      if(current >= target){
+        el.textContent = target;
+        clearInterval(interval);
+      } else {
+        el.textContent = current;
+      }
+    }, 20);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        counters.forEach(animateCount);
+        statsObserver.disconnect();
+      }
+    });
+  }, {threshold: 0.3});
+
+  const statsSection = document.querySelector(".stats");
+  if(statsSection) statsObserver.observe(statsSection);
+
+  /* =========================
+     3) Scroll progress bar
+  ========================== */
+  const progressBar = document.getElementById("progressBar");
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (scrollTop / docHeight) * 100;
+    progressBar.style.width = scrolled + "%";
+  });
+
+  /* =========================
+     4) Back to top button
+  ========================== */
+  const toTop = document.getElementById("toTop");
+  window.addEventListener("scroll", () => {
+    if(window.scrollY > 450) toTop.classList.add("show");
+    else toTop.classList.remove("show");
+  });
+
+  toTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
 </body>
 </html>
