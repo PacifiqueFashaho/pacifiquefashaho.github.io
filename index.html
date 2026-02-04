@@ -5,6 +5,10 @@
   <title>Pacifique Fashaho | Data Analyst & Aspiring Data Scientist</title>
   <meta name="description" content="Pacifique Fashaho - Computer Science student focused on Data Analytics, Data Science, and Programming (Python, SQL, dashboards, automation)." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="favicon.ico">
+  <meta property="og:title" content="Pacifique Fashaho | Data Analyst">
+  <meta property="og:description" content="Python • SQL • Dashboards • Data cleaning • EDA">
+  <meta property="og:image" content="og-image.png">
 
   <style>
     :root{
@@ -300,7 +304,7 @@
       object-fit:contain;
     }
 
-    .cert .meta{flex:1; position:relative; z-index:1;}
+    .cert .{flex:1; position:relative; z-index:1;}
     .cert .meta strong{display:block;}
     .cert .meta .small{margin-top:4px;}
   </style>
@@ -355,8 +359,8 @@
         </div>
         <div class="stats">
           <div class="stat"><span class="stat-num" data-target="2">0</span><span class="label">Projects</span></div>
-          <div class="stat"><span class="num" data-target="8">0</span><span class="label">Certificates</span></div>
-          <div class="stat"><span class="num" data-target="3">0</span><span class="label">Experiences</span></div>
+          <div class="stat"><span class="stat-num" data-target="8">0</span><span class="label">Certificates</span></div>
+          <div class="stat"><span class="stat-num" data-target="3">0</span><span class="label">Experiences</span></div>
         </div>
 
         <p class="summary">
@@ -531,6 +535,22 @@
   </div>
 </section>
 
+<section id="experience" class="card reveal" style="margin-top:16px;">
+  <h2>Experience</h2>
+
+  <div class="small"><strong>Field Data Collector (NGO)</strong> • Goma • 2025</div>
+  <ul>
+    <li>Collected and validated survey data using KoboToolbox/ODK.</li>
+    <li>Cleaned submissions and reduced missing fields by applying validation rules.</li>
+    <li>Prepared weekly summaries for team review (Excel/Google Sheets).</li>
+  </ul>
+
+  <div class="small" style="margin-top:12px;"><strong>IT Support (SME / NGO)</strong> • 2024–2025</div>
+  <ul>
+    <li>Troubleshot Windows & hardware issues; improved uptime for staff devices.</li>
+    <li>Installed tools, managed backups, and supported users with basic training.</li>
+  </ul>
+</section>
 
 
     <!-- PROJECTS -->
@@ -605,7 +625,7 @@
 
   <script>
   // year
-  document.getElementById("y").textContent = new Date().getFullYear();
+document.getElementById("y2").textContent = new Date().getFullYear();
 
   // reveal on scroll
   const items = document.querySelectorAll(".reveal");
@@ -620,12 +640,12 @@
      1) Typing effect
   ========================== */
   const typingEl = document.getElementById("typing");
-  const roles = [
-    "Developer",
-    "Data Analyst",
-    "Aspiring Data Scientist",
-    "Software Developer (Python)",
-  ];
+    const roles = [
+      "Data Analyst",
+      "Junior Data Analyst (Python • SQL)",
+      "Aspiring Data Scientist"
+    ];
+
   let roleIndex = 0, charIndex = 0, deleting = false;
 
   function typeLoop(){
