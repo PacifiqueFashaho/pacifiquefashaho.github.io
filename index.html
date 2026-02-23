@@ -482,6 +482,192 @@
   font-size:12.5px;
   padding:7px 10px;
 }
+    /* =========================
+   LIVE SERVICES (Premium Marquee)
+========================= */
+.live-services{ overflow:hidden; }
+
+.marquee{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  margin-top:12px;
+  padding: 2px 0;
+}
+
+/* Fade edges (premium) */
+.marquee::before,
+.marquee::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:70px;
+  height:100%;
+  z-index:2;
+  pointer-events:none;
+}
+.marquee::before{
+  left:0;
+  background: linear-gradient(90deg, var(--card), rgba(255,255,255,0));
+}
+.marquee::after{
+  right:0;
+  background: linear-gradient(270deg, var(--card), rgba(255,255,255,0));
+}
+
+.marquee-track{
+  display:flex;
+  gap:14px;
+  white-space:nowrap;
+  width:max-content;
+  animation: marqueeLeft 26s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover (professional UX) */
+.marquee:hover .marquee-track{
+  animation-play-state: paused;
+}
+
+.marquee-item{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 14px;
+  border-radius:999px;
+  background: rgba(255,255,255,.72);
+  border:1px solid var(--line);
+  font-size:14px;
+  color:var(--muted);
+  font-weight:600;
+  letter-spacing:.1px;
+  transition:.18s ease;
+}
+
+.marquee-item:hover{
+  transform: translateY(-2px);
+  border-color: rgba(37,99,235,.35);
+  color:var(--text);
+}
+
+/* Right-to-left infinite scroll */
+@keyframes marqueeLeft{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{ animation: none; flex-wrap: wrap; white-space: normal; }
+  .marquee::before, .marquee::after{ display:none; }
+}
+    /* =========================
+   PROJECTS (Premium)
+========================= */
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+
+.projects-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+}
+@media (max-width: 860px){
+  .projects-grid{ grid-template-columns: 1fr; }
+}
+
+.project{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 10px 22px rgba(0,0,0,.05);
+  transition:.2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.project:hover{
+  transform: translateY(-3px);
+  border-color: rgba(37,99,235,.25);
+}
+
+.project-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.project h3{
+  margin:0;
+  font-size:16px;
+}
+.project-desc{
+  margin:8px 0 12px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.project-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.tag{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.75);
+  color:var(--muted);
+  font-weight:600;
+}
+
+.project-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.pbtn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.75);
+  color:var(--text);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  transition:.18s ease;
+}
+.pbtn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(37,99,235,.35);
+}
+.pbtn.primary{
+  border:none;
+  color:#fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 10px 20px rgba(37,99,235,.18);
+}
+.pbtn.disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  user-select:none;
+}
+
+.project-foot{
+  margin-top:10px;
+}
   </style>
 </head>
   
@@ -650,19 +836,14 @@
         <div class="small">Verified Credential via Credly</div>
 
         <div class="cert-actions">
-          <a class="cert-btn" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
-             target="_blank" rel="noreferrer">
-            🎖 View Badge (Credly)
-          </a>
-
-          <a class="cert-btn" href="https://www.credly.com/users/pacifique-fashaho"
-             target="_blank" rel="noreferrer">
-            🔗 Credly Profile
-          </a>
 
           <a class="cert-btn" href="assets/certificates/Google-data-analytics.pdf"
              target="_blank" rel="noreferrer">
             📄 View Certificate (PDF)
+          </a>
+           <a class="cert-btn" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
+             target="_blank" rel="noreferrer">
+            🎖 View Badge (Credly)
           </a>
         </div>
       </div>
@@ -677,8 +858,9 @@
         <strong>Programming for Everybody</strong>
         <div class="small">University of Michigan • 2025</div>
         <div class="small">
-          <a href="assets/certificates/Programming-for-everybody.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Programming-for-everybody.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -693,8 +875,9 @@
         <strong>Technical Support Fundamentals</strong>
         <div class="small">Google • 2025</div>
         <div class="small">
-          <a href="assets/certificates/Technical-support-fundamental.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Technical-support-fundamental.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -709,8 +892,9 @@
         <strong>The Bits and Bytes of Computer Networking</strong>
         <div class="small">Google • 2025</div>
         <div class="small">
-          <a href="assets/certificates/Computer-networking.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+           <a class="cert-btn" href="assets/Computer-networking.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -726,8 +910,9 @@
         <div class="small">Microsoft • Jan 2026</div>
         <div class="small">Credential ID: XHW5D07EZZ22</div>
         <div class="small">
-          <a href="assets/certificates/Work-smarter-Microsoft-Word.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Work-smarter-Microsoft-Word.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -742,8 +927,9 @@
         <strong>Professional Qualification – IT Support</strong>
         <div class="small">INPP • 2024</div>
         <div class="small">
-          <a href="assets/certificates/Certificat-Professionnel-INPP.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+           <a class="cert-btn" href="assets/Certificat-Professionnel-INPP.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -758,8 +944,9 @@
         <strong>Field Monitoring Agent (Agent de suivi de terrain)</strong>
         <div class="small">Académie Humanitaire • Oct 2025</div>
         <div class="small">
-          <a href="assets/certificates/Certificat-Agent-de-suivi-de-terrain.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Certificat-Agent-de-suivi-de-terrain.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -774,8 +961,9 @@
         <strong>Human Resources Management in Humanitarian Context</strong>
         <div class="small">Académie Humanitaire • Nov 2025</div>
         <div class="small">
-          <a href="assets/certificates/Certificat-Gestion-RH.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Certificat-Gestion-RH.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -791,8 +979,9 @@
         <div class="small">IBM • Dec 2025</div>
         <div class="small">Credential ID: QXMDBTDUU5X0</div>
         <div class="small">
-          <a href="assets/certificates/Python-for-data-AI-and-Development.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
+          <a class="cert-btn" href="assets/Python-for-data-AI-and-Development.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
           </a>
         </div>
       </div>
@@ -807,8 +996,9 @@
         <strong>Complete Certification Portfolio (PDF)</strong>
         <div class="small">Download a combined PDF with all certificates.</div>
         <div class="small">
-          <a href="assets/certificates/Pacifique-Full-files.pdf" target="_blank" rel="noreferrer">
-            Click here to download
+          <a class="cert-btn" href="assets/Pacifique-Full-files.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View here all my documents (PDF)
           </a>
         </div>
       </div>
@@ -895,40 +1085,132 @@
   </div>
   </div>
 </section>
+
 <section id="projects" class="card reveal" style="margin-top:16px;">
-  <h2>Projects</h2>
+  <div class="section-head">
+    <h2>Projects</h2>
+    <span class="small">A few selected projects </span>
+  </div>
 
-  <div class="grid">
-    <div class="proj">
-      <h3>Google Capstone Case Study</h3>
-      <p>End-to-end data analysis using SQL and Excel to identify user behavior patterns and business insights.</p>
-      <div class="links">
-        <a href="#">View Report</a>
-        <a href="#">GitHub</a>
-      </div>
-    </div>
+  <div class="projects-grid">
 
-    <div class="proj">
-      <h3>Sales Dashboard Project</h3>
-      <p>Built an interactive dashboard to monitor KPIs and improve reporting efficiency.</p>
-      <div class="links">
-        <a href="#">View Dashboard</a>
+    <!-- Project 1 -->
+    <article class="project">
+      <div class="project-top">
+        <h3>Google Capstone Case Study</h3>
+        <div class="project-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Excel</span>
+          <span class="tag">EDA</span>
+          <span class="tag">Insights</span>
+        </div>
       </div>
-    </div>
+
+      <p class="project-desc">
+        End-to-end analysis: data cleaning, exploration, and insight generation to support business decisions.
+      </p>
+
+      <div class="project-actions">
+        <a class="pbtn primary" href="assets/projects/capstone-report.xlss" target="_blank" rel="noreferrer">
+          📄 View Report
+        </a>
+        <a class="pbtn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">
+          💻 GitHub Repo
+        </a>
+      </div>
+
+      <div class="small project-foot">
+        Deliverables: report • cleaned dataset • SQL queries
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project">
+      <div class="project-top">
+        <h3>Sales Dashboard Project</h3>
+        <div class="project-tags">
+          <span class="tag">Excel</span>
+          <span class="tag">Dashboard</span>
+          <span class="tag">KPIs</span>
+          <span class="tag">Reporting</span>
+        </div>
+      </div>
+
+      <p class="project-desc">
+        Interactive KPI dashboard to track performance and improve reporting efficiency for decision-making.
+      </p>
+
+      <div class="project-actions">
+        <span class="pbtn disabled" title="Link will be added soon">
+          📊 View Dashboard
+        </span>
+        <a class="pbtn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">
+          💻 GitHub Repo
+        </a>
+      </div>
+
+      <div class="small project-foot">
+        Deliverables: dashboard • KPI definitions • summary notes
+      </div>
+    </article>
+
+    <!-- Project 3 (My portfolio) -->
+    <article class="project">
+      <div class="project-top">
+        <h3>Personal Portfolio Website</h3>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+      </div>
+
+      <p class="project-desc">
+        Built a responsive portfolio website with animations, sections, and a professional layout to showcase work and credentials.
+      </p>
+
+      <div class="project-actions">
+        <a class="pbtn primary" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer">
+          🌐 Live Website
+        </a>
+        <a class="pbtn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">
+          💻 Source Code
+        </a>
+      </div>
+
+      <div class="small project-foot">
+        Deliverables: live site • clean UI • recruiter-focused sections
+      </div>
+    </article>
+
   </div>
 </section>
     
-<section id="services" class="card reveal">
-    <h2>What I Can Help You With</h2>
-    <div class="chips">
-      <span class="chip">IT Support & Troubleshooting (remote/onsite)</span>
-      <span class="chip">Windows setup • Networks • Printers</span>
-      <span class="chip">Data cleaning & reporting (Excel, Python, SQL)</span>
-      <span class="chip">Dashboards & analysis</span>
-      <span class="chip">KoBoToolbox/ODK data collection</span>
-      <span class="chip">Technical support for NGOs & SMEs</span>
+<section id="services" class="card reveal live-services">
+  <h2>What I Can Help You With</h2>
+
+  <div class="marquee" aria-label="Services scrolling list">
+    <div class="marquee-track">
+
+      <span class="marquee-item">IT Support & System Troubleshooting (Remote / On-Site)</span>
+      <span class="marquee-item">Windows Setup • Network Configuration • Printer Management</span>
+      <span class="marquee-item">Data Cleaning & Reporting (Excel • SQL • Python)</span>
+      <span class="marquee-item">Interactive Dashboards & Business Insights</span>
+      <span class="marquee-item">KoBoToolbox / ODK Digital Data Collection</span>
+      <span class="marquee-item">Technical Support for NGOs & SMEs</span>
+
+      <!-- Duplicate items for seamless loop -->
+      <span class="marquee-item">IT Support & System Troubleshooting (Remote / On-Site)</span>
+      <span class="marquee-item">Windows Setup • Network Configuration • Printer Management</span>
+      <span class="marquee-item">Data Cleaning & Reporting (Excel • SQL • Python)</span>
+      <span class="marquee-item">Interactive Dashboards & Business Insights</span>
+      <span class="marquee-item">KoBoToolbox / ODK Digital Data Collection</span>
+      <span class="marquee-item">Technical Support for NGOs & SMEs</span>
+
     </div>
-  </section>
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact" class="card reveal" style="margin-top:16px;">
