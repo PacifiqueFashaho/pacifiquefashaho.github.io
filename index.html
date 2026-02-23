@@ -668,6 +668,100 @@
 .project-foot{
   margin-top:10px;
 }
+    /* =========================
+   SKILLS (Premium + Live)
+========================= */
+.skills-premium .section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:14px;
+  margin-top:12px;
+}
+@media (max-width: 860px){
+  .skills-grid{ grid-template-columns:1fr; }
+}
+
+.skill-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 10px 22px rgba(0,0,0,.05);
+  transition:.2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.skill-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(37,99,235,.25);
+}
+
+.skill-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+.skill-ico{
+  width:42px; height:42px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:800;
+}
+
+.skill-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:6px;
+  margin-bottom:12px;
+}
+.skill-chips .chip{
+  border:1px solid var(--line);
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.75);
+  font-size:13px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+/* Bars */
+.skill-bars{ display:flex; flex-direction:column; gap:10px; }
+.bar{ display:flex; flex-direction:column; gap:6px; }
+.bar-label{ font-size:12.5px; color:var(--muted); font-weight:700; }
+
+.bar-track{
+  height:10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.7);
+  overflow:hidden;
+}
+.bar-fill{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  transition: width 900ms ease;
+}
+
+/* Skills marquee (uses your marquee styles) */
+.skills-marquee{ margin-top:6px; }
+.skills-marquee .marquee-track{ animation-duration: 28s; } /* slower = premium */
   </style>
 </head>
   
@@ -756,17 +850,155 @@
       </div>
     </div>
 
-    <!-- SKILLS -->
-    <section id="skills" class="card reveal" style="margin-top:16px;">
-      <h2>Skills</h2>
-        <ul>
-          <li><strong>IT Support:</strong> Windows, Networking, Printers, Troubleshooting</li>
-          <li><strong>Data:</strong> Excel, Google Sheets, Dashboards, Cleaning, Reporting</li>
-          <li><strong>Programming:</strong> Python (Pandas, NumPy), SQL</li>
-          <li><strong>Field Tools:</strong> KoBoToolbox / ODK</li>
-          <li><strong>Version Control:</strong> Git / GitHub</li>
-        </ul>
-    </section>
+<section id="skills" class="card reveal skills-premium" style="margin-top:16px;">
+  <div class="section-head">
+    <h2>Skills</h2>
+    <span class="small">Core tools and strengths I use in real projects</span>
+  </div>
+
+  <!-- Live line (right-to-left) -->
+  <div class="marquee skills-marquee" aria-label="Live skills">
+    <div class="marquee-track">
+      <span class="marquee-item">Currently working with: SQL • Python • Excel • Dashboards • Data Cleaning</span>
+      <span class="marquee-item">IT Support: Windows • Networking • Printers • Troubleshooting</span>
+      <span class="marquee-item">Field Data: KoBoToolbox • ODK • Data Validation</span>
+      <span class="marquee-item">Version Control: Git • GitHub</span>
+
+      <!-- duplicate for smooth loop -->
+      <span class="marquee-item">Currently working with: SQL • Python • Excel • Dashboards • Data Cleaning</span>
+      <span class="marquee-item">IT Support: Windows • Networking • Printers • Troubleshooting</span>
+      <span class="marquee-item">Field Data: KoBoToolbox • ODK • Data Validation</span>
+      <span class="marquee-item">Version Control: Git • GitHub</span>
+    </div>
+  </div>
+
+  <!-- Premium grid -->
+  <div class="skills-grid">
+
+    <!-- Data & Analytics -->
+    <article class="skill-card">
+      <div class="skill-top">
+        <div class="skill-ico">📊</div>
+        <div>
+          <strong>Data & Analytics</strong>
+          <div class="small">Cleaning, reporting, dashboards</div>
+        </div>
+      </div>
+
+      <div class="skill-chips">
+        <span class="chip">Excel</span>
+        <span class="chip">Google Sheets</span>
+        <span class="chip">Data Cleaning</span>
+        <span class="chip">Reporting</span>
+        <span class="chip">EDA</span>
+        <span class="chip">Dashboards</span>
+      </div>
+
+      <div class="skill-bars">
+        <div class="bar">
+          <span class="bar-label">Excel / Sheets</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:86%"></div></div>
+        </div>
+        <div class="bar">
+          <span class="bar-label">Cleaning & Reporting</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:82%"></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Programming -->
+    <article class="skill-card">
+      <div class="skill-top">
+        <div class="skill-ico">💻</div>
+        <div>
+          <strong>Programming</strong>
+          <div class="small">Data scripts and automation</div>
+        </div>
+      </div>
+
+      <div class="skill-chips">
+        <span class="chip">Python</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">NumPy</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Git</span>
+        <span class="chip">GitHub</span>
+      </div>
+
+      <div class="skill-bars">
+        <div class="bar">
+          <span class="bar-label">Python</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:78%"></div></div>
+        </div>
+        <div class="bar">
+          <span class="bar-label">SQL</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:70%"></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- IT Support -->
+    <article class="skill-card">
+      <div class="skill-top">
+        <div class="skill-ico">🛠️</div>
+        <div>
+          <strong>IT Support</strong>
+          <div class="small">Systems, networks, troubleshooting</div>
+        </div>
+      </div>
+
+      <div class="skill-chips">
+        <span class="chip">Windows</span>
+        <span class="chip">Hardware</span>
+        <span class="chip">Software</span>
+        <span class="chip">Networking</span>
+        <span class="chip">LAN</span>
+        <span class="chip">Printers</span>
+      </div>
+
+      <div class="skill-bars">
+        <div class="bar">
+          <span class="bar-label">Troubleshooting</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:88%"></div></div>
+        </div>
+        <div class="bar">
+          <span class="bar-label">Windows & Setup</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:84%"></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Field Tools -->
+    <article class="skill-card">
+      <div class="skill-top">
+        <div class="skill-ico">🗂️</div>
+        <div>
+          <strong>Field Data Tools</strong>
+          <div class="small">Mobile data collection</div>
+        </div>
+      </div>
+
+      <div class="skill-chips">
+        <span class="chip">KoBoToolbox</span>
+        <span class="chip">ODK</span>
+        <span class="chip">Data Validation</span>
+        <span class="chip">Field Teams</span>
+      </div>
+
+      <div class="skill-bars">
+        <div class="bar">
+          <span class="bar-label">KoBo/ODK</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:80%"></div></div>
+        </div>
+        <div class="bar">
+          <span class="bar-label">Data Quality Checks</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:76%"></div></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
     
 <!-- EDUCATION -->
 <section id="education" class="card reveal" style="margin-top:16px;">
@@ -1383,6 +1615,22 @@ document.getElementById("y2").textContent = new Date().getFullYear();
   toTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+    // Animate skill bars when Skills section becomes visible
+const skillSection = document.querySelector("#skills");
+const skillBars = document.querySelectorAll("#skills .bar-fill");
+
+if (skillSection && skillBars.length) {
+  const skillObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        skillBars.forEach(b => b.style.width = getComputedStyle(b).getPropertyValue("--w"));
+        skillObs.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  skillObs.observe(skillSection);
+}
 </script>
 
 </body>
