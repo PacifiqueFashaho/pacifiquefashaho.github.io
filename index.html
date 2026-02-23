@@ -444,9 +444,42 @@
     .cert .meta{flex:1; position:relative; z-index:1;}
     .cert .meta strong{display:block;}
     .cert .meta .small{margin-top:4px;}
+
+/* Professional certification actions */
+.cert-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+
+.cert-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border-radius:999px;
+  text-decoration:none;
+  border:1px solid var(--line);
+  color:var(--text);
+  background: rgba(255,255,255,.70);
+  font-size:13px;
+  transition:.18s ease;
+}
+
+.cert-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(37,99,235,.35);
+}
+
+/* Highlight your main certificate */
+.cert.featured{
+  border-color: rgba(37,99,235,.22);
+  background: rgba(37,99,235,.03);
+}
   </style>
 </head>
-
+  
 <body>
  <div class="progress-bar" id="progressBar"></div>
  <button id="toTop" aria-label="Back to top">↑ Top</button>
@@ -510,12 +543,10 @@
               </div>
             </div>
 
-
-       <p class="summary">
-          IT Support Specialist and Data Analyst with hands-on experience in system deployment, troubleshooting, and field data management. 
-          Skilled in Python, SQL, Excel, and digital data collection tools (KoBoToolbox/ODK). 
-          I help teams improve operations through reliable IT infrastructure and data-driven insights. 
-          Experienced working with NGOs and SMEs in challenging environments, ensuring high system availability, data quality, and user support.
+        <p class="summary">
+            Certified Data Analyst and IT Support Specialist with experience delivering reliable systems and actionable insights. 
+            Skilled in SQL, Python, Excel, and dashboard development. 
+            I transform raw data into structured reports that support decision-making for SMEs and humanitarian organizations.
         </p>
       </div>
 
@@ -596,7 +627,38 @@
   <h2>Certifications</h2>
 
   <div class="cert-grid">
-    <!-- University of Michigan: Programming for Everybody -->
+
+    <!-- Google Data Analytics -->
+    <div class="cert">
+      <div class="logo-box">
+        <img src="assets/images/Logo-Google.png" alt="Google">
+      </div>
+
+      <div class="meta">
+        <strong>Google Data Analytics Professional Certificate</strong>
+        <div class="small">Google • 2026 • ACE Recommended (13 Lower-Division Credits)</div>
+        <div class="small">Verified Credential via Credly</div>
+
+        <div class="cert-actions">
+          <a class="cert-btn" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
+             target="_blank" rel="noreferrer">
+            🎖 View Badge (Credly)
+          </a>
+
+          <a class="cert-btn" href="https://www.credly.com/users/pacifique-fashaho"
+             target="_blank" rel="noreferrer">
+            🔗 Credly Profile
+          </a>
+
+          <a class="cert-btn" href="assets/certificates/Google-data-analytics.pdf"
+             target="_blank" rel="noreferrer">
+            📄 View Certificate (PDF)
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- University of Michigan -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Logo-Umich.png" alt="University of Michigan">
@@ -612,7 +674,7 @@
       </div>
     </div>
 
-    <!-- Google IT Support: Technical Support Fundamental -->
+    <!-- Google IT Support -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Logo-Google.png" alt="Google">
@@ -634,17 +696,17 @@
         <img src="assets/images/Logo-Google.png" alt="Google">
       </div>
       <div class="meta">
-        <strong>The Bits and Bytes Computer Networking</strong>
+        <strong>The Bits and Bytes of Computer Networking</strong>
         <div class="small">Google • 2025</div>
         <div class="small">
-          <a href="assets/certificates/Technical-support-fundamental.pdf" target="_blank" rel="noreferrer">
+          <a href="assets/certificates/Computer-networking.pdf" target="_blank" rel="noreferrer">
             View Certificate (PDF)
           </a>
         </div>
       </div>
     </div>
 
-  <!-- Microsoft -->
+   <!-- Microsoft -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Logo-Microsoft.png" alt="Microsoft">
@@ -660,7 +722,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- INPP -->
     <div class="cert">
       <div class="logo-box">
@@ -677,7 +739,7 @@
       </div>
     </div>
 
-    <!-- Académie Humanitaire: Agent de suivi -->
+    <!-- Académie Humanitaire -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Académie Humanitaire">
@@ -693,7 +755,7 @@
       </div>
     </div>
 
-    <!-- Académie Humanitaire: RH -->
+    <!-- RH Humanitaire -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Académie Humanitaire">
@@ -703,103 +765,6 @@
         <div class="small">Académie Humanitaire • Nov 2025</div>
         <div class="small">
           <a href="assets/certificates/Certificat-Gestion-RH.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Foundations -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Foundations: Data, Data, Everywhere</strong>
-        <div class="small">Google • 2025</div>
-        <div class="small">
-          <a href="assets/certificates/Foundation-Data-Data-Everywhere.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Ask Questions -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Ask Questions to Make Data-Driven Decisions</strong>
-        <div class="small">Google • 2025</div>
-        <div class="small">
-          <a href="assets/certificates/Ask-Question-to-make-data-driven-decision.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Prepare Data -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Prepare Data for Exploration</strong>
-        <div class="small">Google • Dec 2025</div>
-        <div class="small">Credential ID: 2B0EONPHTZZI</div>
-        <div class="small">
-          <a href="assets/certificates/Prepare-data-for-exploration.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Process Data -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Process Data from Dirty to Clean</strong>
-        <div class="small">Google • 2025</div>
-        <div class="small">
-          <a href="assets/certificates/Process-data-from-dirty-to-clean.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Analyze Data -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Analyze Data to Answer Questions</strong>
-        <div class="small">Google • 2025</div>
-        <div class="small">
-          <a href="assets/certificates/Analyze-data-to-answer-questions.pdf" target="_blank" rel="noreferrer">
-            View Certificate (PDF)
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Google: Share Data -->
-    <div class="cert">
-      <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
-      </div>
-      <div class="meta">
-        <strong>Share Data Through the Art of Visualization</strong>
-        <div class="small">Google • 2025</div>
-        <div class="small">
-          <a href="assets/certificates/Share-data-visualized.pdf" target="_blank" rel="noreferrer">
             View Certificate (PDF)
           </a>
         </div>
@@ -823,16 +788,18 @@
       </div>
     </div>
 
-    <!-- All docs together PDF -->
+    <!-- Full PDF (rename + text pro) -->
     <div class="cert">
       <div class="logo-box">
         <img src="assets/images/Pacifique-Doc.png" alt="PDF">
       </div>
       <div class="meta">
-        <strong>Full Pacifique fils</strong>
-        <div class="small">Download Full Pacifique files PDF</div>
+        <strong>Complete Certification Portfolio (PDF)</strong>
+        <div class="small">Download a combined PDF with all certificates.</div>
         <div class="small">
-          <a href="assets/certificates/Pacifique-Full-files.pdf" target="_blank" rel="noreferrer">Clic here to download PDF</a>
+          <a href="assets/certificates/Pacifique-Full-files.pdf" target="_blank" rel="noreferrer">
+            Click here to download
+          </a>
         </div>
       </div>
     </div>
@@ -918,7 +885,28 @@
   </div>
   </div>
 </section>
+<section id="projects" class="card reveal" style="margin-top:16px;">
+  <h2>Projects</h2>
 
+  <div class="grid">
+    <div class="proj">
+      <h3>Google Capstone Case Study</h3>
+      <p>End-to-end data analysis using SQL and Excel to identify user behavior patterns and business insights.</p>
+      <div class="links">
+        <a href="#">View Report</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+
+    <div class="proj">
+      <h3>Sales Dashboard Project</h3>
+      <p>Built an interactive dashboard to monitor KPIs and improve reporting efficiency.</p>
+      <div class="links">
+        <a href="#">View Dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
     
 <section id="services" class="card reveal">
     <h2>What I Can Help You With</h2>
