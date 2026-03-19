@@ -103,7 +103,23 @@
       opacity:1;
       transform:none;
     }
-    
+    .skip-link{
+  position:absolute;
+  left:-9999px;
+  top:auto;
+}
+
+.skip-link:focus{
+  left:16px;
+  top:16px;
+  z-index:10000;
+  background:#fff;
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
     /* More attractive main buttons */
     .btn.primary:hover{
       filter: brightness(1.05);
