@@ -1,4 +1,3 @@
-  <style>
     :root{
       --bg:#f8fafc;
       --card:#ffffff;
@@ -754,4 +753,3 @@
 /* Skills marquee  */
 .skills-marquee{ margin-top:6px; }
 .skills-marquee .marquee-track{ animation-duration: 28s; } /* slower = premium */
-  </style>
