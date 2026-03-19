@@ -1,4 +1,3 @@
-  <script>
   // year
 document.getElementById("y2").textContent = new Date().getFullYear();
 
@@ -109,4 +108,3 @@ if (skillSection && skillBars.length) {
 
   skillObs.observe(skillSection);
 }
-</script>
