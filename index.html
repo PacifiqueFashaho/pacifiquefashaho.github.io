@@ -20,6 +20,15 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pacifique Fashaho | IT Support Technician, Data Analyst &amp; Junior Developer" />
   <meta name="twitter:description" content="IT support, data analytics, dashboards, Python, SQL, KoBoToolbox/ODK, networking, troubleshooting, HTML, CSS, and JavaScript." />
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+      } catch (error) {}
+    })();
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,7 +73,7 @@
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="progress-bar" id="progressBar"></div>
-  <button id="toTop" aria-label="Back to top">↑ Top</button>
+  <button id="toTop" aria-label="Back to top" hidden>↑ Top</button>
 
   <header class="topbar">
     <div class="wrap">
@@ -82,6 +91,10 @@
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Theme</span>
+      </button>
     </div>
   </header>
 
@@ -559,16 +572,21 @@
   <section id="experience" class="card reveal" style="margin-top:16px;">
     <h2>Professional Experience</h2>
   
-    <div class="cert-grid">
+    <div class="timeline">
   
       <!-- HIGH TECH BUSINESS -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/computers1.jpg" alt="Computer equipment used for High Tech Business IT support">
-        </div>
-        <div class="meta">
-          <strong>IT Support &amp; Data Assistant</strong>
-          <div class="small">HIGH TECH BUSINESS - Goma • April - July 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card" open>
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/computers1.jpg" alt="Computer equipment used for High Tech Business IT support">
+            </span>
+            <span class="timeline-head">
+              <strong>IT Support &amp; Data Assistant</strong>
+              <span class="small">HIGH TECH BUSINESS - Goma • April - July 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Installed and configured computers, printers, and business software.</li>
             <li>Diagnosed and resolved hardware/software issues, reducing downtime for staff.</li>
@@ -576,52 +594,66 @@
             <li>Cleaned and analyzed datasets using Excel and Google Sheets.</li>
             <li>Built dashboards and reports to support business decisions.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   
   
       <!-- CAAP TUJITEGEMEE -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/Logo-CAAP-Tujitegemee.png" alt="CAAP Tujitegemee NGO logo">
-        </div>
-        <div class="meta">
-          <strong>Field Data Enumerator &amp; Technical Support</strong>
-          <div class="small">CAAP TUJITEGEMEE (NGO) - Goma • July - Nov 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card">
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/Logo-CAAP-Tujitegemee.png" alt="CAAP Tujitegemee NGO logo">
+            </span>
+            <span class="timeline-head">
+              <strong>Field Data Enumerator &amp; Technical Support</strong>
+              <span class="small">CAAP TUJITEGEMEE (NGO) - Goma • July - Nov 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Collected digital field data using KoBoToolbox/ODK.</li>
             <li>Configured tablets and ensured reliable connectivity in low-network environments.</li>
             <li>Validated and cleaned datasets to maintain high data quality.</li>
             <li>Provided on-site technical troubleshooting during field missions.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   
       <!-- CYBERCAFÉ -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/computers2.jpg" alt="Cybercafe computers for client IT support">
-        </div>
-        <div class="meta">
-          <strong>IT &amp; Administrative Assistant</strong>
-          <div class="small">Cybercafé KivuNet - Goma • June 2024 – April 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card">
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/computers2.jpg" alt="Cybercafe computers for client IT support">
+            </span>
+            <span class="timeline-head">
+              <strong>IT &amp; Administrative Assistant</strong>
+              <span class="small">Cybercafé KivuNet - Goma • June 2024 – April 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Provided multi-user IT support and internet troubleshooting.</li>
             <li>Installed and updated software and maintained workstations.</li>
             <li>Assisted clients with online services and digital tools.</li>
             <li>Educated users on cybersecurity and safe computing practices.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   <!-- SMITH Cybercafé -->
-  <div class="cert">
-    <div class="logo-box">
-      <img src="assets/images/computers3.jpg" alt="SMITH cybercafe and printing center workstation">
-    </div>
-  
-    <div class="meta">
-      <strong>IT Support Technician &amp; Digital Services Assistant</strong>
-      <div class="small">Cybercafé &amp; Printing Center SMITH - Goma • Dec 2025 – Present</div>
+  <article class="timeline-item">
+    <details class="timeline-card">
+      <summary>
+        <span class="timeline-marker" aria-hidden="true"></span>
+        <span class="logo-box">
+          <img src="assets/images/computers3.jpg" alt="SMITH cybercafe and printing center workstation">
+        </span>
+        <span class="timeline-head">
+          <strong>IT Support Technician &amp; Digital Services Assistant</strong>
+          <span class="small">Cybercafé &amp; Printing Center SMITH - Goma • Dec 2025 – Present</span>
+        </span>
+      </summary>
       <ul>
         <li>Provide daily technical support for computers, printers, and internet connectivity.</li>
         <li>Install, configure, and maintain Windows systems and office applications.</li>
@@ -629,8 +661,8 @@
         <li>Assist customers with digital services (documents, online forms, printing, scanning).</li>
         <li>Ensure data security, system reliability, and smooth customer operations.</li>
       </ul>
-    </div>
-  </div>
+    </details>
+  </article>
   </div>
 </section>
 
@@ -640,9 +672,18 @@
     <span class="small">Selected work with practical IT, data, and web outcomes</span>
   </div>
 
+  <div class="project-filters" aria-label="Project category filters">
+    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" type="button" data-filter="data-analytics" aria-pressed="false">Data Analytics</button>
+    <button class="filter-btn" type="button" data-filter="it-support" aria-pressed="false">IT Support</button>
+    <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web</button>
+    <button class="filter-btn" type="button" data-filter="excel" aria-pressed="false">Excel</button>
+    <button class="filter-btn" type="button" data-filter="python" aria-pressed="false">Python</button>
+  </div>
+
   <div class="projects-grid">
 
-    <article class="project" id="project-google-capstone">
+    <article class="project" id="project-google-capstone" data-category="data-analytics excel">
       <div class="project-top">
         <h3>Google Capstone Case Study</h3>
         <div class="project-tags">
@@ -669,9 +710,16 @@
       <div class="small project-foot">
         Deliverables: analytics workflow • data cleaning • visualization • business insights
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>Focus areas include data preparation, cleaning, exploratory analysis, and communicating insights in a business-friendly format.</p>
+          <p class="small">Category: Data Analytics, Excel</p>
+        </div>
+      </details>
     </article>
 
-    <article class="project" id="project-sales-dashboard">
+    <article class="project" id="project-sales-dashboard" data-category="data-analytics excel">
       <div class="project-top">
         <h3>Sales Dashboard Project</h3>
         <div class="project-tags">
@@ -701,9 +749,16 @@
       <div class="small project-foot">
         Deliverables: dashboard • KPI definitions • summary notes
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>The dashboard organizes sales indicators into a concise report that can be reviewed quickly by non-technical stakeholders.</p>
+          <p class="small">Category: Data Analytics, Excel</p>
+        </div>
+      </details>
     </article>
 
-    <article class="project">
+    <article class="project" data-category="web">
       <div class="project-top">
         <h3>Personal Portfolio Website</h3>
         <div class="project-tags">
@@ -730,9 +785,17 @@
       <div class="small project-foot">
         Deliverables: live site • clean UI • recruiter-focused sections
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>This site is built as a lightweight static portfolio for GitHub Pages with no build step, framework, or external JavaScript library.</p>
+          <p class="small">Category: Web</p>
+        </div>
+      </details>
     </article>
 
   </div>
+  <p class="project-empty small" id="projectEmpty" aria-live="polite" hidden>No project is currently listed in this category.</p>
 </section>
     
 <section id="services" class="card reveal live-services">
@@ -830,6 +893,23 @@
         <div class="cc-go">↗</div>
       </a>
     </div>
+
+    <form class="contact-form" id="contactForm" action="mailto:pacifiquefashaho04@gmail.com" method="post" enctype="text/plain">
+      <div class="form-row">
+        <label for="contactName">Name</label>
+        <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="form-row">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" rows="4" placeholder="Tell me how I can help"></textarea>
+      </div>
+      <button class="btn primary" type="submit" aria-label="Open an email draft to contact Pacifique Fashaho">Open Email Draft</button>
+      <p class="small">This form uses mailto and opens your email app. Direct website form delivery requires a third-party form service and should not use private API keys in this public repository.</p>
+    </form>
 
     <div class="contact-foot">
       <div class="small">Open to remote opportunities • IT Support • Data Analytics</div>

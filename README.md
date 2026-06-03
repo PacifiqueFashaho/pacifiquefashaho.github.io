@@ -19,10 +19,14 @@ Visit the published site: [https://pacifiquefashaho.github.io](https://pacifique
 ## Features
 
 - Responsive portfolio layout for desktop and mobile screens
+- Accessible dark/light theme toggle with local storage preference
 - Recruiter-focused sections for skills, education, certifications, experience, projects, services, and contact details
 - Downloadable CV and certificate links
-- Project cards with specific links to live work, source code, dashboards, and credential pages
+- Filterable project cards with expandable project details
+- Interactive vertical experience timeline using native HTML details
+- Mailto-based contact form that opens an email draft without exposing API keys
 - Scroll progress indicator, back-to-top button, reveal animations, animated counters, and typing effect
+- IntersectionObserver-powered skill bar animations that respect reduced-motion preferences
 - Accessibility support through semantic structure, skip link, focus styles, descriptive alt text, and reduced-motion handling
 - SEO support with canonical URL, Open Graph data, Twitter card metadata, structured data, `robots.txt`, and `sitemap.xml`
 - `.gitignore` protection for local IntelliJ project files
@@ -78,7 +82,7 @@ No build step is required. This is a static website.
 
 - `index.html`: Page content, sections, contact links, and SEO metadata
 - `assets/css/style.css`: Layout, responsive styling, visual design, and accessibility states
-- `assets/js/main.js`: Typing animation, reveal effects, counters, scroll progress, and back-to-top behavior
+- `assets/js/main.js`: Theme toggle, project filtering, mailto form, typing animation, reveal effects, counters, skill bars, scroll progress, and back-to-top behavior
 - `robots.txt`: Search crawler rules and sitemap location
 - `sitemap.xml`: Canonical URL submitted for search indexing
 - `.gitignore`: Excludes local IntelliJ `.idea/` and module files
