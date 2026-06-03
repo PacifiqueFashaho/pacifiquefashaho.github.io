@@ -280,6 +280,13 @@
     }
 
     .summary{margin-top:14px; color:var(--muted);}
+    .hero-value{
+      margin:14px 0 0;
+      color:var(--text);
+      font-size:17px;
+      font-weight:800;
+      line-height:1.45;
+    }
 
     /* Profile */
     .profile{
@@ -292,6 +299,11 @@
       border:1px solid var(--line);
       box-shadow: 0 14px 26px rgba(0,0,0,.35);
       background: rgba(255,255,255,.06);
+    }
+    .profile-workstation{
+      width:100%;
+      height:160px;
+      border-radius:16px;
     }
 
     /* Sections */
@@ -374,6 +386,33 @@
         flex-direction:column;
         gap:14px;
         align-items:center;
+      }
+      .contact-email-actions{
+        width:min(720px, 100%);
+        display:grid;
+        grid-template-columns:1fr auto;
+        gap:10px;
+        align-items:center;
+      }
+      .copy-btn{
+        min-height:44px;
+        border:1px solid var(--line);
+        border-radius:999px;
+        background:var(--soft-surface);
+        color:var(--text);
+        padding:10px 14px;
+        font-weight:800;
+        cursor:pointer;
+        transition:.18s ease;
+      }
+      .copy-btn:hover{
+        transform:translateY(-1px);
+        border-color:rgba(37,99,235,.35);
+      }
+      .copy-status{
+        grid-column:1 / -1;
+        min-height:18px;
+        text-align:center;
       }
               .mini-card{
           width:100%;
@@ -720,6 +759,31 @@
   color:var(--muted);
   font-size:14px;
 }
+.project-brief{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:10px;
+  margin:12px 0;
+}
+.project-brief > div{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  background:var(--soft-surface);
+}
+.project-brief p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+.project-label{
+  display:block;
+  color:var(--text);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
 
 .project-tags{
   display:flex;
@@ -957,13 +1021,36 @@
     align-items:flex-start;
   }
 
+  .project-brief{
+    grid-template-columns:1fr;
+  }
+
   .project-tags{
     justify-content:flex-start;
+  }
+
+  .marquee-track{
+    animation:none;
+    flex-wrap:wrap;
+    white-space:normal;
+  }
+
+  .marquee::before,
+  .marquee::after{
+    display:none;
   }
 
   .contact-pill{
     border-radius:16px;
     justify-content:space-between;
+  }
+
+  .contact-email-actions{
+    grid-template-columns:1fr;
+  }
+
+  .copy-btn{
+    width:100%;
   }
 
   .chip-text,
@@ -1232,6 +1319,8 @@
 :root[data-theme="dark"] .skill-card,
 :root[data-theme="dark"] .skill-chips .chip,
 :root[data-theme="dark"] .bar-track,
+:root[data-theme="dark"] .project-brief > div,
+:root[data-theme="dark"] .copy-btn,
 :root[data-theme="dark"] .pbtn{
   background:var(--soft-surface);
 }
@@ -1257,6 +1346,8 @@
   :root:not([data-theme="light"]) .skill-card,
   :root:not([data-theme="light"]) .skill-chips .chip,
   :root:not([data-theme="light"]) .bar-track,
+  :root:not([data-theme="light"]) .project-brief > div,
+  :root:not([data-theme="light"]) .copy-btn,
   :root:not([data-theme="light"]) .pbtn{
     background:var(--soft-surface);
   }
