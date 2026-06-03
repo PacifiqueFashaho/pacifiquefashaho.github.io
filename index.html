@@ -3,24 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Pacifique Fashaho, an IT Support and Data Analytics professional in Goma, DR Congo, focused on Python, SQL, Excel, dashboards, troubleshooting, and field data tools." />
+  <meta name="description" content="Portfolio of Pacifique Fashaho, an IT Support Technician, Data Analyst, and Junior Developer in Goma, DR Congo, working with Python, SQL, Excel, KoBoToolbox/ODK, dashboards, networking, and troubleshooting." />
   <meta name="author" content="Pacifique Fashaho" />
   <meta name="theme-color" content="#2563eb" />
   <link rel="canonical" href="https://pacifiquefashaho.github.io/" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <title>Pacifique Fashaho | IT Support & Data Analyst</title>
-  <meta property="og:title" content="Pacifique Fashaho | IT Support & Data Analyst" />
-  <meta property="og:description" content="Python, SQL, dashboards, data cleaning, IT support, and field data tools." />
+  <title>Pacifique Fashaho | IT Support Technician, Data Analyst &amp; Junior Developer</title>
+  <meta property="og:title" content="Pacifique Fashaho | IT Support Technician, Data Analyst &amp; Junior Developer" />
+  <meta property="og:description" content="Portfolio focused on IT support, data analytics, Python, SQL, Excel dashboards, KoBoToolbox/ODK, networking, troubleshooting, HTML, CSS, and JavaScript." />
   <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/Image_Pacifique.jpeg" />
   <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/Image_Pacifique.jpeg" />
   <meta property="og:url" content="https://pacifiquefashaho.github.io/" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pacifique Fashaho Portfolio" />
+  <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pacifique Fashaho | IT Support Technician, Data Analyst &amp; Junior Developer" />
+  <meta name="twitter:description" content="IT support, data analytics, dashboards, Python, SQL, KoBoToolbox/ODK, networking, troubleshooting, HTML, CSS, and JavaScript." />
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+      } catch (error) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pacifique Fashaho",
+    "url": "https://pacifiquefashaho.github.io/",
+    "image": "https://pacifiquefashaho.github.io/assets/images/Image_Pacifique.jpeg",
+    "jobTitle": "IT Support Technician, Data Analyst, and Junior Developer",
+    "email": "mailto:pacifiquefashaho04@gmail.com",
+    "telephone": "+243859477758",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Goma",
+      "addressRegion": "North Kivu",
+      "addressCountry": "CD"
+    },
+    "sameAs": [
+      "https://github.com/PacifiqueFashaho",
+      "https://www.linkedin.com/in/pacifique-fashaho-8ab656388"
+    ],
+    "knowsAbout": [
+      "IT support",
+      "Data analytics",
+      "Python",
+      "SQL",
+      "Excel",
+      "Google Sheets",
+      "KoBoToolbox",
+      "ODK",
+      "Git",
+      "GitHub",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Networking",
+      "Troubleshooting",
+      "Dashboards"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="progress-bar" id="progressBar"></div>
-  <button id="toTop" aria-label="Back to top">↑ Top</button>
+  <button id="toTop" aria-label="Back to top" hidden>↑ Top</button>
 
   <header class="topbar">
     <div class="wrap">
@@ -38,6 +91,10 @@
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Theme</span>
+      </button>
     </div>
   </header>
 
@@ -46,7 +103,7 @@
       <section class="card reveal" aria-labelledby="intro-title">
        <h1 class="title" id="intro-title">Pacifique Fashaho</h1>
         <p class="small">
-          <span id="typing"></span><span class="cursor">|</span>
+          <span id="typing">IT Support Technician, Data Analyst, and Junior Developer</span><span class="cursor">|</span>
         </p>
         <div class="subtitle">
           <span class="pill">Python</span>
@@ -65,10 +122,10 @@
         </p>
 
             <div class="btns">
-              <a class="btn primary" href="Pacifique_Fashaho_CV.pdf" target="_blank" rel="noreferrer">📄 Resume (My CV)</a>
-              <a class="btn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">💻 GitHub</a>
-              <a class="btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer">🔗 LinkedIn</a>
-              <a class="btn" href="mailto:pacifiquefashaho04@gmail.com">✉ Email</a>
+              <a class="btn primary" href="Pacifique_Fashaho_CV.pdf" target="_blank" rel="noreferrer" aria-label="Download Pacifique Fashaho CV as a PDF">📄 Resume (My CV)</a>
+              <a class="btn" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer" aria-label="Visit Pacifique Fashaho on GitHub">💻 GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer" aria-label="Visit Pacifique Fashaho on LinkedIn">🔗 LinkedIn</a>
+              <a class="btn" href="mailto:pacifiquefashaho04@gmail.com" aria-label="Email Pacifique Fashaho">✉ Email</a>
             </div>
             <div class="stats">
               <div class="stat">
@@ -83,7 +140,7 @@
             
               <div class="stat">
                 <span class="stat-num" data-target="4">0</span>
-                <span class="label">IT & Data Skills</span>
+                <span class="label">IT &amp; Data Skills</span>
               </div>
             </div>
 
@@ -92,12 +149,12 @@
         </p>
       </section>
 
-      <div class="card profile reveal">
-        <img class="avatar" src="assets/images/Image_Pacifique.jpeg" alt="Photo of Pacifique Fashaho">
+      <aside class="card profile reveal" aria-label="Profile summary">
+        <img class="avatar" src="assets/images/Image_Pacifique.jpeg" alt="Portrait of Pacifique Fashaho">
         
-        <div class="small">Available for remote & on-site opportunities</div>
+        <div class="small">Available for remote &amp; on-site opportunities</div>
         
-        <img class="avatar" style="width:100%; height:160px; border-radius:16px;" src="assets/images/computers.jpg" alt="Computers">
+        <img class="avatar" style="width:100%; height:160px; border-radius:16px;" src="assets/images/computers.jpg" alt="Computer workstations representing IT support and troubleshooting">
         <div class="small">Passionate about computers, IT support, and building useful tech solutions.</div>
         <div>
           <div style="font-weight:700;">Pacifique Fashaho</div>
@@ -119,7 +176,7 @@
 
           </div>
         </div>
-      </div>
+      </aside>
     </div>
 
 <section id="skills" class="card reveal skills-premium" style="margin-top:16px;">
@@ -147,12 +204,12 @@
   <!-- Premium grid -->
   <div class="skills-grid">
 
-    <!-- Data & Analytics -->
+    <!-- Data and Analytics -->
     <article class="skill-card">
       <div class="skill-top">
         <div class="skill-ico">📊</div>
         <div>
-          <strong>Data & Analytics</strong>
+          <strong>Data &amp; Analytics</strong>
           <div class="small">Cleaning, reporting, dashboards</div>
         </div>
       </div>
@@ -172,7 +229,7 @@
           <div class="bar-track"><div class="bar-fill" style="--w:86%"></div></div>
         </div>
         <div class="bar">
-          <span class="bar-label">Cleaning & Reporting</span>
+          <span class="bar-label">Cleaning &amp; Reporting</span>
           <div class="bar-track"><div class="bar-fill" style="--w:82%"></div></div>
         </div>
       </div>
@@ -234,7 +291,7 @@
           <div class="bar-track"><div class="bar-fill" style="--w:88%"></div></div>
         </div>
         <div class="bar">
-          <span class="bar-label">Windows & Setup</span>
+          <span class="bar-label">Windows &amp; Setup</span>
           <div class="bar-track"><div class="bar-fill" style="--w:84%"></div></div>
         </div>
       </div>
@@ -281,7 +338,7 @@
     <!-- University of the People -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Uopeople.png" alt="University of the People">
+        <img src="assets/images/Logo-Uopeople.png" alt="University of the People logo">
       </div>
 
       <div class="meta">
@@ -302,7 +359,7 @@
     <!-- EDAC -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Edac.jpg" alt="EDAC School">
+        <img src="assets/images/Edac.jpg" alt="EDAC school logo">
       </div>
 
       <div class="meta">
@@ -311,7 +368,7 @@
 
         <div class="cert-actions" style="margin-top:10px;">
           <a class="cert-btn"
-             href="https://exetat.minepst.gouv.cd/candidats.searcheco?_token=U87bxKlLQEeM3ua3UM0Usa0cTjsDMJZXx9yjUYD0&nom=BAHATI+FASHAHO+PACIFIQUE+&annee=2024"
+             href="https://exetat.minepst.gouv.cd/candidats.searcheco?_token=U87bxKlLQEeM3ua3UM0Usa0cTjsDMJZXx9yjUYD0&amp;nom=BAHATI+FASHAHO+PACIFIQUE+&amp;annee=2024"
              target="_blank" rel="noreferrer">
             🔎 Verify My State Exam Result
           </a>
@@ -331,7 +388,7 @@
     <!-- Google Data Analytics -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
+        <img src="assets/images/Logo-Google.png" alt="Google logo">
       </div>
 
       <div class="meta">
@@ -356,7 +413,7 @@
     <!-- University of Michigan -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Umich.png" alt="University of Michigan">
+        <img src="assets/images/Logo-Umich.png" alt="University of Michigan logo">
       </div>
       <div class="meta">
         <strong>Programming for Everybody</strong>
@@ -373,7 +430,7 @@
     <!-- Google IT Support -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
+        <img src="assets/images/Logo-Google.png" alt="Google logo">
       </div>
       <div class="meta">
         <strong>Technical Support Fundamentals</strong>
@@ -390,7 +447,7 @@
     <!-- Computer Networking -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Google.png" alt="Google">
+        <img src="assets/images/Logo-Google.png" alt="Google logo">
       </div>
       <div class="meta">
         <strong>The Bits and Bytes of Computer Networking</strong>
@@ -407,7 +464,7 @@
    <!-- Microsoft -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-Microsoft.png" alt="Microsoft">
+        <img src="assets/images/Logo-Microsoft.png" alt="Microsoft logo">
       </div>
       <div class="meta">
         <strong>Microsoft 365 – Work Smarter with Microsoft Word</strong>
@@ -425,7 +482,7 @@
     <!-- INPP -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-INPP.png" alt="INPP">
+        <img src="assets/images/Logo-INPP.png" alt="INPP logo">
       </div>
       <div class="meta">
         <strong>Professional Qualification – IT Support</strong>
@@ -442,7 +499,7 @@
     <!-- Académie Humanitaire -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Académie Humanitaire">
+        <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Academie Humanitaire logo">
       </div>
       <div class="meta">
         <strong>Field Monitoring Agent (Agent de suivi de terrain)</strong>
@@ -459,7 +516,7 @@
     <!-- RH Humanitaire -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Académie Humanitaire">
+        <img src="assets/images/Logo-AH-Academie-Humanitaire.png" alt="Academie Humanitaire logo">
       </div>
       <div class="meta">
         <strong>Human Resources Management in Humanitarian Context</strong>
@@ -476,10 +533,10 @@
     <!-- IBM -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Logo-IBM.png" alt="IBM">
+        <img src="assets/images/Logo-IBM.png" alt="IBM logo">
       </div>
       <div class="meta">
-        <strong>Python for Data Science, AI & Development</strong>
+        <strong>Python for Data Science, AI &amp; Development</strong>
         <div class="small">IBM • Dec 2025</div>
         <div class="small">Credential ID: QXMDBTDUU5X0</div>
         <div class="small">
@@ -494,7 +551,7 @@
     <!-- Full PDF (rename + text pro) -->
     <div class="cert">
       <div class="logo-box">
-        <img src="assets/images/Pacifique-Doc.png" alt="PDF">
+        <img src="assets/images/Pacifique-Doc.png" alt="PDF document icon for certification portfolio">
       </div>
       <div class="meta">
         <strong>Complete Certification Portfolio (PDF)</strong>
@@ -515,16 +572,21 @@
   <section id="experience" class="card reveal" style="margin-top:16px;">
     <h2>Professional Experience</h2>
   
-    <div class="cert-grid">
+    <div class="timeline">
   
       <!-- HIGH TECH BUSINESS -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/computers1.jpg" alt="High Tech Business">
-        </div>
-        <div class="meta">
-          <strong>IT Support & Data Assistant</strong>
-          <div class="small">HIGH TECH BUSINESS - Goma • April - July 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card" open>
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/computers1.jpg" alt="Computer equipment used for High Tech Business IT support">
+            </span>
+            <span class="timeline-head">
+              <strong>IT Support &amp; Data Assistant</strong>
+              <span class="small">HIGH TECH BUSINESS - Goma • April - July 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Installed and configured computers, printers, and business software.</li>
             <li>Diagnosed and resolved hardware/software issues, reducing downtime for staff.</li>
@@ -532,52 +594,66 @@
             <li>Cleaned and analyzed datasets using Excel and Google Sheets.</li>
             <li>Built dashboards and reports to support business decisions.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   
   
       <!-- CAAP TUJITEGEMEE -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/Logo-CAAP-Tujitegemee.png" alt="NGO">
-        </div>
-        <div class="meta">
-          <strong>Field Data Enumerator & Technical Support</strong>
-          <div class="small">CAAP TUJITEGEMEE (NGO) - Goma • July - Nov 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card">
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/Logo-CAAP-Tujitegemee.png" alt="CAAP Tujitegemee NGO logo">
+            </span>
+            <span class="timeline-head">
+              <strong>Field Data Enumerator &amp; Technical Support</strong>
+              <span class="small">CAAP TUJITEGEMEE (NGO) - Goma • July - Nov 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Collected digital field data using KoBoToolbox/ODK.</li>
             <li>Configured tablets and ensured reliable connectivity in low-network environments.</li>
             <li>Validated and cleaned datasets to maintain high data quality.</li>
             <li>Provided on-site technical troubleshooting during field missions.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   
       <!-- CYBERCAFÉ -->
-      <div class="cert">
-        <div class="logo-box">
-          <img src="assets/images/computers2.jpg" alt="Cybercafé">
-        </div>
-        <div class="meta">
-          <strong>IT & Administrative Assistant</strong>
-          <div class="small">Cybercafé KivuNet - Goma • June 2024 – April 2025</div>
+      <article class="timeline-item">
+        <details class="timeline-card">
+          <summary>
+            <span class="timeline-marker" aria-hidden="true"></span>
+            <span class="logo-box">
+              <img src="assets/images/computers2.jpg" alt="Cybercafe computers for client IT support">
+            </span>
+            <span class="timeline-head">
+              <strong>IT &amp; Administrative Assistant</strong>
+              <span class="small">Cybercafé KivuNet - Goma • June 2024 – April 2025</span>
+            </span>
+          </summary>
           <ul>
             <li>Provided multi-user IT support and internet troubleshooting.</li>
             <li>Installed and updated software and maintained workstations.</li>
             <li>Assisted clients with online services and digital tools.</li>
             <li>Educated users on cybersecurity and safe computing practices.</li>
           </ul>
-        </div>
-      </div>
+        </details>
+      </article>
   <!-- SMITH Cybercafé -->
-  <div class="cert">
-    <div class="logo-box">
-      <img src="assets/images/computers3.jpg" alt="Cybercafé Smith">
-    </div>
-  
-    <div class="meta">
-      <strong>IT Support Technician & Digital Services Assistant</strong>
-      <div class="small">Cybercafé & Printing Center SMITH - Goma • Dec 2025 – Present</div>
+  <article class="timeline-item">
+    <details class="timeline-card">
+      <summary>
+        <span class="timeline-marker" aria-hidden="true"></span>
+        <span class="logo-box">
+          <img src="assets/images/computers3.jpg" alt="SMITH cybercafe and printing center workstation">
+        </span>
+        <span class="timeline-head">
+          <strong>IT Support Technician &amp; Digital Services Assistant</strong>
+          <span class="small">Cybercafé &amp; Printing Center SMITH - Goma • Dec 2025 – Present</span>
+        </span>
+      </summary>
       <ul>
         <li>Provide daily technical support for computers, printers, and internet connectivity.</li>
         <li>Install, configure, and maintain Windows systems and office applications.</li>
@@ -585,20 +661,29 @@
         <li>Assist customers with digital services (documents, online forms, printing, scanning).</li>
         <li>Ensure data security, system reliability, and smooth customer operations.</li>
       </ul>
-    </div>
-  </div>
+    </details>
+  </article>
   </div>
 </section>
 
 <section id="projects" class="card reveal" style="margin-top:16px;">
   <div class="section-head">
     <h2>Projects</h2>
-    <span class="small">A few selected projects</span>
+    <span class="small">Selected work with practical IT, data, and web outcomes</span>
+  </div>
+
+  <div class="project-filters" aria-label="Project category filters">
+    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" type="button" data-filter="data-analytics" aria-pressed="false">Data Analytics</button>
+    <button class="filter-btn" type="button" data-filter="it-support" aria-pressed="false">IT Support</button>
+    <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web</button>
+    <button class="filter-btn" type="button" data-filter="excel" aria-pressed="false">Excel</button>
+    <button class="filter-btn" type="button" data-filter="python" aria-pressed="false">Python</button>
   </div>
 
   <div class="projects-grid">
 
-    <article class="project" id="project-google-capstone">
+    <article class="project" id="project-google-capstone" data-category="data-analytics excel">
       <div class="project-top">
         <h3>Google Capstone Case Study</h3>
         <div class="project-tags">
@@ -610,24 +695,31 @@
       </div>
 
       <p class="project-desc">
-        End-to-end analysis with data cleaning, exploration, and insight generation to support business decisions.
+        Applied a complete data analytics workflow, from asking business questions and preparing data to cleaning, exploration, visualization, and insight communication.
       </p>
 
       <div class="project-actions">
         <a class="pbtn primary" href="assets/certificates/Google-data-analytics.pdf" target="_blank" rel="noreferrer">
-          📄 View Related Certificate
+          📄 View Google Data Analytics Certificate
         </a>
         <a class="pbtn" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939" target="_blank" rel="noreferrer">
-          🎖 Verify Credential
+          🎖 Verify Google Data Analytics Credential
         </a>
       </div>
 
       <div class="small project-foot">
-        Deliverables: case study workflow • data cleaning • insight generation
+        Deliverables: analytics workflow • data cleaning • visualization • business insights
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>Focus areas include data preparation, cleaning, exploratory analysis, and communicating insights in a business-friendly format.</p>
+          <p class="small">Category: Data Analytics, Excel</p>
+        </div>
+      </details>
     </article>
 
-    <article class="project" id="project-sales-dashboard">
+    <article class="project" id="project-sales-dashboard" data-category="data-analytics excel">
       <div class="project-top">
         <h3>Sales Dashboard Project</h3>
         <div class="project-tags">
@@ -639,27 +731,34 @@
       </div>
 
       <p class="project-desc">
-        Interactive KPI dashboard to track performance and improve reporting efficiency for decision-making.
+        Excel-based KPI dashboard for tracking sales performance, summarizing key metrics, and making reporting easier for decision-makers.
       </p>
 
       <div class="project-actions">
         <a class="pbtn primary" href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/blob/main/Sales_Dashboard.pdf" target="_blank" rel="noreferrer">
-          📊 View Dashboard
+          📊 View Sales Dashboard PDF
         </a>
         <a class="pbtn" href="https://github.com/PacifiqueFashaho/sales-performance-dashboard" target="_blank" rel="noreferrer">
-          💻 GitHub Repo
+          💻 View Sales Dashboard Repository
         </a>
         <a class="pbtn" href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/raw/main/Sales_Dashboard.xlsx" target="_blank" rel="noreferrer">
-          📥 Download Excel Dashboard
+          📥 Download Sales Dashboard Excel File
         </a>
       </div>
 
       <div class="small project-foot">
         Deliverables: dashboard • KPI definitions • summary notes
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>The dashboard organizes sales indicators into a concise report that can be reviewed quickly by non-technical stakeholders.</p>
+          <p class="small">Category: Data Analytics, Excel</p>
+        </div>
+      </details>
     </article>
 
-    <article class="project">
+    <article class="project" data-category="web">
       <div class="project-top">
         <h3>Personal Portfolio Website</h3>
         <div class="project-tags">
@@ -671,24 +770,32 @@
       </div>
 
       <p class="project-desc">
-        Built a responsive portfolio website with animations, strong section structure, and a recruiter-focused layout.
+        Static GitHub Pages portfolio built with HTML, CSS, and JavaScript to present skills, certifications, experience, projects, and contact details clearly.
       </p>
 
       <div class="project-actions">
         <a class="pbtn primary" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer">
-          🌐 Live Website
+          🌐 Visit Live Portfolio Website
         </a>
         <a class="pbtn" href="https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io" target="_blank" rel="noreferrer">
-          💻 Source Code
+          💻 View Portfolio Source Code
         </a>
       </div>
 
       <div class="small project-foot">
         Deliverables: live site • clean UI • recruiter-focused sections
       </div>
+      <details class="project-details">
+        <summary>View details</summary>
+        <div class="project-detail-body">
+          <p>This site is built as a lightweight static portfolio for GitHub Pages with no build step, framework, or external JavaScript library.</p>
+          <p class="small">Category: Web</p>
+        </div>
+      </details>
     </article>
 
   </div>
+  <p class="project-empty small" id="projectEmpty" aria-live="polite" hidden>No project is currently listed in this category.</p>
 </section>
     
 <section id="services" class="card reveal live-services">
@@ -697,20 +804,20 @@
   <div class="marquee" aria-label="Services scrolling list">
     <div class="marquee-track">
 
-      <span class="marquee-item">IT Support & System Troubleshooting (Remote / On-Site)</span>
+      <span class="marquee-item">IT Support &amp; System Troubleshooting (Remote / On-Site)</span>
       <span class="marquee-item">Windows Setup • Network Configuration • Printer Management</span>
-      <span class="marquee-item">Data Cleaning & Reporting (Excel • SQL • Python)</span>
-      <span class="marquee-item">Interactive Dashboards & Business Insights</span>
+      <span class="marquee-item">Data Cleaning &amp; Reporting (Excel • SQL • Python)</span>
+      <span class="marquee-item">Interactive Dashboards &amp; Business Insights</span>
       <span class="marquee-item">KoBoToolbox / ODK Digital Data Collection</span>
-      <span class="marquee-item">Technical Support for NGOs & SMEs</span>
+      <span class="marquee-item">Technical Support for NGOs &amp; SMEs</span>
 
       <!-- Duplicate items for seamless loop -->
-      <span class="marquee-item">IT Support & System Troubleshooting (Remote / On-Site)</span>
+      <span class="marquee-item">IT Support &amp; System Troubleshooting (Remote / On-Site)</span>
       <span class="marquee-item">Windows Setup • Network Configuration • Printer Management</span>
-      <span class="marquee-item">Data Cleaning & Reporting (Excel • SQL • Python)</span>
-      <span class="marquee-item">Interactive Dashboards & Business Insights</span>
+      <span class="marquee-item">Data Cleaning &amp; Reporting (Excel • SQL • Python)</span>
+      <span class="marquee-item">Interactive Dashboards &amp; Business Insights</span>
       <span class="marquee-item">KoBoToolbox / ODK Digital Data Collection</span>
-      <span class="marquee-item">Technical Support for NGOs & SMEs</span>
+      <span class="marquee-item">Technical Support for NGOs &amp; SMEs</span>
 
     </div>
   </div>
@@ -723,7 +830,7 @@
   <div class="contact-wrap">
 
     <!-- Email (main) -->
-    <a class="contact-pill" href="mailto:pacifiquefashaho04@gmail.com">
+    <a class="contact-pill" href="mailto:pacifiquefashaho04@gmail.com" aria-label="Email Pacifique Fashaho at pacifiquefashaho04@gmail.com">
       <span class="chip-ico">✉️</span>
       <span class="chip-text">pacifiquefashaho04@gmail.com</span>
       <span class="pill-arrow">↗</span>
@@ -731,7 +838,7 @@
 
     <!-- Quick links -->
     <div class="contact-grid" aria-label="Quick links">
-      <a class="contact-card" href="Pacifique_Fashaho_CV.pdf" target="_blank" rel="noreferrer">
+      <a class="contact-card" href="Pacifique_Fashaho_CV.pdf" target="_blank" rel="noreferrer" aria-label="Download Pacifique Fashaho CV PDF">
         <div class="cc-left">
           <div class="cc-ico">📄</div>
           <div class="cc-meta">
@@ -742,7 +849,7 @@
         <div class="cc-go">↗</div>
       </a>
 
-      <a class="contact-card" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer">
+      <a class="contact-card" href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer" aria-label="Open Pacifique Fashaho LinkedIn profile">
         <div class="cc-left">
           <div class="cc-ico">in</div>
           <div class="cc-meta">
@@ -753,18 +860,18 @@
         <div class="cc-go">↗</div>
       </a>
 
-      <a class="contact-card" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer">
+      <a class="contact-card" href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer" aria-label="Open Pacifique Fashaho GitHub profile">
         <div class="cc-left">
           <div class="cc-ico">⌂</div>
           <div class="cc-meta">
             <strong>GitHub</strong>
-            <div class="small">Projects & code</div>
+            <div class="small">Projects &amp; code</div>
           </div>
         </div>
         <div class="cc-go">↗</div>
       </a>
 
-      <a class="contact-card" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer">
+      <a class="contact-card" href="https://pacifiquefashaho.github.io" target="_blank" rel="noreferrer" aria-label="Open Pacifique Fashaho portfolio website">
         <div class="cc-left">
           <div class="cc-ico">🌐</div>
           <div class="cc-meta">
@@ -786,6 +893,23 @@
         <div class="cc-go">↗</div>
       </a>
     </div>
+
+    <form class="contact-form" id="contactForm" action="mailto:pacifiquefashaho04@gmail.com" method="post" enctype="text/plain">
+      <div class="form-row">
+        <label for="contactName">Name</label>
+        <input id="contactName" name="name" type="text" autocomplete="name" placeholder="Your name">
+      </div>
+      <div class="form-row">
+        <label for="contactEmail">Email</label>
+        <input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="form-row">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" rows="4" placeholder="Tell me how I can help"></textarea>
+      </div>
+      <button class="btn primary" type="submit" aria-label="Open an email draft to contact Pacifique Fashaho">Open Email Draft</button>
+      <p class="small">This form uses mailto and opens your email app. Direct website form delivery requires a third-party form service and should not use private API keys in this public repository.</p>
+    </form>
 
     <div class="contact-foot">
       <div class="small">Open to remote opportunities • IT Support • Data Analytics</div>
