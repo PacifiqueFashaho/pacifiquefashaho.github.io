@@ -2,9 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
   const root = document.documentElement;
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
 
   const year = document.getElementById("y2");
   if (year) year.textContent = new Date().getFullYear();
+
+  const experienceCounter = document.querySelector('[data-counter="experience"]');
+  const experienceCount = document.querySelectorAll("#experience .timeline-item").length;
+  if (experienceCounter && experienceCount) {
+    experienceCounter.dataset.target = String(experienceCount);
+  }
 
   function effectiveTheme() {
     return root.dataset.theme || (prefersDark.matches ? "dark" : "light");
@@ -19,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
     toggle.querySelector(".theme-toggle-icon").textContent = isDark ? "☀" : "☾";
     toggle.querySelector(".theme-toggle-text").textContent = isDark ? "Light" : "Dark";
+    if (themeMeta) themeMeta.setAttribute("content", isDark ? "#0b1220" : "#2563eb");
   }
 
   function setTheme(theme) {
@@ -243,6 +251,48 @@ document.addEventListener("DOMContentLoaded", () => {
       ].filter(Boolean).join("\n"));
 
       window.location.href = `mailto:pacifiquefashaho04@gmail.com?subject=${subject}&body=${body}`;
+    });
+  }
+
+  const copyEmailButton = document.getElementById("copyEmail");
+  const copyEmailStatus = document.getElementById("copyEmailStatus");
+  let copyStatusTimer;
+
+  function setCopyStatus(message) {
+    if (!copyEmailStatus) return;
+    copyEmailStatus.textContent = message;
+    window.clearTimeout(copyStatusTimer);
+    copyStatusTimer = window.setTimeout(() => {
+      copyEmailStatus.textContent = "";
+    }, 2200);
+  }
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    return copied;
+  }
+
+  if (copyEmailButton) {
+    copyEmailButton.addEventListener("click", async () => {
+      const email = copyEmailButton.dataset.email || "pacifiquefashaho04@gmail.com";
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(email);
+        } else if (!fallbackCopy(email)) {
+          throw new Error("Clipboard copy unavailable");
+        }
+        setCopyStatus("Email copied.");
+      } catch (error) {
+        setCopyStatus("Copy failed. Use the email link instead.");
+      }
     });
   }
 });

@@ -1,60 +1,71 @@
 # Pacifique Fashaho Portfolio
 
-Personal portfolio website for Pacifique Fashaho, an IT Support Technician, Data Analyst, and Junior Developer based in Goma, North Kivu, DR Congo.
+Static GitHub Pages portfolio for Pacifique Fashaho, an IT Support Technician, Data Analyst, and Junior Developer based in Goma, North Kivu, DR Congo.
 
-The site presents practical experience, education, certifications, selected projects, services, and contact information for opportunities in IT support, data analytics, dashboards, and junior web development.
+The site presents skills, education, certifications, experience, selected projects, services, and contact information for recruiters, clients, NGOs, and small businesses looking for IT support, data analytics, dashboards, field data support, or junior web development help.
 
 ## Live Demo
 
-Visit the published site: [https://pacifiquefashaho.github.io](https://pacifiquefashaho.github.io)
+[https://pacifiquefashaho.github.io](https://pacifiquefashaho.github.io)
+
+## Screenshot
+
+Add a screenshot after the next visual review:
+
+```text
+assets/images/portfolio-screenshot.png
+```
+
+Recommended size: 1200 x 630 px so it can also be reused as a future social sharing image.
+
+## Features
+
+- Responsive, recruiter-focused personal portfolio
+- Professional hero section with clear IT support and data analytics value proposition
+- Dark/light theme toggle saved in local storage
+- Project filters for All, Data Analytics, IT Support, Web, and Field Data
+- Project cards structured by problem, tools, what I did, result, and links
+- Accessible expandable project details using native `details` and `summary`
+- Interactive professional experience timeline
+- Mailto contact form that opens an email draft
+- Copy-email button with a small success message
+- Downloadable CV and certificate PDFs
+- SEO metadata, canonical URL, Open Graph tags, Twitter card tags, and JSON-LD structured data
+- Accessibility improvements including skip link, focus states, semantic sections, descriptive alt text, and reduced-motion support
+- Performance improvements including lazy-loaded non-critical images, image dimensions, and corrected WebP file extensions
 
 ## Tech Stack
 
 - HTML5
 - CSS3
 - Vanilla JavaScript
+- Git and GitHub
 - GitHub Pages
-- SEO files: `robots.txt`, `sitemap.xml`, canonical URL, Open Graph metadata, and structured data
 
-## Features
+No React, Node.js, build tool, or external framework is required.
 
-- Responsive portfolio layout for desktop and mobile screens
-- Accessible dark/light theme toggle with local storage preference
-- Recruiter-focused sections for skills, education, certifications, experience, projects, services, and contact details
-- Downloadable CV and certificate links
-- Filterable project cards with expandable project details
-- Interactive vertical experience timeline using native HTML details
-- Mailto-based contact form that opens an email draft without exposing API keys
-- Scroll progress indicator, back-to-top button, reveal animations, animated counters, and typing effect
-- IntersectionObserver-powered skill bar animations that respect reduced-motion preferences
-- Accessibility support through semantic structure, skip link, focus styles, descriptive alt text, and reduced-motion handling
-- SEO support with canonical URL, Open Graph data, Twitter card metadata, structured data, `robots.txt`, and `sitemap.xml`
-- `.gitignore` protection for local IntelliJ project files
-
-## Project Structure
+## Folder Structure
 
 ```text
 .
-+-- index.html
-+-- README.md
-+-- robots.txt
-+-- sitemap.xml
-+-- google32dbf3697617861a.html
-+-- Pacifique_Fashaho_CV.pdf
-+-- assets/
-    +-- certificates/
-    |   +-- Certificate and credential PDF files
-    +-- css/
-    |   +-- style.css
-    +-- images/
-    |   +-- Portfolio, logo, and project images
-    +-- js/
-        +-- main.js
+|-- index.html
+|-- README.md
+|-- robots.txt
+|-- sitemap.xml
+|-- google32dbf3697617861a.html
+|-- Pacifique_Fashaho_CV.pdf
+|-- assets/
+|   |-- certificates/
+|   |   |-- Certificate and credential PDF files
+|   |-- css/
+|   |   |-- style.css
+|   |-- images/
+|   |   |-- Profile, logo, workstation, and document images
+|   |-- js/
+|       |-- main.js
 ```
 
 ## Local Setup
-
-No build step is required. This is a static website.
 
 1. Clone the repository:
 
@@ -76,16 +87,45 @@ No build step is required. This is a static website.
    python -m http.server 8000
    ```
 
-5. Visit `http://localhost:8000`.
+5. Visit:
+
+   ```text
+   http://localhost:8000
+   ```
+
+## Deployment With GitHub Pages
+
+This repository is named `pacifiquefashaho.github.io`, so GitHub Pages can publish it directly from the default branch.
+
+1. Push changes to GitHub.
+2. Open the repository on GitHub.
+3. Go to `Settings` > `Pages`.
+4. Select the default branch, usually `main`.
+5. Keep the folder as `/root`.
+6. Save and wait for GitHub Pages to publish.
+
+The production URL is:
+
+```text
+https://pacifiquefashaho.github.io
+```
 
 ## Main Files
 
-- `index.html`: Page content, sections, contact links, and SEO metadata
-- `assets/css/style.css`: Layout, responsive styling, visual design, and accessibility states
-- `assets/js/main.js`: Theme toggle, project filtering, mailto form, typing animation, reveal effects, counters, skill bars, scroll progress, and back-to-top behavior
-- `robots.txt`: Search crawler rules and sitemap location
-- `sitemap.xml`: Canonical URL submitted for search indexing
-- `.gitignore`: Excludes local IntelliJ `.idea/` and module files
+- `index.html`: Page content, SEO metadata, structured data, project cards, contact form, and static sections
+- `assets/css/style.css`: Layout, colors, responsive design, theme styles, focus states, timeline, projects, and forms
+- `assets/js/main.js`: Theme toggle, project filtering, copy-email action, mailto form, counters, reveal effects, skill bars, scroll progress, and back-to-top behavior
+- `robots.txt`: Search crawler rules and sitemap reference
+- `sitemap.xml`: Canonical URL for search indexing
+
+## Future Improvements
+
+- Add a dedicated 1200 x 630 social sharing image for Open Graph and Twitter cards
+- Publish a full Google Data Analytics capstone repository and link it from the project card
+- Publish short case-study pages or repositories for IT support and field data workflows
+- Add screenshots for each project card
+- Add a downloadable one-page services sheet for clients
+- Add bilingual content support for English and French if needed
 
 ## Author and Contact
 
