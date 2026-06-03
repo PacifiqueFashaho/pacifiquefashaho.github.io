@@ -12,6 +12,11 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 
+    img{
+      max-width:100%;
+      height:auto;
+    }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -157,6 +162,9 @@
       font-size:13px;
       transition: .18s ease;
       white-space:nowrap;
+      min-height:40px;
+      display:inline-flex;
+      align-items:center;
     }
     nav a:hover{color:var(--text); border-color: rgba(106,169,255,.35); transform: translateY(-1px);}
 
@@ -832,6 +840,7 @@
     overflow-x:auto;
     padding-bottom:4px;
     scrollbar-width:thin;
+    -webkit-overflow-scrolling:touch;
   }
 
   .wrap{
@@ -908,6 +917,11 @@
 
   .contact-card{
     align-items:flex-start;
+  }
+
+  .profile{
+    align-items:flex-start;
+    text-align:left;
   }
 
   #toTop{
