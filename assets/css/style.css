@@ -17,7 +17,8 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       /* Multiple backgrounds must be in ONE background declaration */
       background:
-        radial-gradient(900px 500px at 80% 20%, rgba(124,92,255,.22), transparent 55%),
+        radial-gradient(900px 500px at 80% 20%, rgba(6,182,212,.18), transparent 55%),
+        radial-gradient(700px 420px at 8% 8%, rgba(245,158,11,.12), transparent 60%),
         linear-gradient(180deg, #ffffff, #f1f5f9),
         var(--bg);
       background-size: 200% 200%;
@@ -155,6 +156,7 @@
       padding:8px 10px; border-radius:999px;
       font-size:13px;
       transition: .18s ease;
+      white-space:nowrap;
     }
     nav a:hover{color:var(--text); border-color: rgba(106,169,255,.35); transform: translateY(-1px);}
 
@@ -204,6 +206,7 @@
       border:1px solid var(--line);
       color:var(--text);
       transition:.18s ease;
+      min-height:44px;
     }
     .btn:hover{transform: translateY(-1px); border-color: rgba(106,169,255,.4);}
     .btn.primary{
@@ -275,7 +278,7 @@
     .cert{
       display:flex;
       gap:12px;
-      align-items:center;
+      align-items:flex-start;
       padding:14px;
       border-radius:16px;
       border:1px solid var(--line);
@@ -495,7 +498,7 @@
 }
 
 .cert-btn{
-  display:inline-flex;
+      display:inline-flex;
   align-items:center;
   gap:8px;
   padding:8px 10px;
@@ -506,6 +509,7 @@
   background: rgba(255,255,255,.70);
   font-size:13px;
   transition:.18s ease;
+  min-height:40px;
 }
 
 .cert-btn:hover{
@@ -689,6 +693,7 @@
   font-size:13px;
   font-weight:700;
   transition:.18s ease;
+  min-height:42px;
 }
 .pbtn:hover{
   transform: translateY(-1px);
@@ -803,3 +808,159 @@
 /* Skills marquee  */
 .skills-marquee{ margin-top:6px; }
 .skills-marquee .marquee-track{ animation-duration: 28s; } /* slower = premium */
+
+/* Mobile refinements */
+@media (max-width: 720px){
+  body{
+    animation:none;
+  }
+
+  .topbar .wrap{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:10px 14px;
+  }
+
+  .brand{
+    min-width:0;
+  }
+
+  nav{
+    width:100%;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    overflow-x:auto;
+    padding-bottom:4px;
+    scrollbar-width:thin;
+  }
+
+  .wrap{
+    padding:16px 14px 44px;
+  }
+
+  .hero{
+    gap:14px;
+    margin-top:12px;
+  }
+
+  .card{
+    border-radius:14px;
+    padding:14px;
+  }
+
+  .title{
+    font-size:32px;
+    line-height:1.15;
+  }
+
+  .btns,
+  .project-actions,
+  .cert-actions{
+    flex-direction:column;
+  }
+
+  .btn,
+  .pbtn,
+  .cert-btn{
+    width:100%;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .stats{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .cert{
+    flex-direction:column;
+  }
+
+  .cert .meta{
+    width:100%;
+  }
+
+  .logo-box{
+    align-self:flex-start;
+  }
+
+  .project-top,
+  .section-head{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .project-tags{
+    justify-content:flex-start;
+  }
+
+  .contact-pill{
+    border-radius:16px;
+    justify-content:space-between;
+  }
+
+  .chip-text,
+  .cc-meta,
+  .project-desc,
+  .summary{
+    overflow-wrap:anywhere;
+  }
+
+  .contact-card{
+    align-items:flex-start;
+  }
+
+  #toTop{
+    right:14px;
+    bottom:14px;
+  }
+}
+
+@media (max-width: 420px){
+  .title{
+    font-size:28px;
+  }
+
+  .subtitle,
+  .skill-chips,
+  .project-tags{
+    gap:7px;
+  }
+
+  .pill,
+  .chip,
+  .tag,
+  .marquee-item{
+    font-size:12px;
+  }
+
+  .cc-left{
+    min-width:0;
+  }
+
+  .cc-ico,
+  .skill-ico{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+
+  .reveal{
+    opacity:1;
+    transform:none;
+  }
+}
