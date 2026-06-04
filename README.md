@@ -1,6 +1,6 @@
 # Pacifique Fashaho Portfolio
 
-Static GitHub Pages portfolio for Pacifique Fashaho, an IT Support Technician, Data Analyst, and Junior Developer based in Goma, North Kivu, DR Congo.
+My Static GitHub Pages portfolio, I'm an IT Support Technician, Data Analyst, and Junior Developer based in Goma, North Kivu, DR Congo.
 
 The site presents skills, education, certifications, experience, selected projects, services, and contact information for recruiters, clients, NGOs, and small businesses looking for IT support, data analytics, dashboards, field data support, or junior web development help.
 
@@ -8,19 +8,8 @@ The site presents skills, education, certifications, experience, selected projec
 
 [https://pacifiquefashaho.github.io](https://pacifiquefashaho.github.io)
 
-## Screenshot
-
-Add a screenshot after the next visual review:
-
-```text
-assets/images/portfolio-screenshot.png
-```
-
-Recommended size: 1200 x 630 px so it can also be reused as a future social sharing image.
-
 ## Features
 
-- Responsive, recruiter-focused personal portfolio
 - Professional hero section with clear IT support and data analytics value proposition
 - Dark/light theme toggle saved in local storage
 - Project filters for All, Data Analytics, IT Support, Web, and Field Data
@@ -65,49 +54,6 @@ No React, Node.js, build tool, or external framework is required.
 |       |-- main.js
 ```
 
-## Local Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io.git
-   ```
-
-2. Open the project folder:
-
-   ```bash
-   cd pacifiquefashaho.github.io
-   ```
-
-3. Open `index.html` directly in a browser.
-
-4. Optional: serve the folder with a simple local server:
-
-   ```bash
-   python -m http.server 8000
-   ```
-
-5. Visit:
-
-   ```text
-   http://localhost:8000
-   ```
-
-## Deployment With GitHub Pages
-
-This repository is named `pacifiquefashaho.github.io`, so GitHub Pages can publish it directly from the default branch.
-
-1. Push changes to GitHub.
-2. Open the repository on GitHub.
-3. Go to `Settings` > `Pages`.
-4. Select the default branch, usually `main`.
-5. Keep the folder as `/root`.
-6. Save and wait for GitHub Pages to publish.
-
-The production URL is:
-
-```text
-https://pacifiquefashaho.github.io
 ```
 
 ## Main Files
@@ -118,14 +64,6 @@ https://pacifiquefashaho.github.io
 - `robots.txt`: Search crawler rules and sitemap reference
 - `sitemap.xml`: Canonical URL for search indexing
 
-## Future Improvements
-
-- Add a dedicated 1200 x 630 social sharing image for Open Graph and Twitter cards
-- Publish a full Google Data Analytics capstone repository and link it from the project card
-- Publish short case-study pages or repositories for IT support and field data workflows
-- Add screenshots for each project card
-- Add a downloadable one-page services sheet for clients
-- Add bilingual content support for English and French if needed
 
 ## Author and Contact
 
