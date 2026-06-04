@@ -1248,9 +1248,24 @@
   gap:12px;
   cursor:pointer;
   list-style:none;
+  min-width:0;
 }
 .timeline-card summary::-webkit-details-marker{
   display:none;
+}
+.timeline-card summary::after{
+  content:"";
+  width:9px;
+  height:9px;
+  flex:0 0 9px;
+  margin-left:auto;
+  border-right:2px solid var(--accent);
+  border-bottom:2px solid var(--accent);
+  transform:rotate(45deg);
+  transition:transform .2s ease;
+}
+.timeline-card[open] summary::after{
+  transform:rotate(225deg);
 }
 .timeline-marker{
   position:absolute;
@@ -1266,9 +1281,19 @@
   display:flex;
   flex-direction:column;
   gap:2px;
+  min-width:0;
+}
+.timeline-head strong,
+.timeline-head .small{
+  overflow-wrap:anywhere;
 }
 .timeline-card ul{
-  margin-left:60px;
+  margin:12px 0 0 60px;
+  padding-left:18px;
+  color:var(--muted);
+}
+.timeline-card li + li{
+  margin-top:6px;
 }
 
 /* Contact form */
@@ -1377,7 +1402,11 @@
   .timeline-card summary{
     align-items:flex-start;
   }
+  .timeline-card summary::after{
+    margin-top:8px;
+  }
   .timeline-card ul{
-    margin-left:18px;
+    margin:12px 0 0 18px;
+    padding-left:18px;
   }
 }
