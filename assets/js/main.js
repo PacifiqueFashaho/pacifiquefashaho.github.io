@@ -233,23 +233,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const contactForm = document.getElementById("contactForm");
+  const contactSubjectField = document.getElementById("contactSubject");
+  const contactFormStatus = document.getElementById("contactFormStatus");
+  const serviceButtons = document.querySelectorAll(".service-chip");
+
+  serviceButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      serviceButtons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+
+      if (contactSubjectField) {
+        contactSubjectField.value = button.dataset.service || "";
+        contactSubjectField.focus();
+      }
+    });
+  });
+
   if (contactForm) {
     contactForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      if (contactForm.reportValidity && !contactForm.reportValidity()) return;
+
       const nameField = document.getElementById("contactName");
       const emailField = document.getElementById("contactEmail");
       const messageField = document.getElementById("contactMessage");
       const name = nameField ? nameField.value.trim() : "";
       const email = emailField ? emailField.value.trim() : "";
+      const subjectValue = contactSubjectField ? contactSubjectField.value.trim() : "";
       const message = messageField ? messageField.value.trim() : "";
-      const subject = encodeURIComponent("Portfolio contact request");
+      const selectedService = document.querySelector('.service-chip[aria-pressed="true"]');
+      const service = subjectValue || (selectedService ? selectedService.dataset.service : "") || "Portfolio contact request";
+      const subject = encodeURIComponent(`Portfolio contact: ${service}`);
       const body = encodeURIComponent([
+        "Hello Pacifique,",
+        "",
         name ? `Name: ${name}` : "",
         email ? `Email: ${email}` : "",
+        service ? `Service needed: ${service}` : "",
         "",
-        message || "Hello Pacifique,"
+        message
       ].filter(Boolean).join("\n"));
 
+      if (contactFormStatus) contactFormStatus.textContent = "Opening your email app...";
       window.location.href = `mailto:pacifiquefashaho04@gmail.com?subject=${subject}&body=${body}`;
     });
   }
@@ -289,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (!fallbackCopy(email)) {
           throw new Error("Clipboard copy unavailable");
         }
-        setCopyStatus("Email copied.");
+        setCopyStatus("Email copied to clipboard.");
       } catch (error) {
         setCopyStatus("Copy failed. Use the email link instead.");
       }
