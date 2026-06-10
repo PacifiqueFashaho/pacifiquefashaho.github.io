@@ -728,4 +728,81 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+/* =========================
+   LIVE HERO PANEL
+========================= */
+
+const liveTime = document.getElementById("liveTime");
+const liveFocus = document.getElementById("liveFocus");
+const terminalLine = document.getElementById("terminalLine");
+
+function updateLiveTime() {
+  if (!liveTime) return;
+
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Africa/Lubumbashi",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
+  liveTime.textContent = formatter.format(new Date());
+}
+
+updateLiveTime();
+window.setInterval(updateLiveTime, 1000);
+
+const focusItems = [
+  "Data cleaning and dashboard reporting",
+  "Windows troubleshooting and user support",
+  "Excel reporting and KPI summaries",
+  "KoBoToolbox / ODK field data workflows",
+  "Python, SQL, and portfolio improvements"
+];
+
+let focusIndex = 0;
+
+function rotateLiveFocus() {
+  if (!liveFocus) return;
+
+  focusIndex = (focusIndex + 1) % focusItems.length;
+  liveFocus.textContent = focusItems[focusIndex];
+}
+
+window.setInterval(rotateLiveFocus, 3000);
+
+const terminalMessages = [
+  "Checking system reliability...",
+  "Cleaning operational datasets...",
+  "Building dashboard insights...",
+  "Validating field data workflows...",
+  "Reviewing IT support requests...",
+  "Publishing portfolio improvements..."
+];
+
+let terminalIndex = 0;
+let terminalCharIndex = 0;
+
+function typeTerminalLine() {
+  if (!terminalLine) return;
+
+  const message = terminalMessages[terminalIndex];
+
+  terminalLine.textContent = message.slice(0, terminalCharIndex);
+
+  if (terminalCharIndex < message.length) {
+    terminalCharIndex += 1;
+    window.setTimeout(typeTerminalLine, 45);
+    return;
+  }
+
+  window.setTimeout(() => {
+    terminalCharIndex = 0;
+    terminalIndex = (terminalIndex + 1) % terminalMessages.length;
+    typeTerminalLine();
+  }, 1400);
+}
+
+typeTerminalLine();
+
 });
