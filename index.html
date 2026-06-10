@@ -1203,7 +1203,143 @@
       </div>
     </section>
   </main>
+    <!-- Portfolio Contact Assistant -->
+  <div class="assistant-launcher-wrap" id="assistantLauncherWrap">
+    <button
+      class="assistant-launcher"
+      id="assistantLauncher"
+      type="button"
+      aria-label="Open portfolio contact assistant"
+    >
+      <span class="assistant-launcher-dot" aria-hidden="true"></span>
+      <span class="assistant-launcher-icon" aria-hidden="true">💬</span>
+    </button>
+  </div>
 
+  <section
+    class="chat-assistant"
+    id="chatAssistant"
+    aria-label="Portfolio contact assistant"
+    hidden
+  >
+    <div class="chat-assistant-header">
+      <div class="chat-profile">
+        <img
+          src="assets/images/profile/pacifique-profile.webp"
+          width="80"
+          height="80"
+          alt="Pacifique Fashaho profile photo"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <span class="chat-online-dot" aria-hidden="true"></span>
+      </div>
+
+      <div class="chat-profile-text">
+        <strong>Pacifique Fashaho</strong>
+        <span>
+          <span class="chat-status-dot" aria-hidden="true"></span>
+          Available to help
+        </span>
+      </div>
+
+      <div class="chat-header-actions">
+        <button
+          class="chat-minimize"
+          id="chatMinimize"
+          type="button"
+          aria-label="Minimize assistant"
+        >
+          —
+        </button>
+
+        <button
+          class="chat-close"
+          id="chatClose"
+          type="button"
+          aria-label="Close assistant"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+
+    <div class="chat-assistant-body" id="chatAssistantBody" aria-live="polite">
+      <div class="chat-message assistant-message">
+        <div class="chat-bubble">
+          Hello! I’m Pacifique’s portfolio assistant. I can help you contact Pacifique about IT support, data cleaning, dashboards, web portfolio work, or KoBoToolbox / ODK field data support.
+        </div>
+      </div>
+
+      <div class="chat-message assistant-message">
+        <div class="chat-bubble">
+          What would you like help with today?
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-suggestions" aria-label="Quick message suggestions">
+      <button type="button" class="chat-suggestion" data-message="I need help with IT support.">
+        IT Support
+      </button>
+
+      <button type="button" class="chat-suggestion" data-message="I need help with a dashboard project.">
+        Dashboard
+      </button>
+
+      <button type="button" class="chat-suggestion" data-message="I need help cleaning or analyzing data.">
+        Data Analysis
+      </button>
+
+      <button type="button" class="chat-suggestion" data-message="I want to discuss a professional opportunity.">
+        Opportunity
+      </button>
+    </div>
+
+    <form class="chat-input-area" id="chatAssistantForm">
+      <label class="sr-only" for="chatMessageInput">Write your message</label>
+
+      <textarea
+        id="chatMessageInput"
+        rows="2"
+        placeholder="Write your message..."
+        required
+      ></textarea>
+
+      <button type="submit" class="chat-send-btn" aria-label="Send message">
+        Send
+      </button>
+    </form>
+
+    <div class="chat-contact-actions">
+      <a
+        class="chat-action-btn primary"
+        id="chatEmailLink"
+        href="mailto:pacifiquefashaho04@gmail.com"
+      >
+        Email
+      </a>
+
+      <a
+        class="chat-action-btn"
+        id="chatWhatsappLink"
+        href="https://wa.me/243859477758"
+        target="_blank"
+        rel="noreferrer"
+      >
+        WhatsApp
+      </a>
+
+      <a class="chat-action-btn" href="#contact">
+        Contact Form
+      </a>
+    </div>
+
+    <div class="chat-resize-hint">
+      Drag the bottom-right corner to resize
+    </div>
+  </section>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>

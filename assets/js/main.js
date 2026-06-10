@@ -728,81 +728,273 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-/* =========================
-   LIVE HERO PANEL
-========================= */
+  /* =========================
+     LIVE HERO PANEL
+  ========================= */
 
-const liveTime = document.getElementById("liveTime");
-const liveFocus = document.getElementById("liveFocus");
-const terminalLine = document.getElementById("terminalLine");
+  const liveTime = document.getElementById("liveTime");
+  const liveFocus = document.getElementById("liveFocus");
+  const terminalLine = document.getElementById("terminalLine");
 
-function updateLiveTime() {
-  if (!liveTime) return;
+  function updateLiveTime() {
+    if (!liveTime) return;
 
-  const formatter = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Africa/Lubumbashi",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
+    const formatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Africa/Lubumbashi",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
 
-  liveTime.textContent = formatter.format(new Date());
-}
-
-updateLiveTime();
-window.setInterval(updateLiveTime, 1000);
-
-const focusItems = [
-  "Data cleaning and dashboard reporting",
-  "Windows troubleshooting and user support",
-  "Excel reporting and KPI summaries",
-  "KoBoToolbox / ODK field data workflows",
-  "Python, SQL, and portfolio improvements"
-];
-
-let focusIndex = 0;
-
-function rotateLiveFocus() {
-  if (!liveFocus) return;
-
-  focusIndex = (focusIndex + 1) % focusItems.length;
-  liveFocus.textContent = focusItems[focusIndex];
-}
-
-window.setInterval(rotateLiveFocus, 3000);
-
-const terminalMessages = [
-  "Checking system reliability...",
-  "Cleaning operational datasets...",
-  "Building dashboard insights...",
-  "Validating field data workflows...",
-  "Reviewing IT support requests...",
-  "Publishing portfolio improvements..."
-];
-
-let terminalIndex = 0;
-let terminalCharIndex = 0;
-
-function typeTerminalLine() {
-  if (!terminalLine) return;
-
-  const message = terminalMessages[terminalIndex];
-
-  terminalLine.textContent = message.slice(0, terminalCharIndex);
-
-  if (terminalCharIndex < message.length) {
-    terminalCharIndex += 1;
-    window.setTimeout(typeTerminalLine, 45);
-    return;
+    liveTime.textContent = formatter.format(new Date());
   }
 
+  updateLiveTime();
+  window.setInterval(updateLiveTime, 1000);
+
+  const focusItems = [
+    "Data cleaning and dashboard reporting",
+    "Windows troubleshooting and user support",
+    "Excel reporting and KPI summaries",
+    "KoBoToolbox / ODK field data workflows",
+    "Python, SQL, and portfolio improvements"
+  ];
+
+  let focusIndex = 0;
+
+  function rotateLiveFocus() {
+    if (!liveFocus) return;
+
+    focusIndex = (focusIndex + 1) % focusItems.length;
+    liveFocus.textContent = focusItems[focusIndex];
+  }
+
+  window.setInterval(rotateLiveFocus, 3000);
+
+  const terminalMessages = [
+    "Checking system reliability...",
+    "Cleaning operational datasets...",
+    "Building dashboard insights...",
+    "Validating field data workflows...",
+    "Reviewing IT support requests...",
+    "Publishing portfolio improvements..."
+  ];
+
+  let terminalIndex = 0;
+  let terminalCharIndex = 0;
+
+  function typeTerminalLine() {
+    if (!terminalLine) return;
+
+    const message = terminalMessages[terminalIndex];
+
+    terminalLine.textContent = message.slice(0, terminalCharIndex);
+
+    if (terminalCharIndex < message.length) {
+      terminalCharIndex += 1;
+      window.setTimeout(typeTerminalLine, 45);
+      return;
+    }
+
+    window.setTimeout(() => {
+      terminalCharIndex = 0;
+      terminalIndex = (terminalIndex + 1) % terminalMessages.length;
+      typeTerminalLine();
+    }, 1400);
+  }
+
+  typeTerminalLine();
+
+    /* =========================
+     PORTFOLIO CONTACT ASSISTANT CHAT
+  ========================= */
+
+  const assistantLauncher = document.getElementById("assistantLauncher");
+  const assistantLauncherWrap = document.getElementById("assistantLauncherWrap");
+  const chatAssistant = document.getElementById("chatAssistant");
+  const chatClose = document.getElementById("chatClose");
+  const chatMinimize = document.getElementById("chatMinimize");
+  const chatBody = document.getElementById("chatAssistantBody");
+  const chatForm = document.getElementById("chatAssistantForm");
+  const chatInput = document.getElementById("chatMessageInput");
+  const chatSuggestions = document.querySelectorAll(".chat-suggestion");
+  const chatEmailLink = document.getElementById("chatEmailLink");
+  const chatWhatsappLink = document.getElementById("chatWhatsappLink");
+
+  let assistantHasOpened = false;
+
+  function showAssistantLauncher() {
+    if (!assistantLauncher) return;
+
+    if (window.scrollY > 360) {
+      assistantLauncher.classList.add("show");
+    }
+  }
+
+  function openChatAssistant() {
+    if (!chatAssistant) return;
+
+    chatAssistant.hidden = false;
+    assistantHasOpened = true;
+
+    if (assistantLauncherWrap) {
+      assistantLauncherWrap.hidden = true;
+    }
+
+    window.setTimeout(() => {
+      chatAssistant.classList.add("show");
+    }, 50);
+
+    if (chatInput) {
+      window.setTimeout(() => {
+        chatInput.focus();
+      }, 300);
+    }
+  }
+
+  function closeChatAssistant() {
+    if (!chatAssistant) return;
+
+    chatAssistant.classList.remove("show");
+
+    window.setTimeout(() => {
+      chatAssistant.hidden = true;
+
+      if (assistantLauncherWrap) {
+        assistantLauncherWrap.hidden = false;
+      }
+
+      if (assistantLauncher) {
+        assistantLauncher.classList.add("show");
+      }
+    }, 260);
+  }
+
+  function minimizeChatAssistant() {
+    closeChatAssistant();
+  }
+
+  function appendChatMessage(message, type) {
+    if (!chatBody) return;
+
+    const messageRow = document.createElement("div");
+    const bubble = document.createElement("div");
+
+    messageRow.className = `chat-message ${type === "visitor" ? "visitor-message" : "assistant-message"}`;
+    bubble.className = "chat-bubble";
+    bubble.textContent = message;
+
+    messageRow.appendChild(bubble);
+    chatBody.appendChild(messageRow);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function buildAssistantReply(message) {
+    const lower = message.toLowerCase();
+
+    if (lower.includes("dashboard") || lower.includes("excel") || lower.includes("report")) {
+      return "Great. For a dashboard or reporting project, Pacifique can help organize your data, define KPIs, clean the workbook, and build a clear dashboard. You can send details by email or WhatsApp.";
+    }
+
+    if (lower.includes("it") || lower.includes("support") || lower.includes("computer") || lower.includes("printer") || lower.includes("network")) {
+      return "Understood. For IT support, Pacifique can help with troubleshooting, Windows setup, printers, network issues, user support, and basic system maintenance. Please share the issue and urgency.";
+    }
+
+    if (lower.includes("data") || lower.includes("clean") || lower.includes("analysis") || lower.includes("sql") || lower.includes("python")) {
+      return "Good. For data work, Pacifique can help clean datasets, check data quality, prepare analysis, and create reports using Excel, SQL, Python, or Google Sheets.";
+    }
+
+    if (lower.includes("kobo") || lower.includes("odk") || lower.includes("field")) {
+      return "Nice. For field data workflows, Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.";
+    }
+
+    if (lower.includes("job") || lower.includes("opportunity") || lower.includes("work") || lower.includes("hire")) {
+      return "Thank you. For professional opportunities, please share the role, location or remote option, timeline, and best contact method. Pacifique can reply by email or WhatsApp.";
+    }
+
+    return "Thanks for your message. Pacifique can help with IT support, data analytics, dashboards, field data tools, and web portfolio improvements. Please send more details by email or WhatsApp.";
+  }
+
+  function updateContactLinks(message) {
+    const encodedMessage = encodeURIComponent(message);
+    const emailSubject = encodeURIComponent("Portfolio contact request");
+    const emailBody = encodeURIComponent(
+      `Hello Pacifique,\n\n${message}\n\nBest regards,`
+    );
+
+    if (chatEmailLink) {
+      chatEmailLink.href = `mailto:pacifiquefashaho04@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    }
+
+    if (chatWhatsappLink) {
+      chatWhatsappLink.href = `https://wa.me/243859477758?text=${encodedMessage}`;
+    }
+  }
+
+  function handleChatSubmit(message) {
+    const cleanMessage = message.trim();
+
+    if (!cleanMessage) return;
+
+    appendChatMessage(cleanMessage, "visitor");
+    updateContactLinks(cleanMessage);
+
+    if (chatInput) {
+      chatInput.value = "";
+    }
+
+    window.setTimeout(() => {
+      appendChatMessage(buildAssistantReply(cleanMessage), "assistant");
+    }, 650);
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      showAssistantLauncher();
+
+      if (!assistantHasOpened && window.scrollY > 780) {
+        openChatAssistant();
+      }
+    },
+    { passive: true }
+  );
+
   window.setTimeout(() => {
-    terminalCharIndex = 0;
-    terminalIndex = (terminalIndex + 1) % terminalMessages.length;
-    typeTerminalLine();
-  }, 1400);
-}
+    if (!assistantHasOpened) {
+      showAssistantLauncher();
+    }
+  }, 3500);
 
-typeTerminalLine();
+  if (assistantLauncher) {
+    assistantLauncher.addEventListener("click", openChatAssistant);
+  }
 
+  if (chatClose) {
+    chatClose.addEventListener("click", closeChatAssistant);
+  }
+
+  if (chatMinimize) {
+    chatMinimize.addEventListener("click", minimizeChatAssistant);
+  }
+
+  if (chatForm) {
+    chatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!chatInput) return;
+
+      handleChatSubmit(chatInput.value);
+    });
+  }
+
+  chatSuggestions.forEach((suggestion) => {
+    suggestion.addEventListener("click", () => {
+      const message = suggestion.dataset.message || suggestion.textContent || "";
+
+      openChatAssistant();
+      handleChatSubmit(message);
+    });
+  });
 });
