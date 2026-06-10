@@ -12,3 +12,35 @@
   display: block;
   object-fit: cover;
 }
+
+/* =========================
+   Page-specific project visuals
+========================= */
+
+.project-preview {
+  margin: 12px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft-surface);
+}
+
+.project-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.case-study-preview {
+  max-height: none;
+}
+
+.featured-project-card {
+  grid-column: 1 / -1;
+}
+
+.logo-box span {
+  font-weight: 900;
+  color: var(--accent);
+}

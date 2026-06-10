@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sales Performance Dashboard Case Study | Pacifique Fashaho</title>
+
+  <meta
+    name="description"
+    content="Sales Performance Dashboard case study by Pacifique Fashaho. An Excel dashboard project showing sales KPIs, trends, reporting structure, and business insight presentation."
+  />
+
+  <meta
+    name="keywords"
+    content="Pacifique Fashaho, Sales Dashboard, Excel Dashboard, Data Analytics, KPI Dashboard, Reporting, Data Visualization, GitHub, Portfolio Project"
+  />
+
+  <meta name="author" content="Pacifique Fashaho" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <link rel="canonical" href="https://pacifiquefashaho.github.io/project-sales-dashboard.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="assets/images/ui/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/images/ui/apple-touch-icon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sales Performance Dashboard Case Study | Pacifique Fashaho" />
+  <meta
+    property="og:description"
+    content="A practical Excel dashboard case study showing sales performance KPIs, trends, dashboard design, and reporting logic."
+  />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/projects/sales-dashboard-preview.jpg" />
+  <meta property="og:image:alt" content="Sales Performance Dashboard preview" />
+  <meta property="og:url" content="https://pacifiquefashaho.github.io/project-sales-dashboard.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pacifique Fashaho Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sales Performance Dashboard Case Study | Pacifique Fashaho" />
+  <meta
+    name="twitter:description"
+    content="Excel dashboard case study focused on sales KPIs, trends, reporting, and business insight communication."
+  />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/projects/sales-dashboard-preview.jpg" />
+  <meta name="twitter:image:alt" content="Sales Performance Dashboard preview" />
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+
+        if (savedTheme) {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {}
+    })();
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Sales Performance Dashboard",
+    "url": "https://pacifiquefashaho.github.io/project-sales-dashboard.html",
+    "image": "https://pacifiquefashaho.github.io/assets/images/projects/sales-dashboard-preview.jpg",
+    "description": "A practical Excel dashboard project designed to summarize sales KPIs, trends, and performance insights.",
+    "creator": {
+      "@type": "Person",
+      "name": "Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/"
+    },
+    "keywords": [
+      "Excel dashboard",
+      "sales dashboard",
+      "data analytics",
+      "KPI reporting",
+      "data visualization"
+    ],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Pacifique Fashaho Portfolio",
+      "url": "https://pacifiquefashaho.github.io/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loader" aria-hidden="true">
+    <div class="spinner"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <button id="toTop" type="button" aria-label="Back to top" hidden>
+    ↑ Top
+  </button>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Go to Pacifique Fashaho homepage">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pacifique Fashaho</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#skills">Skills</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <!-- Project Hero -->
+    <section class="card reveal" aria-labelledby="case-study-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Data Analytics Case Study</p>
+
+          <h1 class="title" id="case-study-title">
+            Sales Performance Dashboard
+          </h1>
+
+          <p class="summary">
+            A practical Excel dashboard project designed to summarize sales performance,
+            highlight key metrics, and make business information easier to review,
+            explain, and share.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a
+            class="btn primary"
+            href="https://github.com/PacifiqueFashaho/sales-performance-dashboard"
+            target="_blank"
+            rel="noreferrer"
+          >
+            💻 View Repository
+          </a>
+
+          <a
+            class="btn"
+            href="projects.html"
+          >
+            ← Back to Projects
+          </a>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Sales dashboard project summary">
+        <div class="stat">
+          <span class="stat-num" data-target="1">0</span>
+          <span class="label">Dashboard Workbook</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="label">Main Project Steps</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="3">0</span>
+          <span class="label">Published Assets</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="dashboard-preview-title">
+      <div class="section-head">
+        <div>
+          <h2 id="dashboard-preview-title">Dashboard Preview</h2>
+          <span class="small">Visual preview of the sales dashboard output</span>
+        </div>
+
+        <a
+          class="btn"
+          href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/blob/main/Sales_Dashboard.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open Dashboard PDF
+        </a>
+      </div>
+
+      <div class="project-preview case-study-preview">
+        <img
+          src="assets/images/projects/sales-dashboard-preview.jpg"
+          width="1400"
+          height="900"
+          alt="Sales Performance Dashboard preview showing KPI cards, charts, and sales reporting layout"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="overview-title">
+      <div class="section-head">
+        <div>
+          <h2 id="overview-title">Project Overview</h2>
+          <span class="small">What the project was designed to solve</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">Problem</span>
+          <p>
+            Sales information can become difficult to review when it is stored only in raw spreadsheet rows.
+            Decision-makers need a simple way to understand performance without manually searching through data.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Goal</span>
+          <p>
+            Build a clear Excel dashboard that summarizes important sales indicators and presents performance
+            information in a readable, decision-friendly format.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Audience</span>
+          <p>
+            Small business owners, managers, sales teams, or operational staff who need a fast view of sales performance.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Output</span>
+          <p>
+            A published dashboard PDF, an Excel source workbook, and a GitHub repository containing the project files.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Used -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div>
+          <h2 id="tools-title">Tools Used</h2>
+          <span class="small">Main tools and skills applied in this project</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📊</div>
+            <div>
+              <strong>Microsoft Excel</strong>
+              <div class="small">Workbook structure, formulas, charts, and dashboard layout</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Excel was used to organize data, prepare metrics, and create a dashboard layout suitable for reporting.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📈</div>
+            <div>
+              <strong>Charts & KPI Cards</strong>
+              <div class="small">Visual performance indicators</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Charts and KPI cards were used to make important information easier to scan and understand.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🧹</div>
+            <div>
+              <strong>Data Preparation</strong>
+              <div class="small">Cleaning, structuring, and checking</div>
+            </div>
+          </div>
+
+          <p class="small">
+            The workbook structure was prepared to support cleaner reporting and easier dashboard interpretation.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">💻</div>
+            <div>
+              <strong>GitHub</strong>
+              <div class="small">Project publishing and file sharing</div>
+            </div>
+          </div>
+
+          <p class="small">
+            GitHub was used to publish the project files and make the dashboard accessible for review.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="process-title">
+      <div class="section-head">
+        <div>
+          <h2 id="process-title">Process</h2>
+          <span class="small">How the dashboard project was built</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <details class="timeline-card" open>
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+
+              <span class="logo-box">
+                <span aria-hidden="true">1</span>
+              </span>
+
+              <span class="timeline-head">
+                <strong>Understand the reporting need</strong>
+                <span class="small">Identify what information should be easy to review</span>
+              </span>
+            </summary>
+
+            <ul>
+              <li>Defined the purpose of the dashboard.</li>
+              <li>Focused on turning raw sales information into useful reporting views.</li>
+              <li>Considered what a business user would want to understand quickly.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+
+              <span class="logo-box">
+                <span aria-hidden="true">2</span>
+              </span>
+
+              <span class="timeline-head">
+                <strong>Prepare and structure the workbook</strong>
+                <span class="small">Organize the spreadsheet for reporting</span>
+              </span>
+            </summary>
+
+            <ul>
+              <li>Structured the workbook to separate raw information from dashboard output.</li>
+              <li>Prepared the data view needed for summaries and charts.</li>
+              <li>Checked that the dashboard layout remained understandable and easy to follow.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+
+              <span class="logo-box">
+                <span aria-hidden="true">3</span>
+              </span>
+
+              <span class="timeline-head">
+                <strong>Design the dashboard</strong>
+                <span class="small">Create KPI cards, visuals, and reporting layout</span>
+              </span>
+            </summary>
+
+            <ul>
+              <li>Designed a visual layout for reading performance quickly.</li>
+              <li>Used dashboard elements such as charts and KPI-style summaries.</li>
+              <li>Focused on clarity, spacing, and readable reporting structure.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+
+              <span class="logo-box">
+                <span aria-hidden="true">4</span>
+              </span>
+
+              <span class="timeline-head">
+                <strong>Publish and document the project</strong>
+                <span class="small">Make the work accessible through GitHub</span>
+              </span>
+            </summary>
+
+            <ul>
+              <li>Published the dashboard PDF for quick viewing.</li>
+              <li>Published the Excel workbook for review and download.</li>
+              <li>Added repository links so visitors can access the project files.</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- Dashboard Elements -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="dashboard-elements-title">
+      <div class="section-head">
+        <div>
+          <h2 id="dashboard-elements-title">Dashboard Elements</h2>
+          <span class="small">Main components included in the reporting view</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🎯</div>
+            <div>
+              <strong>KPI Summary</strong>
+              <div class="small">Quick performance indicators</div>
+            </div>
+          </div>
+
+          <p class="small">
+            KPI-style elements help users understand the most important values without reading the full dataset.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📉</div>
+            <div>
+              <strong>Trend View</strong>
+              <div class="small">Performance over time</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Trend visuals help users see how performance changes across periods.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🏷️</div>
+            <div>
+              <strong>Category Comparison</strong>
+              <div class="small">Compare products or groups</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Comparison visuals make it easier to identify stronger and weaker performance areas.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📄</div>
+            <div>
+              <strong>Report-Ready Layout</strong>
+              <div class="small">Clean dashboard presentation</div>
+            </div>
+          </div>
+
+          <p class="small">
+            The dashboard was organized so it can be shared as a PDF or reviewed directly from the workbook.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="results-title">
+      <div class="section-head">
+        <div>
+          <h2 id="results-title">Result</h2>
+          <span class="small">What the project demonstrates</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">Clearer Reporting</span>
+          <p>
+            The dashboard turns spreadsheet information into a cleaner visual summary that is easier to review.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Better Communication</span>
+          <p>
+            The dashboard format helps explain performance without requiring the viewer to inspect every raw row.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Reusable Structure</span>
+          <p>
+            The workbook structure can be improved and reused for similar small business reporting needs.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Portfolio Evidence</span>
+          <p>
+            The project provides visible proof of dashboard design, Excel reporting, and analytics presentation skills.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I Learned -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="learning-title">
+      <div class="section-head">
+        <div>
+          <h2 id="learning-title">What I Learned</h2>
+          <span class="small">Technical and practical lessons from the project</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🧠</div>
+            <div>
+              <strong>Think from the user’s perspective</strong>
+              <div class="small">Dashboard users need clarity first</div>
+            </div>
+          </div>
+
+          <p class="small">
+            A dashboard should make information easier to understand, not just more colorful.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🧹</div>
+            <div>
+              <strong>Structure matters</strong>
+              <div class="small">Clean organization improves reporting</div>
+            </div>
+          </div>
+
+          <p class="small">
+            A well-organized workbook makes dashboard building and future updates easier.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📊</div>
+            <div>
+              <strong>Visuals should answer questions</strong>
+              <div class="small">Every chart needs a purpose</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Charts are useful when they help users compare, detect trends, or understand performance quickly.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🚀</div>
+            <div>
+              <strong>Publishing improves credibility</strong>
+              <div class="small">Projects should be easy to access</div>
+            </div>
+          </div>
+
+          <p class="small">
+            Sharing the PDF, Excel file, and repository makes the project easier for recruiters and clients to review.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Project Links -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="project-links-title">
+      <div class="section-head">
+        <div>
+          <h2 id="project-links-title">Project Files</h2>
+          <p class="summary">
+            Open the dashboard PDF, download the Excel workbook, or review the repository on GitHub.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-grid" aria-label="Sales dashboard project links">
+        <a
+          class="contact-card"
+          href="https://github.com/PacifiqueFashaho/sales-performance-dashboard"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="cc-left">
+            <div class="cc-ico" aria-hidden="true">GH</div>
+            <div class="cc-meta">
+              <strong>GitHub Repository</strong>
+              <div class="small">View source files</div>
+            </div>
+          </div>
+          <div class="cc-go" aria-hidden="true">↗</div>
+        </a>
+
+        <a
+          class="contact-card"
+          href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/blob/main/Sales_Dashboard.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="cc-left">
+            <div class="cc-ico" aria-hidden="true">PDF</div>
+            <div class="cc-meta">
+              <strong>Dashboard PDF</strong>
+              <div class="small">Open report preview</div>
+            </div>
+          </div>
+          <div class="cc-go" aria-hidden="true">↗</div>
+        </a>
+
+        <a
+          class="contact-card"
+          href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/raw/main/Sales_Dashboard.xlsx"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="cc-left">
+            <div class="cc-ico" aria-hidden="true">XLS</div>
+            <div class="cc-meta">
+              <strong>Excel Workbook</strong>
+              <div class="small">Download source file</div>
+            </div>
+          </div>
+          <div class="cc-go" aria-hidden="true">↗</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="case-study-cta-title">
+      <div class="section-head">
+        <div>
+          <h2 id="case-study-cta-title">Need a Dashboard or Data Report?</h2>
+          <p class="summary">
+            I can help clean data, organize spreadsheets, create reports, and build practical dashboards
+            for small businesses, teams, NGOs, and field operations.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="index.html#contact">
+            Contact Me
+          </a>
+
+          <a class="btn" href="projects.html">
+            View More Projects
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
