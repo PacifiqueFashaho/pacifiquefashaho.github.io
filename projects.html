@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Projects | Pacifique Fashaho</title>
+
+  <meta
+    name="description"
+    content="Projects by Pacifique Fashaho, including data analytics dashboards, IT support workflows, web development, Google Data Analytics practice, and KoBoToolbox/ODK field data support."
+  />
+
+  <meta
+    name="keywords"
+    content="Pacifique Fashaho projects, data analytics dashboard, Excel dashboard, IT support workflow, portfolio website, KoBoToolbox, ODK, Python, SQL, GitHub Pages"
+  />
+
+  <meta name="author" content="Pacifique Fashaho" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <link rel="canonical" href="https://pacifiquefashaho.github.io/projects.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="assets/images/ui/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/images/ui/apple-touch-icon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Projects | Pacifique Fashaho" />
+  <meta
+    property="og:description"
+    content="Selected IT support, data analytics, field data, and web development projects by Pacifique Fashaho."
+  />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta property="og:image:alt" content="Pacifique Fashaho projects page preview" />
+  <meta property="og:url" content="https://pacifiquefashaho.github.io/projects.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Pacifique Fashaho Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Projects | Pacifique Fashaho" />
+  <meta
+    name="twitter:description"
+    content="Data analytics dashboards, IT support workflows, web projects, and field data support projects."
+  />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta name="twitter:image:alt" content="Pacifique Fashaho projects page preview" />
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+
+        if (savedTheme) {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {}
+    })();
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projects | Pacifique Fashaho",
+    "url": "https://pacifiquefashaho.github.io/projects.html",
+    "description": "A project portfolio page for Pacifique Fashaho covering data analytics, IT support, web development, and field data support.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Pacifique Fashaho Portfolio",
+      "url": "https://pacifiquefashaho.github.io/"
+    },
+    "about": {
+      "@type": "Person",
+      "name": "Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "CreativeWork",
+          "position": 1,
+          "name": "Sales Performance Dashboard",
+          "url": "https://pacifiquefashaho.github.io/project-sales-dashboard.html"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 2,
+          "name": "Personal Portfolio Website",
+          "url": "https://pacifiquefashaho.github.io/projects.html#project-portfolio"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 3,
+          "name": "Google Data Analytics Case Study Practice",
+          "url": "https://pacifiquefashaho.github.io/projects.html#project-google-analytics-case-study"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 4,
+          "name": "Workstation Setup and Troubleshooting Workflow",
+          "url": "https://pacifiquefashaho.github.io/projects.html#project-it-support-workflow"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 5,
+          "name": "KoBoToolbox and ODK Field Data Support",
+          "url": "https://pacifiquefashaho.github.io/projects.html#project-field-data-workflow"
+        }
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div id="loader" aria-hidden="true">
+    <div class="spinner"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <button id="toTop" type="button" aria-label="Back to top" hidden>
+    ↑ Top
+  </button>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Go to Pacifique Fashaho homepage">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pacifique Fashaho</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#skills">Skills</a>
+        <a class="active" href="projects.html" aria-current="page">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <!-- Page Hero -->
+    <section class="card reveal" aria-labelledby="projects-page-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Technical work and practical outcomes</p>
+
+          <h1 class="title" id="projects-page-title">
+            Projects
+          </h1>
+
+          <p class="summary">
+            This page presents selected projects across data analytics, IT support, web development,
+            and field data workflows. Each project is structured around the problem, tools used,
+            actions taken, and practical result.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a
+            class="btn primary"
+            href="project-sales-dashboard.html"
+          >
+            ⭐ View Featured Case Study
+          </a>
+
+          <a
+            class="btn"
+            href="https://github.com/PacifiqueFashaho"
+            target="_blank"
+            rel="noreferrer"
+          >
+            💻 GitHub Profile
+          </a>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Projects summary">
+        <div class="stat">
+          <span class="stat-num" data-target="5">0</span>
+          <span class="label">Portfolio Projects</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="label">Project Categories</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="1">0</span>
+          <span class="label">Detailed Case Study</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Filters -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="project-filter-title">
+      <div class="section-head">
+        <div>
+          <h2 id="project-filter-title">Browse Projects</h2>
+          <span class="small">Filter projects by category</span>
+        </div>
+      </div>
+
+      <div class="project-filters" aria-label="Project category filters">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">
+          All
+        </button>
+
+        <button class="filter-btn" type="button" data-filter="data-analytics" aria-pressed="false">
+          Data Analytics
+        </button>
+
+        <button class="filter-btn" type="button" data-filter="it-support" aria-pressed="false">
+          IT Support
+        </button>
+
+        <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">
+          Web
+        </button>
+
+        <button class="filter-btn" type="button" data-filter="field-data" aria-pressed="false">
+          Field Data
+        </button>
+      </div>
+
+      <p class="project-empty small" id="projectEmpty" aria-live="polite" hidden>
+        No project is currently listed in this category.
+      </p>
+    </section>
+
+    <!-- Featured Project -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="featured-project-title">
+      <div class="section-head">
+        <div>
+          <h2 id="featured-project-title">Featured Project</h2>
+          <span class="small">Best example of my current data analytics portfolio work</span>
+        </div>
+      </div>
+
+      <article class="project featured-project-card" id="project-sales-dashboard-featured" data-category="data-analytics">
+        <div class="project-top">
+          <div>
+            <h3>Sales Performance Dashboard</h3>
+            <p class="small">
+              A practical Excel dashboard designed to summarize sales KPIs, trends, and performance information
+              in a clear format for decision-making.
+            </p>
+          </div>
+
+          <div class="project-tags">
+            <span class="tag">Excel</span>
+            <span class="tag">Dashboard</span>
+            <span class="tag">KPIs</span>
+            <span class="tag">Reporting</span>
+          </div>
+        </div>
+
+        <div class="project-preview">
+          <img
+            src="assets/images/projects/sales-dashboard-preview.jpg"
+            width="1400"
+            height="900"
+            alt="Preview screenshot of the Sales Performance Dashboard project"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="project-brief">
+          <div>
+            <span class="project-label">Problem</span>
+            <p>
+              Sales data needed to be summarized quickly so performance could be reviewed without searching through raw sheets.
+            </p>
+          </div>
+
+          <div>
+            <span class="project-label">Tools</span>
+            <p>
+              Excel, charts, KPI cards, workbook structure, GitHub.
+            </p>
+          </div>
+
+          <div>
+            <span class="project-label">What I did</span>
+            <p>
+              Structured the workbook, defined key metrics, created dashboard visuals, and published the project files.
+            </p>
+          </div>
+
+          <div>
+            <span class="project-label">Result</span>
+            <p>
+              A readable dashboard that makes sales performance easier to scan, explain, and share.
+            </p>
+          </div>
+        </div>
+
+        <div class="project-actions">
+          <a class="pbtn primary" href="project-sales-dashboard.html">
+            View Case Study
+          </a>
+
+          <a
+            class="pbtn"
+            href="https://github.com/PacifiqueFashaho/sales-performance-dashboard"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Repository
+          </a>
+
+          <a
+            class="pbtn"
+            href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/blob/main/Sales_Dashboard.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Dashboard PDF
+          </a>
+
+          <a
+            class="pbtn"
+            href="https://github.com/PacifiqueFashaho/sales-performance-dashboard/raw/main/Sales_Dashboard.xlsx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Download Excel File
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- All Projects -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="all-projects-title">
+      <div class="section-head">
+        <div>
+          <h2 id="all-projects-title">All Projects</h2>
+          <span class="small">Practical work organized by problem, tools, process, and result</span>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Sales Dashboard -->
+        <article class="project" id="project-sales-dashboard" data-category="data-analytics">
+          <div class="project-top">
+            <h3>Sales Performance Dashboard</h3>
+
+            <div class="project-tags">
+              <span class="tag">Excel</span>
+              <span class="tag">Dashboard</span>
+              <span class="tag">KPIs</span>
+              <span class="tag">Reporting</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <img
+              src="assets/images/projects/sales-dashboard-preview.jpg"
+              width="1400"
+              height="900"
+              alt="Sales dashboard preview showing KPI and chart layout"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Problem</span>
+              <p>
+                Sales information needed to be summarized quickly for review and reporting.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Tools</span>
+              <p>
+                Excel, charts, KPI cards, GitHub.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">What I did</span>
+              <p>
+                Built a dashboard structure with performance indicators and visual summaries.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Result</span>
+              <p>
+                A dashboard that makes sales performance easier to understand and share.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a class="pbtn primary" href="project-sales-dashboard.html">
+              View Case Study
+            </a>
+
+            <a
+              class="pbtn"
+              href="https://github.com/PacifiqueFashaho/sales-performance-dashboard"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Repository
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: Data Analytics
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                This project demonstrates dashboard structure, KPI thinking, reporting layout, and professional project publishing through GitHub.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <!-- Portfolio Website -->
+        <article class="project" id="project-portfolio" data-category="web">
+          <div class="project-top">
+            <h3>Personal Portfolio Website</h3>
+
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <img
+              src="assets/images/projects/portfolio-preview.png"
+              width="1400"
+              height="900"
+              alt="Preview screenshot of Pacifique Fashaho portfolio website"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Problem</span>
+              <p>
+                My skills, experience, certifications, and projects needed one professional online presence.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Tools</span>
+              <p>
+                HTML, CSS, JavaScript, Git, GitHub Pages.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">What I did</span>
+              <p>
+                Built a responsive multi-page portfolio with animations, filters, dark mode, and SEO metadata.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Result</span>
+              <p>
+                A maintainable professional portfolio that showcases my technical profile and work.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a class="pbtn primary" href="index.html">
+              Visit Live Site
+            </a>
+
+            <a
+              class="pbtn"
+              href="https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Repository
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: Web
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                The portfolio includes structured navigation, dedicated project and certification pages, accessibility improvements, responsive layout, theme switching, project filtering, and professional metadata.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <!-- Google Data Analytics Practice -->
+        <article class="project" id="project-google-analytics-case-study" data-category="data-analytics">
+          <div class="project-top">
+            <h3>Google Data Analytics Case Study Practice</h3>
+
+            <div class="project-tags">
+              <span class="tag">SQL</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">Insights</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <img
+              src="assets/images/projects/google-data-case-study-preview.avif"
+              width="1400"
+              height="900"
+              alt="Preview image representing Google Data Analytics case study practice"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Problem</span>
+              <p>
+                Raw data becomes valuable only when cleaned, analyzed, and communicated clearly.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Tools</span>
+              <p>
+                SQL, Excel, Google Sheets, data cleaning workflow, visualization concepts.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">What I did</span>
+              <p>
+                Practiced the full analytics workflow: ask, prepare, process, analyze, share, and act.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Result</span>
+              <p>
+                Improved my ability to organize data work and communicate insights clearly.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a
+              class="pbtn primary"
+              href="assets/certificates/Google-data-analytics.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Certificate
+            </a>
+
+            <a
+              class="pbtn"
+              href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Verify Credential
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: Data Analytics
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                This project represents my structured practice of the data analytics process and supports my transition from raw data to decision-ready insights.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <!-- IT Support Workflow -->
+        <article class="project" id="project-it-support-workflow" data-category="it-support">
+          <div class="project-top">
+            <h3>Workstation Setup &amp; Troubleshooting Workflow</h3>
+
+            <div class="project-tags">
+              <span class="tag">Windows</span>
+              <span class="tag">Hardware</span>
+              <span class="tag">Printers</span>
+              <span class="tag">Networking</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <img
+              src="assets/images/projects/it-support-workflow.svg"
+              width="1400"
+              height="900"
+              alt="Illustration representing an IT support workflow for workstation setup and troubleshooting"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Problem</span>
+              <p>
+                Small businesses and cybercafes need reliable workstations, internet access, printer support, and fast issue resolution.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Tools</span>
+              <p>
+                Windows, drivers, antivirus tools, office software, printers, LAN and internet troubleshooting.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">What I did</span>
+              <p>
+                Installed systems, configured software, resolved hardware/software issues, and supported users during daily operations.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Result</span>
+              <p>
+                Improved reliability and smoother technical support for multi-user service environments.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a class="pbtn primary" href="index.html#experience">
+              View Related Experience
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: IT Support
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                This workflow summarizes practical troubleshooting steps from real IT support experience, including setup, diagnosis, user support, and maintenance.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <!-- KoBoToolbox / ODK -->
+        <article class="project" id="project-field-data-workflow" data-category="field-data">
+          <div class="project-top">
+            <h3>KoBoToolbox / ODK Field Data Support</h3>
+
+            <div class="project-tags">
+              <span class="tag">KoBoToolbox</span>
+              <span class="tag">ODK</span>
+              <span class="tag">Tablets</span>
+              <span class="tag">Validation</span>
+            </div>
+          </div>
+
+          <div class="project-preview">
+            <img
+              src="assets/images/projects/kobo-odk-preview.jpg"
+              width="1400"
+              height="900"
+              alt="Preview image representing KoBoToolbox and ODK field data collection support"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Problem</span>
+              <p>
+                Field teams need dependable mobile data collection, device setup, connectivity support, and quality checks.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Tools</span>
+              <p>
+                KoBoToolbox, ODK, tablets, Excel, Google Sheets, data validation.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">What I did</span>
+              <p>
+                Collected digital field data, configured mobile devices, supported field teams, and checked dataset quality.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Result</span>
+              <p>
+                Cleaner field datasets and stronger technical continuity during data collection activities.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a class="pbtn primary" href="index.html#experience">
+              View Related Experience
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: Field Data
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                This project is based on practical field data collection and technical support experience using mobile data collection tools.
+              </p>
+            </div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- Project Development Roadmap -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="project-roadmap-title">
+      <div class="section-head">
+        <div>
+          <h2 id="project-roadmap-title">Project Development Roadmap</h2>
+          <p class="summary">
+            I am continuing to improve this portfolio by adding deeper project documentation,
+            screenshots, source files, and case studies. My next priority is to document more
+            real-world data and IT support workflows.
+          </p>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📊</div>
+            <div>
+              <strong>More Data Projects</strong>
+              <div class="small">Dashboards, cleaning workflows, and analytics cases</div>
+            </div>
+          </div>
+
+          <p class="small">
+            I plan to publish more data projects using Excel, SQL, Python, and dashboard screenshots.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🛠️</div>
+            <div>
+              <strong>IT Support Documentation</strong>
+              <div class="small">Workflows, checklists, and troubleshooting examples</div>
+            </div>
+          </div>
+
+          <p class="small">
+            I will document practical workflows for workstation setup, printer support, networking, and user assistance.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🌍</div>
+            <div>
+              <strong>Field Data Examples</strong>
+              <div class="small">KoBoToolbox, ODK, validation, and reporting</div>
+            </div>
+          </div>
+
+          <p class="small">
+            I will add safe, non-sensitive examples of field data collection and quality control workflows.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">💻</div>
+            <div>
+              <strong>Web Improvements</strong>
+              <div class="small">Accessibility, performance, SEO, and maintainability</div>
+            </div>
+          </div>
+
+          <p class="small">
+            This portfolio itself is an active project where I improve layout, code quality, and user experience.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="projects-cta-title">
+      <div class="section-head">
+        <div>
+          <h2 id="projects-cta-title">Interested in Working Together?</h2>
+          <p class="summary">
+            I can help with IT support, data cleaning, dashboards, web portfolio updates,
+            and field data tools for teams that need practical and reliable technical support.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="index.html#contact">
+            Contact Me
+          </a>
+
+          <a
+            class="btn"
+            href="https://github.com/PacifiqueFashaho"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
+</body>
+</html>

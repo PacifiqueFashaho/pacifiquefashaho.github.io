@@ -1,0 +1,14 @@
+.project-preview {
+  margin: 12px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft-surface);
+}
+
+.project-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
