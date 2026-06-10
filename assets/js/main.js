@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeMeta = document.querySelector('meta[name="theme-color"]');
 
   /* =========================
-     1. FOOTER YEAR
+     Footer year
   ========================= */
 
   const year = document.getElementById("y2");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     2. EXPERIENCE COUNTER AUTO COUNT
+     Experience counter
   ========================= */
 
   const experienceCounter = document.querySelector('[data-counter="experience"]');
@@ -33,14 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     3. THEME SYSTEM
+     Theme system
   ========================= */
 
   function effectiveTheme() {
     return root.dataset.theme || (prefersDark.matches ? "dark" : "light");
   }
 
-  functionToggle");  function updateThemeToggle() {
+  function updateThemeToggle() {
+    const toggle = document.getElementById("themeToggle");
 
     if (!toggle) return;
 
@@ -51,13 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.setAttribute("aria-pressed", String(isDark));
     toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
 
-    if (icon) {
-      icon.textContent = isDark ? "☀" : "☾";
-    }
-
-    if (text) {
-      text.textContent = isDark ? "Light" : "Dark";
-    }
+    if (icon) icon.textContent = isDark ? "☀" : "☾";
+    if (text) text.textContent = isDark ? "Light" : "Dark";
 
     if (themeMeta) {
       themeMeta.setAttribute("content", isDark ? "#0b1220" : "#2563eb");
@@ -70,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       localStorage.setItem("portfolio-theme", theme);
     } catch (error) {
-      /* localStorage can be unavailable in some privacy modes */
+      /* localStorage can be unavailable */
     }
 
     updateThemeToggle();
@@ -94,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     4. LOADER
+     Loader
   ========================= */
 
   const loader = document.getElementById("loader");
@@ -115,11 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", hideLoader);
   }
 
-  /* Fallback: never keep loader forever */
   window.setTimeout(hideLoader, 2400);
 
   /* =========================
-     5. CURSOR SPOTLIGHT
+     Cursor spotlight
   ========================= */
 
   if (!prefersReducedMotion.matches && finePointer.matches) {
@@ -139,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     6. REVEAL ON SCROLL
+     Reveal animation
   ========================= */
 
   const revealItems = document.querySelectorAll(".reveal");
@@ -157,9 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
         },
-        {
-          threshold: 0.12
-        }
+        { threshold: 0.12 }
       );
 
       revealItems.forEach((item) => revealObserver.observe(item));
@@ -167,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     7. TYPING ANIMATION
+     Typing animation
   ========================= */
 
   const typingEl = document.getElementById("typing");
@@ -220,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     8. STATS COUNTERS
+     Counters
   ========================= */
 
   const counters = document.querySelectorAll(".stat-num");
@@ -274,9 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
         },
-        {
-          threshold: 0.4
-        }
+        { threshold: 0.4 }
       );
 
       counters.forEach((counter) => counterObserver.observe(counter));
@@ -286,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     9. SKILL BAR ANIMATION
+     Skill bars
   ========================= */
 
   const skillBars = document.querySelectorAll(".bar-fill");
@@ -309,9 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
         },
-        {
-          threshold: 0.35
-        }
+        { threshold: 0.35 }
       );
 
       skillBars.forEach((bar) => skillObserver.observe(bar));
@@ -319,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     10. PROJECT FILTERS
+     Project filters
   ========================= */
 
   const filterButtons = document.querySelectorAll(".filter-btn");
@@ -376,7 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     11. SMOOTH INTERNAL NAVIGATION
+     Smooth internal navigation
   ========================= */
 
   const hashLinks = document.querySelectorAll('a[href*="#"]');
@@ -409,15 +398,13 @@ document.addEventListener("DOMContentLoaded", () => {
       target.setAttribute("tabindex", "-1");
 
       window.setTimeout(() => {
-        target.focus({
-          preventScroll: true
-        });
+        target.focus({ preventScroll: true });
       }, 350);
     });
   });
 
   /* =========================
-     12. SCROLL PROGRESS + BACK TO TOP
+     Scroll UI
   ========================= */
 
   const progressBar = document.getElementById("progressBar");
@@ -448,11 +435,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     13. ACTIVE NAVIGATION
+     Active navigation
   ========================= */
 
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll('nav a[href]');
+  const navLinks = document.querySelectorAll("nav a[href]");
 
   function updateActiveNavigation() {
     if (!sections.length || !navLinks.length) return;
@@ -497,17 +484,14 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTicking = false;
       });
     },
-    {
-      passive: true
-    }
+    { passive: true }
   );
 
   window.addEventListener("resize", updateScrollUi);
-
   updateScrollUi();
 
   /* =========================
-     14. CONTACT SERVICE CHIPS
+     Contact service chips
   ========================= */
 
   const contactSubjectField = document.getElementById("contactSubject");
@@ -531,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     15. CONTACT FORM MAILTO
+     Contact form mailto
   ========================= */
 
   const contactForm = document.getElementById("contactForm");
@@ -586,7 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     16. COPY EMAIL
+     Copy email
   ========================= */
 
   const copyEmailButton = document.getElementById("copyEmail");
@@ -650,7 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     17. RIPPLE EFFECT
+     Ripple effect
   ========================= */
 
   const rippleTargets = document.querySelectorAll(
@@ -677,7 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================
-     18. CARD TILT EFFECT
+     Card tilt
   ========================= */
 
   const tiltCards = document.querySelectorAll(".project, .skill-card");
@@ -703,7 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     19. MAGNETIC BUTTON EFFECT
+     Magnetic buttons
   ========================= */
 
   const magneticButtons = document.querySelectorAll(".btn, .pbtn");
@@ -726,7 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     20. EXPERIENCE TIMELINE ACCORDION
+     Experience accordion
   ========================= */
 
   const timelineDetails = document.querySelectorAll("#experience details.timeline-card");
