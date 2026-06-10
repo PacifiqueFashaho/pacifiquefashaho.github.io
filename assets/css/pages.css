@@ -1,13 +1,46 @@
+/* =========================================================
+   Pacifique Fashaho Portfolio
+   Page-Specific Stylesheet
+   File: assets/css/pages.css
+========================================================= */
+
 /* =========================
-   Case study and project previews
+   1. PAGE HERO IMPROVEMENTS
+========================= */
+
+.page-kicker,
+.card .section-head > div > .small:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+}
+
+.page-intro {
+  max-width: 760px;
+}
+
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* =========================
+   2. PROJECT PREVIEW IMAGES
 ========================= */
 
 .project-preview {
-  margin: 12px 0;
+  margin: 14px 0;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--soft-surface);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .project-preview img {
@@ -15,71 +48,449 @@
   height: auto;
   display: block;
   object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.project-preview:hover img {
+  transform: scale(1.02);
+  filter: saturate(1.06) contrast(1.02);
 }
 
 .case-study-preview {
   max-height: none;
 }
 
+.case-study-preview img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+/* Featured project should take full width in grids */
 .featured-project-card {
   grid-column: 1 / -1;
-}
-
-.logo-box span {
-  font-weight: 900;
-  color: var(--accent);
-}
-
-.project-preview {
-  margin: 12px 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--soft-surface);
-}
-.project-preview {
-  margin: 12px 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--soft-surface);
-}
-
-.project-preview img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
 }
 
 /* =========================
-   Page-specific project visuals
+   3. PROJECT PAGE LAYOUT
 ========================= */
 
-.project-preview {
-  margin: 12px 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--soft-surface);
+.project.featured-project-card {
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.06), transparent),
+    var(--soft-surface);
 }
 
-.project-preview img {
+.project.featured-project-card .project-preview {
+  max-height: 520px;
+}
+
+.project.featured-project-card .project-preview img {
   width: 100%;
-  height: auto;
-  display: block;
   object-fit: cover;
 }
 
-.case-study-preview {
-  max-height: none;
+.project-roadmap-card {
+  min-height: 100%;
 }
 
-.featured-project-card {
-  grid-column: 1 / -1;
+/* Better spacing for project cards with images */
+.project .project-preview + .project-brief {
+  margin-top: 14px;
 }
 
+/* =========================
+   4. CASE STUDY PAGE
+========================= */
+
+.case-study-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.case-study-metadata span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--soft-surface);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.case-study-card {
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--soft-surface);
+}
+
+.case-study-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.case-study-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Number boxes used in process timeline */
 .logo-box span {
   font-weight: 900;
   color: var(--accent);
+}
+
+/* =========================
+   5. CERTIFICATIONS PAGE
+========================= */
+
+.cert-category-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.cert-category-summary a,
+.cert-category-summary span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--soft-surface);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.cert-category-summary a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(37, 99, 235, 0.36);
+  color: var(--text);
+}
+
+.cert.featured {
+  position: relative;
+}
+
+.cert.featured::after {
+  content: "Featured";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.cert .meta p.small {
+  margin-top: 10px;
+}
+
+/* Make certification pages easier to scan */
+#data-cert-title,
+#programming-cert-title,
+#it-cert-title,
+#productivity-cert-title,
+#field-cert-title,
+#full-cert-title {
+  scroll-margin-top: 100px;
+}
+
+/* =========================
+   6. PROJECT FILTER PAGE SUPPORT
+========================= */
+
+.project-filters {
+  align-items: center;
+}
+
+.filter-btn {
+  user-select: none;
+}
+
+.project-empty {
+  padding: 10px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--soft-surface);
+}
+
+/* =========================
+   7. IMAGE QUALITY HELPERS
+========================= */
+
+.logo-box img {
+  padding: 4px;
+}
+
+.logo-box img[src$=".webp"],
+.logo-box img[src$=".png"],
+.logo-box img[src$=".jpg"],
+.logo-box img[src$=".jpeg"] {
+  object-fit: contain;
+}
+
+.avatar {
+  image-rendering: auto;
+}
+
+.profile picture {
+  display: block;
+}
+
+.profile picture img {
+  width: 134px;
+  height: 134px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--soft-surface);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* =========================
+   8. CONTACT / CTA PAGE BLOCKS
+========================= */
+
+.cta-card {
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent),
+    var(--card);
+}
+
+.cta-card .summary {
+  max-width: 720px;
+}
+
+/* =========================
+   9. DOWNLOAD / FILE LINK CARDS
+========================= */
+
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.file-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--soft-surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: var(--shadow-hover);
+}
+
+.file-card strong {
+  display: block;
+}
+
+.file-card .small {
+  overflow-wrap: anywhere;
+}
+
+/* =========================
+   10. SMALL BADGES
+========================= */
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--soft-surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+/* =========================
+   11. TABLE-LIKE INFO BLOCKS
+========================= */
+
+.info-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--soft-surface);
+}
+
+.info-row strong {
+  color: var(--text);
+}
+
+.info-row span {
+  color: var(--muted);
+}
+
+/* =========================
+   12. PAGE-SPECIFIC DARK CLEANUP
+========================= */
+
+:root[data-theme="dark"] .case-study-preview img {
+  background: #0f172a;
+}
+
+:root[data-theme="dark"] .project-preview {
+  background: var(--soft-surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .case-study-preview img {
+    background: #0f172a;
+  }
+
+  :root:not([data-theme="light"]) .project-preview {
+    background: var(--soft-surface);
+  }
+}
+
+/* =========================
+   13. RESPONSIVE PAGE STYLES
+========================= */
+
+@media (max-width: 920px) {
+  .case-study-grid,
+  .file-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project.featured-project-card .project-preview {
+    max-height: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .case-study-metadata,
+  .cert-category-summary,
+  .badge-row {
+    flex-direction: column;
+  }
+
+  .case-study-metadata span,
+  .cert-category-summary a,
+  .cert-category-summary span,
+  .badge {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .info-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-preview {
+    border-radius: 12px;
+  }
+
+  .cert.featured::after {
+    position: static;
+    display: inline-flex;
+    width: fit-content;
+    margin: 8px 0 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .project-preview {
+    margin: 10px 0;
+  }
+
+  .case-study-card,
+  .file-card {
+    padding: 12px;
+  }
+}
+
+/* =========================
+   14. PRINT SUPPORT
+========================= */
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .topbar,
+  #loader,
+  #toTop,
+  .progress-bar,
+  .theme-toggle,
+  .marquee,
+  .btns,
+  .project-actions,
+  .cert-actions,
+  .contact-foot {
+    display: none !important;
+  }
+
+  .card,
+  .project,
+  .cert,
+  .skill-card,
+  .timeline-card {
+    box-shadow: none !important;
+    border-color: #cccccc !important;
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
 }
