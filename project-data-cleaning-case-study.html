@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Data Cleaning and Reporting Case Study | Pacifique Fashaho</title>
+
+  <meta
+    name="description"
+    content="A practical data cleaning and reporting case study by Pacifique Fashaho covering missing values, duplicates, inconsistent formats, validation checks, analysis preparation, and insight communication."
+  />
+
+  <meta
+    name="keywords"
+    content="Pacifique Fashaho, Data Cleaning, Data Analysis, Excel, SQL, Python, Google Sheets, Data Quality, Reporting, Data Validation, Portfolio Case Study"
+  />
+
+  <meta name="author" content="Pacifique Fashaho" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <link rel="canonical" href="https://pacifiquefashaho.github.io/project-data-cleaning-case-study.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="assets/images/ui/favicon.ico" />
+  <link rel="apple-touch-icon" href="assets/images/ui/apple-touch-icon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Data Cleaning and Reporting Case Study | Pacifique Fashaho" />
+  <meta
+    property="og:description"
+    content="A practical workflow for identifying data-quality problems, cleaning records, validating results, preparing analysis, and communicating findings."
+  />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta property="og:image:alt" content="Pacifique Fashaho data analytics portfolio preview" />
+  <meta property="og:url" content="https://pacifiquefashaho.github.io/project-data-cleaning-case-study.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Pacifique Fashaho Portfolio" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Data Cleaning and Reporting Case Study | Pacifique Fashaho" />
+  <meta
+    name="twitter:description"
+    content="A structured data-quality workflow covering duplicates, missing values, formats, validation, reporting, and decision-ready outputs."
+  />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta name="twitter:image:alt" content="Pacifique Fashaho data analytics portfolio preview" />
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+
+        if (savedTheme) {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {}
+    })();
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Data Cleaning and Reporting Case Study",
+    "url": "https://pacifiquefashaho.github.io/project-data-cleaning-case-study.html",
+    "image": "https://pacifiquefashaho.github.io/assets/images/ui/og-image.png",
+    "description": "A representative practice case study showing a structured workflow for data profiling, cleaning, validation, analysis preparation, and reporting.",
+    "creator": {
+      "@type": "Person",
+      "name": "Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/"
+    },
+    "keywords": [
+      "data cleaning",
+      "data quality",
+      "Excel",
+      "SQL",
+      "Python",
+      "Google Sheets",
+      "data validation",
+      "reporting"
+    ],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Pacifique Fashaho Portfolio",
+      "url": "https://pacifiquefashaho.github.io/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div id="loader" aria-hidden="true">
+    <div class="spinner"></div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <button id="toTop" type="button" aria-label="Back to top" hidden>
+    ↑ Top
+  </button>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Go to Pacifique Fashaho homepage">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pacifique Fashaho</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#skills">Skills</a>
+        <a class="active" href="projects.html" aria-current="page">Projects</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to dark mode"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Theme</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <!-- Hero -->
+    <section class="card reveal" aria-labelledby="case-study-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Data Analytics Case Study</p>
+
+          <h1 class="title" id="case-study-title">
+            Data Cleaning &amp; Reporting
+          </h1>
+
+          <p class="summary">
+            A representative practice case showing how inconsistent operational data can be profiled,
+            cleaned, validated, prepared for analysis, and converted into a clear reporting structure.
+            The workflow demonstrates transferable data-quality skills without presenting simulated work as a client engagement.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="index.html#contact">
+            Discuss a Data Project
+          </a>
+
+          <a class="btn" href="projects.html">
+            ← Back to Projects
+          </a>
+        </div>
+      </div>
+
+      <div class="stats" aria-label="Data cleaning case study summary">
+        <div class="stat">
+          <span class="stat-num" data-target="7">0</span>
+          <span class="label">Quality Issues Covered</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="6">0</span>
+          <span class="label">Workflow Stages</span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-num" data-target="6">0</span>
+          <span class="label">Validation Checks</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="preview-title">
+      <div class="section-head">
+        <div>
+          <h2 id="preview-title">Analytics Workflow Preview</h2>
+          <span class="small">From raw records to validated and report-ready data</span>
+        </div>
+      </div>
+
+      <div class="project-preview case-study-preview">
+        <img
+          src="assets/images/projects/google-data-case-study-preview.avif"
+          alt="Data analytics case study preview representing data cleaning and reporting"
+          width="1400"
+          height="900"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="overview-title">
+      <div class="section-head">
+        <div>
+          <h2 id="overview-title">Project Overview</h2>
+          <span class="small">Context, problem, objective, and ethical framing</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">Context</span>
+          <p>
+            A simulated operational dataset contained records collected over time by different users.
+            The information needed to be prepared before reliable summaries or dashboard views could be created.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Problem</span>
+          <p>
+            Duplicates, missing values, inconsistent dates, category variations, extra spaces,
+            mixed capitalization, and unusual values reduced the reliability of direct analysis.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Objective</span>
+          <p>
+            Build a transparent workflow that identifies data-quality problems, applies controlled corrections,
+            validates the cleaned structure, and prepares decision-ready outputs.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">Project status</span>
+          <p>
+            Practice project based on a simulated dataset and a representative cleaning scenario.
+            No real client, confidential record, or unsupported business result is claimed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Problems -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="problems-title">
+      <div class="section-head">
+        <div>
+          <h2 id="problems-title">Seven Data-Quality Problems</h2>
+          <span class="small">Common issues addressed by the cleaning workflow</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">1</div>
+            <div>
+              <strong>Duplicate records</strong>
+              <div class="small">Repeated rows or repeated identifiers</div>
+            </div>
+          </div>
+          <p class="small">Duplicates can inflate totals and distort counts, averages, and category comparisons.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">2</div>
+            <div>
+              <strong>Missing values</strong>
+              <div class="small">Blank or incomplete fields</div>
+            </div>
+          </div>
+          <p class="small">Missingness must be measured and handled according to the meaning and importance of each field.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">3</div>
+            <div>
+              <strong>Inconsistent dates</strong>
+              <div class="small">Mixed formats and invalid entries</div>
+            </div>
+          </div>
+          <p class="small">Dates require one standard format before reliable sorting, grouping, or trend analysis.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">4</div>
+            <div>
+              <strong>Category variations</strong>
+              <div class="small">Different labels for the same meaning</div>
+            </div>
+          </div>
+          <p class="small">Examples include abbreviations, spelling differences, and inconsistent category names.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">5</div>
+            <div>
+              <strong>Spacing and capitalization</strong>
+              <div class="small">Hidden spaces and mixed text styles</div>
+            </div>
+          </div>
+          <p class="small">Text normalization prevents visually similar values from being counted as separate groups.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">6</div>
+            <div>
+              <strong>Invalid data types</strong>
+              <div class="small">Numbers stored as text or mixed fields</div>
+            </div>
+          </div>
+          <p class="small">Correct types are necessary for calculations, filters, joins, and visualizations.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">7</div>
+            <div>
+              <strong>Unusual values</strong>
+              <div class="small">Potential outliers or entry errors</div>
+            </div>
+          </div>
+          <p class="small">Unusual values should be flagged and reviewed, not automatically deleted without justification.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="tools-title">
+      <div class="section-head">
+        <div>
+          <h2 id="tools-title">Tools and Techniques</h2>
+          <span class="small">Resources applicable to the cleaning and reporting workflow</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📊</div>
+            <div>
+              <strong>Excel / Google Sheets</strong>
+              <div class="small">Profiling, filters, formulas, and summaries</div>
+            </div>
+          </div>
+          <p class="small">
+            Spreadsheet tools support visual inspection, duplicate review, text normalization,
+            missing-value checks, pivot summaries, and stakeholder-friendly reporting.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🗃️</div>
+            <div>
+              <strong>SQL</strong>
+              <div class="small">Queries, grouping, validation, and reproducibility</div>
+            </div>
+          </div>
+          <p class="small">
+            SQL can identify repeated keys, invalid values, missing fields, inconsistent categories,
+            and aggregate results across structured tables.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🐍</div>
+            <div>
+              <strong>Python</strong>
+              <div class="small">Repeatable transformations and quality checks</div>
+            </div>
+          </div>
+          <p class="small">
+            Python supports reusable cleaning rules, audit outputs, automated validation,
+            and consistent preparation across multiple files.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📝</div>
+            <div>
+              <strong>Cleaning log</strong>
+              <div class="small">Transparent record of decisions and changes</div>
+            </div>
+          </div>
+          <p class="small">
+            A cleaning log documents the original issue, applied rule, affected field,
+            validation result, and any decision requiring human review.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="process-title">
+      <div class="section-head">
+        <div>
+          <h2 id="process-title">Six-Stage Analytics Workflow</h2>
+          <span class="small">Ask, prepare, process, analyze, share, and act</span>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <details class="timeline-card" open>
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">1</span></span>
+              <span class="timeline-head">
+                <strong>Ask</strong>
+                <span class="small">Define the reporting question and quality requirements</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Clarified the intended use of the dataset.</li>
+              <li>Identified the fields needed for analysis and reporting.</li>
+              <li>Defined which errors would materially affect the result.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">2</span></span>
+              <span class="timeline-head">
+                <strong>Prepare</strong>
+                <span class="small">Preserve the source and inspect the dataset structure</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Kept an unchanged copy of the raw source.</li>
+              <li>Reviewed columns, identifiers, field types, and expected ranges.</li>
+              <li>Created a working copy and a cleaning log.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">3</span></span>
+              <span class="timeline-head">
+                <strong>Process</strong>
+                <span class="small">Clean, standardize, and document transformations</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Reviewed duplicates and incomplete records.</li>
+              <li>Standardized dates, categories, spaces, capitalization, and data types.</li>
+              <li>Flagged unusual values for review rather than deleting them automatically.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">4</span></span>
+              <span class="timeline-head">
+                <strong>Analyze</strong>
+                <span class="small">Create reliable summaries from the validated structure</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Calculated descriptive totals and category distributions.</li>
+              <li>Compared periods or operational groups where appropriate.</li>
+              <li>Separated observed patterns from unsupported causal claims.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">5</span></span>
+              <span class="timeline-head">
+                <strong>Share</strong>
+                <span class="small">Communicate results with clear tables and visuals</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Selected only visuals that answer a reporting question.</li>
+              <li>Added labels, units, definitions, and data-quality notes.</li>
+              <li>Explained limitations and unresolved records transparently.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="timeline-item">
+          <details class="timeline-card">
+            <summary>
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <span class="logo-box"><span aria-hidden="true">6</span></span>
+              <span class="timeline-head">
+                <strong>Act</strong>
+                <span class="small">Convert findings into practical next steps</span>
+              </span>
+            </summary>
+            <ul>
+              <li>Recommended improvements to future data entry.</li>
+              <li>Proposed validation rules for high-risk fields.</li>
+              <li>Prepared a reusable workflow for the next reporting cycle.</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- Before and After -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="comparison-title">
+      <div class="section-head">
+        <div>
+          <h2 id="comparison-title">Before and After Cleaning</h2>
+          <span class="small">Structural improvement achieved by the workflow</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">Before: repeated records</span>
+          <p>Potential duplicates could inflate totals and produce misleading counts.</p>
+        </div>
+
+        <div>
+          <span class="project-label">After: reviewed uniqueness</span>
+          <p>Duplicate rules and identifier checks separate confirmed repeats from legitimate similar records.</p>
+        </div>
+
+        <div>
+          <span class="project-label">Before: inconsistent categories</span>
+          <p>Equivalent values appeared under different spellings, abbreviations, spaces, or capitalization.</p>
+        </div>
+
+        <div>
+          <span class="project-label">After: standardized categories</span>
+          <p>A documented mapping creates consistent labels without losing the original meaning.</p>
+        </div>
+
+        <div>
+          <span class="project-label">Before: mixed dates and types</span>
+          <p>Sorting, grouping, and calculation could fail when fields used incompatible formats.</p>
+        </div>
+
+        <div>
+          <span class="project-label">After: analysis-ready structure</span>
+          <p>Dates and numeric fields use consistent types, with invalid values flagged for review.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Validation -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="validation-title">
+      <div class="section-head">
+        <div>
+          <h2 id="validation-title">Six Validation Checks</h2>
+          <span class="small">How cleaning quality is verified before reporting</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">1</div>
+            <div>
+              <strong>Record-count reconciliation</strong>
+              <div class="small">Every removed or retained record must be explainable</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">2</div>
+            <div>
+              <strong>Duplicate recheck</strong>
+              <div class="small">Confirmed repeats no longer remain under the selected rule</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">3</div>
+            <div>
+              <strong>Missing-value review</strong>
+              <div class="small">Required fields and unresolved blanks are counted and documented</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">4</div>
+            <div>
+              <strong>Format validation</strong>
+              <div class="small">Dates, numbers, and categories follow defined standards</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">5</div>
+            <div>
+              <strong>Range and logic checks</strong>
+              <div class="small">Impossible or contradictory values are flagged</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">6</div>
+            <div>
+              <strong>Summary comparison</strong>
+              <div class="small">Key totals are compared before and after transformation</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="outcomes-title">
+      <div class="section-head">
+        <div>
+          <h2 id="outcomes-title">Measurable and Documented Outcomes</h2>
+          <span class="small">Transparent measures based on the published case-study scope</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">7 issue categories</span>
+          <p>
+            The workflow addresses duplicates, missing values, dates, category variations,
+            spacing and capitalization, data types, and unusual values.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">6 analytics stages</span>
+          <p>
+            The project follows ask, prepare, process, analyze, share, and act as one complete workflow.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">6 validation controls</span>
+          <p>
+            Reconciliation, duplicates, missingness, formats, logical ranges, and summary comparisons are checked.
+          </p>
+        </div>
+
+        <div>
+          <span class="project-label">1 reusable cleaning method</span>
+          <p>
+            The documented structure can be adapted to future spreadsheet, SQL, Python, or field-data projects.
+          </p>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:16px;">
+        Measurement note: these figures describe the documented scope of this representative practice case.
+        They are not presented as results from a named client dataset or as a guaranteed business improvement.
+      </p>
+    </section>
+
+    <!-- Reporting -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="reporting-title">
+      <div class="section-head">
+        <div>
+          <h2 id="reporting-title">Reporting Output</h2>
+          <span class="small">What a decision-ready deliverable should contain</span>
+        </div>
+      </div>
+
+      <div class="project-brief">
+        <div>
+          <span class="project-label">Quality summary</span>
+          <p>Counts of detected issues, applied rules, unresolved cases, and validation outcomes.</p>
+        </div>
+
+        <div>
+          <span class="project-label">Descriptive analysis</span>
+          <p>Clear totals, distributions, comparisons, and time-based summaries where the fields support them.</p>
+        </div>
+
+        <div>
+          <span class="project-label">Visual communication</span>
+          <p>Charts or dashboard elements selected to answer defined operational questions.</p>
+        </div>
+
+        <div>
+          <span class="project-label">Recommendations</span>
+          <p>Practical improvements for data entry, validation, documentation, and future reporting cycles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="learning-title">
+      <div class="section-head">
+        <div>
+          <h2 id="learning-title">Lessons Learned</h2>
+          <span class="small">Principles demonstrated by the case study</span>
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🔒</div>
+            <div>
+              <strong>Preserve the raw source</strong>
+              <div class="small">Cleaning should remain reversible and auditable</div>
+            </div>
+          </div>
+          <p class="small">A protected original copy makes it possible to verify changes and recover from mistakes.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🧠</div>
+            <div>
+              <strong>Understand meaning before changing values</strong>
+              <div class="small">Context determines the correct cleaning rule</div>
+            </div>
+          </div>
+          <p class="small">Similar-looking records are not always duplicates, and unusual values are not always errors.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">🧪</div>
+            <div>
+              <strong>Validate after every major transformation</strong>
+              <div class="small">Clean-looking data can still contain logical errors</div>
+            </div>
+          </div>
+          <p class="small">Reconciliation and rule-based checks reduce the risk of silently changing valid information.</p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-top">
+            <div class="skill-ico" aria-hidden="true">📣</div>
+            <div>
+              <strong>Communicate limitations</strong>
+              <div class="small">Reliable reporting includes uncertainty and unresolved issues</div>
+            </div>
+          </div>
+          <p class="small">A professional report explains what was cleaned, what remains uncertain, and how that affects interpretation.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="skills-title">
+      <div class="section-head">
+        <div>
+          <h2 id="skills-title">Skills Demonstrated</h2>
+          <span class="small">Technical and analytical capabilities shown in the workflow</span>
+        </div>
+      </div>
+
+      <div class="project-tags" aria-label="Skills demonstrated">
+        <span class="tag">Data Cleaning</span>
+        <span class="tag">Data Profiling</span>
+        <span class="tag">Data Validation</span>
+        <span class="tag">Excel</span>
+        <span class="tag">Google Sheets</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Missing Values</span>
+        <span class="tag">Duplicate Review</span>
+        <span class="tag">Category Standardization</span>
+        <span class="tag">Descriptive Analysis</span>
+        <span class="tag">Reporting</span>
+      </div>
+    </section>
+
+    <!-- Credential -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="credential-title">
+      <div class="section-head">
+        <div>
+          <h2 id="credential-title">Related Learning Evidence</h2>
+          <p class="summary">
+            This practice workflow is aligned with the structured analytics process developed through
+            the Google Data Analytics Professional Certificate.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a
+            class="btn primary"
+            href="assets/certificates/Google-data-analytics.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Certificate
+          </a>
+
+          <a
+            class="btn"
+            href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Verify Credential
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="cta-title">
+      <div class="section-head">
+        <div>
+          <h2 id="cta-title">Need Cleaner, More Reliable Data?</h2>
+          <p class="summary">
+            I can help review spreadsheets, standardize operational records, document data-quality issues,
+            prepare descriptive reports, and build clear dashboard-ready datasets.
+          </p>
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="index.html#contact">
+            Contact Me
+          </a>
+
+          <a class="btn" href="projects.html">
+            View More Projects
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
