@@ -168,10 +168,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const roles = [
     "IT Support Technician",
     "Data Analyst",
-    "Junior Developer",
-    "System Troubleshooting",
-    "Excel and SQL Dashboards",
-    "KoBoToolbox / ODK Field Data"
+    "Technical Support",
+    "Data Cleaning and Reporting",
+    "Network Troubleshooting",
+    "Junior Developer"
   ];
 
   if (typingEl && !prefersReducedMotion.matches) {
