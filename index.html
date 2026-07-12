@@ -1222,23 +1222,29 @@
       </div>
     </section>
   </main>
-    <!-- Portfolio Contact Assistant -->
+  <!-- Quick Contact Assistant -->
   <div class="assistant-launcher-wrap" id="assistantLauncherWrap">
     <button
       class="assistant-launcher"
       id="assistantLauncher"
       type="button"
-      aria-label="Open portfolio contact assistant"
+      aria-label="Open Quick Contact Assistant"
+      aria-controls="chatAssistant"
+      aria-expanded="false"
     >
       <span class="assistant-launcher-dot" aria-hidden="true"></span>
-      <span class="assistant-launcher-icon" aria-hidden="true">💬</span>
+      <span class="assistant-launcher-icon" aria-hidden="true">ðŸ’¬</span>
+      <span class="assistant-launcher-label">Contact</span>
     </button>
   </div>
 
   <section
     class="chat-assistant"
     id="chatAssistant"
-    aria-label="Portfolio contact assistant"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="chatAssistantTitle"
+    aria-describedby="chatAssistantDescription"
     hidden
   >
     <div class="chat-assistant-header">
@@ -1247,7 +1253,7 @@
           src="assets/images/profile/pacifique-profile.webp"
           width="80"
           height="80"
-          alt="Pacifique Fashaho profile photo"
+          alt=""
           loading="lazy"
           decoding="async"
         />
@@ -1256,10 +1262,9 @@
       </div>
 
       <div class="chat-profile-text">
-        <strong>Pacifique Fashaho</strong>
-        <span>
-          <span class="chat-status-dot" aria-hidden="true"></span>
-          Available to help
+        <strong id="chatAssistantTitle">Quick Contact Assistant</strong>
+        <span id="chatAssistantDescription">
+          Prepares email or WhatsApp messages
         </span>
       </div>
 
@@ -1268,18 +1273,18 @@
           class="chat-minimize"
           id="chatMinimize"
           type="button"
-          aria-label="Minimize assistant"
+          aria-label="Minimize Quick Contact Assistant"
         >
-          —
+          â€”
         </button>
 
         <button
           class="chat-close"
           id="chatClose"
           type="button"
-          aria-label="Close assistant"
+          aria-label="Close Quick Contact Assistant"
         >
-          ×
+          Ã—
         </button>
       </div>
     </div>
@@ -1287,13 +1292,15 @@
     <div class="chat-assistant-body" id="chatAssistantBody" aria-live="polite">
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
-          Hello! I’m Pacifique’s portfolio assistant. I can help you contact Pacifique about IT support, data cleaning, dashboards, web portfolio work, or KoBoToolbox / ODK field data support.
+          Hello! This tool helps you prepare a message for Pacifique about IT support,
+          data cleaning, dashboards, professional opportunities, or KoBoToolbox / ODK support.
         </div>
       </div>
 
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
-          What would you like help with today?
+          It does not send anything automatically. Choose a topic or write a message,
+          then continue through Email, WhatsApp, or the contact form.
         </div>
       </div>
     </div>
@@ -1317,19 +1324,23 @@
     </div>
 
     <form class="chat-input-area" id="chatAssistantForm">
-      <label class="sr-only" for="chatMessageInput">Write your message</label>
+      <label class="sr-only" for="chatMessageInput">Write the message you want to prepare</label>
 
       <textarea
         id="chatMessageInput"
         rows="2"
-        placeholder="Write your message..."
+        placeholder="Describe what you need..."
         required
       ></textarea>
 
-      <button type="submit" class="chat-send-btn" aria-label="Send message">
-        Send
+      <button type="submit" class="chat-send-btn" aria-label="Prepare contact message">
+        Prepare
       </button>
     </form>
+
+    <p class="chat-disclosure">
+      Your text stays in this browser until you choose a contact method.
+    </p>
 
     <div class="chat-contact-actions">
       <a
@@ -1337,7 +1348,7 @@
         id="chatEmailLink"
         href="mailto:pacifiquefashaho04@gmail.com"
       >
-        Email
+        Continue by Email
       </a>
 
       <a
@@ -1345,18 +1356,18 @@
         id="chatWhatsappLink"
         href="https://wa.me/243859477758"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
-        WhatsApp
+        Continue on WhatsApp
       </a>
 
-      <a class="chat-action-btn" href="#contact">
-        Contact Form
+      <a class="chat-action-btn" id="chatContactFormLink" href="#contact">
+        Use Contact Form
       </a>
     </div>
 
     <div class="chat-resize-hint">
-      Drag the bottom-right corner to resize
+      Resize from the bottom-right corner on desktop
     </div>
   </section>
   <script src="assets/js/main.js" defer></script>

@@ -867,9 +867,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   typeTerminalLine();
-
-    /* =========================
-     PORTFOLIO CONTACT ASSISTANT CHAT
+  /* =========================
+     QUICK CONTACT ASSISTANT
   ========================= */
 
   const assistantLauncher = document.getElementById("assistantLauncher");
@@ -883,54 +882,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatSuggestions = document.querySelectorAll(".chat-suggestion");
   const chatEmailLink = document.getElementById("chatEmailLink");
   const chatWhatsappLink = document.getElementById("chatWhatsappLink");
+  const chatContactFormLink = document.getElementById("chatContactFormLink");
 
-  let assistantHasOpened = false;
+  let assistantIsOpen = false;
+  let assistantCloseTimer = null;
 
   function showAssistantLauncher() {
     if (!assistantLauncher) return;
 
-    if (window.scrollY > 360) {
+    window.requestAnimationFrame(() => {
       assistantLauncher.classList.add("show");
-    }
+    });
   }
 
   function openChatAssistant() {
-    if (!chatAssistant) return;
+    if (!chatAssistant || assistantIsOpen) return;
 
+    window.clearTimeout(assistantCloseTimer);
+    assistantIsOpen = true;
     chatAssistant.hidden = false;
-    assistantHasOpened = true;
+
+    if (assistantLauncher) {
+      assistantLauncher.setAttribute("aria-expanded", "true");
+    }
 
     if (assistantLauncherWrap) {
       assistantLauncherWrap.hidden = true;
     }
 
-    window.setTimeout(() => {
+    window.requestAnimationFrame(() => {
       chatAssistant.classList.add("show");
-    }, 50);
+    });
 
     if (chatInput) {
       window.setTimeout(() => {
         chatInput.focus();
-      }, 300);
+      }, prefersReducedMotion.matches ? 0 : 220);
     }
   }
 
-  function closeChatAssistant() {
-    if (!chatAssistant) return;
+  function closeChatAssistant({ restoreFocus = true } = {}) {
+    if (!chatAssistant || !assistantIsOpen) return;
 
+    assistantIsOpen = false;
     chatAssistant.classList.remove("show");
 
-    window.setTimeout(() => {
-      chatAssistant.hidden = true;
+    if (assistantLauncher) {
+      assistantLauncher.setAttribute("aria-expanded", "false");
+    }
 
-      if (assistantLauncherWrap) {
-        assistantLauncherWrap.hidden = false;
-      }
+    assistantCloseTimer = window.setTimeout(
+      () => {
+        chatAssistant.hidden = true;
 
-      if (assistantLauncher) {
-        assistantLauncher.classList.add("show");
-      }
-    }, 260);
+        if (assistantLauncherWrap) {
+          assistantLauncherWrap.hidden = false;
+        }
+
+        showAssistantLauncher();
+
+        if (restoreFocus && assistantLauncher) {
+          assistantLauncher.focus();
+        }
+      },
+      prefersReducedMotion.matches ? 0 : 260
+    );
   }
 
   function minimizeChatAssistant() {
@@ -943,62 +959,95 @@ document.addEventListener("DOMContentLoaded", () => {
     const messageRow = document.createElement("div");
     const bubble = document.createElement("div");
 
-    messageRow.className = `chat-message ${type === "visitor" ? "visitor-message" : "assistant-message"}`;
+    messageRow.className = `chat-message ${
+      type === "visitor" ? "visitor-message" : "assistant-message"
+    }`;
     bubble.className = "chat-bubble";
     bubble.textContent = message;
 
     messageRow.appendChild(bubble);
     chatBody.appendChild(messageRow);
-
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
   function buildAssistantReply(message) {
     const lower = message.toLowerCase();
 
-    if (lower.includes("dashboard") || lower.includes("excel") || lower.includes("report")) {
-      return "Great. For a dashboard or reporting project, Pacifique can help organize your data, define KPIs, clean the workbook, and build a clear dashboard. You can send details by email or WhatsApp.";
+    if (
+      lower.includes("dashboard") ||
+      lower.includes("excel") ||
+      lower.includes("report")
+    ) {
+      return "Your message is ready. Pacifique can help organize data, define KPIs, clean workbooks, and build clear dashboards. Choose Email, WhatsApp, or the contact form below.";
     }
 
-    if (lower.includes("it") || lower.includes("support") || lower.includes("computer") || lower.includes("printer") || lower.includes("network")) {
-      return "Understood. For IT support, Pacifique can help with troubleshooting, Windows setup, printers, network issues, user support, and basic system maintenance. Please share the issue and urgency.";
+    if (
+      lower.includes("it") ||
+      lower.includes("support") ||
+      lower.includes("computer") ||
+      lower.includes("printer") ||
+      lower.includes("network")
+    ) {
+      return "Your message is ready. Pacifique can help with Windows setup, troubleshooting, printers, networks, user support, and basic system maintenance. Choose a contact method below.";
     }
 
-    if (lower.includes("data") || lower.includes("clean") || lower.includes("analysis") || lower.includes("sql") || lower.includes("python")) {
-      return "Good. For data work, Pacifique can help clean datasets, check data quality, prepare analysis, and create reports using Excel, SQL, Python, or Google Sheets.";
+    if (
+      lower.includes("data") ||
+      lower.includes("clean") ||
+      lower.includes("analysis") ||
+      lower.includes("sql") ||
+      lower.includes("python")
+    ) {
+      return "Your message is ready. Pacifique can help clean datasets, check data quality, prepare analysis, and create reports with Excel, SQL, Python, or Google Sheets.";
     }
 
-    if (lower.includes("kobo") || lower.includes("odk") || lower.includes("field")) {
-      return "Nice. For field data workflows, Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.";
+    if (
+      lower.includes("kobo") ||
+      lower.includes("odk") ||
+      lower.includes("field")
+    ) {
+      return "Your message is ready. Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.";
     }
 
-    if (lower.includes("job") || lower.includes("opportunity") || lower.includes("work") || lower.includes("hire")) {
-      return "Thank you. For professional opportunities, please share the role, location or remote option, timeline, and best contact method. Pacifique can reply by email or WhatsApp.";
+    if (
+      lower.includes("job") ||
+      lower.includes("opportunity") ||
+      lower.includes("work") ||
+      lower.includes("hire")
+    ) {
+      return "Your message is ready. Include the role, location or remote option, timeline, and preferred contact method before continuing.";
     }
 
-    return "Thanks for your message. Pacifique can help with IT support, data analytics, dashboards, field data tools, and web portfolio improvements. Please send more details by email or WhatsApp.";
+    return "Your message is ready. Choose Email, WhatsApp, or the contact form below to contact Pacifique.";
   }
 
   function updateContactLinks(message) {
-    const encodedMessage = encodeURIComponent(message);
-    const emailSubject = encodeURIComponent("Portfolio contact request");
-    const emailBody = encodeURIComponent(
+    const encodedMessage = encodeURIComponent(
       `Hello Pacifique,\n\n${message}\n\nBest regards,`
     );
+    const emailSubject = encodeURIComponent("Portfolio contact request");
 
     if (chatEmailLink) {
-      chatEmailLink.href = `mailto:pacifiquefashaho04@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+      chatEmailLink.href =
+        `mailto:pacifiquefashaho04@gmail.com?subject=${emailSubject}&body=${encodedMessage}`;
     }
 
     if (chatWhatsappLink) {
-      chatWhatsappLink.href = `https://wa.me/243859477758?text=${encodedMessage}`;
+      chatWhatsappLink.href =
+        `https://wa.me/243859477758?text=${encodedMessage}`;
     }
   }
 
   function handleChatSubmit(message) {
     const cleanMessage = message.trim();
 
-    if (!cleanMessage) return;
+    if (!cleanMessage) {
+      if (chatInput) {
+        chatInput.focus();
+      }
+
+      return;
+    }
 
     appendChatMessage(cleanMessage, "visitor");
     updateContactLinks(cleanMessage);
@@ -1007,35 +1056,25 @@ document.addEventListener("DOMContentLoaded", () => {
       chatInput.value = "";
     }
 
-    window.setTimeout(() => {
-      appendChatMessage(buildAssistantReply(cleanMessage), "assistant");
-    }, 650);
+    window.setTimeout(
+      () => {
+        appendChatMessage(buildAssistantReply(cleanMessage), "assistant");
+      },
+      prefersReducedMotion.matches ? 0 : 350
+    );
   }
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      showAssistantLauncher();
-
-      if (!assistantHasOpened && window.scrollY > 780) {
-        openChatAssistant();
-      }
-    },
-    { passive: true }
-  );
-
-  window.setTimeout(() => {
-    if (!assistantHasOpened) {
-      showAssistantLauncher();
-    }
-  }, 3500);
+  // The launcher is visible, but the assistant never opens without a click.
+  showAssistantLauncher();
 
   if (assistantLauncher) {
     assistantLauncher.addEventListener("click", openChatAssistant);
   }
 
   if (chatClose) {
-    chatClose.addEventListener("click", closeChatAssistant);
+    chatClose.addEventListener("click", () => {
+      closeChatAssistant();
+    });
   }
 
   if (chatMinimize) {
@@ -1047,17 +1086,29 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       if (!chatInput) return;
-
       handleChatSubmit(chatInput.value);
     });
   }
 
   chatSuggestions.forEach((suggestion) => {
     suggestion.addEventListener("click", () => {
-      const message = suggestion.dataset.message || suggestion.textContent || "";
+      const message =
+        suggestion.dataset.message || suggestion.textContent || "";
 
-      openChatAssistant();
       handleChatSubmit(message);
     });
+  });
+
+  if (chatContactFormLink) {
+    chatContactFormLink.addEventListener("click", () => {
+      closeChatAssistant({ restoreFocus: false });
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && assistantIsOpen) {
+      event.preventDefault();
+      closeChatAssistant();
+    }
   });
 });
