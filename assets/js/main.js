@@ -515,60 +515,123 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     Contact form mailto
+     Contact form submission
   ========================= */
 
   const contactForm = document.getElementById("contactForm");
   const contactFormStatus = document.getElementById("contactFormStatus");
+  const contactSubmitButton = document.getElementById("contactSubmitButton");
+  const contactSubmitText = document.getElementById("contactSubmitText");
+
+  function setContactFormStatus(message, type = "") {
+    if (!contactFormStatus) return;
+
+    contactFormStatus.textContent = message;
+    contactFormStatus.classList.remove("success", "error");
+
+    if (type) {
+      contactFormStatus.classList.add(type);
+    }
+  }
+
+  function setContactFormLoading(isLoading) {
+    if (contactSubmitButton) {
+      contactSubmitButton.disabled = isLoading;
+      contactSubmitButton.setAttribute("aria-busy", String(isLoading));
+    }
+
+    if (contactSubmitText) {
+      contactSubmitText.textContent = isLoading ? "Sending..." : "Send Message";
+    }
+  }
 
   if (contactForm) {
-    contactForm.addEventListener("submit", (event) => {
+    contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       if (contactForm.reportValidity && !contactForm.reportValidity()) {
         return;
       }
 
-      const nameField = document.getElementById("contactName");
-      const emailField = document.getElementById("contactEmail");
-      const messageField = document.getElementById("contactMessage");
+      const endpoint = contactForm.dataset.endpoint || contactForm.action;
+      const honeypot = document.getElementById("contactWebsite");
 
-      const name = nameField ? nameField.value.trim() : "";
-      const email = emailField ? emailField.value.trim() : "";
-      const subjectValue = contactSubjectField ? contactSubjectField.value.trim() : "";
-      const message = messageField ? messageField.value.trim() : "";
-
-      const selectedService = document.querySelector('.service-chip[aria-pressed="true"]');
-
-      const service =
-        subjectValue ||
-        (selectedService ? selectedService.dataset.service : "") ||
-        "Portfolio contact request";
-
-      const subject = encodeURIComponent(`Portfolio contact: ${service}`);
-
-      const body = encodeURIComponent(
-        [
-          "Hello Pacifique,",
-          "",
-          name ? `Name: ${name}` : "",
-          email ? `Email: ${email}` : "",
-          service ? `Service needed: ${service}` : "",
-          "",
-          message
-        ]
-          .filter(Boolean)
-          .join("\n")
-      );
-
-      if (contactFormStatus) {
-        contactFormStatus.textContent = "Opening your email app...";
+      if (
+        !endpoint ||
+        endpoint.includes("YOUR_FORM_ID") ||
+        endpoint.includes("YOUR_FORM_ENDPOINT")
+      ) {
+        setContactFormStatus(
+          "The contact form is not configured yet. Please use email or WhatsApp.",
+          "error"
+        );
+        return;
       }
 
-      window.location.href = `mailto:pacifiquefashaho04@gmail.com?subject=${subject}&body=${body}`;
+      // Silently accept likely bot submissions without sending them.
+      if (honeypot && honeypot.value.trim()) {
+        contactForm.reset();
+        setContactFormStatus(
+          "Thank you. Your message has been received.",
+          "success"
+        );
+        return;
+      }
+
+      setContactFormLoading(true);
+      setContactFormStatus("Sending your message...");
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          let errorMessage = "The form service returned an error.";
+
+          try {
+            const errorData = await response.json();
+
+            if (Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+              errorMessage = errorData.errors
+                .map((item) => item.message)
+                .filter(Boolean)
+                .join(" ");
+            }
+          } catch (error) {
+            // Keep the default message when the response is not JSON.
+          }
+
+          throw new Error(errorMessage);
+        }
+
+        contactForm.reset();
+
+        serviceButtons.forEach((button) => {
+          button.classList.remove("active");
+          button.setAttribute("aria-pressed", "false");
+        });
+
+        setContactFormStatus(
+          "Thank you. Your message has been sent successfully. Pacifique will respond as soon as possible.",
+          "success"
+        );
+      } catch (error) {
+        console.error("Contact form submission failed:", error);
+
+        setContactFormStatus(
+          "Your message could not be sent. Please contact Pacifique through email or WhatsApp.",
+          "error"
+        );
+      } finally {
+        setContactFormLoading(false);
+      }
     });
   }
-
   /* =========================
      Copy email
   ========================= */

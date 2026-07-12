@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Pacifique Fashaho | IT Support Technician &amp; Data Analyst</title>
-
+git add projects.html project-data-cleaning-case-study.html
+git commit -m "Add data cleaning and reporting case study"
+git push origin main
   <meta
     name="description"
     content="Pacifique Fashaho is an IT Support Technician, Data Analyst, and Junior Developer based in Goma, DR Congo. He helps organizations troubleshoot systems, clean data, build dashboards, and support field data workflows."
@@ -1042,11 +1044,21 @@
         <form
           class="contact-form contact-panel"
           id="contactForm"
-          action="mailto:pacifiquefashaho04@gmail.com"
+          action="https://formspree.io/f/maqrwjkk"
           method="post"
-          enctype="text/plain"
+          data-endpoint="https://formspree.io/f/maqrwjkk"
           aria-describedby="contactFormHelp contactFormStatus"
         >
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="contactWebsite">Leave this field empty</label>
+            <input
+              id="contactWebsite"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
           <div class="form-grid">
             <div class="form-row">
               <label for="contactName">Name</label>
@@ -1095,12 +1107,16 @@
             ></textarea>
           </div>
 
-          <button class="btn primary contact-submit" type="submit">
-            Send Message
+          <button
+            class="btn primary contact-submit"
+            id="contactSubmitButton"
+            type="submit"
+          >
+            <span id="contactSubmitText">Send Message</span>
           </button>
 
           <p class="small" id="contactFormHelp">
-            This static form opens your email app with a prepared message.
+            Your message will be sent securely through this form. Email and WhatsApp remain available as alternatives.
           </p>
 
           <p class="form-status small" id="contactFormStatus" role="status" aria-live="polite"></p>
