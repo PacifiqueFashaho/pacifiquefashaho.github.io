@@ -12,6 +12,162 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeMeta = document.querySelector('meta[name="theme-color"]');
 
   /* =========================
+     MULTILINGUAL TEXT SYSTEM
+  ========================= */
+
+  const supportedLanguages = new Set(["en", "fr"]);
+  const documentLanguage = (root.lang || "en")
+    .toLowerCase()
+    .split("-")[0];
+  const language = supportedLanguages.has(documentLanguage)
+    ? documentLanguage
+    : "en";
+
+  const messages = {
+    en: {
+      theme: {
+        switchToLight: "Switch to light mode",
+        switchToDark: "Switch to dark mode",
+        light: "Light",
+        dark: "Dark"
+      },
+      roles: [
+        "IT Support Technician",
+        "Data Analyst",
+        "Technical Support",
+        "Data Cleaning and Reporting",
+        "Network Troubleshooting",
+        "Junior Developer"
+      ],
+      form: {
+        sending: "Sending...",
+        submit: "Send Message",
+        notConfigured:
+          "The contact form is not configured yet. Please use email or WhatsApp.",
+        received: "Thank you. Your message has been received.",
+        sendingStatus: "Sending your message...",
+        serviceError: "The form service returned an error.",
+        success:
+          "Thank you. Your message has been sent successfully. Pacifique will respond as soon as possible.",
+        failure:
+          "Your message could not be sent. Please contact Pacifique through email or WhatsApp."
+      },
+      copyEmail: {
+        success: "Email copied to clipboard.",
+        failure: "Copy failed. Use the email link instead."
+      },
+      live: {
+        locale: "en-GB",
+        focus: [
+          "Data cleaning and dashboard reporting",
+          "Windows troubleshooting and user support",
+          "Excel reporting and KPI summaries",
+          "KoBoToolbox / ODK field data workflows",
+          "Python, SQL, and portfolio improvements"
+        ],
+        terminal: [
+          "Checking system reliability...",
+          "Cleaning operational datasets...",
+          "Building dashboard insights...",
+          "Validating field data workflows...",
+          "Reviewing IT support requests...",
+          "Publishing portfolio improvements..."
+        ]
+      },
+      assistant: {
+        dashboard:
+          "Your message is ready. Pacifique can help organize data, define KPIs, clean workbooks, and build clear dashboards. Choose Email, WhatsApp, or the contact form below.",
+        support:
+          "Your message is ready. Pacifique can help with Windows setup, troubleshooting, printers, networks, user support, and basic system maintenance. Choose a contact method below.",
+        data:
+          "Your message is ready. Pacifique can help clean datasets, check data quality, prepare analysis, and create reports with Excel, SQL, Python, or Google Sheets.",
+        field:
+          "Your message is ready. Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.",
+        opportunity:
+          "Your message is ready. Include the role, location or remote option, timeline, and preferred contact method before continuing.",
+        fallback:
+          "Your message is ready. Choose Email, WhatsApp, or the contact form below to contact Pacifique.",
+        emailSubject: "Portfolio contact request",
+        emailGreeting: "Hello Pacifique,",
+        emailClosing: "Best regards,"
+      }
+    },
+    fr: {
+      theme: {
+        switchToLight: "Passer au mode clair",
+        switchToDark: "Passer au mode sombre",
+        light: "Clair",
+        dark: "Sombre"
+      },
+      roles: [
+        "Technicien en support informatique",
+        "Analyste de donn\u00E9es",
+        "Assistance technique",
+        "Nettoyage de donn\u00E9es et rapports",
+        "D\u00E9pannage r\u00E9seau",
+        "D\u00E9veloppeur junior"
+      ],
+      form: {
+        sending: "Envoi en cours...",
+        submit: "Envoyer le message",
+        notConfigured:
+          "Le formulaire de contact n\u2019est pas encore configur\u00E9. Utilisez l\u2019email ou WhatsApp.",
+        received: "Merci. Votre message a bien \u00E9t\u00E9 re\u00E7u.",
+        sendingStatus: "Envoi de votre message...",
+        serviceError: "Le service du formulaire a retourn\u00E9 une erreur.",
+        success:
+          "Merci. Votre message a \u00E9t\u00E9 envoy\u00E9 avec succ\u00E8s. Pacifique vous r\u00E9pondra d\u00E8s que possible.",
+        failure:
+          "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email ou WhatsApp."
+      },
+      copyEmail: {
+        success: "Adresse email copi\u00E9e.",
+        failure:
+          "La copie a \u00E9chou\u00E9. Utilisez directement le lien email."
+      },
+      live: {
+        locale: "fr-FR",
+        focus: [
+          "Nettoyage de donn\u00E9es et tableaux de bord",
+          "D\u00E9pannage Windows et assistance aux utilisateurs",
+          "Rapports Excel et synth\u00E8ses des indicateurs",
+          "Collecte de donn\u00E9es avec KoBoToolbox / ODK",
+          "Am\u00E9liorations Python, SQL et du portfolio"
+        ],
+        terminal: [
+          "V\u00E9rification de la fiabilit\u00E9 des syst\u00E8mes...",
+          "Nettoyage des donn\u00E9es op\u00E9rationnelles...",
+          "Cr\u00E9ation d\u2019indicateurs pour les tableaux de bord...",
+          "Validation des processus de collecte de donn\u00E9es...",
+          "Analyse des demandes de support informatique...",
+          "Publication des am\u00E9liorations du portfolio..."
+        ]
+      },
+      assistant: {
+        dashboard:
+          "Votre message est pr\u00EAt. Pacifique peut organiser les donn\u00E9es, d\u00E9finir les indicateurs, nettoyer les fichiers et construire des tableaux de bord clairs. Choisissez l\u2019email, WhatsApp ou le formulaire.",
+        support:
+          "Votre message est pr\u00EAt. Pacifique peut intervenir sur Windows, le d\u00E9pannage, les imprimantes, les r\u00E9seaux et l\u2019assistance aux utilisateurs. Choisissez un moyen de contact.",
+        data:
+          "Votre message est pr\u00EAt. Pacifique peut nettoyer les jeux de donn\u00E9es, contr\u00F4ler leur qualit\u00E9, pr\u00E9parer les analyses et produire des rapports avec Excel, SQL, Python ou Google Sheets.",
+        field:
+          "Votre message est pr\u00EAt. Pacifique peut accompagner l\u2019utilisation de KoBoToolbox / ODK, les tests de formulaires, la configuration des appareils, la validation et la pr\u00E9paration des rapports.",
+        opportunity:
+          "Votre message est pr\u00EAt. Pr\u00E9cisez le poste, le lieu ou l\u2019option \u00E0 distance, le calendrier et le moyen de contact souhait\u00E9.",
+        fallback:
+          "Votre message est pr\u00EAt. Choisissez l\u2019email, WhatsApp ou le formulaire pour contacter Pacifique.",
+        emailSubject: "Demande de contact depuis le portfolio",
+        emailGreeting: "Bonjour Pacifique,",
+        emailClosing: "Cordialement,"
+      }
+    }
+  };
+
+  const strings = messages[language] || messages.en;
+  root.dataset.language = language;
+  window.PORTFOLIO_LANGUAGE = language;
+
+  /* =========================
      Footer year
   ========================= */
 
@@ -50,10 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = toggle.querySelector(".theme-toggle-text");
 
     toggle.setAttribute("aria-pressed", String(isDark));
-    toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+    toggle.setAttribute("aria-label", isDark ? strings.theme.switchToLight : strings.theme.switchToDark);
 
     if (icon) icon.textContent = isDark ? "☀" : "☾";
-    if (text) text.textContent = isDark ? "Light" : "Dark";
+    if (text) text.textContent = isDark ? strings.theme.light : strings.theme.dark;
 
     if (themeMeta) {
       themeMeta.setAttribute("content", isDark ? "#0b1220" : "#2563eb");
@@ -165,14 +321,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const typingEl = document.getElementById("typing");
 
-  const roles = [
-    "IT Support Technician",
-    "Data Analyst",
-    "Technical Support",
-    "Data Cleaning and Reporting",
-    "Network Troubleshooting",
-    "Junior Developer"
-  ];
+  const roles = strings.roles;
 
   if (typingEl && !prefersReducedMotion.matches) {
     let roleIndex = 0;
@@ -541,7 +690,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (contactSubmitText) {
-      contactSubmitText.textContent = isLoading ? "Sending..." : "Send Message";
+      contactSubmitText.textContent = isLoading ? strings.form.sending : strings.form.submit;
     }
   }
 
@@ -562,7 +711,7 @@ document.addEventListener("DOMContentLoaded", () => {
         endpoint.includes("YOUR_FORM_ENDPOINT")
       ) {
         setContactFormStatus(
-          "The contact form is not configured yet. Please use email or WhatsApp.",
+          strings.form.notConfigured,
           "error"
         );
         return;
@@ -572,14 +721,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (honeypot && honeypot.value.trim()) {
         contactForm.reset();
         setContactFormStatus(
-          "Thank you. Your message has been received.",
+          strings.form.received,
           "success"
         );
         return;
       }
 
       setContactFormLoading(true);
-      setContactFormStatus("Sending your message...");
+      setContactFormStatus(strings.form.sendingStatus);
 
       try {
         const response = await fetch(endpoint, {
@@ -591,7 +740,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (!response.ok) {
-          let errorMessage = "The form service returned an error.";
+          let errorMessage = strings.form.serviceError;
 
           try {
             const errorData = await response.json();
@@ -617,14 +766,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         setContactFormStatus(
-          "Thank you. Your message has been sent successfully. Pacifique will respond as soon as possible.",
+          strings.form.success,
           "success"
         );
       } catch (error) {
         console.error("Contact form submission failed:", error);
 
         setContactFormStatus(
-          "Your message could not be sent. Please contact Pacifique through email or WhatsApp.",
+          strings.form.failure,
           "error"
         );
       } finally {
@@ -689,9 +838,9 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error("Clipboard copy unavailable");
         }
 
-        setCopyStatus("Email copied to clipboard.");
+        setCopyStatus(strings.copyEmail.success);
       } catch (error) {
-        setCopyStatus("Copy failed. Use the email link instead.");
+        setCopyStatus(strings.copyEmail.failure);
       }
     });
   }
@@ -802,7 +951,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateLiveTime() {
     if (!liveTime) return;
 
-    const formatter = new Intl.DateTimeFormat("en-GB", {
+    const formatter = new Intl.DateTimeFormat(strings.live.locale, {
       timeZone: "Africa/Lubumbashi",
       hour: "2-digit",
       minute: "2-digit",
@@ -815,13 +964,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLiveTime();
   window.setInterval(updateLiveTime, 1000);
 
-  const focusItems = [
-    "Data cleaning and dashboard reporting",
-    "Windows troubleshooting and user support",
-    "Excel reporting and KPI summaries",
-    "KoBoToolbox / ODK field data workflows",
-    "Python, SQL, and portfolio improvements"
-  ];
+  const focusItems = strings.live.focus;
 
   let focusIndex = 0;
 
@@ -834,14 +977,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.setInterval(rotateLiveFocus, 3000);
 
-  const terminalMessages = [
-    "Checking system reliability...",
-    "Cleaning operational datasets...",
-    "Building dashboard insights...",
-    "Validating field data workflows...",
-    "Reviewing IT support requests...",
-    "Publishing portfolio improvements..."
-  ];
+  const terminalMessages = strings.live.terminal;
 
   let terminalIndex = 0;
   let terminalCharIndex = 0;
@@ -970,62 +1106,108 @@ document.addEventListener("DOMContentLoaded", () => {
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
+  function normalizeAssistantText(value) {
+    return value
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function includesAssistantKeyword(value, keywords) {
+    return keywords.some((keyword) => value.includes(keyword));
+  }
+
   function buildAssistantReply(message) {
-    const lower = message.toLowerCase();
+    const normalized = normalizeAssistantText(message);
 
     if (
-      lower.includes("dashboard") ||
-      lower.includes("excel") ||
-      lower.includes("report")
+      includesAssistantKeyword(normalized, [
+        "dashboard",
+        "excel",
+        "report",
+        "rapport",
+        "tableau de bord",
+        "kpi"
+      ])
     ) {
-      return "Your message is ready. Pacifique can help organize data, define KPIs, clean workbooks, and build clear dashboards. Choose Email, WhatsApp, or the contact form below.";
+      return strings.assistant.dashboard;
     }
 
     if (
-      lower.includes("it") ||
-      lower.includes("support") ||
-      lower.includes("computer") ||
-      lower.includes("printer") ||
-      lower.includes("network")
+      includesAssistantKeyword(normalized, [
+        "it",
+        "support",
+        "computer",
+        "printer",
+        "network",
+        "informatique",
+        "ordinateur",
+        "imprimante",
+        "reseau",
+        "depannage"
+      ])
     ) {
-      return "Your message is ready. Pacifique can help with Windows setup, troubleshooting, printers, networks, user support, and basic system maintenance. Choose a contact method below.";
+      return strings.assistant.support;
     }
 
     if (
-      lower.includes("data") ||
-      lower.includes("clean") ||
-      lower.includes("analysis") ||
-      lower.includes("sql") ||
-      lower.includes("python")
+      includesAssistantKeyword(normalized, [
+        "data",
+        "clean",
+        "analysis",
+        "sql",
+        "python",
+        "donnee",
+        "nettoyage",
+        "analyse"
+      ])
     ) {
-      return "Your message is ready. Pacifique can help clean datasets, check data quality, prepare analysis, and create reports with Excel, SQL, Python, or Google Sheets.";
+      return strings.assistant.data;
     }
 
     if (
-      lower.includes("kobo") ||
-      lower.includes("odk") ||
-      lower.includes("field")
+      includesAssistantKeyword(normalized, [
+        "kobo",
+        "odk",
+        "field",
+        "terrain",
+        "collecte"
+      ])
     ) {
-      return "Your message is ready. Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.";
+      return strings.assistant.field;
     }
 
     if (
-      lower.includes("job") ||
-      lower.includes("opportunity") ||
-      lower.includes("work") ||
-      lower.includes("hire")
+      includesAssistantKeyword(normalized, [
+        "job",
+        "opportunity",
+        "work",
+        "hire",
+        "emploi",
+        "opportunite",
+        "travail",
+        "recrut"
+      ])
     ) {
-      return "Your message is ready. Include the role, location or remote option, timeline, and preferred contact method before continuing.";
+      return strings.assistant.opportunity;
     }
 
-    return "Your message is ready. Choose Email, WhatsApp, or the contact form below to contact Pacifique.";
+    return strings.assistant.fallback;
   }
 
   function updateContactLinks(message) {
-    const encodedMessage = encodeURIComponent(
-      `Hello Pacifique,\n\n${message}\n\nBest regards,`
+    const contactMessage = [
+      strings.assistant.emailGreeting,
+      "",
+      message,
+      "",
+      strings.assistant.emailClosing
+    ].join("\n");
+
+    const encodedMessage = encodeURIComponent(contactMessage);
+    const emailSubject = encodeURIComponent(
+      strings.assistant.emailSubject
     );
-    const emailSubject = encodeURIComponent("Portfolio contact request");
 
     if (chatEmailLink) {
       chatEmailLink.href =
