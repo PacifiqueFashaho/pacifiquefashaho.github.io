@@ -137,8 +137,14 @@
 </head>
 
 <body>
+  <noscript>
+    <style>
+      #loader { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
   <!-- Loader -->
-  <div id="loader" aria-hidden="true">
+  <div id="loader" aria-hidden="true" hidden>
     <div class="spinner"></div>
   </div>
 
@@ -189,215 +195,271 @@
 
   <main id="main-content" class="wrap">
     <!-- Hero -->
-    <div class="hero">
-      <section class="card reveal" aria-labelledby="intro-title">
-        <p class="small hero-role">
-          <span id="typing">IT Support Technician &amp; Data Analyst</span>
-          <span class="cursor" aria-hidden="true">|</span>
+    <section class="hero hero-v2" aria-labelledby="hero-title">
+      <div class="card hero-v2__intro">
+        <p class="hero-v2__availability">
+          <span class="live-dot online" aria-hidden="true"></span>
+          <span>Available for remote and on-site opportunities</span>
         </p>
 
-        <h1 class="title" id="intro-title">
-          IT Support Technician &amp; Data Analyst helping organizations solve technical problems and make better decisions with reliable data.
+        <h1 class="title" id="hero-title">
+          I solve technical problems and turn messy data into clear decisions.
         </h1>
 
         <p class="hero-value">
-          I provide practical IT support, troubleshoot systems and networks, clean operational data,
-          and build clear reports and dashboards. Programming and web development strengthen the digital solutions I create.
+          From Windows troubleshooting and user support to data cleaning and dashboards,
+          I build practical, reliable solutions for teams and field operations.
         </p>
 
-        <div class="subtitle" aria-label="Main technical skills">
-          <span class="pill">IT Support</span>
-          <span class="pill">Windows &amp; User Support</span>
-          <span class="pill">Network Troubleshooting</span>
-          <span class="pill">Data Cleaning</span>
-          <span class="pill">Excel / Google Sheets</span>
-          <span class="pill">SQL</span>
-          <span class="pill">Python</span>
-          <span class="pill">Dashboards &amp; Reporting</span>
-          <span class="pill">KoBoToolbox / ODK</span>
-          <span class="pill">Web Development</span>
-          <span class="pill">Git / GitHub</span>
+        <div class="btns hero-v2__actions" aria-label="Primary portfolio actions">
+          <a class="btn primary" href="projects.html">
+            Explore case studies
+          </a>
+
+          <a class="btn" href="#contact">
+            Start a conversation
+          </a>
         </div>
 
-        <p class="small">
-          Open to IT Support, Help Desk, Data Analyst, and Field Data Support opportunities &mdash; remote or on-site.
-        </p>
-
-        <div class="btns" aria-label="Primary portfolio actions">
+        <div class="hero-v2__secondary-links" aria-label="Professional links">
           <a
-            class="btn primary"
             href="Pacifique_Fashaho_CV.pdf"
             target="_blank"
             rel="noreferrer"
-            aria-label="Open Pacifique Fashaho CV PDF"
           >
-            📄 Resume / CV
+            Download CV
           </a>
-
-          <a class="btn" href="projects.html" aria-label="View Pacifique Fashaho projects">
-            🚀 View Projects
-          </a>
-
+          <span aria-hidden="true">·</span>
           <a
-            class="btn"
             href="https://github.com/PacifiqueFashaho"
             target="_blank"
             rel="noreferrer"
-            aria-label="Open Pacifique Fashaho GitHub profile"
           >
-            💻 GitHub
+            GitHub
           </a>
-
+          <span aria-hidden="true">·</span>
           <a
-            class="btn"
             href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388"
             target="_blank"
             rel="noreferrer"
-            aria-label="Open Pacifique Fashaho LinkedIn profile"
           >
-            🔗 LinkedIn
+            LinkedIn
           </a>
         </div>
-        <div class="live-hero-panel" aria-label="Live portfolio status">
-          <div class="live-panel-top">
+
+        <div class="hero-v2__identity">
+          <picture>
+            <source srcset="assets/images/profile/pacifique-profile.webp" type="image/webp" />
+            <img
+              class="avatar"
+              src="assets/images/profile/pacifique-profile.png"
+              width="800"
+              height="800"
+              alt="Portrait of Pacifique Fashaho"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+
+          <div>
+            <strong>Pacifique Fashaho</strong>
+            <span class="small">IT Support Technician &amp; Data Analyst</span>
+            <span class="small">Goma, DR Congo · Remote / On-site</span>
+          </div>
+        </div>
+
+        <ul class="hero-v2__proof" aria-label="Portfolio evidence">
+          <li>
+            <strong>5</strong>
+            <a href="projects.html">portfolio projects</a>
+          </li>
+          <li>
+            <strong>20</strong>
+            <a href="certifications.html">certificates and credentials</a>
+          </li>
+          <li>
+            <strong>4</strong>
+            <a href="#experience">professional experiences</a>
+          </li>
+        </ul>
+      </div>
+
+      <section
+        class="card workbench"
+        aria-labelledby="workbench-title"
+        data-workbench
+        data-workbench-default="support"
+      >
+        <header class="workbench__header">
+          <p class="small">Interactive demo workflow</p>
+          <h2 id="workbench-title">Technical Workbench</h2>
+          <p class="summary">
+            Choose a scenario to see the practical steps I use to move from a problem
+            to a clear, useful result.
+          </p>
+        </header>
+
+        <div
+          id="workbenchScenarioGroup"
+          class="workbench__scenario-controls"
+          role="group"
+          aria-label="Choose a technical workflow"
+          data-workbench-controls
+          hidden
+        >
+          <button
+            class="btn workbench__scenario is-active"
+            type="button"
+            data-workbench-scenario="support"
+            aria-pressed="true"
+            aria-controls="workbenchOutput"
+          >
+            IT Support
+          </button>
+
+          <button
+            class="btn workbench__scenario"
+            type="button"
+            data-workbench-scenario="data"
+            aria-pressed="false"
+            aria-controls="workbenchOutput"
+          >
+            Data Cleaning
+          </button>
+
+          <button
+            class="btn workbench__scenario"
+            type="button"
+            data-workbench-scenario="dashboard"
+            aria-pressed="false"
+            aria-controls="workbenchOutput"
+          >
+            Dashboard
+          </button>
+        </div>
+
+        <div
+          id="workbenchOutput"
+          class="workbench__output"
+          data-workbench-output
+        >
+          <div class="workbench__status-row">
+            <span class="live-dot online" aria-hidden="true"></span>
             <div>
-              <span class="live-kicker">Live Status</span>
-              <h2 class="live-title">Currently focused on practical IT support and data analytics work</h2>
-            </div>
-
-            <div class="live-clock" aria-label="Current local time">
-              <span id="liveTime">--:--</span>
-              <small>Goma time</small>
-            </div>
-          </div>
-
-          <div class="live-status-grid">
-            <div class="live-status-card">
-              <span class="live-dot online" aria-hidden="true"></span>
-              <div>
-                <strong>Availability</strong>
-                <span>Open to remote and on-site opportunities</span>
-              </div>
-            </div>
-
-            <div class="live-status-card">
-              <span class="live-dot pulse" aria-hidden="true"></span>
-              <div>
-                <strong>Current Focus</strong>
-                <span id="liveFocus">Data cleaning and dashboard reporting</span>
-              </div>
-            </div>
-
-            <div class="live-status-card">
-              <span class="live-dot cyan" aria-hidden="true"></span>
-              <div>
-                <strong>Core Stack</strong>
-                <span>Excel • SQL • Python • IT Support</span>
-              </div>
+              <span
+                id="workbenchStatus"
+                class="small"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                IT support workflow ready
+              </span>
+              <strong data-workbench-result>Working state restored</strong>
             </div>
           </div>
 
-          <div class="live-terminal" aria-label="Animated technical activity">
-            <div class="terminal-header">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong>portfolio-live.exe</strong>
-            </div>
+          <ol id="workbenchSteps" class="workbench__steps">
+            <li data-workbench-step>
+              <span aria-hidden="true">01</span>
+              <span>Issue reported</span>
+            </li>
+            <li data-workbench-step>
+              <span aria-hidden="true">02</span>
+              <span>System and network checks performed</span>
+            </li>
+            <li data-workbench-step>
+              <span aria-hidden="true">03</span>
+              <span>Root cause isolated</span>
+            </li>
+            <li data-workbench-step>
+              <span aria-hidden="true">04</span>
+              <span>Working state restored</span>
+            </li>
+          </ol>
 
-            <div class="terminal-body">
-              <p><span class="terminal-prompt">$</span> <span id="terminalLine">Initializing portfolio systems...</span></p>
-            </div>
-          </div>
-        </div>
-        <div class="stats" aria-label="Portfolio summary statistics">
-          <div class="stat">
-            <span class="stat-num" data-target="4" data-counter="experience">0</span>
-            <span class="label">Professional Experiences</span>
-          </div>
-
-          <div class="stat">
-            <span class="stat-num" data-target="20">0</span>
-            <span class="label">Certificates &amp; Credentials</span>
-          </div>
-
-          <div class="stat">
-            <span class="stat-num" data-target="5">0</span>
-            <span class="label">Portfolio Projects</span>
-          </div>
+          <a
+            id="workbenchCaseStudyLink"
+            class="btn"
+            href="project-it-support-case-study.html"
+          >
+            View IT Support Case Study
+          </a>
         </div>
 
-        <p class="summary">
-          My work combines practical IT support and data analytics: configuring Windows workstations,
-          resolving hardware/software and network issues, supporting printers and users, cleaning datasets,
-          building reports, and helping field teams use digital data collection tools effectively.
-        </p>
+        <noscript>
+          <p class="small">
+            Explore the other workflows:
+            <a href="project-data-cleaning-case-study.html">Data Cleaning</a>
+            ·
+            <a href="project-sales-dashboard.html">Dashboard</a>
+          </p>
+        </noscript>
       </section>
+    </section>
 
-      <aside class="card profile reveal" aria-label="Profile summary">
-        <picture>
-          <source srcset="assets/images/profile/pacifique-profile.webp" type="image/webp" />
-          <img
-            class="avatar"
-            src="assets/images/profile/pacifique-profile.png"
-            width="800"
-            height="800"
-            alt="Portrait of Pacifique Fashaho"
-            decoding="async"
-            fetchpriority="high"
-          />
-        </picture>
-
-        <div class="small">Available for remote and on-site opportunities</div>
-
-        <img
-          class="profile-workstation"
-          src="assets/images/workstations/it-workstation.webp"
-          width="1200"
-          height="700"
-          alt="Computer workstation representing IT support and troubleshooting work"
-          loading="lazy"
-          decoding="async"
-        />
-
+    <section
+      class="card hero-profile-details"
+      aria-labelledby="profile-details-title"
+      style="margin-top:16px;"
+    >
+      <div class="section-head">
         <div>
-          <div style="font-weight:700;">Pacifique Fashaho</div>
-          <div class="small">Goma, North Kivu, DR Congo</div>
+          <h2 id="profile-details-title">Professional profile details</h2>
+          <span class="small">
+            Additional profile information kept outside the main first-screen message
+          </span>
         </div>
+      </div>
 
-        <div class="mini-card">
-          <div class="mini-title">Profile Focus</div>
+      <details>
+        <summary>View profile focus and language proficiency</summary>
 
-          <div class="mini-list">
-            <div class="mini-item">
-              <span class="mini-label">Technical Support</span>
-              <strong>Windows • Printers • Networks • Users</strong>
+        <div class="profile">
+          <img
+            class="profile-workstation"
+            src="assets/images/workstations/it-workstation.webp"
+            width="1200"
+            height="700"
+            alt="Computer workstation representing IT support and troubleshooting work"
+            loading="lazy"
+            decoding="async"
+          />
+
+          <div class="mini-card">
+            <div class="mini-title">Profile Focus</div>
+
+            <div class="mini-list">
+              <div class="mini-item">
+                <span class="mini-label">Technical Support</span>
+                <strong>Windows • Printers • Networks • Users</strong>
+              </div>
+
+              <div class="mini-item">
+                <span class="mini-label">Data Work</span>
+                <strong>Cleaning • Reports • Dashboards</strong>
+              </div>
             </div>
+          </div>
 
-            <div class="mini-item">
-              <span class="mini-label">Data Work</span>
-              <strong>Cleaning • Reports • Dashboards</strong>
+          <div class="mini-card">
+            <div class="mini-title">Language Proficiency</div>
+
+            <div class="mini-list">
+              <div class="mini-item">
+                <span class="mini-label">Very Good</span>
+                <strong>French</strong>
+              </div>
+
+              <div class="mini-item">
+                <span class="mini-label">Good</span>
+                <strong>English</strong>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="mini-card">
-          <div class="mini-title">Language Proficiency</div>
-
-          <div class="mini-list">
-            <div class="mini-item">
-              <span class="mini-label">Very Good</span>
-              <strong>French</strong>
-            </div>
-
-            <div class="mini-item">
-              <span class="mini-label">Good</span>
-              <strong>English</strong>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </div>
+      </details>
+    </section>
 
     <!-- Skills -->
     <section id="skills" class="card reveal skills-premium" style="margin-top:16px;">
