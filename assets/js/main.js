@@ -168,6 +168,105 @@ document.addEventListener("DOMContentLoaded", () => {
   window.PORTFOLIO_LANGUAGE = language;
 
   /* =========================
+     TECHNICAL WORKBENCH COPY
+     Phase 4
+  ========================= */
+
+  const workbenchScenarioSets = {
+    en: {
+      support: {
+        statusReady: "IT support workflow ready",
+        statusRunning: "Running the IT support workflow...",
+        statusComplete: "IT support workflow complete",
+        result: "Working state restored",
+        linkLabel: "View IT Support Case Study",
+        href: "project-it-support-case-study.html",
+        steps: [
+          "Issue reported",
+          "System and network checks performed",
+          "Root cause isolated",
+          "Working state restored"
+        ]
+      },
+      data: {
+        statusReady: "Data cleaning workflow ready",
+        statusRunning: "Running the data cleaning workflow...",
+        statusComplete: "Data cleaning workflow complete",
+        result: "Clean reporting table prepared",
+        linkLabel: "View Data Cleaning Case Study",
+        href: "project-data-cleaning-case-study.html",
+        steps: [
+          "Raw dataset received",
+          "Quality checks applied",
+          "Duplicates and gaps identified",
+          "Clean reporting table prepared"
+        ]
+      },
+      dashboard: {
+        statusReady: "Dashboard workflow ready",
+        statusRunning: "Running the dashboard workflow...",
+        statusComplete: "Dashboard workflow complete",
+        result: "Dashboard prepared for review",
+        linkLabel: "View Sales Dashboard Case Study",
+        href: "project-sales-dashboard.html",
+        steps: [
+          "Business question defined",
+          "Key indicators selected",
+          "Data summarized",
+          "Dashboard prepared for review"
+        ]
+      }
+    },
+    fr: {
+      support: {
+        statusReady: "Processus de support informatique prêt",
+        statusRunning: "Exécution du processus de support informatique...",
+        statusComplete: "Processus de support informatique terminé",
+        result: "Fonctionnement rétabli",
+        linkLabel: "Voir l’étude de cas en support informatique",
+        href: "../project-it-support-case-study.html",
+        steps: [
+          "Problème signalé",
+          "Vérifications du système et du réseau",
+          "Cause principale isolée",
+          "Fonctionnement rétabli"
+        ]
+      },
+      data: {
+        statusReady: "Processus de nettoyage des données prêt",
+        statusRunning: "Exécution du processus de nettoyage des données...",
+        statusComplete: "Processus de nettoyage des données terminé",
+        result: "Tableau de rapport propre préparé",
+        linkLabel: "Voir l’étude de cas sur le nettoyage des données",
+        href: "../project-data-cleaning-case-study.html",
+        steps: [
+          "Jeu de données brut reçu",
+          "Contrôles de qualité appliqués",
+          "Doublons et données manquantes identifiés",
+          "Tableau de rapport propre préparé"
+        ]
+      },
+      dashboard: {
+        statusReady: "Processus de tableau de bord prêt",
+        statusRunning: "Exécution du processus de tableau de bord...",
+        statusComplete: "Processus de tableau de bord terminé",
+        result: "Tableau de bord préparé pour examen",
+        linkLabel: "Voir l’étude de cas du tableau de bord commercial",
+        href: "../project-sales-dashboard.html",
+        steps: [
+          "Question métier définie",
+          "Indicateurs clés sélectionnés",
+          "Données synthétisées",
+          "Tableau de bord préparé pour examen"
+        ]
+      }
+    }
+  };
+
+  const workbenchScenarios =
+    workbenchScenarioSets[language] || workbenchScenarioSets.en;
+
+  /* =========================
      Footer year
   ========================= */
 
@@ -359,6 +458,238 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     typeLoop();
+  }
+
+  /* =========================
+     TECHNICAL WORKBENCH ENGINE
+     Phase 4
+  ========================= */
+
+  const workbench = document.querySelector("[data-workbench]");
+
+  if (workbench && workbench.dataset.workbenchInitialized !== "true") {
+    const controls = workbench.querySelector("[data-workbench-controls]");
+    const output = workbench.querySelector("[data-workbench-output]");
+    const status = document.getElementById("workbenchStatus");
+    const result = workbench.querySelector("[data-workbench-result]");
+    const stepsList = document.getElementById("workbenchSteps");
+    const caseStudyLink = document.getElementById("workbenchCaseStudyLink");
+    const scenarioButtons = Array.from(
+      workbench.querySelectorAll("[data-workbench-scenario]")
+    );
+
+    const requiredScenarioKeys = ["support", "data", "dashboard"];
+    const availableScenarioKeys = scenarioButtons.map(
+      (button) => button.dataset.workbenchScenario || ""
+    );
+
+    const workbenchIsComplete =
+      controls &&
+      output &&
+      status &&
+      result &&
+      stepsList &&
+      caseStudyLink &&
+      requiredScenarioKeys.every(
+        (key) =>
+          availableScenarioKeys.includes(key) &&
+          Object.prototype.hasOwnProperty.call(workbenchScenarios, key)
+      );
+
+    if (workbenchIsComplete) {
+      workbench.dataset.workbenchInitialized = "true";
+
+      let sequenceId = 0;
+      const activeTimers = new Set();
+
+      function clearWorkbenchTimers() {
+        activeTimers.forEach((timerId) => {
+          window.clearTimeout(timerId);
+        });
+
+        activeTimers.clear();
+      }
+
+      function scheduleWorkbenchStep(callback, delay) {
+        const timerId = window.setTimeout(() => {
+          activeTimers.delete(timerId);
+          callback();
+        }, delay);
+
+        activeTimers.add(timerId);
+      }
+
+      function setActiveScenarioButton(activeKey) {
+        scenarioButtons.forEach((button) => {
+          const isActive =
+            button.dataset.workbenchScenario === activeKey;
+
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+      }
+
+      function createWorkbenchStep(stepText, index, hidden) {
+        const item = document.createElement("li");
+        const number = document.createElement("span");
+        const label = document.createElement("span");
+
+        number.setAttribute("aria-hidden", "true");
+        number.textContent = String(index + 1).padStart(2, "0");
+        label.textContent = stepText;
+
+        item.dataset.workbenchStepState = hidden
+          ? "pending"
+          : "complete";
+        item.hidden = hidden;
+        item.append(number, label);
+
+        return item;
+      }
+
+      function showCompletedWorkbenchState(scenario, currentSequenceId) {
+        if (currentSequenceId !== sequenceId) return;
+
+        result.textContent = scenario.result;
+        result.hidden = false;
+
+        caseStudyLink.textContent = scenario.linkLabel;
+        caseStudyLink.href = scenario.href;
+        caseStudyLink.hidden = false;
+
+        status.textContent = scenario.statusComplete;
+        workbench.dataset.workbenchState = "complete";
+        output.setAttribute("aria-busy", "false");
+      }
+
+      function activateWorkbenchScenario(
+        scenarioKey,
+        { animate = true, announce = true } = {}
+      ) {
+        const scenario = workbenchScenarios[scenarioKey];
+
+        if (!scenario) return;
+
+        sequenceId += 1;
+        const currentSequenceId = sequenceId;
+
+        clearWorkbenchTimers();
+        setActiveScenarioButton(scenarioKey);
+
+        workbench.dataset.workbenchActiveScenario = scenarioKey;
+        workbench.dataset.workbenchState = animate
+          ? "running"
+          : "complete";
+
+        output.setAttribute(
+          "aria-busy",
+          String(animate && !prefersReducedMotion.matches)
+        );
+
+        status.textContent = announce && animate
+          ? scenario.statusRunning
+          : scenario.statusReady;
+
+        result.textContent = scenario.result;
+        result.hidden = animate;
+
+        caseStudyLink.textContent = scenario.linkLabel;
+        caseStudyLink.href = scenario.href;
+        caseStudyLink.hidden = animate;
+
+        stepsList.replaceChildren();
+
+        const shouldAnimate =
+          animate && !prefersReducedMotion.matches;
+
+        const stepItems = scenario.steps.map((stepText, index) => {
+          const item = createWorkbenchStep(
+            stepText,
+            index,
+            shouldAnimate
+          );
+
+          stepsList.appendChild(item);
+          return item;
+        });
+
+        if (!shouldAnimate) {
+          showCompletedWorkbenchState(
+            scenario,
+            currentSequenceId
+          );
+          return;
+        }
+
+        const initialDelay = 140;
+        const stepDelay = 300;
+
+        stepItems.forEach((item, index) => {
+          scheduleWorkbenchStep(() => {
+            if (currentSequenceId !== sequenceId) return;
+
+            item.hidden = false;
+            item.dataset.workbenchStepState = "complete";
+          }, initialDelay + index * stepDelay);
+        });
+
+        scheduleWorkbenchStep(() => {
+          showCompletedWorkbenchState(
+            scenario,
+            currentSequenceId
+          );
+        }, initialDelay + stepItems.length * stepDelay + 120);
+      }
+
+      scenarioButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const scenarioKey =
+            button.dataset.workbenchScenario || "";
+
+          activateWorkbenchScenario(scenarioKey);
+        });
+      });
+
+      const defaultScenario =
+        workbench.dataset.workbenchDefault || "support";
+
+      activateWorkbenchScenario(
+        defaultScenario,
+        { animate: false, announce: false }
+      );
+
+      controls.hidden = false;
+
+      window.addEventListener(
+        "pagehide",
+        clearWorkbenchTimers,
+        { once: true }
+      );
+
+      const reducedMotionChangeHandler = () => {
+        if (!prefersReducedMotion.matches) return;
+
+        const activeScenario =
+          workbench.dataset.workbenchActiveScenario ||
+          defaultScenario;
+
+        activateWorkbenchScenario(
+          activeScenario,
+          { animate: false, announce: false }
+        );
+      };
+
+      if (prefersReducedMotion.addEventListener) {
+        prefersReducedMotion.addEventListener(
+          "change",
+          reducedMotionChangeHandler
+        );
+      } else if (prefersReducedMotion.addListener) {
+        prefersReducedMotion.addListener(
+          reducedMotionChangeHandler
+        );
+      }
+    }
   }
 
   /* =========================
@@ -961,8 +1292,10 @@ document.addEventListener("DOMContentLoaded", () => {
     liveTime.textContent = formatter.format(new Date());
   }
 
-  updateLiveTime();
-  window.setInterval(updateLiveTime, 1000);
+  if (liveTime) {
+    updateLiveTime();
+    window.setInterval(updateLiveTime, 1000);
+  }
 
   const focusItems = strings.live.focus;
 
@@ -975,7 +1308,9 @@ document.addEventListener("DOMContentLoaded", () => {
     liveFocus.textContent = focusItems[focusIndex];
   }
 
-  window.setInterval(rotateLiveFocus, 3000);
+  if (liveFocus) {
+    window.setInterval(rotateLiveFocus, 3000);
+  }
 
   const terminalMessages = strings.live.terminal;
 
