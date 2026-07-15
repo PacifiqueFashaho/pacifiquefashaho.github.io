@@ -500,6 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
       workbench.dataset.workbenchInitialized = "true";
 
       let sequenceId = 0;
+      let pointerFrameId = 0;
       const activeTimers = new Set();
 
       function clearWorkbenchTimers() {
@@ -508,6 +509,66 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         activeTimers.clear();
+      }
+
+      function setWorkbenchProgress(completedSteps, totalSteps) {
+        const progress = totalSteps > 0
+          ? Math.round((completedSteps / totalSteps) * 100)
+          : 0;
+
+        workbench.style.setProperty(
+          "--workbench-progress",
+          `${Math.max(0, Math.min(progress, 100))}%`
+        );
+      }
+
+      function resetWorkbenchPointer() {
+        if (pointerFrameId) {
+          window.cancelAnimationFrame(pointerFrameId);
+          pointerFrameId = 0;
+        }
+
+        workbench.dataset.workbenchPointer = "idle";
+        workbench.style.setProperty("--workbench-pointer-x", "78%");
+        workbench.style.setProperty("--workbench-pointer-y", "12%");
+      }
+
+      function updateWorkbenchPointer(event) {
+        if (prefersReducedMotion.matches) return;
+
+        const rect = workbench.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+
+        const x = Math.max(0, Math.min(
+          ((event.clientX - rect.left) / rect.width) * 100,
+          100
+        ));
+        const y = Math.max(0, Math.min(
+          ((event.clientY - rect.top) / rect.height) * 100,
+          100
+        ));
+
+        if (pointerFrameId) {
+          window.cancelAnimationFrame(pointerFrameId);
+        }
+
+        pointerFrameId = window.requestAnimationFrame(() => {
+          workbench.style.setProperty(
+            "--workbench-pointer-x",
+            `${x.toFixed(2)}%`
+          );
+          workbench.style.setProperty(
+            "--workbench-pointer-y",
+            `${y.toFixed(2)}%`
+          );
+          workbench.dataset.workbenchPointer = "active";
+          pointerFrameId = 0;
+        });
+      }
+
+      function cleanupWorkbenchInteractions() {
+        clearWorkbenchTimers();
+        resetWorkbenchPointer();
       }
 
       function scheduleWorkbenchStep(callback, delay) {
@@ -541,22 +602,34 @@ document.addEventListener("DOMContentLoaded", () => {
         item.dataset.workbenchStepState = hidden
           ? "pending"
           : "complete";
+        item.dataset.workbenchMotion = hidden
+          ? "pending"
+          : "settled";
         item.hidden = hidden;
         item.append(number, label);
 
         return item;
       }
 
-      function showCompletedWorkbenchState(scenario, currentSequenceId) {
+      function showCompletedWorkbenchState(
+        scenario,
+        currentSequenceId,
+        { withMotion = false } = {}
+      ) {
         if (currentSequenceId !== sequenceId) return;
+
+        const revealState = withMotion ? "visible" : "settled";
 
         result.textContent = scenario.result;
         result.hidden = false;
+        result.dataset.workbenchReveal = revealState;
 
         caseStudyLink.textContent = scenario.linkLabel;
         caseStudyLink.href = scenario.href;
         caseStudyLink.hidden = false;
+        caseStudyLink.dataset.workbenchReveal = revealState;
 
+        setWorkbenchProgress(scenario.steps.length, scenario.steps.length);
         status.textContent = scenario.statusComplete;
         workbench.dataset.workbenchState = "complete";
         output.setAttribute("aria-busy", "false");
@@ -576,14 +649,17 @@ document.addEventListener("DOMContentLoaded", () => {
         clearWorkbenchTimers();
         setActiveScenarioButton(scenarioKey);
 
+        const shouldAnimate =
+          animate && !prefersReducedMotion.matches;
+
         workbench.dataset.workbenchActiveScenario = scenarioKey;
-        workbench.dataset.workbenchState = animate
+        workbench.dataset.workbenchState = shouldAnimate
           ? "running"
           : "complete";
 
         output.setAttribute(
           "aria-busy",
-          String(animate && !prefersReducedMotion.matches)
+          String(shouldAnimate)
         );
 
         status.textContent = announce && animate
@@ -591,16 +667,20 @@ document.addEventListener("DOMContentLoaded", () => {
           : scenario.statusReady;
 
         result.textContent = scenario.result;
-        result.hidden = animate;
+        result.hidden = shouldAnimate;
+        result.removeAttribute("data-workbench-reveal");
 
         caseStudyLink.textContent = scenario.linkLabel;
         caseStudyLink.href = scenario.href;
-        caseStudyLink.hidden = animate;
+        caseStudyLink.hidden = shouldAnimate;
+        caseStudyLink.removeAttribute("data-workbench-reveal");
+
+        setWorkbenchProgress(
+          shouldAnimate ? 0 : scenario.steps.length,
+          scenario.steps.length
+        );
 
         stepsList.replaceChildren();
-
-        const shouldAnimate =
-          animate && !prefersReducedMotion.matches;
 
         const stepItems = scenario.steps.map((stepText, index) => {
           const item = createWorkbenchStep(
@@ -616,7 +696,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!shouldAnimate) {
           showCompletedWorkbenchState(
             scenario,
-            currentSequenceId
+            currentSequenceId,
+            { withMotion: false }
           );
           return;
         }
@@ -630,13 +711,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
             item.hidden = false;
             item.dataset.workbenchStepState = "complete";
+            item.dataset.workbenchMotion = "entering";
+            setWorkbenchProgress(index + 1, stepItems.length);
           }, initialDelay + index * stepDelay);
         });
 
         scheduleWorkbenchStep(() => {
           showCompletedWorkbenchState(
             scenario,
-            currentSequenceId
+            currentSequenceId,
+            { withMotion: true }
           );
         }, initialDelay + stepItems.length * stepDelay + 120);
       }
@@ -660,14 +744,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
       controls.hidden = false;
 
+      if (finePointer.matches) {
+        workbench.addEventListener(
+          "pointermove",
+          updateWorkbenchPointer,
+          { passive: true }
+        );
+        workbench.addEventListener(
+          "pointerleave",
+          resetWorkbenchPointer
+        );
+      }
+
       window.addEventListener(
         "pagehide",
-        clearWorkbenchTimers,
+        cleanupWorkbenchInteractions,
         { once: true }
       );
 
       const reducedMotionChangeHandler = () => {
         if (!prefersReducedMotion.matches) return;
+
+        resetWorkbenchPointer();
 
         const activeScenario =
           workbench.dataset.workbenchActiveScenario ||

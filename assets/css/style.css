@@ -3299,5 +3299,226 @@ nav a[aria-current="page"] {
 }
 
 /* =========================
+   25. WORKBENCH MICROINTERACTIONS
+   Phase 5: state-driven motion only
+========================= */
+
+.workbench {
+  --workbench-pointer-x: 78%;
+  --workbench-pointer-y: 12%;
+  --workbench-progress: 100%;
+  --workbench-state-accent: var(--hero-panel-accent);
+  --workbench-state-accent-soft: rgba(96, 165, 250, 0.16);
+}
+
+.workbench[data-workbench-active-scenario="data"] {
+  --workbench-state-accent: #22d3ee;
+  --workbench-state-accent-soft: rgba(34, 211, 238, 0.15);
+}
+
+.workbench[data-workbench-active-scenario="dashboard"] {
+  --workbench-state-accent: #a78bfa;
+  --workbench-state-accent-soft: rgba(167, 139, 250, 0.16);
+}
+
+.hero.hero-v2 > .workbench::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    380px circle at var(--workbench-pointer-x) var(--workbench-pointer-y),
+    var(--workbench-state-accent-soft),
+    transparent 68%
+  );
+  opacity: 0.42;
+  transition: opacity 0.28s var(--hero-ease);
+}
+
+.hero.hero-v2 > .workbench[data-workbench-pointer="active"]::before {
+  opacity: 0.82;
+}
+
+.workbench > * {
+  position: relative;
+  z-index: 1;
+}
+
+.workbench__scenario.btn {
+  transition:
+    transform 0.2s var(--hero-ease),
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.workbench__scenario.btn.is-active,
+.workbench__scenario.btn[aria-pressed="true"] {
+  border-color: var(--workbench-state-accent);
+  background: var(--workbench-state-accent-soft);
+  color: var(--hero-panel-text);
+  transform: translateY(-1px);
+}
+
+.workbench__scenario.btn.is-active::after,
+.workbench__scenario.btn[aria-pressed="true"]::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  margin-left: 2px;
+  border-radius: 50%;
+  background: var(--workbench-state-accent);
+  box-shadow: 0 0 0 4px var(--workbench-state-accent-soft);
+}
+
+.workbench__output {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.workbench__output::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: var(--workbench-progress);
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--workbench-state-accent),
+    var(--hero-panel-success)
+  );
+  box-shadow: 0 0 18px var(--workbench-state-accent-soft);
+  transition: width 0.28s var(--hero-ease);
+}
+
+.workbench[data-workbench-state="running"] .workbench__output {
+  border-color: var(--workbench-state-accent);
+}
+
+.workbench[data-workbench-state="complete"] .workbench__output {
+  border-color: rgba(74, 222, 128, 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 42px rgba(2, 6, 23, 0.2);
+}
+
+.workbench[data-workbench-state="running"]
+.workbench__status-row .live-dot {
+  background: var(--workbench-state-accent);
+  animation: workbenchBusyPulse 1.15s ease-in-out infinite;
+}
+
+.workbench[data-workbench-state="complete"]
+.workbench__status-row .live-dot {
+  background: var(--hero-panel-success);
+  animation: workbenchCompletePop 0.36s var(--hero-ease) both;
+}
+
+.workbench__steps li[data-workbench-motion="entering"] {
+  animation: workbenchStepIn 0.38s var(--hero-ease) both;
+}
+
+.workbench__steps li > span:first-child {
+  position: relative;
+}
+
+.workbench__steps
+li[data-workbench-step-state="complete"]
+> span:first-child {
+  border-color: var(--workbench-state-accent);
+  background: var(--workbench-state-accent-soft);
+  color: var(--workbench-state-accent);
+}
+
+.workbench__steps
+li[data-workbench-step-state="complete"]
+> span:first-child::after {
+  content: "✓";
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--hero-panel);
+  border-radius: 50%;
+  background: var(--hero-panel-success);
+  color: #052e16;
+  font-size: 9px;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.workbench [data-workbench-result][data-workbench-reveal="visible"],
+.workbench #workbenchCaseStudyLink[data-workbench-reveal="visible"] {
+  animation: workbenchResultIn 0.34s var(--hero-ease) both;
+}
+
+@keyframes workbenchStepIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes workbenchResultIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes workbenchBusyPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 5px var(--workbench-state-accent-soft);
+    transform: scale(0.94);
+  }
+  50% {
+    box-shadow: 0 0 0 9px transparent;
+    transform: scale(1);
+  }
+}
+
+@keyframes workbenchCompletePop {
+  0% { transform: scale(0.75); }
+  70% { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .workbench__scenario.btn:hover,
+  .workbench__output > .btn:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.hero-v2 > .workbench::before,
+  .workbench__output::before {
+    transition: none;
+  }
+
+  .workbench[data-workbench-state="running"]
+  .workbench__status-row .live-dot,
+  .workbench[data-workbench-state="complete"]
+  .workbench__status-row .live-dot,
+  .workbench__steps li[data-workbench-motion="entering"],
+  .workbench [data-workbench-result][data-workbench-reveal="visible"],
+  .workbench #workbenchCaseStudyLink[data-workbench-reveal="visible"] {
+    animation: none;
+  }
+}
+
+/* =========================
+   END WORKBENCH MICROINTERACTIONS
+========================= */
+
+/* =========================
    END INTERACTIVE HERO V2
 ========================= */
