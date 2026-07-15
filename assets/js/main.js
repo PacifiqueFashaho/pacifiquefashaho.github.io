@@ -415,52 +415,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     Typing animation
-  ========================= */
-
-  const typingEl = document.getElementById("typing");
-
-  const roles = strings.roles;
-
-  if (typingEl && !prefersReducedMotion.matches) {
-    let roleIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
-
-    function typeLoop() {
-      const currentRole = roles[roleIndex];
-
-      typingEl.textContent = currentRole.slice(0, charIndex);
-
-      if (!deleting && charIndex < currentRole.length) {
-        charIndex += 1;
-        window.setTimeout(typeLoop, 70);
-        return;
-      }
-
-      if (!deleting && charIndex === currentRole.length) {
-        deleting = true;
-        window.setTimeout(typeLoop, 1200);
-        return;
-      }
-
-      if (deleting && charIndex > 0) {
-        charIndex -= 1;
-        window.setTimeout(typeLoop, 45);
-        return;
-      }
-
-      if (deleting && charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        window.setTimeout(typeLoop, 250);
-      }
-    }
-
-    typeLoop();
-  }
-
-  /* =========================
      TECHNICAL WORKBENCH ENGINE
      Phase 4
   ========================= */
@@ -1369,73 +1323,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  /* =========================
-     LIVE HERO PANEL
-  ========================= */
-
-  const liveTime = document.getElementById("liveTime");
-  const liveFocus = document.getElementById("liveFocus");
-  const terminalLine = document.getElementById("terminalLine");
-
-  function updateLiveTime() {
-    if (!liveTime) return;
-
-    const formatter = new Intl.DateTimeFormat(strings.live.locale, {
-      timeZone: "Africa/Lubumbashi",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
-    });
-
-    liveTime.textContent = formatter.format(new Date());
-  }
-
-  if (liveTime) {
-    updateLiveTime();
-    window.setInterval(updateLiveTime, 1000);
-  }
-
-  const focusItems = strings.live.focus;
-
-  let focusIndex = 0;
-
-  function rotateLiveFocus() {
-    if (!liveFocus) return;
-
-    focusIndex = (focusIndex + 1) % focusItems.length;
-    liveFocus.textContent = focusItems[focusIndex];
-  }
-
-  if (liveFocus) {
-    window.setInterval(rotateLiveFocus, 3000);
-  }
-
-  const terminalMessages = strings.live.terminal;
-
-  let terminalIndex = 0;
-  let terminalCharIndex = 0;
-
-  function typeTerminalLine() {
-    if (!terminalLine) return;
-
-    const message = terminalMessages[terminalIndex];
-
-    terminalLine.textContent = message.slice(0, terminalCharIndex);
-
-    if (terminalCharIndex < message.length) {
-      terminalCharIndex += 1;
-      window.setTimeout(typeTerminalLine, 45);
-      return;
-    }
-
-    window.setTimeout(() => {
-      terminalCharIndex = 0;
-      terminalIndex = (terminalIndex + 1) % terminalMessages.length;
-      typeTerminalLine();
-    }, 1400);
-  }
-
-  typeTerminalLine();
   /* =========================
      QUICK CONTACT ASSISTANT
   ========================= */
