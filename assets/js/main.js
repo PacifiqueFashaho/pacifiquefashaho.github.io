@@ -31,14 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         light: "Light",
         dark: "Dark"
       },
-      roles: [
-        "IT Support Technician",
-        "Data Analyst",
-        "Technical Support",
-        "Data Cleaning and Reporting",
-        "Network Troubleshooting",
-        "Junior Developer"
-      ],
       form: {
         sending: "Sending...",
         submit: "Send Message",
@@ -55,24 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       copyEmail: {
         success: "Email copied to clipboard.",
         failure: "Copy failed. Use the email link instead."
-      },
-      live: {
-        locale: "en-GB",
-        focus: [
-          "Data cleaning and dashboard reporting",
-          "Windows troubleshooting and user support",
-          "Excel reporting and KPI summaries",
-          "KoBoToolbox / ODK field data workflows",
-          "Python, SQL, and portfolio improvements"
-        ],
-        terminal: [
-          "Checking system reliability...",
-          "Cleaning operational datasets...",
-          "Building dashboard insights...",
-          "Validating field data workflows...",
-          "Reviewing IT support requests...",
-          "Publishing portfolio improvements..."
-        ]
       },
       assistant: {
         dashboard:
@@ -99,14 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         light: "Clair",
         dark: "Sombre"
       },
-      roles: [
-        "Technicien en support informatique",
-        "Analyste de donn\u00E9es",
-        "Assistance technique",
-        "Nettoyage de donn\u00E9es et rapports",
-        "D\u00E9pannage r\u00E9seau",
-        "D\u00E9veloppeur junior"
-      ],
       form: {
         sending: "Envoi en cours...",
         submit: "Envoyer le message",
@@ -124,24 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
         success: "Adresse email copi\u00E9e.",
         failure:
           "La copie a \u00E9chou\u00E9. Utilisez directement le lien email."
-      },
-      live: {
-        locale: "fr-FR",
-        focus: [
-          "Nettoyage de donn\u00E9es et tableaux de bord",
-          "D\u00E9pannage Windows et assistance aux utilisateurs",
-          "Rapports Excel et synth\u00E8ses des indicateurs",
-          "Collecte de donn\u00E9es avec KoBoToolbox / ODK",
-          "Am\u00E9liorations Python, SQL et du portfolio"
-        ],
-        terminal: [
-          "V\u00E9rification de la fiabilit\u00E9 des syst\u00E8mes...",
-          "Nettoyage des donn\u00E9es op\u00E9rationnelles...",
-          "Cr\u00E9ation d\u2019indicateurs pour les tableaux de bord...",
-          "Validation des processus de collecte de donn\u00E9es...",
-          "Analyse des demandes de support informatique...",
-          "Publication des am\u00E9liorations du portfolio..."
-        ]
       },
       assistant: {
         dashboard:
