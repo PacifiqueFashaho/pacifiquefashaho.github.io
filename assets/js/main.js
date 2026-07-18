@@ -875,11 +875,25 @@ document.addEventListener("DOMContentLoaded", () => {
         block: "start"
       });
 
-      target.setAttribute("tabindex", "-1");
+      const targetHadTabindex = target.hasAttribute("tabindex");
+
+      if (!targetHadTabindex) {
+        target.setAttribute("tabindex", "-1");
+      }
 
       window.setTimeout(() => {
         target.focus({ preventScroll: true });
-      }, 350);
+
+        if (!targetHadTabindex) {
+          target.addEventListener(
+            "blur",
+            () => {
+              target.removeAttribute("tabindex");
+            },
+            { once: true }
+          );
+        }
+      }, prefersReducedMotion.matches ? 0 : 350);
     });
   });
 

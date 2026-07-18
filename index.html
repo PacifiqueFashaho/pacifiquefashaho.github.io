@@ -1126,7 +1126,7 @@
           data-endpoint="https://formspree.io/f/maqrwjkk"
           aria-describedby="contactFormHelp contactFormStatus"
         >
-          <div class="form-honeypot" aria-hidden="true">
+          <div class="form-honeypot" hidden>
             <label for="contactWebsite">Leave this field empty</label>
             <input
               id="contactWebsite"
@@ -1363,7 +1363,14 @@
       </div>
     </div>
 
-    <div class="chat-assistant-body" id="chatAssistantBody" aria-live="polite">
+    <div
+      class="chat-assistant-body"
+      id="chatAssistantBody"
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions text"
+      aria-atomic="false"
+    >
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
           Hello! This tool helps you prepare a message for Pacifique about IT support,
