@@ -298,42 +298,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loader = document.getElementById("loader");
 
-  function hideLoader() {
-    if (!loader) return;
-
+  if (loader) {
     loader.classList.add("hide");
-
-    window.setTimeout(() => {
-      loader.style.display = "none";
-    }, 450);
-  }
-
-  if (document.readyState === "complete") {
-    hideLoader();
-  } else {
-    window.addEventListener("load", hideLoader);
-  }
-
-  window.setTimeout(hideLoader, 2400);
-
-  /* =========================
-     Cursor spotlight
-  ========================= */
-
-  if (!prefersReducedMotion.matches && finePointer.matches) {
-    let mouseTicking = false;
-
-    document.addEventListener("mousemove", (event) => {
-      if (mouseTicking) return;
-
-      mouseTicking = true;
-
-      window.requestAnimationFrame(() => {
-        root.style.setProperty("--mouse-x", `${event.clientX}px`);
-        root.style.setProperty("--mouse-y", `${event.clientY}px`);
-        mouseTicking = false;
-      });
-    });
+    loader.hidden = true;
   }
 
   /* =========================
@@ -403,6 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let sequenceId = 0;
       let pointerFrameId = 0;
+      let pendingWorkbenchPointer = null;
       const activeTimers = new Set();
 
       function clearWorkbenchTimers() {
@@ -425,6 +393,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       function resetWorkbenchPointer() {
+        pendingWorkbenchPointer = null;
+
         if (pointerFrameId) {
           window.cancelAnimationFrame(pointerFrameId);
           pointerFrameId = 0;
@@ -438,23 +408,34 @@ document.addEventListener("DOMContentLoaded", () => {
       function updateWorkbenchPointer(event) {
         if (prefersReducedMotion.matches) return;
 
-        const rect = workbench.getBoundingClientRect();
-        if (rect.width <= 0 || rect.height <= 0) return;
+        pendingWorkbenchPointer = {
+          clientX: event.clientX,
+          clientY: event.clientY
+        };
 
-        const x = Math.max(0, Math.min(
-          ((event.clientX - rect.left) / rect.width) * 100,
-          100
-        ));
-        const y = Math.max(0, Math.min(
-          ((event.clientY - rect.top) / rect.height) * 100,
-          100
-        ));
-
-        if (pointerFrameId) {
-          window.cancelAnimationFrame(pointerFrameId);
-        }
+        if (pointerFrameId) return;
 
         pointerFrameId = window.requestAnimationFrame(() => {
+          const pointer = pendingWorkbenchPointer;
+
+          pendingWorkbenchPointer = null;
+          pointerFrameId = 0;
+
+          if (!pointer) return;
+
+          const rect = workbench.getBoundingClientRect();
+
+          if (rect.width <= 0 || rect.height <= 0) return;
+
+          const x = Math.max(0, Math.min(
+            ((pointer.clientX - rect.left) / rect.width) * 100,
+            100
+          ));
+          const y = Math.max(0, Math.min(
+            ((pointer.clientY - rect.top) / rect.height) * 100,
+            100
+          ));
+
           workbench.style.setProperty(
             "--workbench-pointer-x",
             `${x.toFixed(2)}%`
@@ -464,7 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `${y.toFixed(2)}%`
           );
           workbench.dataset.workbenchPointer = "active";
-          pointerFrameId = 0;
         });
       }
 
@@ -796,22 +776,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyProjects = document.getElementById("projectEmpty");
 
   function updateProjectVisibility(project, shouldShow) {
-    if (prefersReducedMotion.matches) {
-      project.classList.toggle("is-hidden", !shouldShow);
-      return;
-    }
-
-    project.style.opacity = "0";
-    project.style.transform = "translateY(8px)";
-
-    window.setTimeout(() => {
-      project.classList.toggle("is-hidden", !shouldShow);
-
-      if (shouldShow) {
-        project.style.opacity = "1";
-        project.style.transform = "translateY(0)";
-      }
-    }, 160);
+    project.classList.toggle("is-hidden", !shouldShow);
+    project.style.removeProperty("opacity");
+    project.style.removeProperty("transform");
   }
 
   if (filterButtons.length > 0 && projects.length > 0) {
@@ -840,6 +807,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (emptyProjects) {
           emptyProjects.hidden = visibleCount !== 0;
         }
+
+        scheduleScrollUi(true);
       });
     });
   }
@@ -932,20 +901,38 @@ document.addEventListener("DOMContentLoaded", () => {
      Active navigation
   ========================= */
 
-  const sections = document.querySelectorAll("section[id]");
+  const sections = Array.from(
+    document.querySelectorAll("section[id]")
+  );
   const navLinks = document.querySelectorAll("nav a[href]");
 
+  let sectionRanges = [];
+  let scrollUiFrameId = 0;
+  let sectionMetricsDirty = true;
+
+  function cacheSectionRanges() {
+    sectionRanges = sections.map((section) => {
+      const top = section.offsetTop - 130;
+
+      return {
+        id: section.id,
+        top,
+        bottom: top + section.offsetHeight
+      };
+    });
+  }
+
   function updateActiveNavigation() {
-    if (!sections.length || !navLinks.length) return;
+    if (!sectionRanges.length || !navLinks.length) return;
 
     let activeId = "";
 
-    sections.forEach((section) => {
-      const top = section.offsetTop - 130;
-      const bottom = top + section.offsetHeight;
-
-      if (window.scrollY >= top && window.scrollY < bottom) {
-        activeId = section.id;
+    sectionRanges.forEach((range) => {
+      if (
+        window.scrollY >= range.top &&
+        window.scrollY < range.bottom
+      ) {
+        activeId = range.id;
       }
     });
 
@@ -953,7 +940,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navLinks.forEach((link) => {
       const href = link.getAttribute("href") || "";
-      const isSamePageHash = href === `#${activeId}` || href.endsWith(`#${activeId}`);
+      const isSamePageHash =
+        href === `#${activeId}` ||
+        href.endsWith(`#${activeId}`);
 
       link.classList.toggle("active", isSamePageHash);
     });
@@ -964,25 +953,41 @@ document.addEventListener("DOMContentLoaded", () => {
     updateActiveNavigation();
   }
 
-  let scrollTicking = false;
+  function scheduleScrollUi(recalculateSections = false) {
+    if (recalculateSections) {
+      sectionMetricsDirty = true;
+    }
+
+    if (scrollUiFrameId) return;
+
+    scrollUiFrameId = window.requestAnimationFrame(() => {
+      if (sectionMetricsDirty) {
+        cacheSectionRanges();
+        sectionMetricsDirty = false;
+      }
+
+      updateScrollUi();
+      scrollUiFrameId = 0;
+    });
+  }
 
   window.addEventListener(
     "scroll",
-    () => {
-      if (scrollTicking) return;
-
-      scrollTicking = true;
-
-      window.requestAnimationFrame(() => {
-        updateScrollUi();
-        scrollTicking = false;
-      });
-    },
+    () => scheduleScrollUi(),
     { passive: true }
   );
+  window.addEventListener(
+    "resize",
+    () => scheduleScrollUi(true),
+    { passive: true }
+  );
+  window.addEventListener(
+    "load",
+    () => scheduleScrollUi(true),
+    { once: true }
+  );
 
-  window.addEventListener("resize", updateScrollUi);
-  updateScrollUi();
+  scheduleScrollUi(true);
 
   /* =========================
      Contact service chips
@@ -1191,82 +1196,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     Ripple effect
-  ========================= */
-
-  const rippleTargets = document.querySelectorAll(
-    ".btn, .pbtn, .cert-btn, .filter-btn, .copy-btn, .service-chip, .theme-toggle"
-  );
-
-  rippleTargets.forEach((target) => {
-    target.addEventListener("click", (event) => {
-      if (prefersReducedMotion.matches) return;
-
-      const rect = target.getBoundingClientRect();
-      const ripple = document.createElement("span");
-
-      ripple.className = "ripple";
-      ripple.style.left = `${event.clientX - rect.left}px`;
-      ripple.style.top = `${event.clientY - rect.top}px`;
-
-      target.appendChild(ripple);
-
-      window.setTimeout(() => {
-        ripple.remove();
-      }, 650);
-    });
-  });
-
-  /* =========================
-     Card tilt
-  ========================= */
-
-  const tiltCards = document.querySelectorAll(".project, .skill-card");
-
-  if (!prefersReducedMotion.matches && finePointer.matches && tiltCards.length > 0) {
-    tiltCards.forEach((card) => {
-      card.addEventListener("mousemove", (event) => {
-        const rect = card.getBoundingClientRect();
-
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        const rotateX = -((y / rect.height) - 0.5) * 5;
-        const rotateY = ((x / rect.width) - 0.5) * 5;
-
-        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
-    });
-  }
-
-  /* =========================
-     Magnetic buttons
-  ========================= */
-
-  const magneticButtons = document.querySelectorAll(".btn, .pbtn");
-
-  if (!prefersReducedMotion.matches && finePointer.matches && magneticButtons.length > 0) {
-    magneticButtons.forEach((button) => {
-      button.addEventListener("mousemove", (event) => {
-        const rect = button.getBoundingClientRect();
-
-        const x = event.clientX - rect.left - rect.width / 2;
-        const y = event.clientY - rect.top - rect.height / 2;
-
-        button.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
-      });
-
-      button.addEventListener("mouseleave", () => {
-        button.style.transform = "";
-      });
-    });
-  }
-
-  /* =========================
      Experience accordion
   ========================= */
 
@@ -1282,6 +1211,8 @@ document.addEventListener("DOMContentLoaded", () => {
             other.open = false;
           }
         });
+
+        scheduleScrollUi(true);
       });
     });
   }
@@ -1304,6 +1235,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let assistantIsOpen = false;
   let assistantCloseTimer = null;
+  let assistantFocusTimer = null;
+  const assistantReplyTimers = new Set();
+
+  function clearAssistantTimers() {
+    window.clearTimeout(assistantCloseTimer);
+    window.clearTimeout(assistantFocusTimer);
+    assistantCloseTimer = null;
+    assistantFocusTimer = null;
+
+    assistantReplyTimers.forEach((timerId) => {
+      window.clearTimeout(timerId);
+    });
+    assistantReplyTimers.clear();
+  }
+
+  function scheduleAssistantReply(callback, delay) {
+    const timerId = window.setTimeout(() => {
+      assistantReplyTimers.delete(timerId);
+      callback();
+    }, delay);
+
+    assistantReplyTimers.add(timerId);
+  }
 
   function showAssistantLauncher() {
     if (!assistantLauncher) return;
@@ -1317,6 +1271,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!chatAssistant || assistantIsOpen) return;
 
     window.clearTimeout(assistantCloseTimer);
+    assistantCloseTimer = null;
     assistantIsOpen = true;
     chatAssistant.hidden = false;
 
@@ -1333,7 +1288,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (chatInput) {
-      window.setTimeout(() => {
+      window.clearTimeout(assistantFocusTimer);
+      assistantFocusTimer = window.setTimeout(() => {
+        assistantFocusTimer = null;
         chatInput.focus();
       }, prefersReducedMotion.matches ? 0 : 220);
     }
@@ -1343,6 +1300,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!chatAssistant || !assistantIsOpen) return;
 
     assistantIsOpen = false;
+    window.clearTimeout(assistantFocusTimer);
+    assistantFocusTimer = null;
     chatAssistant.classList.remove("show");
 
     if (assistantLauncher) {
@@ -1351,6 +1310,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     assistantCloseTimer = window.setTimeout(
       () => {
+        assistantCloseTimer = null;
         chatAssistant.hidden = true;
 
         if (assistantLauncherWrap) {
@@ -1520,9 +1480,12 @@ document.addEventListener("DOMContentLoaded", () => {
       chatInput.value = "";
     }
 
-    window.setTimeout(
+    scheduleAssistantReply(
       () => {
-        appendChatMessage(buildAssistantReply(cleanMessage), "assistant");
+        appendChatMessage(
+          buildAssistantReply(cleanMessage),
+          "assistant"
+        );
       },
       prefersReducedMotion.matches ? 0 : 350
     );
@@ -1568,6 +1531,12 @@ document.addEventListener("DOMContentLoaded", () => {
       closeChatAssistant({ restoreFocus: false });
     });
   }
+
+  window.addEventListener(
+    "pagehide",
+    clearAssistantTimers,
+    { once: true }
+  );
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && assistantIsOpen) {
