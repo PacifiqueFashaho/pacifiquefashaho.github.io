@@ -264,7 +264,7 @@
         class="card workbench"
         aria-labelledby="workbench-title"
         data-workbench
-        data-workbench-default="support"
+        data-workbench-default="windows"
       >
         <header class="workbench__header">
           <p class="small">Démonstration interactive</p>
@@ -283,23 +283,23 @@
           data-workbench-controls
           hidden
         >
-          <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="support" aria-pressed="true" aria-controls="workbenchOutput">Support informatique</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="data" aria-pressed="false" aria-controls="workbenchOutput">Nettoyage des données</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="dashboard" aria-pressed="false" aria-controls="workbenchOutput">Tableau de bord</button>
+          <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="windows" aria-pressed="true" aria-controls="workbenchOutput">Windows et logiciels</button>
+          <button class="btn workbench__scenario" type="button" data-workbench-scenario="network" aria-pressed="false" aria-controls="workbenchOutput">Réseau et imprimante</button>
+          <button class="btn workbench__scenario" type="button" data-workbench-scenario="setup" aria-pressed="false" aria-controls="workbenchOutput">Poste de travail et utilisateurs</button>
         </div>
 
         <div id="workbenchOutput" class="workbench__output" data-workbench-output>
           <div class="workbench__status-row">
             <span class="live-dot online" aria-hidden="true"></span>
             <div>
-              <span id="workbenchStatus" class="small" role="status" aria-live="polite" aria-atomic="true">Processus de support informatique prêt</span>
+              <span id="workbenchStatus" class="small" role="status" aria-live="polite" aria-atomic="true">Processus Windows et logiciels prêt</span>
               <strong data-workbench-result>Fonctionnement rétabli</strong>
             </div>
           </div>
 
           <ol id="workbenchSteps" class="workbench__steps">
             <li data-workbench-step><span aria-hidden="true">01</span><span>Problème signalé</span></li>
-            <li data-workbench-step><span aria-hidden="true">02</span><span>Vérifications du système et du réseau</span></li>
+            <li data-workbench-step><span aria-hidden="true">02</span><span>Vérifications de Windows et des applications</span></li>
             <li data-workbench-step><span aria-hidden="true">03</span><span>Cause principale isolée</span></li>
             <li data-workbench-step><span aria-hidden="true">04</span><span>Fonctionnement rétabli</span></li>
           </ol>
@@ -309,10 +309,11 @@
 
         <noscript>
           <p class="small">
-            Explorer les autres processus :
-            <a href="../project-data-cleaning-case-study.html">Nettoyage des données</a>
+            Autres processus pratiques de support :
+            <strong>Réseau et imprimante</strong>
             ·
-            <a href="../project-sales-dashboard.html">Tableau de bord</a>
+            <strong>Poste de travail et utilisateurs</strong>.
+            <a href="../project-it-support-case-study.html">Voir l’étude de cas informatique associée</a>.
           </p>
         </noscript>
       </section>
