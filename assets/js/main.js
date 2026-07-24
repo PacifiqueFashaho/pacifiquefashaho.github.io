@@ -122,90 +122,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const workbenchScenarioSets = {
     en: {
-      support: {
-        statusReady: "IT support workflow ready",
-        statusRunning: "Running the IT support workflow...",
-        statusComplete: "IT support workflow complete",
+      windows: {
+        statusReady: "Windows and software workflow ready",
+        statusRunning: "Running the Windows and software workflow...",
+        statusComplete: "Windows and software workflow complete",
         result: "Working state restored",
         linkLabel: "View IT Support Case Study",
         href: "project-it-support-case-study.html",
         steps: [
           "Issue reported",
-          "System and network checks performed",
+          "Windows and application checks performed",
           "Root cause isolated",
           "Working state restored"
         ]
       },
-      data: {
-        statusReady: "Data cleaning workflow ready",
-        statusRunning: "Running the data cleaning workflow...",
-        statusComplete: "Data cleaning workflow complete",
-        result: "Clean reporting table prepared",
-        linkLabel: "View Data Cleaning Case Study",
-        href: "project-data-cleaning-case-study.html",
+      network: {
+        statusReady: "Network and printer workflow ready",
+        statusRunning: "Running the network and printer workflow...",
+        statusComplete: "Network and printer workflow complete",
+        result: "Connection or printing restored",
+        linkLabel: "View IT Support Case Study",
+        href: "project-it-support-case-study.html",
         steps: [
-          "Raw dataset received",
-          "Quality checks applied",
-          "Duplicates and gaps identified",
-          "Clean reporting table prepared"
+          "Connectivity or printer problem reported",
+          "Connection, IP, DNS, driver, and queue checks performed",
+          "Fault isolated",
+          "Connection or printing restored"
         ]
       },
-      dashboard: {
-        statusReady: "Dashboard workflow ready",
-        statusRunning: "Running the dashboard workflow...",
-        statusComplete: "Dashboard workflow complete",
-        result: "Dashboard prepared for review",
-        linkLabel: "View Sales Dashboard Case Study",
-        href: "project-sales-dashboard.html",
+      setup: {
+        statusReady: "Workstation and user setup workflow ready",
+        statusRunning: "Running the workstation and user setup workflow...",
+        statusComplete: "Workstation and user setup workflow complete",
+        result: "Workstation prepared for use",
+        linkLabel: "View IT Support Case Study",
+        href: "project-it-support-case-study.html",
         steps: [
-          "Business question defined",
-          "Key indicators selected",
-          "Data summarized",
-          "Dashboard prepared for review"
+          "User or workstation requirement received",
+          "Windows, applications, account, and peripherals configured",
+          "Updates and security settings checked",
+          "Workstation prepared for use"
         ]
       }
     },
     fr: {
-      support: {
-        statusReady: "Processus de support informatique prêt",
-        statusRunning: "Exécution du processus de support informatique...",
-        statusComplete: "Processus de support informatique terminé",
+      windows: {
+        statusReady: "Processus Windows et logiciels prêt",
+        statusRunning: "Exécution du processus Windows et logiciels...",
+        statusComplete: "Processus Windows et logiciels terminé",
         result: "Fonctionnement rétabli",
         linkLabel: "Voir l’étude de cas en support informatique",
         href: "../project-it-support-case-study.html",
         steps: [
           "Problème signalé",
-          "Vérifications du système et du réseau",
+          "Vérifications de Windows et des applications",
           "Cause principale isolée",
           "Fonctionnement rétabli"
         ]
       },
-      data: {
-        statusReady: "Processus de nettoyage des données prêt",
-        statusRunning: "Exécution du processus de nettoyage des données...",
-        statusComplete: "Processus de nettoyage des données terminé",
-        result: "Tableau de rapport propre préparé",
-        linkLabel: "Voir l’étude de cas sur le nettoyage des données",
-        href: "../project-data-cleaning-case-study.html",
+      network: {
+        statusReady: "Processus réseau et imprimante prêt",
+        statusRunning: "Exécution du processus réseau et imprimante...",
+        statusComplete: "Processus réseau et imprimante terminé",
+        result: "Connexion ou impression rétablie",
+        linkLabel: "Voir l’étude de cas en support informatique",
+        href: "../project-it-support-case-study.html",
         steps: [
-          "Jeu de données brut reçu",
-          "Contrôles de qualité appliqués",
-          "Doublons et données manquantes identifiés",
-          "Tableau de rapport propre préparé"
+          "Problème de connectivité ou d’impression signalé",
+          "Vérifications de la connexion, de l’IP, du DNS, du pilote et de la file d’attente",
+          "Défaillance isolée",
+          "Connexion ou impression rétablie"
         ]
       },
-      dashboard: {
-        statusReady: "Processus de tableau de bord prêt",
-        statusRunning: "Exécution du processus de tableau de bord...",
-        statusComplete: "Processus de tableau de bord terminé",
-        result: "Tableau de bord préparé pour examen",
-        linkLabel: "Voir l’étude de cas du tableau de bord commercial",
-        href: "../project-sales-dashboard.html",
+      setup: {
+        statusReady: "Processus de configuration du poste et de l’utilisateur prêt",
+        statusRunning: "Exécution de la configuration du poste et de l’utilisateur...",
+        statusComplete: "Configuration du poste et de l’utilisateur terminée",
+        result: "Poste de travail prêt à l’emploi",
+        linkLabel: "Voir l’étude de cas en support informatique",
+        href: "../project-it-support-case-study.html",
         steps: [
-          "Question métier définie",
-          "Indicateurs clés sélectionnés",
-          "Données synthétisées",
-          "Tableau de bord préparé pour examen"
+          "Besoin de l’utilisateur ou du poste reçu",
+          "Windows, applications, compte et périphériques configurés",
+          "Mises à jour et paramètres de sécurité vérifiés",
+          "Poste de travail prêt à l’emploi"
         ]
       }
     }
@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
       workbench.querySelectorAll("[data-workbench-scenario]")
     );
 
-    const requiredScenarioKeys = ["support", "data", "dashboard"];
+    const requiredScenarioKeys = ["windows", "network", "setup"];
     const availableScenarioKeys = scenarioButtons.map(
       (button) => button.dataset.workbenchScenario || ""
     );
@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const defaultScenario =
-        workbench.dataset.workbenchDefault || "support";
+        workbench.dataset.workbenchDefault || "windows";
 
       activateWorkbenchScenario(
         defaultScenario,

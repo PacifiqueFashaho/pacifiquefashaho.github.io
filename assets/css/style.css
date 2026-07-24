@@ -3028,12 +3028,12 @@ nav a[aria-current="page"] {
   --workbench-state-accent-soft: rgba(96, 165, 250, 0.16);
 }
 
-.workbench[data-workbench-active-scenario="data"] {
+.workbench[data-workbench-active-scenario="network"] {
   --workbench-state-accent: #22d3ee;
   --workbench-state-accent-soft: rgba(34, 211, 238, 0.15);
 }
 
-.workbench[data-workbench-active-scenario="dashboard"] {
+.workbench[data-workbench-active-scenario="setup"] {
   --workbench-state-accent: #a78bfa;
   --workbench-state-accent-soft: rgba(167, 139, 250, 0.16);
 }
