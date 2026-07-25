@@ -737,37 +737,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     Skill bars
-  ========================= */
-
-  const skillBars = document.querySelectorAll(".bar-fill");
-
-  function fillSkillBar(bar) {
-    const widthValue = getComputedStyle(bar).getPropertyValue("--w").trim();
-    bar.style.width = widthValue || "0%";
-  }
-
-  if (skillBars.length > 0) {
-    if (prefersReducedMotion.matches || !("IntersectionObserver" in window)) {
-      skillBars.forEach(fillSkillBar);
-    } else {
-      const skillObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              fillSkillBar(entry.target);
-              skillObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.35 }
-      );
-
-      skillBars.forEach((bar) => skillObserver.observe(bar));
-    }
-  }
-
-  /* =========================
      Project filters
   ========================= */
 

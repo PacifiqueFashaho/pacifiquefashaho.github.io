@@ -790,6 +790,18 @@ nav a[aria-current="page"] {
   margin-top: 14px;
 }
 
+.skills-priority-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.skills-priority-grid .skill-card--primary {
+  grid-column: 1 / -1;
+}
+
+.skills-priority-grid .skill-card--secondary {
+  grid-column: span 2;
+}
+
 .skill-card {
   position: relative;
   overflow: hidden;
@@ -846,42 +858,89 @@ nav a[aria-current="page"] {
   margin: 8px 0 13px;
 }
 
-.skill-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.skill-card--primary {
+  border-color: rgba(37, 99, 235, 0.3);
+  background:
+    linear-gradient(135deg, var(--accent-soft), transparent 72%),
+    var(--soft-surface);
 }
 
-.bar {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.capability-level {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
 }
 
-.bar-label {
+.skill-evidence {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-evidence li {
+  position: relative;
+  padding-left: 20px;
   color: var(--muted);
-  font-size: 12.5px;
-  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.55;
 }
 
-.bar-track {
-  height: 10px;
-  overflow: hidden;
+.skill-evidence li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.service-card {
+  padding: 18px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  background: var(--soft-surface-strong);
+  border-radius: var(--radius-md);
+  background: var(--soft-surface);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
 }
 
-.bar-fill {
-  width: var(--w, 0%);
-  height: 100%;
-  border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  transition: width 900ms ease;
+.service-card--primary {
+  grid-column: 1 / -1;
+  border-color: rgba(37, 99, 235, 0.3);
+  background:
+    linear-gradient(135deg, var(--accent-soft), transparent 72%),
+    var(--soft-surface);
 }
 
-:root.js .bar-fill {
-  width: 0%;
+.service-card h3 {
+  margin: 0 0 8px;
+}
+
+.service-card p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.service-card ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 19px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 /* =========================
@@ -1606,8 +1665,15 @@ nav a[aria-current="page"] {
 
   .projects-grid,
   .skills-grid,
+  .services-grid,
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+
+  .skills-priority-grid .skill-card--primary,
+  .skills-priority-grid .skill-card--secondary,
+  .service-card--primary {
+    grid-column: auto;
   }
 
   .contact-grid {
