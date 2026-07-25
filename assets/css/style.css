@@ -449,12 +449,17 @@ nav a[aria-current="page"] {
 
 /* Reveal animation */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.reveal.show {
+.js .reveal.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -979,7 +984,7 @@ nav a[aria-current="page"] {
 }
 
 .filter-btn {
-  min-height: 40px;
+  min-height: 44px;
   padding: 8px 13px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
@@ -1103,7 +1108,7 @@ nav a[aria-current="page"] {
 }
 
 .pbtn {
-  min-height: 42px;
+  min-height: 44px;
   padding: 9px 12px;
   font-size: 13px;
 }
@@ -1124,6 +1129,9 @@ nav a[aria-current="page"] {
 }
 
 .project-details summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   color: var(--text);
   cursor: pointer;
   font-weight: 850;
