@@ -1331,7 +1331,10 @@ nav a[aria-current="page"] {
 }
 
 .contact-mini-link {
+  display: inline-flex;
+  align-items: center;
   align-self: flex-start;
+  min-height: 44px;
   padding: 9px 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
