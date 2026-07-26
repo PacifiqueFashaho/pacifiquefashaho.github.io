@@ -22,6 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE_ORIGIN = "https://pacifiquefashaho.github.io"
 GOOGLE_FILE = "google32dbf3697617861a.html"
 GOOGLE_SHA256 = "70d3bfaab6f818d1c3ef14f37797e691c1a9bf4d3d2cc61d225576ea1baac0ae"
+ENGLISH_CV = "Pacifique_Fashaho_CV.pdf"
+FRENCH_CV = "Pacifique_Fashaho_CV_FR.pdf"
+LEGACY_DOCUMENT_BUNDLE = "assets/certificates/Pacifique-Full-files.pdf"
 
 PAGE_SPECS = {
     "index.html": ("/", "en"),
@@ -633,6 +636,72 @@ def validate_project_catalog(errors: list[str]) -> None:
     validate_stat("Project Categories", len(set(project_categories)))
     validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
 
+    homepage_proofs = (
+        ("index.html", "portfolio projects"),
+        ("fr/index.html", "projets du portfolio"),
+    )
+    for page, label in homepage_proofs:
+        homepage = read_text(page, errors)
+        if homepage is None:
+            continue
+
+        proof = re.search(
+            rf"<strong>(\d+)</strong>\s*"
+            rf'<a\b[^>]*>{re.escape(label)}</a>',
+            homepage,
+        )
+        add_error(
+            errors,
+            bool(proof and int(proof.group(1)) == project_count),
+            f"{page}: homepage project proof must match the {project_count}-project catalog",
+        )
+
+
+def validate_recruiter_documents(errors: list[str]) -> None:
+    for document in (ENGLISH_CV, FRENCH_CV):
+        path = ROOT / document
+        if not path.is_file():
+            errors.append(f"{document}: recruiter PDF is missing")
+            continue
+
+        contents = path.read_bytes()
+        add_error(
+            errors,
+            len(contents) >= 50_000,
+            f"{document}: recruiter PDF is unexpectedly small",
+        )
+        add_error(
+            errors,
+            contents.startswith(b"%PDF-") and b"%%EOF" in contents[-1024:],
+            f"{document}: file does not contain a complete PDF signature",
+        )
+
+    add_error(
+        errors,
+        not (ROOT / LEGACY_DOCUMENT_BUNDLE).exists(),
+        f"{LEGACY_DOCUMENT_BUNDLE}: legacy document bundle must remain absent",
+    )
+
+    link_expectations = (
+        ("index.html", ENGLISH_CV, FRENCH_CV),
+        ("fr/index.html", f"../{FRENCH_CV}", f"../{ENGLISH_CV}"),
+    )
+    for page, expected_document, excluded_document in link_expectations:
+        source = read_text(page, errors)
+        if source is None:
+            continue
+
+        add_error(
+            errors,
+            source.count(f'href="{expected_document}"') == 2,
+            f"{page}: expected exactly two links to {expected_document}",
+        )
+        add_error(
+            errors,
+            f'href="{excluded_document}"' not in source,
+            f"{page}: contains a link to the wrong-language recruiter PDF",
+        )
+
 
 def validate_sitemap(errors: list[str]) -> None:
     sitemap_path = ROOT / "sitemap.xml"
@@ -798,6 +867,22 @@ def smoke_test_routes(errors: list[str]) -> None:
                     )
             except OSError as error:
                 errors.append(f"{route}: local HTTP smoke test failed ({error})")
+
+        for document in (ENGLISH_CV, FRENCH_CV):
+            try:
+                with urllib.request.urlopen(
+                    f"http://127.0.0.1:{port}/{document}",
+                    timeout=5,
+                ) as response:
+                    add_error(
+                        errors,
+                        response.status == 200 and response.read(5) == b"%PDF-",
+                        f"/{document}: local PDF smoke test failed",
+                    )
+            except OSError as error:
+                errors.append(
+                    f"/{document}: local PDF smoke test failed ({error})"
+                )
     finally:
         server.shutdown()
         server.server_close()
@@ -813,6 +898,7 @@ def main() -> int:
     validate_css(errors)
     validate_json(errors)
     validate_project_catalog(errors)
+    validate_recruiter_documents(errors)
     validate_sitemap(errors)
     validate_workbench(errors)
     validate_protected_resources(errors)
@@ -827,7 +913,7 @@ def main() -> int:
     print(
         "Static portfolio validation passed: "
         f"{len(PAGE_SPECS)} pages, internal resources, accessibility markers, JSON-LD, "
-        "JSON, XML, protected resources, and HTTP routes."
+        "JSON, XML, recruiter PDFs, protected resources, and HTTP routes."
     )
     return 0
 
