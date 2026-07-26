@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dépannage réseau et imprimante partagée | Pacifique Fashaho</title>
+  <meta name="description" content="Processus représentatif de support informatique pour diagnostiquer la connectivité réseau et les imprimantes partagées avec les outils Windows, la validation, la documentation et des critères d’escalade." />
+  <meta name="keywords" content="Pacifique Fashaho, support informatique, dépannage réseau, imprimante partagée, Windows, DHCP, DNS, ping, nslookup, spouleur d’impression" />
+  <meta name="author" content="Pacifique Fashaho" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="canonical" href="https://pacifiquefashaho.github.io/fr/project-network-printer-case-study.html" />
+  <link rel="alternate" hreflang="en" href="https://pacifiquefashaho.github.io/project-network-printer-case-study.html" />
+  <link rel="alternate" hreflang="fr" href="https://pacifiquefashaho.github.io/fr/project-network-printer-case-study.html" />
+  <link rel="alternate" hreflang="x-default" href="https://pacifiquefashaho.github.io/project-network-printer-case-study.html" />
+  <link rel="icon" href="../assets/images/ui/favicon.ico" />
+  <link rel="apple-touch-icon" href="../assets/images/ui/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <meta property="og:title" content="Dépannage réseau et imprimante partagée | Pacifique Fashaho" />
+  <meta property="og:description" content="Processus représentatif pour diagnostiquer la connectivité et les imprimantes partagées, valider le service rétabli et décider quand transmettre l’incident." />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta property="og:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
+  <meta property="og:url" content="https://pacifiquefashaho.github.io/fr/project-network-printer-case-study.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Portfolio de Pacifique Fashaho" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dépannage réseau et imprimante partagée | Pacifique Fashaho" />
+  <meta name="twitter:description" content="Processus représentatif de support couvrant le diagnostic réseau et imprimante, la validation, la documentation et l’escalade." />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta name="twitter:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+      } catch (error) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Dépannage de la connectivité réseau et d’une imprimante partagée",
+    "name": "Dépannage de la connectivité réseau et d’une imprimante partagée",
+    "url": "https://pacifiquefashaho.github.io/fr/project-network-printer-case-study.html",
+    "mainEntityOfPage": "https://pacifiquefashaho.github.io/fr/project-network-printer-case-study.html",
+    "description": "Processus représentatif de support informatique pour diagnostiquer la connectivité réseau et les imprimantes partagées avec les outils Windows, la validation, la documentation et des critères d’escalade.",
+    "author": {
+      "@type": "Person",
+      "name": "Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/fr/"
+    },
+    "inLanguage": "fr",
+    "proficiencyLevel": "Débutant",
+    "about": ["Support informatique", "Dépannage réseau", "Dépannage d’imprimante partagée"],
+    "keywords": ["Windows", "DHCP", "DNS", "ping", "nslookup", "spouleur d’impression", "imprimante partagée", "validation du service"]
+  }
+  </script>
+</head>
+<body>
+  <div id="loader" aria-hidden="true" hidden><div class="spinner"></div></div>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+  <button id="toTop" type="button" aria-label="Retour en haut" hidden>↑ Haut</button>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Aller à la page d’accueil de Pacifique Fashaho">
+        <span class="dot" aria-hidden="true"></span><span>Pacifique Fashaho</span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#skills">Compétences</a>
+        <a class="active" href="../projects.html" aria-current="page">Projets</a>
+        <a href="../certifications.html">Certifications</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-switcher" aria-label="Sélection de la langue">
+        <a href="../project-network-printer-case-study.html" lang="en" hreflang="en">EN</a>
+        <span class="language-switcher-separator" aria-hidden="true">/</span>
+        <a href="project-network-printer-case-study.html" lang="fr" hreflang="fr" aria-current="page">FR</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Passer au mode sombre" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Thème</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <section class="card reveal" aria-labelledby="case-study-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Processus représentatif de support informatique</p>
+          <h1 class="title" id="case-study-title">Dépannage de la connectivité réseau et d’une imprimante partagée</h1>
+          <p class="summary">
+            Un processus réutilisable montrant comment distinguer un problème de connexion d’un problème
+            d’imprimante, de service Windows, de pilote ou d’accès. Il représente des méthodes pratiques
+            de support et ne décrit pas l’incident d’un client précis.
+          </p>
+        </div>
+        <div class="btns">
+          <a class="btn primary" href="it-support-resources.html#network-printer-checklist">Utiliser la liste</a>
+          <a class="btn" href="../projects.html">← Retour aux projets</a>
+        </div>
+      </div>
+      <div class="stats" aria-label="Résumé du processus">
+        <div class="stat"><span class="stat-num">8</span><span class="label">Étapes de diagnostic</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="label">Couches de service</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="label">Motifs d’escalade</span></div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="scope-title">
+      <div class="section-head"><div><h2 id="scope-title">Scénario et limite de preuve</h2><span class="small">Une démonstration transparente du portfolio</span></div></div>
+      <div class="project-brief">
+        <div><span class="project-label">Symptômes représentatifs</span><p>Un utilisateur Windows ne peut pas atteindre les services attendus, trouver une imprimante partagée ou terminer une impression.</p></div>
+        <div><span class="project-label">Impact opérationnel</span><p>Les interruptions de connexion et d’impression peuvent bloquer la communication, la gestion de documents et le travail courant.</p></div>
+        <div><span class="project-label">Objectif</span><p>Localiser la couche affectée, appliquer l’action sûre la moins perturbatrice, valider la tâche d’origine et documenter le résultat.</p></div>
+        <div><span class="project-label">Limite de preuve</span><p>Aucun client, ticket, organisme, adresse privée, schéma réseau, délai de résolution ou résultat garanti n’est représenté.</p></div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="tools-title">
+      <div class="section-head"><div><h2 id="tools-title">Outils et points d’observation</h2><span class="small">Contrôles intégrés avant toute action perturbatrice</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">1</div><div><strong>Contrôles physiques et de l’adaptateur</strong><div class="small">Alimentation, câbles, Wi-Fi, Ethernet, état du lien</div></div></div><p class="small">Confirmer que l’appareil et le chemin de connexion sont disponibles avant de modifier le logiciel.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">2</div><div><strong>Outils réseau Windows</strong><div class="small">Paramètres, ipconfig, ping, nslookup</div></div></div><p class="small">Distinguer la configuration locale, la passerelle, l’accès externe et la résolution DNS.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">3</div><div><strong>Contrôles d’impression</strong><div class="small">File, périphérique par défaut, spouleur, pilote</div></div></div><p class="small">Déterminer si Windows, le partage ou l’imprimante empêche la sortie.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">4</div><div><strong>Compte rendu de support</strong><div class="small">Symptômes, tests, actions, résultats</div></div></div><p class="small">Conserver un relevé concis et anonymisé qu’un autre technicien peut comprendre.</p></article>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="workflow-title">
+      <div class="section-head"><div><h2 id="workflow-title">Processus de diagnostic en huit étapes</h2><span class="small">Des contrôles simples aux tests propres au service</span></div></div>
+      <div class="timeline">
+        <article class="timeline-item"><details class="timeline-card" open><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">1</span></span><span class="timeline-head"><strong>Confirmer le périmètre et l’impact</strong><span class="small">Un appareil, plusieurs utilisateurs, le réseau, l’imprimante ou une application ?</span></span></summary><ul><li>Noter la tâche exacte qui échoue et tout changement récent.</li><li>Vérifier si d’autres services ou utilisateurs sont affectés.</li><li>Éviter de collecter des données privées inutiles.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">2</span></span><span class="timeline-head"><strong>Inspecter l’alimentation et les connexions</strong><span class="small">Éliminer les causes physiques visibles</span></span></summary><ul><li>Confirmer l’alimentation du poste, des équipements réseau et de l’imprimante.</li><li>Contrôler les connexions Ethernet, USB ou applicables.</li><li>Vérifier le papier, les capots, les voyants et les erreurs visibles.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">3</span></span><span class="timeline-head"><strong>Vérifier l’adaptateur et la configuration IP</strong><span class="small">Contrôler l’état de la connexion locale</span></span></summary><ul><li>Confirmer que le Wi-Fi ou l’Ethernet est activé et connecté.</li><li>Utiliser <code>ipconfig</code> pour examiner l’adresse, la passerelle et le DNS.</li><li>Considérer une configuration automatique absente ou inattendue comme un indice.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">4</span></span><span class="timeline-head"><strong>Tester le chemin par couches</strong><span class="small">Appareil local, passerelle, puis accès externe</span></span></summary><ul><li>Utiliser <code>ping</code> uniquement lorsque cela est autorisé.</li><li>Noter si l’échec est local, en amont ou limité à une destination.</li><li>Ne pas publier d’adresses IP réelles d’une organisation.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">5</span></span><span class="timeline-head"><strong>Contrôler la résolution de noms</strong><span class="small">Distinguer le DNS de la connectivité générale</span></span></summary><ul><li>Comparer l’accès par adresse et l’accès par nom.</li><li>Utiliser <code>nslookup</code> pour observer la résolution.</li><li>Transmettre les problèmes DNS persistants hors du périmètre local.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">6</span></span><span class="timeline-head"><strong>Inspecter la découverte et l’accès à l’imprimante</strong><span class="small">Confirmer le bon périphérique et le partage attendu</span></span></summary><ul><li>Vérifier que la bonne imprimante est installée et disponible.</li><li>Confirmer que l’utilisateur possède l’accès autorisé.</li><li>Ne pas contourner les permissions ni exposer le partage interne.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">7</span></span><span class="timeline-head"><strong>Contrôler la file, le spouleur, le pilote et le choix par défaut</strong><span class="small">Isoler la couche d’impression Windows</span></span></summary><ul><li>Examiner les tâches en attente avant de les supprimer.</li><li>Contrôler le spouleur et l’état du pilote approuvé.</li><li>Confirmer le périphérique par défaut lorsque cela convient.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">8</span></span><span class="timeline-head"><strong>Valider et documenter</strong><span class="small">Répéter la tâche d’origine et consigner le résultat</span></span></summary><ul><li>Imprimer une page de test puis un document utilisateur sûr lorsque cela est permis.</li><li>Confirmer la connexion et l’impression avec l’utilisateur.</li><li>Noter les symptômes, commandes, résultats, actions, validations et escalades.</li></ul></details></article>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="escalation-title">
+      <div class="section-head"><div><h2 id="escalation-title">Décision d’escalade</h2><span class="small">S’arrêter lorsque l’autorité, la sécurité ou le périmètre change</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">A</div><div><strong>Accès ou politique</strong><div class="small">Droits administratifs ou permission de partage nécessaires</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">B</div><div><strong>Panne d’infrastructure</strong><div class="small">Plusieurs utilisateurs, la passerelle, DHCP, DNS ou un service amont sont affectés</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">C</div><div><strong>Risque matériel</strong><div class="small">Dommage, surchauffe, problème électrique ou panne répétée</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">D</div><div><strong>Modification non prise en charge</strong><div class="small">Serveur, réseau géré, micrologiciel ou action fournisseur nécessaire</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">E</div><div><strong>Impact incertain sur les données</strong><div class="small">Une action pourrait exposer, supprimer ou corrompre des informations</div></div></div></article>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <div><h2 id="evidence-title">Continuer les preuves de support informatique</h2><p class="summary">Consultez la préparation d’un poste, le processus général ou les listes réutilisables.</p></div>
+        <div class="btns">
+          <a class="btn primary" href="project-workstation-user-setup.html">Configuration du poste et de l’utilisateur</a>
+          <a class="btn" href="../project-it-support-case-study.html" lang="en" hreflang="en">Processus principal — anglais</a>
+          <a class="btn" href="it-support-resources.html">Ressources de support</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

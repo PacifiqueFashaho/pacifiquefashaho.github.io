@@ -41,12 +41,34 @@ PAGE_SPECS = {
         "en",
     ),
     "it-support-resources.html": ("/it-support-resources.html", "en"),
+    "fr/project-network-printer-case-study.html": (
+        "/fr/project-network-printer-case-study.html",
+        "fr",
+    ),
+    "fr/project-workstation-user-setup.html": (
+        "/fr/project-workstation-user-setup.html",
+        "fr",
+    ),
+    "fr/it-support-resources.html": ("/fr/it-support-resources.html", "fr"),
     "project-data-cleaning-case-study.html": (
         "/project-data-cleaning-case-study.html",
         "en",
     ),
     "project-sales-dashboard.html": ("/project-sales-dashboard.html", "en"),
 }
+
+BILINGUAL_PAGE_PAIRS = (
+    ("index.html", "fr/index.html"),
+    (
+        "project-network-printer-case-study.html",
+        "fr/project-network-printer-case-study.html",
+    ),
+    (
+        "project-workstation-user-setup.html",
+        "fr/project-workstation-user-setup.html",
+    ),
+    ("it-support-resources.html", "fr/it-support-resources.html"),
+)
 
 DETAILED_CASE_STUDY_PAGES = (
     "project-it-support-case-study.html",
@@ -106,6 +128,8 @@ class PortfolioHTMLParser(HTMLParser):
         self.references: list[tuple[str, str]] = []
         self.images: list[dict[str, str | None]] = []
         self.blank_target_links: list[dict[str, str | None]] = []
+        self.alternate_links: dict[str, str] = {}
+        self.canonical_url: str | None = None
         self.json_ld_blocks: list[str] = []
         self.in_json_ld = False
         self.json_ld_parts: list[str] = []
@@ -139,6 +163,19 @@ class PortfolioHTMLParser(HTMLParser):
 
         if tag in {"a", "link"}:
             self._add_reference(tag, attributes.get("href"))
+
+        if tag == "link" and "alternate" in (
+            attributes.get("rel") or ""
+        ).lower().split():
+            language = attributes.get("hreflang")
+            href = attributes.get("href")
+            if language and href:
+                self.alternate_links[language.lower()] = href
+
+        if tag == "link" and "canonical" in (
+            attributes.get("rel") or ""
+        ).lower().split():
+            self.canonical_url = attributes.get("href")
 
         if tag in {"img", "script", "source"}:
             self._add_reference(tag, attributes.get("src"))
@@ -474,6 +511,56 @@ def validate_json(errors: list[str]) -> None:
             errors.append(f"{json_file}: invalid JSON ({error})")
 
 
+def validate_bilingual_pages(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    for english_page, french_page in BILINGUAL_PAGE_PAIRS:
+        english_route = PAGE_SPECS[english_page][0]
+        french_route = PAGE_SPECS[french_page][0]
+        expected_links = {
+            "en": f"{SITE_ORIGIN}{english_route}",
+            "fr": f"{SITE_ORIGIN}{french_route}",
+            "x-default": f"{SITE_ORIGIN}{english_route}",
+        }
+
+        for page in (english_page, french_page):
+            parser = parsed_pages.get(page)
+            if parser is None:
+                continue
+
+            expected_canonical = expected_links[PAGE_SPECS[page][1]]
+            add_error(
+                errors,
+                parser.canonical_url == expected_canonical,
+                f"{page}: canonical URL does not match its language route",
+            )
+            add_error(
+                errors,
+                parser.alternate_links == expected_links,
+                f"{page}: hreflang links do not match its bilingual page pair",
+            )
+
+            if page not in {"index.html", "fr/index.html"}:
+                expected_language = PAGE_SPECS[page][1]
+                structured_languages: list[str] = []
+                for block in parser.json_ld_blocks:
+                    try:
+                        structured_data = json.loads(block)
+                    except json.JSONDecodeError:
+                        continue
+                    if isinstance(structured_data, dict):
+                        language = structured_data.get("inLanguage")
+                        if isinstance(language, str):
+                            structured_languages.append(language)
+
+                add_error(
+                    errors,
+                    expected_language in structured_languages,
+                    f"{page}: JSON-LD inLanguage does not match the page language",
+                )
+
+
 def validate_project_catalog(errors: list[str]) -> None:
     source = read_text("projects.html", errors)
     if source is None:
@@ -636,6 +723,16 @@ def validate_workbench(errors: list[str]) -> None:
                 f"assets/js/main.js: Workbench marker missing: {token}",
             )
 
+        for route in (
+            "project-network-printer-case-study.html",
+            "project-workstation-user-setup.html",
+        ):
+            add_error(
+                errors,
+                javascript.count(f'href: "{route}"') == 2,
+                f"assets/js/main.js: expected English and French Workbench routes for {route}",
+            )
+
     stylesheet = read_text("assets/css/style.css", errors)
     if stylesheet is not None:
         add_error(
@@ -712,6 +809,7 @@ def main() -> int:
 
     parsed_pages = parse_pages(errors)
     validate_references(parsed_pages, errors)
+    validate_bilingual_pages(parsed_pages, errors)
     validate_css(errors)
     validate_json(errors)
     validate_project_catalog(errors)
