@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration d’un poste et d’un utilisateur | Pacifique Fashaho</title>
+  <meta name="description" content="Liste pratique de support informatique pour préparer un poste Windows, valider les mises à jour et périphériques, orienter l’utilisateur, documenter la remise et transmettre en sécurité." />
+  <meta name="keywords" content="Pacifique Fashaho, support informatique, configuration de poste, Windows, utilisateur, validation des pilotes, imprimante, remise à l’utilisateur" />
+  <meta name="author" content="Pacifique Fashaho" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="canonical" href="https://pacifiquefashaho.github.io/fr/project-workstation-user-setup.html" />
+  <link rel="alternate" hreflang="en" href="https://pacifiquefashaho.github.io/project-workstation-user-setup.html" />
+  <link rel="alternate" hreflang="fr" href="https://pacifiquefashaho.github.io/fr/project-workstation-user-setup.html" />
+  <link rel="alternate" hreflang="x-default" href="https://pacifiquefashaho.github.io/project-workstation-user-setup.html" />
+  <link rel="icon" href="../assets/images/ui/favicon.ico" />
+  <link rel="apple-touch-icon" href="../assets/images/ui/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <meta property="og:title" content="Configuration d’un poste et d’un utilisateur | Pacifique Fashaho" />
+  <meta property="og:description" content="Liste pratique de configuration d’un poste Windows et de remise à l’utilisateur, avec validation, documentation, confidentialité et limites d’escalade." />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta property="og:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
+  <meta property="og:url" content="https://pacifiquefashaho.github.io/fr/project-workstation-user-setup.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Portfolio de Pacifique Fashaho" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Configuration d’un poste et d’un utilisateur | Pacifique Fashaho" />
+  <meta name="twitter:description" content="Liste pratique pour la configuration Windows, la validation des périphériques, l’orientation, la remise et la documentation." />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta name="twitter:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+      } catch (error) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Configuration d’un nouveau poste et d’un utilisateur",
+    "name": "Configuration d’un nouveau poste et d’un utilisateur",
+    "url": "https://pacifiquefashaho.github.io/fr/project-workstation-user-setup.html",
+    "mainEntityOfPage": "https://pacifiquefashaho.github.io/fr/project-workstation-user-setup.html",
+    "description": "Liste pratique de support informatique pour préparer un poste Windows, valider les mises à jour et périphériques, orienter l’utilisateur, documenter la remise et transmettre en sécurité.",
+    "author": {
+      "@type": "Person",
+      "name": "Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/fr/"
+    },
+    "inLanguage": "fr",
+    "proficiencyLevel": "Débutant",
+    "about": ["Support informatique", "Configuration d’un poste Windows", "Remise à l’utilisateur"],
+    "keywords": ["Configuration Windows", "Mises à jour", "Pilotes", "Contrôles de sécurité", "Imprimante", "Orientation utilisateur", "Documentation technique"]
+  }
+  </script>
+</head>
+<body>
+  <div id="loader" aria-hidden="true" hidden><div class="spinner"></div></div>
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+  <button id="toTop" type="button" aria-label="Retour en haut" hidden>↑ Haut</button>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Aller à la page d’accueil de Pacifique Fashaho">
+        <span class="dot" aria-hidden="true"></span><span>Pacifique Fashaho</span>
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#skills">Compétences</a>
+        <a class="active" href="../projects.html" aria-current="page">Projets</a>
+        <a href="../certifications.html">Certifications</a>
+        <a href="index.html#experience">Expérience</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-switcher" aria-label="Sélection de la langue">
+        <a href="../project-workstation-user-setup.html" lang="en" hreflang="en">EN</a>
+        <span class="language-switcher-separator" aria-hidden="true">/</span>
+        <a href="project-workstation-user-setup.html" lang="fr" hreflang="fr" aria-current="page">FR</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Passer au mode sombre" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Thème</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="wrap">
+    <section class="card reveal" aria-labelledby="case-study-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Liste pratique de support informatique</p>
+          <h1 class="title" id="case-study-title">Configuration d’un nouveau poste et d’un utilisateur</h1>
+          <p class="summary">
+            Une liste pratique pour préparer un poste Windows, valider ses fonctions essentielles, orienter
+            l’utilisateur et documenter la remise. Elle présente une méthode de support sans prétendre à un
+            déploiement d’entreprise, à l’administration d’un domaine ou à une intervention client précise.
+          </p>
+        </div>
+        <div class="btns">
+          <a class="btn primary" href="it-support-resources.html#workstation-handover-checklist">Utiliser la liste</a>
+          <a class="btn" href="../projects.html">← Retour aux projets</a>
+        </div>
+      </div>
+      <div class="stats" aria-label="Résumé de la liste">
+        <div class="stat"><span class="stat-num">8</span><span class="label">Étapes de configuration</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="label">Domaines de validation</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="label">Éléments de remise</span></div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="scope-title">
+      <div class="section-head"><div><h2 id="scope-title">Exigences et périmètre</h2><span class="small">Préparer uniquement ce qui est nécessaire et autorisé</span></div></div>
+      <div class="project-brief">
+        <div><span class="project-label">Examen des besoins</span><p>Confirmer les applications, la connexion, l’imprimante, la langue, le stockage et les besoins d’accessibilité approuvés.</p></div>
+        <div><span class="project-label">Inspection de l’appareil</span><p>Vérifier l’état physique, l’alimentation, les périphériques, l’espace disponible et les risques visibles avant la configuration.</p></div>
+        <div><span class="project-label">Limite de confidentialité</span><p>Utiliser uniquement des exemples génériques. Ne pas publier de noms, identifiants, numéros de série, courriels privés ou configurations internes.</p></div>
+        <div><span class="project-label">Limite technologique</span><p>Cette liste ne représente pas Active Directory, Microsoft Intune, les stratégies de groupe, l’administration de domaine ou un déploiement automatisé d’entreprise.</p></div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="workflow-title">
+      <div class="section-head"><div><h2 id="workflow-title">Processus de configuration en huit étapes</h2><span class="small">Une séquence volontaire, des besoins jusqu’à la remise</span></div></div>
+      <div class="timeline">
+        <article class="timeline-item"><details class="timeline-card" open><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">1</span></span><span class="timeline-head"><strong>Examiner les besoins et l’autorisation</strong><span class="small">Comprendre les besoins de travail approuvés</span></span></summary><ul><li>Confirmer l’utilisateur prévu, les applications, périphériques et connexions.</li><li>Identifier les dépendances de licence, d’accès administratif et de politique.</li><li>Transmettre toute autorisation manquante avant une installation.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">2</span></span><span class="timeline-head"><strong>Inspecter le poste et les accessoires</strong><span class="small">Contrôler la préparation physique sans publier d’identifiants</span></span></summary><ul><li>Inspecter l’alimentation, l’écran, le clavier, la souris, les ports et les accessoires.</li><li>Vérifier l’espace de stockage et l’état visible.</li><li>Consigner les identifiants uniquement dans un système privé autorisé.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">3</span></span><span class="timeline-head"><strong>Configurer les paramètres Windows de base</strong><span class="small">Langue, heure, affichage, alimentation et compte approuvé</span></span></summary><ul><li>Confirmer la langue, la région, le fuseau horaire, le clavier et l’affichage.</li><li>Créer uniquement le type de compte approuvé selon le processus autorisé.</li><li>Appliquer les paramètres d’accessibilité ou d’alimentation demandés.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">4</span></span><span class="timeline-head"><strong>Appliquer les mises à jour et valider les pilotes</strong><span class="small">Établir une base stable et prise en charge</span></span></summary><ul><li>Installer les mises à jour Windows approuvées et redémarrer si nécessaire.</li><li>Examiner le Gestionnaire de périphériques.</li><li>Utiliser les sources Windows ou constructeur approuvées.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">5</span></span><span class="timeline-head"><strong>Installer les applications approuvées</strong><span class="small">Bureautique, navigateur, communication et sécurité selon autorisation</span></span></summary><ul><li>Confirmer les licences avant l’installation.</li><li>Configurer uniquement les applications et valeurs sûres approuvées.</li><li>Vérifier que l’antivirus ou la protection intégrée est actif et à jour.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">6</span></span><span class="timeline-head"><strong>Connecter les services et périphériques</strong><span class="small">Réseau, imprimante, navigateur, courriel et stockage autorisé</span></span></summary><ul><li>Valider le réseau local et l’accès Internet attendu.</li><li>Connecter et tester l’imprimante autorisée.</li><li>Confirmer le courriel, le navigateur, les dossiers et la sauvegarde sans exposer d’identifiants.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">7</span></span><span class="timeline-head"><strong>Effectuer les tests d’acceptation</strong><span class="small">Tester le poste comme l’utilisateur l’emploiera</span></span></summary><ul><li>Redémarrer et confirmer une ouverture de session stable.</li><li>Ouvrir les applications essentielles et tester un document sûr.</li><li>Valider le réseau, le navigateur, le courriel autorisé, l’imprimante, l’audio et les périphériques applicables.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">8</span></span><span class="timeline-head"><strong>Orienter l’utilisateur et documenter la remise</strong><span class="small">Expliquer les actions essentielles et noter les points ouverts</span></span></summary><ul><li>Montrer la connexion, les applications, le stockage, l’impression, les mises à jour et le contact de support.</li><li>Confirmer que l’utilisateur peut répéter la tâche essentielle.</li><li>Noter les contrôles, exceptions, recommandations et responsabilités.</li></ul></details></article>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="validation-title">
+      <div class="section-head"><div><h2 id="validation-title">Six domaines d’acceptation</h2><span class="small">La configuration se termine après une vérification pratique</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">1</div><div><strong>Démarrage et connexion</strong><div class="small">Redémarrage, accès au compte, heure et bureau</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">2</div><div><strong>Mises à jour et appareils</strong><div class="small">État de Windows et alertes de pilotes</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">3</div><div><strong>Applications</strong><div class="small">Ouverture et processus approuvé de base</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">4</div><div><strong>Connectivité</strong><div class="small">Accès réseau et navigateur attendu</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">5</div><div><strong>Imprimante et périphériques</strong><div class="small">Page de test et accessoires applicables</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">6</div><div><strong>Processus utilisateur</strong><div class="small">L’utilisateur répète la tâche et sait demander de l’aide</div></div></div></article>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="handover-title">
+      <div class="section-head"><div><h2 id="handover-title">Compte rendu de remise</h2><span class="small">Documenter les contrôles sans exposer de données sensibles</span></div></div>
+      <div class="project-brief">
+        <div><span class="project-label">Périmètre terminé</span><p>Noter la configuration, les applications, les périphériques et les tests approuvés.</p></div>
+        <div><span class="project-label">Exceptions</span><p>Identifier les dépendances de pilotes, licences, matériel, accès ou politique.</p></div>
+        <div><span class="project-label">Orientation de l’utilisateur</span><p>Noter les tâches essentielles démontrées et confirmées.</p></div>
+        <div><span class="project-label">Action suivante</span><p>Attribuer la responsabilité du suivi, de l’escalade, de la maintenance ou du remplacement.</p></div>
+        <div><span class="project-label">Contrôle de confidentialité</span><p>Exclure les identifiants, mots de passe et informations personnelles de la documentation publique.</p></div>
+      </div>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="escalation-title">
+      <div class="section-head"><div><h2 id="escalation-title">Quand transmettre</h2><span class="small">Ne pas contourner l’autorité ni masquer un risque non résolu</span></div></div>
+      <ul>
+        <li>Le logiciel, la licence ou l’autorisation de compte nécessaire manque.</li>
+        <li>Des modifications d’administration, de domaine, de sécurité ou de service géré sont requises.</li>
+        <li>Un dommage matériel, un risque électrique, une panne de stockage ou des erreurs répétées sont présents.</li>
+        <li>La protection de sécurité ne peut pas être activée ou une infection est suspectée.</li>
+        <li>Le processus requis reste incomplet après les contrôles locaux autorisés.</li>
+      </ul>
+    </section>
+
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <div><h2 id="evidence-title">Continuer les preuves de support informatique</h2><p class="summary">Consultez le diagnostic réseau et imprimante, le processus général ou les modèles réutilisables.</p></div>
+        <div class="btns">
+          <a class="btn primary" href="project-network-printer-case-study.html">Processus réseau et imprimante</a>
+          <a class="btn" href="../project-it-support-case-study.html" lang="en" hreflang="en">Processus principal — anglais</a>
+          <a class="btn" href="it-support-resources.html">Ressources de support</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

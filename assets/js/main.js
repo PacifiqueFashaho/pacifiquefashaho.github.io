@@ -141,8 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusRunning: "Running the network and printer workflow...",
         statusComplete: "Network and printer workflow complete",
         result: "Connection or printing restored",
-        linkLabel: "View IT Support Case Study",
-        href: "project-it-support-case-study.html",
+        linkLabel: "View Network & Printer Case Study",
+        href: "project-network-printer-case-study.html",
         steps: [
           "Connectivity or printer problem reported",
           "Connection, IP, DNS, driver, and queue checks performed",
@@ -155,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusRunning: "Running the workstation and user setup workflow...",
         statusComplete: "Workstation and user setup workflow complete",
         result: "Workstation prepared for use",
-        linkLabel: "View IT Support Case Study",
-        href: "project-it-support-case-study.html",
+        linkLabel: "View Workstation Setup Case Study",
+        href: "project-workstation-user-setup.html",
         steps: [
           "User or workstation requirement received",
           "Windows, applications, account, and peripherals configured",
@@ -185,8 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusRunning: "Exécution du processus réseau et imprimante...",
         statusComplete: "Processus réseau et imprimante terminé",
         result: "Connexion ou impression rétablie",
-        linkLabel: "Voir l’étude de cas en support informatique",
-        href: "../project-it-support-case-study.html",
+        linkLabel: "Voir l’étude réseau et imprimante",
+        href: "project-network-printer-case-study.html",
         steps: [
           "Problème de connectivité ou d’impression signalé",
           "Vérifications de la connexion, de l’IP, du DNS, du pilote et de la file d’attente",
@@ -199,8 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusRunning: "Exécution de la configuration du poste et de l’utilisateur...",
         statusComplete: "Configuration du poste et de l’utilisateur terminée",
         result: "Poste de travail prêt à l’emploi",
-        linkLabel: "Voir l’étude de cas en support informatique",
-        href: "../project-it-support-case-study.html",
+        linkLabel: "Voir la configuration du poste",
+        href: "project-workstation-user-setup.html",
         steps: [
           "Besoin de l’utilisateur ou du poste reçu",
           "Windows, applications, compte et périphériques configurés",
