@@ -18,9 +18,30 @@
 
   <url>
     <loc>https://pacifiquefashaho.github.io/projects.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/project-network-printer-case-study.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/project-workstation-user-setup.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/it-support-resources.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.82</priority>
   </url>
 
   <url>
@@ -39,7 +60,7 @@
 
   <url>
     <loc>https://pacifiquefashaho.github.io/project-it-support-case-study.html</loc>
-    <lastmod>2026-07-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
