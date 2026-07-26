@@ -32,12 +32,29 @@ PAGE_SPECS = {
         "/project-it-support-case-study.html",
         "en",
     ),
+    "project-network-printer-case-study.html": (
+        "/project-network-printer-case-study.html",
+        "en",
+    ),
+    "project-workstation-user-setup.html": (
+        "/project-workstation-user-setup.html",
+        "en",
+    ),
+    "it-support-resources.html": ("/it-support-resources.html", "en"),
     "project-data-cleaning-case-study.html": (
         "/project-data-cleaning-case-study.html",
         "en",
     ),
     "project-sales-dashboard.html": ("/project-sales-dashboard.html", "en"),
 }
+
+DETAILED_CASE_STUDY_PAGES = (
+    "project-it-support-case-study.html",
+    "project-network-printer-case-study.html",
+    "project-workstation-user-setup.html",
+    "project-data-cleaning-case-study.html",
+    "project-sales-dashboard.html",
+)
 
 JSON_FILES = (
     "assets/data/projects.json",
@@ -457,6 +474,79 @@ def validate_json(errors: list[str]) -> None:
             errors.append(f"{json_file}: invalid JSON ({error})")
 
 
+def validate_project_catalog(errors: list[str]) -> None:
+    source = read_text("projects.html", errors)
+    if source is None:
+        return
+
+    project_categories = re.findall(
+        r'<article\b[^>]*\bclass="[^"]*\bproject\b[^"]*"'
+        r'[^>]*\bdata-category="([^"]+)"',
+        source,
+    )
+    project_count = len(project_categories)
+
+    parser = PortfolioHTMLParser()
+    parser.feed(source)
+    parser.close()
+
+    item_list: list[object] | None = None
+    for block in parser.json_ld_blocks:
+        try:
+            structured_data = json.loads(block)
+        except json.JSONDecodeError:
+            continue
+
+        if structured_data.get("@type") == "CollectionPage":
+            main_entity = structured_data.get("mainEntity", {})
+            if main_entity.get("@type") == "ItemList":
+                item_list = main_entity.get("itemListElement")
+                break
+
+    add_error(
+        errors,
+        isinstance(item_list, list),
+        "projects.html: CollectionPage JSON-LD ItemList is missing",
+    )
+
+    if isinstance(item_list, list):
+        positions = [
+            item.get("position")
+            for item in item_list
+            if isinstance(item, dict)
+        ]
+        add_error(
+            errors,
+            len(item_list) == project_count,
+            "projects.html: project cards and JSON-LD ItemList counts differ",
+        )
+        add_error(
+            errors,
+            positions == list(range(1, project_count + 1)),
+            "projects.html: JSON-LD ItemList positions are not consecutive",
+        )
+
+    def validate_stat(label: str, expected: int) -> None:
+        match = re.search(
+            r'<span class="stat-num" data-target="(\d+)">(\d+)</span>\s*'
+            rf'<span class="label">{re.escape(label)}</span>',
+            source,
+        )
+        add_error(
+            errors,
+            bool(
+                match
+                and int(match.group(1)) == expected
+                and int(match.group(2)) == expected
+            ),
+            f"projects.html: {label} target and no-JavaScript value must both be {expected}",
+        )
+
+    validate_stat("Portfolio Projects", project_count)
+    validate_stat("Project Categories", len(set(project_categories)))
+    validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
+
+
 def validate_sitemap(errors: list[str]) -> None:
     sitemap_path = ROOT / "sitemap.xml"
 
@@ -484,7 +574,7 @@ def validate_sitemap(errors: list[str]) -> None:
     add_error(
         errors,
         set(locations) == expected_locations,
-        "sitemap.xml: URL set does not match the seven public pages",
+        "sitemap.xml: URL set does not match the configured public pages",
     )
 
     for sitemap_url in locations:
@@ -624,6 +714,7 @@ def main() -> int:
     validate_references(parsed_pages, errors)
     validate_css(errors)
     validate_json(errors)
+    validate_project_catalog(errors)
     validate_sitemap(errors)
     validate_workbench(errors)
     validate_protected_resources(errors)
@@ -637,7 +728,7 @@ def main() -> int:
 
     print(
         "Static portfolio validation passed: "
-        "7 pages, internal resources, accessibility markers, JSON-LD, "
+        f"{len(PAGE_SPECS)} pages, internal resources, accessibility markers, JSON-LD, "
         "JSON, XML, protected resources, and HTTP routes."
     )
     return 0

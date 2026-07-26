@@ -97,26 +97,38 @@
           "url": "https://pacifiquefashaho.github.io/project-it-support-case-study.html"
         },
         {
-          "@type": "CreativeWork",
+          "@type": "TechArticle",
           "position": 2,
+          "name": "Network Connectivity and Shared Printer Troubleshooting",
+          "url": "https://pacifiquefashaho.github.io/project-network-printer-case-study.html"
+        },
+        {
+          "@type": "TechArticle",
+          "position": 3,
+          "name": "New Workstation and User Setup",
+          "url": "https://pacifiquefashaho.github.io/project-workstation-user-setup.html"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 4,
           "name": "Sales Performance Dashboard",
           "url": "https://pacifiquefashaho.github.io/project-sales-dashboard.html"
         },
         {
           "@type": "CreativeWork",
-          "position": 3,
+          "position": 5,
           "name": "Data Cleaning and Reporting Case Study",
           "url": "https://pacifiquefashaho.github.io/project-data-cleaning-case-study.html"
         },
         {
           "@type": "CreativeWork",
-          "position": 4,
+          "position": 6,
           "name": "Personal Portfolio Website",
           "url": "https://pacifiquefashaho.github.io/projects.html#project-portfolio"
         },
         {
           "@type": "CreativeWork",
-          "position": 5,
+          "position": 7,
           "name": "KoBoToolbox and ODK Field Data Support",
           "url": "https://pacifiquefashaho.github.io/projects.html#project-field-data-workflow"
         }
@@ -206,17 +218,17 @@
 
       <div class="stats" aria-label="Projects summary">
         <div class="stat">
-          <span class="stat-num" data-target="5">0</span>
+          <span class="stat-num" data-target="7">7</span>
           <span class="label">Portfolio Projects</span>
         </div>
 
         <div class="stat">
-          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-num" data-target="4">4</span>
           <span class="label">Project Categories</span>
         </div>
 
         <div class="stat">
-          <span class="stat-num" data-target="3">0</span>
+          <span class="stat-num" data-target="5">5</span>
           <span class="label">Detailed Case Studies</span>
         </div>
       </div>
@@ -372,67 +384,59 @@
       </div>
 
       <div class="projects-grid">
-        <!-- IT Support Workflow -->
-        <article class="project" id="project-it-support-workflow" data-category="it-support">
+        <!-- Network and Shared Printer Troubleshooting -->
+        <article class="project" id="project-network-printer-workflow" data-category="it-support">
           <div class="project-top">
-            <h3>Workstation Setup &amp; Troubleshooting Workflow</h3>
+            <div>
+              <h3>Network Connectivity &amp; Shared Printer Troubleshooting</h3>
+              <p class="small">Representative IT Support Workflow</p>
+            </div>
 
             <div class="project-tags">
               <span class="tag">Windows</span>
-              <span class="tag">Hardware</span>
-              <span class="tag">Printers</span>
-              <span class="tag">Networking</span>
+              <span class="tag">DHCP &amp; DNS</span>
+              <span class="tag">Shared Printers</span>
+              <span class="tag">Escalation</span>
             </div>
-          </div>
-
-          <div class="project-preview">
-            <img
-              src="assets/images/projects/it-support-workflow.svg"
-              alt="Eight-stage representative workstation setup and troubleshooting workflow"
-              loading="lazy"
-              decoding="async"
-              width="1400"
-              height="900"
-            />
           </div>
 
           <div class="project-brief">
             <div>
               <span class="project-label">Problem</span>
               <p>
-                Workstation symptoms can interrupt Windows use, hardware, printing, connectivity, and essential user tasks.
+                A user cannot reach expected network services, discover a shared printer, or complete a print job.
               </p>
             </div>
 
             <div>
               <span class="project-label">Tools</span>
               <p>
-                Windows utilities, hardware inspection, printer checks, IP and DNS diagnostics, and documentation.
+                Adapter checks, ipconfig, ping, nslookup, printer queue, Print Spooler, driver, and test page.
               </p>
             </div>
 
             <div>
               <span class="project-label">Method</span>
               <p>
-                Documented a representative sequence for intake, data protection, diagnosis, validation, and handoff.
+                Separates physical, local network, upstream, DNS, shared-access, and Windows printing layers.
               </p>
             </div>
 
             <div>
-              <span class="project-label">Published scope</span>
+              <span class="project-label">Evidence boundary</span>
               <p>
-                4 workflow areas, 8 method stages, and 6 example checks; no client SLA or guaranteed outcome.
+                A representative workflow, not a claim about one client, ticket, private network, or guaranteed resolution.
               </p>
             </div>
           </div>
 
           <div class="project-actions">
-            <a class="pbtn primary" href="project-it-support-case-study.html">
-              View IT Support Case Study
+            <a class="pbtn primary" href="project-network-printer-case-study.html">
+              View Network &amp; Printer Case Study
             </a>
 
-            <a class="pbtn" href="index.html#experience">
-              View Related Experience
+            <a class="pbtn" href="it-support-resources.html#network-printer-checklist">
+              Open Diagnostic Checklist
             </a>
           </div>
 
@@ -444,8 +448,79 @@
             <summary>View project details</summary>
             <div class="project-detail-body">
               <p>
-                This representative workflow connects verified support experience with a transparent,
-                reusable troubleshooting method rather than presenting a fictional client engagement.
+                Eight diagnostic stages connect symptom intake, network-layer tests, printer checks,
+                validation, documentation, and five clear escalation triggers.
+              </p>
+            </div>
+          </details>
+        </article>
+
+        <!-- Workstation and User Setup -->
+        <article class="project" id="project-workstation-user-setup" data-category="it-support">
+          <div class="project-top">
+            <div>
+              <h3>New Workstation &amp; User Setup</h3>
+              <p class="small">Practical IT Support Checklist</p>
+            </div>
+
+            <div class="project-tags">
+              <span class="tag">Windows Setup</span>
+              <span class="tag">Drivers</span>
+              <span class="tag">User Handover</span>
+              <span class="tag">Documentation</span>
+            </div>
+          </div>
+
+          <div class="project-brief">
+            <div>
+              <span class="project-label">Objective</span>
+              <p>
+                Prepare a Windows workstation, validate essential functions, orient the user, and document handover.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Checks</span>
+              <p>
+                Updates, drivers, approved applications, security, network, printer, folders, and backup location.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Method</span>
+              <p>
+                Eight stages move from requirements and inspection through acceptance testing and user orientation.
+              </p>
+            </div>
+
+            <div>
+              <span class="project-label">Evidence boundary</span>
+              <p>
+                No enterprise deployment, Active Directory, Intune, Group Policy, domain, or client claim.
+              </p>
+            </div>
+          </div>
+
+          <div class="project-actions">
+            <a class="pbtn primary" href="project-workstation-user-setup.html">
+              View Workstation Setup Case Study
+            </a>
+
+            <a class="pbtn" href="it-support-resources.html#workstation-handover-checklist">
+              Open Handover Checklist
+            </a>
+          </div>
+
+          <div class="small project-foot">
+            Category: IT Support
+          </div>
+
+          <details class="project-details">
+            <summary>View project details</summary>
+            <div class="project-detail-body">
+              <p>
+                The checklist demonstrates practical local workstation preparation, six acceptance areas,
+                user handover, documentation, privacy safeguards, and escalation boundaries.
               </p>
             </div>
           </details>
