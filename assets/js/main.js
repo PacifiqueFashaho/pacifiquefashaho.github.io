@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sendingStatus: "Sending your message...",
         serviceError: "The form service returned an error.",
         success:
-          "Thank you. Your message has been sent successfully. Pacifique will respond as soon as possible.",
+          "Thank you. Your message has been sent successfully.",
         failure:
           "Your message could not be sent. Please contact Pacifique through email or WhatsApp."
       },
@@ -58,10 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
         field:
           "Your message is ready. Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.",
         opportunity:
-          "Your message is ready. Include the role, location or remote option, timeline, and preferred contact method before continuing.",
+          "Your recruiter message is ready. Include the IT Support role, employment or internship type, location or remote arrangement, timeline, and preferred contact method before continuing.",
         fallback:
           "Your message is ready. Choose Email, WhatsApp, or the contact form below to contact Pacifique.",
-        emailSubject: "Portfolio contact request",
+        emailSubject: "IT Support portfolio contact",
         emailGreeting: "Hello Pacifique,",
         emailClosing: "Best regards,"
       }
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sendingStatus: "Envoi de votre message...",
         serviceError: "Le service du formulaire a retourn\u00E9 une erreur.",
         success:
-          "Merci. Votre message a \u00E9t\u00E9 envoy\u00E9 avec succ\u00E8s. Pacifique vous r\u00E9pondra d\u00E8s que possible.",
+          "Merci. Votre message a \u00E9t\u00E9 envoy\u00E9 avec succ\u00E8s.",
         failure:
           "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email ou WhatsApp."
       },
@@ -101,10 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
         field:
           "Votre message est pr\u00EAt. Pacifique peut accompagner l\u2019utilisation de KoBoToolbox / ODK, les tests de formulaires, la configuration des appareils, la validation et la pr\u00E9paration des rapports.",
         opportunity:
-          "Votre message est pr\u00EAt. Pr\u00E9cisez le poste, le lieu ou l\u2019option \u00E0 distance, le calendrier et le moyen de contact souhait\u00E9.",
+          "Votre message de recrutement est pr\u00EAt. Pr\u00E9cisez le poste en support informatique, le type d\u2019emploi ou de stage, le lieu ou l\u2019option \u00E0 distance, le calendrier et le moyen de contact souhait\u00E9.",
         fallback:
           "Votre message est pr\u00EAt. Choisissez l\u2019email, WhatsApp ou le formulaire pour contacter Pacifique.",
-        emailSubject: "Demande de contact depuis le portfolio",
+        emailSubject: "Contact portfolio pour le support informatique",
         emailGreeting: "Bonjour Pacifique,",
         emailClosing: "Cordialement,"
       }
@@ -1333,6 +1333,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
       includesAssistantKeyword(normalized, [
+        "job",
+        "opportunity",
+        "position",
+        "role",
+        "career",
+        "hire",
+        "hiring",
+        "recruit",
+        "intern",
+        "internship",
+        "emploi",
+        "opportunite",
+        "candidature",
+        "embauche",
+        "recrut",
+        "stage"
+      ])
+    ) {
+      return strings.assistant.opportunity;
+    }
+
+    if (
+      includesAssistantKeyword(normalized, [
         "dashboard",
         "excel",
         "report",
@@ -1346,7 +1369,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (
       includesAssistantKeyword(normalized, [
-        "it",
+        "it support",
+        "help desk",
+        "desktop support",
+        "technical support",
         "support",
         "computer",
         "printer",
@@ -1355,7 +1381,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "ordinateur",
         "imprimante",
         "reseau",
-        "depannage"
+        "depannage",
+        "support technique",
+        "technicien support"
       ])
     ) {
       return strings.assistant.support;
@@ -1386,21 +1414,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ])
     ) {
       return strings.assistant.field;
-    }
-
-    if (
-      includesAssistantKeyword(normalized, [
-        "job",
-        "opportunity",
-        "work",
-        "hire",
-        "emploi",
-        "opportunite",
-        "travail",
-        "recrut"
-      ])
-    ) {
-      return strings.assistant.opportunity;
     }
 
     return strings.assistant.fallback;

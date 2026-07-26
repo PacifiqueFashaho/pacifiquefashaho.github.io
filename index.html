@@ -201,9 +201,8 @@
     <!-- Hero -->
     <section class="hero hero-v2" aria-labelledby="hero-title">
       <div class="card hero-v2__intro">
-        <p class="hero-v2__availability">
-          <span class="live-dot online" aria-hidden="true"></span>
-          <span>Available for remote and on-site opportunities</span>
+        <p class="hero-v2__opportunity">
+          <span>Seeking IT Support employment and internship opportunities</span>
         </p>
 
         <h1 class="title" id="hero-title">
@@ -1019,9 +1018,9 @@
     <section id="contact" class="card reveal contact-section" style="margin-top:16px;">
       <div class="section-head contact-section-head">
         <div>
-          <h2>Contact</h2>
+          <h2>Recruiter &amp; Contact</h2>
           <p class="contact-intro">
-            Have a project, technical issue, data task, or opportunity? Let’s connect.
+            Recruiters and hiring teams can contact me about IT Support employment or internship opportunities. Service enquiries remain welcome.
           </p>
         </div>
 
@@ -1031,18 +1030,19 @@
       </div>
 
       <div class="contact-layout">
-        <aside class="contact-panel contact-info-card" aria-labelledby="contactAvailabilityTitle">
-          <span class="contact-kicker">Open to collaboration</span>
+        <aside class="contact-panel contact-info-card" aria-labelledby="recruiterContactTitle">
+          <span class="contact-kicker">Recruiter contact</span>
 
-          <h3 id="contactAvailabilityTitle">Available for remote and on-site opportunities</h3>
+          <h3 id="recruiterContactTitle">Discuss an IT Support role or internship</h3>
 
-          <div class="availability-badges" aria-label="Availability and location">
-            <span class="availability-badge">Remote / On-site</span>
-            <span class="availability-badge">Based in Goma, DR Congo</span>
+          <div class="contact-context-badges" aria-label="Opportunity types and location">
+            <span class="contact-context-badge">Employment / Internship</span>
+            <span class="contact-context-badge">Remote / On-site</span>
+            <span class="contact-context-badge">Based in Goma, DR Congo</span>
           </div>
 
           <p class="small">
-            I can help with IT support, data cleaning, dashboards, web portfolio updates, and field data tools.
+            My primary focus is IT Support Technician, Help Desk, Desktop Support, Junior IT, and field support opportunities. Data and digital capabilities are complementary.
           </p>
 
           <div class="contact-direct-list" aria-label="Direct contact options">
@@ -1085,12 +1085,23 @@
             <span class="copy-status small" id="copyEmailStatus" role="status" aria-live="polite"></span>
           </div>
 
-          <div class="service-chip-group" aria-label="Choose a service to prefill the contact form">
-            <button class="service-chip" type="button" data-service="IT Support" aria-pressed="false">IT Support</button>
-            <button class="service-chip" type="button" data-service="Data Analysis" aria-pressed="false">Data Analysis</button>
-            <button class="service-chip" type="button" data-service="Dashboard Project" aria-pressed="false">Dashboard Project</button>
-            <button class="service-chip" type="button" data-service="Web Portfolio" aria-pressed="false">Web Portfolio</button>
-            <button class="service-chip" type="button" data-service="KoBoToolbox / ODK" aria-pressed="false">KoBoToolbox / ODK</button>
+          <div class="contact-topic-groups">
+            <div class="contact-topic-group">
+              <span class="contact-topic-label" id="recruitmentTopics">Recruitment</span>
+              <div class="service-chip-group" aria-labelledby="recruitmentTopics">
+                <button class="service-chip service-chip--priority" type="button" data-service="IT Support employment opportunity" aria-pressed="false">IT Support Employment</button>
+                <button class="service-chip service-chip--priority" type="button" data-service="IT Support internship opportunity" aria-pressed="false">IT Support Internship</button>
+              </div>
+            </div>
+
+            <div class="contact-topic-group">
+              <span class="contact-topic-label" id="serviceTopics">Other enquiries</span>
+              <div class="service-chip-group" aria-labelledby="serviceTopics">
+                <button class="service-chip" type="button" data-service="IT Support service request" aria-pressed="false">IT Support Service</button>
+                <button class="service-chip" type="button" data-service="Data and reporting request" aria-pressed="false">Data &amp; Reporting</button>
+                <button class="service-chip" type="button" data-service="Field data or digital support request" aria-pressed="false">Field Data / Digital</button>
+              </div>
+            </div>
           </div>
         </aside>
 
@@ -1139,12 +1150,12 @@
           </div>
 
           <div class="form-row">
-            <label for="contactSubject">Subject or service needed</label>
+            <label for="contactSubject">Role, internship, or subject</label>
             <input
               id="contactSubject"
               name="subject"
               type="text"
-              placeholder="Example: IT Support, Data Analysis, Dashboard Project"
+              placeholder="Example: IT Support employment opportunity"
               required
             />
           </div>
@@ -1155,7 +1166,7 @@
               id="contactMessage"
               name="message"
               rows="6"
-              placeholder="Tell me what you need help with, your timeline, and the best way to reply."
+              placeholder="Describe the role or request, relevant timing, location or remote arrangement, and the best way to reply."
               required
             ></textarea>
           </div>
@@ -1169,7 +1180,7 @@
           </button>
 
           <p class="small" id="contactFormHelp">
-            Your message will be sent securely through this form. Email and WhatsApp remain available as alternatives.
+            Submitting this form sends the details you enter to Formspree for delivery. Do not include passwords, identity documents, or other sensitive information. Email and WhatsApp remain available.
           </p>
 
           <p class="form-status small" id="contactFormStatus" role="status" aria-live="polite"></p>
@@ -1179,7 +1190,7 @@
       <div class="quick-contact-block">
         <div class="section-head quick-contact-head">
           <h3>Quick Contact Links</h3>
-          <span class="small">Resume, profiles, website, email, and phone access.</span>
+          <span class="small">Resume, portfolio evidence, professional profiles, and email.</span>
         </div>
 
         <div class="contact-grid" aria-label="Quick contact links">
@@ -1267,7 +1278,7 @@
       </div>
 
       <div class="contact-foot">
-        <div class="small">Open to remote opportunities • IT Support • Data Analytics</div>
+        <div class="small">Recruiter contact • IT Support employment and internships</div>
         <div class="small">© <span id="y2"></span> Pacifique Fashaho</div>
       </div>
     </section>
@@ -1282,7 +1293,6 @@
       aria-controls="chatAssistant"
       aria-expanded="false"
     >
-      <span class="assistant-launcher-dot" aria-hidden="true"></span>
       <span class="assistant-launcher-icon" aria-hidden="true">&#x1F4AC;</span>
       <span class="assistant-launcher-label">Contact</span>
     </button>
@@ -1308,13 +1318,12 @@
           decoding="async"
         />
 
-        <span class="chat-online-dot" aria-hidden="true"></span>
       </div>
 
       <div class="chat-profile-text">
         <strong id="chatAssistantTitle">Quick Contact Assistant</strong>
         <span id="chatAssistantDescription">
-          Prepares email or WhatsApp messages
+          Prepares recruiter and service messages
         </span>
       </div>
 
@@ -1349,8 +1358,7 @@
     >
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
-          Hello! This tool helps you prepare a message for Pacifique about IT support,
-          data cleaning, dashboards, professional opportunities, or KoBoToolbox / ODK support.
+          Hello! This tool helps recruiters, hiring teams, and service contacts prepare a message for Pacifique. IT Support employment and internship opportunities are the primary focus.
         </div>
       </div>
 
@@ -1363,20 +1371,20 @@
     </div>
 
     <div class="chat-suggestions" aria-label="Quick message suggestions">
-      <button type="button" class="chat-suggestion" data-message="I need help with IT support.">
-        IT Support
+      <button type="button" class="chat-suggestion" data-message="I am recruiting for an IT Support position.">
+        IT Support Job
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I need help with a dashboard project.">
-        Dashboard
+      <button type="button" class="chat-suggestion" data-message="I want to discuss an IT Support internship.">
+        IT Support Internship
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I need help cleaning or analyzing data.">
-        Data Analysis
+      <button type="button" class="chat-suggestion" data-message="I need help with an IT support service.">
+        IT Support Service
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I want to discuss a professional opportunity.">
-        Opportunity
+      <button type="button" class="chat-suggestion" data-message="I need help with a data or field-data task.">
+        Data / Field Work
       </button>
     </div>
 
@@ -1396,7 +1404,7 @@
     </form>
 
     <p class="chat-disclosure">
-      Your text stays in this browser until you choose a contact method.
+      This tool does not send messages automatically. Do not include passwords, identity documents, or other sensitive information.
     </p>
 
     <div class="chat-contact-actions">
