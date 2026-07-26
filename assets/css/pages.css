@@ -208,6 +208,89 @@
   margin-top: 10px;
 }
 
+.credential-course-list {
+  overflow: hidden;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--soft-surface);
+}
+
+.credential-course-list summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-weight: 850;
+  cursor: pointer;
+  list-style: none;
+}
+
+.credential-course-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.credential-course-list summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+.credential-course-list[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
+.credential-course-list[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.credential-course-list summary:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.45);
+  outline-offset: -3px;
+}
+
+.credential-course-list ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 6px 18px 14px 44px;
+}
+
+.credential-course-list li {
+  padding: 12px 0 12px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.credential-course-list li:last-child {
+  border-bottom: 0;
+}
+
+.credential-course-list strong,
+.credential-course-list span {
+  display: block;
+}
+
+.credential-course-list span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.credential-course-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+  color: var(--accent);
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
 /* Make certification pages easier to scan */
 #data-cert-title,
 #programming-cert-title,
@@ -443,6 +526,20 @@
     width: fit-content;
     margin: 8px 0 0;
   }
+
+  .credential-course-list ol {
+    padding: 4px 14px 12px 34px;
+  }
+
+  .credential-course-list li {
+    padding-block: 12px;
+  }
+
+  .credential-course-list a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media (max-width: 430px) {
@@ -453,6 +550,15 @@
   .case-study-card,
   .file-card {
     padding: 12px;
+  }
+
+  .credential-course-list summary {
+    padding: 12px 14px;
+  }
+
+  .credential-course-list ol {
+    padding-right: 12px;
+    padding-left: 30px;
   }
 }
 
