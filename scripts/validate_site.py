@@ -92,6 +92,23 @@ CSS_FILES = (
     "assets/css/pages.css",
 )
 
+SOCIAL_IMAGE_SPECS = {
+    f"{SITE_ORIGIN}/assets/images/ui/og-image.png": (
+        "assets/images/ui/og-image.png",
+        "image/png",
+        1200,
+        627,
+        750_000,
+    ),
+    f"{SITE_ORIGIN}/assets/images/projects/sales-dashboard-preview.jpg": (
+        "assets/images/projects/sales-dashboard-preview.jpg",
+        "image/jpeg",
+        1600,
+        759,
+        750_000,
+    ),
+}
+
 
 def collect_repository_files() -> set[str]:
     """Return file paths with their exact repository casing."""
@@ -135,6 +152,8 @@ class PortfolioHTMLParser(HTMLParser):
         self.assistant_suggestions: list[dict[str, str | None]] = []
         self.alternate_links: dict[str, str] = {}
         self.canonical_url: str | None = None
+        self.meta_properties: dict[str, str] = {}
+        self.meta_names: dict[str, str] = {}
         self.json_ld_blocks: list[str] = []
         self.in_json_ld = False
         self.json_ld_parts: list[str] = []
@@ -152,8 +171,17 @@ class PortfolioHTMLParser(HTMLParser):
 
         if tag == "html":
             self.language = attributes.get("lang")
-        elif tag == "meta" and (attributes.get("name") or "").lower() == "viewport":
-            self.has_viewport = True
+        elif tag == "meta":
+            name = (attributes.get("name") or "").lower()
+            property_name = (attributes.get("property") or "").lower()
+            content = attributes.get("content")
+
+            if name == "viewport":
+                self.has_viewport = True
+            if name and content is not None:
+                self.meta_names[name] = content
+            if property_name and content is not None:
+                self.meta_properties[property_name] = content
         elif tag == "title":
             self.in_title = True
         elif tag == "main":
@@ -446,6 +474,180 @@ def parse_pages(
             )
 
     return parsed_pages
+
+
+def read_image_metadata(
+    relative_path: str,
+    errors: list[str],
+) -> tuple[str, int, int, int] | None:
+    """Return MIME type, width, height, and byte size for PNG or JPEG assets."""
+    path = ROOT / relative_path
+
+    if not path.is_file():
+        errors.append(f"{relative_path}: required social image is missing")
+        return None
+
+    data = path.read_bytes()
+
+    if data.startswith(b"\x89PNG\r\n\x1a\n"):
+        if len(data) < 24 or data[12:16] != b"IHDR":
+            errors.append(f"{relative_path}: invalid PNG header")
+            return None
+        width = int.from_bytes(data[16:20], "big")
+        height = int.from_bytes(data[20:24], "big")
+        return "image/png", width, height, len(data)
+
+    if data.startswith(b"\xff\xd8"):
+        offset = 2
+        start_of_frame_markers = {
+            0xC0,
+            0xC1,
+            0xC2,
+            0xC3,
+            0xC5,
+            0xC6,
+            0xC7,
+            0xC9,
+            0xCA,
+            0xCB,
+            0xCD,
+            0xCE,
+            0xCF,
+        }
+
+        while offset + 3 < len(data):
+            if data[offset] != 0xFF:
+                offset += 1
+                continue
+
+            while offset < len(data) and data[offset] == 0xFF:
+                offset += 1
+            if offset >= len(data):
+                break
+
+            marker = data[offset]
+            offset += 1
+            if marker in {0x01, *range(0xD0, 0xD9)}:
+                continue
+            if offset + 2 > len(data):
+                break
+
+            segment_length = int.from_bytes(data[offset : offset + 2], "big")
+            if segment_length < 2 or offset + segment_length > len(data):
+                break
+
+            if marker in start_of_frame_markers and segment_length >= 7:
+                height = int.from_bytes(data[offset + 3 : offset + 5], "big")
+                width = int.from_bytes(data[offset + 5 : offset + 7], "big")
+                return "image/jpeg", width, height, len(data)
+
+            offset += segment_length
+
+        errors.append(f"{relative_path}: JPEG dimensions could not be read")
+        return None
+
+    errors.append(f"{relative_path}: expected a PNG or JPEG social image")
+    return None
+
+
+def validate_social_previews(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    """Validate preview assets and Open Graph/Twitter metadata consistency."""
+    asset_metadata: dict[str, tuple[str, int, int, int]] = {}
+
+    for image_url, (
+        relative_path,
+        expected_mime,
+        expected_width,
+        expected_height,
+        maximum_bytes,
+    ) in SOCIAL_IMAGE_SPECS.items():
+        metadata = read_image_metadata(relative_path, errors)
+        if metadata is None:
+            continue
+
+        actual_mime, actual_width, actual_height, actual_bytes = metadata
+        asset_metadata[image_url] = metadata
+        add_error(
+            errors,
+            actual_mime == expected_mime,
+            (
+                f"{relative_path}: expected {expected_mime}, "
+                f"found {actual_mime}"
+            ),
+        )
+        add_error(
+            errors,
+            (actual_width, actual_height) == (
+                expected_width,
+                expected_height,
+            ),
+            (
+                f"{relative_path}: expected {expected_width}x{expected_height}, "
+                f"found {actual_width}x{actual_height}"
+            ),
+        )
+        add_error(
+            errors,
+            actual_bytes <= maximum_bytes,
+            (
+                f"{relative_path}: social image is {actual_bytes} bytes; "
+                f"maximum is {maximum_bytes}"
+            ),
+        )
+
+    for page, parser in parsed_pages.items():
+        properties = parser.meta_properties
+        names = parser.meta_names
+        image_url = properties.get("og:image")
+        metadata = asset_metadata.get(image_url or "")
+
+        add_error(
+            errors,
+            metadata is not None,
+            f"{page}: og:image must reference an approved social image",
+        )
+        if metadata is None:
+            continue
+
+        mime_type, width, height, _ = metadata
+        expected_metadata = {
+            "og:image:type": mime_type,
+            "og:image:width": str(width),
+            "og:image:height": str(height),
+        }
+        for property_name, expected_value in expected_metadata.items():
+            add_error(
+                errors,
+                properties.get(property_name) == expected_value,
+                (
+                    f"{page}: {property_name} must be "
+                    f"{expected_value!r}"
+                ),
+            )
+
+        add_error(
+            errors,
+            bool((properties.get("og:image:alt") or "").strip()),
+            f"{page}: missing og:image:alt",
+        )
+        add_error(
+            errors,
+            names.get("twitter:card") == "summary_large_image",
+            f"{page}: twitter:card must be 'summary_large_image'",
+        )
+        add_error(
+            errors,
+            names.get("twitter:image") == image_url,
+            f"{page}: twitter:image must match og:image",
+        )
+        add_error(
+            errors,
+            bool((names.get("twitter:image:alt") or "").strip()),
+            f"{page}: missing twitter:image:alt",
+        )
 
 
 def validate_references(
@@ -1231,6 +1433,7 @@ def main() -> int:
     errors: list[str] = []
 
     parsed_pages = parse_pages(errors)
+    validate_social_previews(parsed_pages, errors)
     validate_references(parsed_pages, errors)
     validate_bilingual_pages(parsed_pages, errors)
     validate_quick_assistant(parsed_pages, errors)
@@ -1254,7 +1457,7 @@ def main() -> int:
     print(
         "Static portfolio validation passed: "
         f"{len(PAGE_SPECS)} pages, internal resources, accessibility markers, JSON-LD, "
-        "JSON, XML, recruiter PDFs, protected resources, and HTTP routes."
+        "JSON, XML, social previews, recruiter PDFs, protected resources, and HTTP routes."
     )
     return 0
 
