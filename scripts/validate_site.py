@@ -30,10 +30,16 @@ PAGE_SPECS = {
     "index.html": ("/", "en"),
     "fr/index.html": ("/fr/", "fr"),
     "projects.html": ("/projects.html", "en"),
+    "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
+    "fr/certifications.html": ("/fr/certifications.html", "fr"),
     "project-it-support-case-study.html": (
         "/project-it-support-case-study.html",
         "en",
+    ),
+    "fr/project-it-support-case-study.html": (
+        "/fr/project-it-support-case-study.html",
+        "fr",
     ),
     "project-network-printer-case-study.html": (
         "/project-network-printer-case-study.html",
@@ -62,6 +68,12 @@ PAGE_SPECS = {
 
 BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
+    ("projects.html", "fr/projects.html"),
+    ("certifications.html", "fr/certifications.html"),
+    (
+        "project-it-support-case-study.html",
+        "fr/project-it-support-case-study.html",
+    ),
     (
         "project-network-printer-case-study.html",
         "fr/project-network-printer-case-study.html",
@@ -147,6 +159,7 @@ class PortfolioHTMLParser(HTMLParser):
         self.ids: list[str] = []
         self.headings: list[int] = []
         self.references: list[tuple[str, str]] = []
+        self.anchor_links: list[dict[str, str | None]] = []
         self.images: list[dict[str, str | None]] = []
         self.blank_target_links: list[dict[str, str | None]] = []
         self.assistant_suggestions: list[dict[str, str | None]] = []
@@ -196,6 +209,8 @@ class PortfolioHTMLParser(HTMLParser):
 
         if tag in {"a", "link"}:
             self._add_reference(tag, attributes.get("href"))
+        if tag == "a":
+            self.anchor_links.append(attributes)
 
         if tag == "link" and "alternate" in (
             attributes.get("rel") or ""
@@ -889,6 +904,38 @@ def validate_bilingual_pages(
                     errors,
                     expected_language in structured_languages,
                     f"{page}: JSON-LD inLanguage does not match the page language",
+                )
+
+    french_counterparts = {
+        english_page: french_page
+        for english_page, french_page in BILINGUAL_PAGE_PAIRS
+    }
+    for page, parser in parsed_pages.items():
+        if PAGE_SPECS[page][1] != "fr":
+            continue
+
+        for attributes in parser.anchor_links:
+            reference = attributes.get("href")
+            if not reference:
+                continue
+
+            resolved = resolve_local_reference(page, reference)
+            if resolved is None or resolved.suffix.lower() != ".html":
+                continue
+
+            try:
+                target_page = resolved.relative_to(ROOT).as_posix()
+            except ValueError:
+                continue
+
+            if (
+                target_page in french_counterparts
+                and (attributes.get("hreflang") or "").lower() != "en"
+            ):
+                errors.append(
+                    f"{page}: silent French journey break to "
+                    f"{target_page}; use "
+                    f"{french_counterparts[target_page]} instead"
                 )
 
 
