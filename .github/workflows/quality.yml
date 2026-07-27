@@ -24,9 +24,13 @@ jobs:
 
       - name: Check JavaScript syntax
         run: |
+          node --check assets/js/assistant-intents.js
           node --check assets/js/main.js
           node --check assets/js/projects.js
           node --check assets/js/certifications.js
+
+      - name: Test Quick Assistant intent classification
+        run: node scripts/test_assistant_intents.js
 
       - name: Validate site structure and data
         run: python3 scripts/validate_site.py
