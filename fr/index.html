@@ -1293,8 +1293,8 @@
 
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
-          Aucun message n’est envoyé automatiquement. Choisissez un sujet ou rédigez votre message,
-          puis continuez par email, WhatsApp ou le formulaire.
+          Choisissez un sujet ou rédigez un court brouillon. Pour une réponse plus rapide,
+          précisez le poste ou la demande, le lieu ou l’option à distance, le délai et le moyen de contact souhaité.
         </div>
       </div>
     </div>
@@ -1312,6 +1312,10 @@
         Service de support informatique
       </button>
 
+      <button type="button" class="chat-suggestion" data-message="Je souhaite discuter de votre disponibilité et de votre expérience en support informatique.">
+        CV et disponibilité
+      </button>
+
       <button type="button" class="chat-suggestion" data-message="J’ai besoin d’aide pour une tâche liée aux données ou aux données de terrain.">
         Données / Travail terrain
       </button>
@@ -1320,23 +1324,43 @@
     <form class="chat-input-area" id="chatAssistantForm">
       <label class="sr-only" for="chatMessageInput">Rédigez le message à préparer</label>
 
-      <textarea
-        id="chatMessageInput"
-        rows="2"
-        placeholder="Décrivez votre besoin..."
-        required
-      ></textarea>
+      <div class="chat-input-main">
+        <textarea
+          id="chatMessageInput"
+          rows="2"
+          maxlength="800"
+          placeholder="Décrivez votre besoin..."
+          aria-describedby="chatInputHelp chatCharacterCount"
+          required
+        ></textarea>
+
+        <div class="chat-input-meta">
+          <span id="chatInputHelp">Ctrl/⌘ + Entrée pour préparer</span>
+          <span id="chatCharacterCount">0 / 800</span>
+        </div>
+      </div>
 
       <button type="submit" class="chat-send-btn" aria-label="Préparer le message de contact">
         Préparer
       </button>
     </form>
 
+    <p class="chat-assistant-status" id="chatAssistantStatus" role="status" aria-live="polite"></p>
+
     <p class="chat-disclosure">
       Cet outil n’envoie aucun message automatiquement. N’incluez pas de mot de passe, de pièce d’identité ni d’autre information sensible.
     </p>
 
     <div class="chat-contact-actions">
+      <button
+        class="chat-action-btn"
+        id="chatCopyMessage"
+        type="button"
+        disabled
+      >
+        Copier le message
+      </button>
+
       <a
         class="chat-action-btn primary"
         id="chatEmailLink"

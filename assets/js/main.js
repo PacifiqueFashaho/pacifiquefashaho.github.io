@@ -50,20 +50,36 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       assistant: {
         dashboard:
-          "Your message is ready. Pacifique can help organize data, define KPIs, clean workbooks, and build clear dashboards. Choose Email, WhatsApp, or the contact form below.",
+          "This looks like a dashboard or reporting request. Add the data source, required KPIs, preferred tool, and deadline so Pacifique can respond accurately.",
         support:
-          "Your message is ready. Pacifique can help with Windows setup, troubleshooting, printers, networks, user support, and basic system maintenance. Choose a contact method below.",
+          "This looks like an IT Support request. Add the device or system, symptoms, number of affected users, urgency, and location or remote arrangement.",
         data:
-          "Your message is ready. Pacifique can help clean datasets, check data quality, prepare analysis, and create reports with Excel, SQL, Python, or Google Sheets.",
+          "This looks like a data task. Add the file format, approximate volume, quality issue, expected output, preferred tool, and deadline.",
         field:
-          "Your message is ready. Pacifique can help with KoBoToolbox / ODK support, form testing, device setup, data validation, and reporting preparation.",
+          "This looks like a field-data request. Add the platform, form or device issue, field context, expected deliverable, and timeline.",
         opportunity:
-          "Your recruiter message is ready. Include the IT Support role, employment or internship type, location or remote arrangement, timeline, and preferred contact method before continuing.",
+          "This looks like a recruitment message. Add the role, employment or internship type, location or remote arrangement, start timeline, and preferred contact method.",
         fallback:
-          "Your message is ready. Choose Email, WhatsApp, or the contact form below to contact Pacifique.",
-        emailSubject: "IT Support portfolio contact",
+          "Your draft is ready. Add the desired outcome, timing, and preferred reply method if they are not already included.",
+        preparing: "Preparing your contact options...",
+        ready:
+          "Draft ready. Review it, then copy it or continue through your preferred contact method.",
+        copied: "Prepared message copied.",
+        copyFailure:
+          "The message could not be copied. Continue by email or use the contact form.",
+        formPrefilled:
+          "The assistant added the prepared subject and message. Complete your name and email, review everything, then send.",
+        subjects: {
+          opportunity: "IT Support opportunity",
+          support: "IT Support service request",
+          dashboard: "Dashboard and reporting request",
+          data: "Data support request",
+          field: "Field-data support request",
+          fallback: "Portfolio contact"
+        },
         emailGreeting: "Hello Pacifique,",
-        emailClosing: "Best regards,"
+        emailClosing: "Best regards,",
+        whatsappGreeting: "Hello Pacifique,"
       }
     },
     fr: {
@@ -93,20 +109,36 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       assistant: {
         dashboard:
-          "Votre message est pr\u00EAt. Pacifique peut organiser les donn\u00E9es, d\u00E9finir les indicateurs, nettoyer les fichiers et construire des tableaux de bord clairs. Choisissez l\u2019email, WhatsApp ou le formulaire.",
+          "Votre demande concerne un tableau de bord ou un rapport. Ajoutez la source des donn\u00E9es, les indicateurs attendus, l\u2019outil souhait\u00E9 et le d\u00E9lai.",
         support:
-          "Votre message est pr\u00EAt. Pacifique peut intervenir sur Windows, le d\u00E9pannage, les imprimantes, les r\u00E9seaux et l\u2019assistance aux utilisateurs. Choisissez un moyen de contact.",
+          "Votre demande concerne le support informatique. Ajoutez l\u2019appareil ou le syst\u00E8me, les sympt\u00F4mes, le nombre d\u2019utilisateurs touch\u00E9s, l\u2019urgence et le lieu ou l\u2019option \u00E0 distance.",
         data:
-          "Votre message est pr\u00EAt. Pacifique peut nettoyer les jeux de donn\u00E9es, contr\u00F4ler leur qualit\u00E9, pr\u00E9parer les analyses et produire des rapports avec Excel, SQL, Python ou Google Sheets.",
+          "Votre demande concerne les donn\u00E9es. Ajoutez le format, le volume approximatif, le probl\u00E8me de qualit\u00E9, le r\u00E9sultat attendu, l\u2019outil souhait\u00E9 et le d\u00E9lai.",
         field:
-          "Votre message est pr\u00EAt. Pacifique peut accompagner l\u2019utilisation de KoBoToolbox / ODK, les tests de formulaires, la configuration des appareils, la validation et la pr\u00E9paration des rapports.",
+          "Votre demande concerne les donn\u00E9es de terrain. Ajoutez la plateforme, le probl\u00E8me de formulaire ou d\u2019appareil, le contexte terrain, le livrable attendu et le calendrier.",
         opportunity:
-          "Votre message de recrutement est pr\u00EAt. Pr\u00E9cisez le poste en support informatique, le type d\u2019emploi ou de stage, le lieu ou l\u2019option \u00E0 distance, le calendrier et le moyen de contact souhait\u00E9.",
+          "Votre message concerne une opportunit\u00E9. Ajoutez le poste, le type d\u2019emploi ou de stage, le lieu ou l\u2019option \u00E0 distance, la date de d\u00E9but et le moyen de contact souhait\u00E9.",
         fallback:
-          "Votre message est pr\u00EAt. Choisissez l\u2019email, WhatsApp ou le formulaire pour contacter Pacifique.",
-        emailSubject: "Contact portfolio pour le support informatique",
+          "Votre brouillon est pr\u00EAt. Ajoutez le r\u00E9sultat souhait\u00E9, le d\u00E9lai et le moyen de r\u00E9ponse pr\u00E9f\u00E9r\u00E9 si ces informations manquent.",
+        preparing: "Pr\u00E9paration des options de contact...",
+        ready:
+          "Brouillon pr\u00EAt. Relisez-le, puis copiez-le ou continuez avec le moyen de contact souhait\u00E9.",
+        copied: "Message pr\u00E9par\u00E9 copi\u00E9.",
+        copyFailure:
+          "Le message n\u2019a pas pu \u00EAtre copi\u00E9. Continuez par email ou utilisez le formulaire.",
+        formPrefilled:
+          "L\u2019assistant a ajout\u00E9 l\u2019objet et le message. Compl\u00E9tez votre nom et votre email, relisez le tout, puis envoyez.",
+        subjects: {
+          opportunity: "Opportunit\u00E9 en support informatique",
+          support: "Demande de service en support informatique",
+          dashboard: "Demande de tableau de bord et de rapport",
+          data: "Demande d\u2019assistance pour les donn\u00E9es",
+          field: "Demande d\u2019assistance pour les donn\u00E9es de terrain",
+          fallback: "Contact depuis le portfolio"
+        },
         emailGreeting: "Bonjour Pacifique,",
-        emailClosing: "Cordialement,"
+        emailClosing: "Cordialement,",
+        whatsappGreeting: "Bonjour Pacifique."
       }
     }
   };
@@ -1201,22 +1233,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatEmailLink = document.getElementById("chatEmailLink");
   const chatWhatsappLink = document.getElementById("chatWhatsappLink");
   const chatContactFormLink = document.getElementById("chatContactFormLink");
+  const chatCopyMessage = document.getElementById("chatCopyMessage");
+  const chatCharacterCount = document.getElementById("chatCharacterCount");
+  const chatAssistantStatus = document.getElementById("chatAssistantStatus");
+  const contactName = document.getElementById("contactName");
+  const contactSubject = document.getElementById("contactSubject");
+  const contactMessage = document.getElementById("contactMessage");
 
   let assistantIsOpen = false;
   let assistantCloseTimer = null;
   let assistantFocusTimer = null;
+  let preparedAssistantMessage = "";
+  let preparedAssistantSubject = strings.assistant.subjects.fallback;
   const assistantReplyTimers = new Set();
+
+  function clearAssistantReplyTimers() {
+    assistantReplyTimers.forEach((timerId) => {
+      window.clearTimeout(timerId);
+    });
+    assistantReplyTimers.clear();
+  }
 
   function clearAssistantTimers() {
     window.clearTimeout(assistantCloseTimer);
     window.clearTimeout(assistantFocusTimer);
     assistantCloseTimer = null;
     assistantFocusTimer = null;
-
-    assistantReplyTimers.forEach((timerId) => {
-      window.clearTimeout(timerId);
-    });
-    assistantReplyTimers.clear();
+    clearAssistantReplyTimers();
   }
 
   function scheduleAssistantReply(callback, delay) {
@@ -1300,7 +1343,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closeChatAssistant();
   }
 
-  function appendChatMessage(message, type) {
+  function appendChatMessage(message, type, { generated = false } = {}) {
     if (!chatBody) return;
 
     const messageRow = document.createElement("div");
@@ -1312,9 +1355,39 @@ document.addEventListener("DOMContentLoaded", () => {
     bubble.className = "chat-bubble";
     bubble.textContent = message;
 
+    if (generated) {
+      messageRow.dataset.generated = "true";
+    }
+
     messageRow.appendChild(bubble);
     chatBody.appendChild(messageRow);
     chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function clearGeneratedChatMessages() {
+    if (!chatBody) return;
+
+    chatBody
+      .querySelectorAll('.chat-message[data-generated="true"]')
+      .forEach((message) => message.remove());
+  }
+
+  function setAssistantStatus(message, type = "") {
+    if (!chatAssistantStatus) return;
+
+    chatAssistantStatus.textContent = message;
+    chatAssistantStatus.classList.remove("success", "error");
+
+    if (type) {
+      chatAssistantStatus.classList.add(type);
+    }
+  }
+
+  function updateAssistantCharacterCount() {
+    if (!chatInput || !chatCharacterCount) return;
+
+    const maximum = Number(chatInput.maxLength) || 800;
+    chatCharacterCount.textContent = `${chatInput.value.length} / ${maximum}`;
   }
 
   function normalizeAssistantText(value) {
@@ -1328,7 +1401,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return keywords.some((keyword) => value.includes(keyword));
   }
 
-  function buildAssistantReply(message) {
+  function getAssistantIntent(message) {
     const normalized = normalizeAssistantText(message);
 
     if (
@@ -1341,17 +1414,22 @@ document.addEventListener("DOMContentLoaded", () => {
         "hire",
         "hiring",
         "recruit",
+        "availability",
+        "resume",
+        "cv",
+        "experience",
         "intern",
         "internship",
         "emploi",
         "opportunite",
         "candidature",
         "embauche",
+        "disponibilite",
         "recrut",
         "stage"
       ])
     ) {
-      return strings.assistant.opportunity;
+      return "opportunity";
     }
 
     if (
@@ -1364,7 +1442,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "kpi"
       ])
     ) {
-      return strings.assistant.dashboard;
+      return "dashboard";
     }
 
     if (
@@ -1386,7 +1464,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "technicien support"
       ])
     ) {
-      return strings.assistant.support;
+      return "support";
     }
 
     if (
@@ -1401,7 +1479,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "analyse"
       ])
     ) {
-      return strings.assistant.data;
+      return "data";
     }
 
     if (
@@ -1413,34 +1491,58 @@ document.addEventListener("DOMContentLoaded", () => {
         "collecte"
       ])
     ) {
-      return strings.assistant.field;
+      return "field";
     }
 
-    return strings.assistant.fallback;
+    return "fallback";
   }
 
-  function updateContactLinks(message) {
-    const contactMessage = [
+  function buildAssistantReply(intent) {
+    return strings.assistant[intent] || strings.assistant.fallback;
+  }
+
+  function buildEmailMessage(message) {
+    return [
       strings.assistant.emailGreeting,
       "",
       message,
       "",
       strings.assistant.emailClosing
     ].join("\n");
+  }
 
-    const encodedMessage = encodeURIComponent(contactMessage);
-    const emailSubject = encodeURIComponent(
-      strings.assistant.emailSubject
+  function buildWhatsappMessage(message) {
+    return [
+      strings.assistant.whatsappGreeting,
+      "",
+      message
+    ].join("\n");
+  }
+
+  function updateContactLinks(message, intent) {
+    preparedAssistantMessage = message;
+    preparedAssistantSubject =
+      strings.assistant.subjects[intent] ||
+      strings.assistant.subjects.fallback;
+
+    const encodedEmailMessage = encodeURIComponent(buildEmailMessage(message));
+    const encodedWhatsappMessage = encodeURIComponent(
+      buildWhatsappMessage(message)
     );
+    const emailSubject = encodeURIComponent(preparedAssistantSubject);
 
     if (chatEmailLink) {
       chatEmailLink.href =
-        `mailto:pacifiquefashaho04@gmail.com?subject=${emailSubject}&body=${encodedMessage}`;
+        `mailto:pacifiquefashaho04@gmail.com?subject=${emailSubject}&body=${encodedEmailMessage}`;
     }
 
     if (chatWhatsappLink) {
       chatWhatsappLink.href =
-        `https://wa.me/243859477758?text=${encodedMessage}`;
+        `https://wa.me/243859477758?text=${encodedWhatsappMessage}`;
+    }
+
+    if (chatCopyMessage) {
+      chatCopyMessage.disabled = false;
     }
   }
 
@@ -1455,21 +1557,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    appendChatMessage(cleanMessage, "visitor");
-    updateContactLinks(cleanMessage);
+    const intent = getAssistantIntent(cleanMessage);
+
+    clearAssistantReplyTimers();
+    clearGeneratedChatMessages();
+    appendChatMessage(cleanMessage, "visitor", { generated: true });
+    updateContactLinks(cleanMessage, intent);
+    setAssistantStatus(strings.assistant.preparing);
 
     if (chatInput) {
       chatInput.value = "";
+      updateAssistantCharacterCount();
     }
 
     scheduleAssistantReply(
       () => {
         appendChatMessage(
-          buildAssistantReply(cleanMessage),
-          "assistant"
+          buildAssistantReply(intent),
+          "assistant",
+          { generated: true }
         );
+        setAssistantStatus(strings.assistant.ready, "success");
       },
-      prefersReducedMotion.matches ? 0 : 350
+      prefersReducedMotion.matches ? 0 : 260
     );
   }
 
@@ -1499,6 +1609,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (chatInput) {
+    updateAssistantCharacterCount();
+
+    chatInput.addEventListener("input", updateAssistantCharacterCount);
+    chatInput.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Enter" &&
+        (event.ctrlKey || event.metaKey)
+      ) {
+        event.preventDefault();
+        chatForm?.requestSubmit();
+      }
+    });
+  }
+
   chatSuggestions.forEach((suggestion) => {
     suggestion.addEventListener("click", () => {
       const message =
@@ -1508,9 +1633,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  if (chatCopyMessage) {
+    chatCopyMessage.addEventListener("click", async () => {
+      if (!preparedAssistantMessage) return;
+
+      try {
+        const messageToCopy = buildEmailMessage(preparedAssistantMessage);
+
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(messageToCopy);
+        } else if (!fallbackCopy(messageToCopy)) {
+          throw new Error("Clipboard copy unavailable");
+        }
+
+        setAssistantStatus(strings.assistant.copied, "success");
+      } catch (error) {
+        setAssistantStatus(strings.assistant.copyFailure, "error");
+      }
+    });
+  }
+
   if (chatContactFormLink) {
-    chatContactFormLink.addEventListener("click", () => {
+    chatContactFormLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (preparedAssistantMessage) {
+        if (contactSubject) {
+          contactSubject.value = preparedAssistantSubject;
+        }
+
+        if (contactMessage) {
+          contactMessage.value = preparedAssistantMessage;
+        }
+
+        setContactFormStatus(strings.assistant.formPrefilled, "success");
+      }
+
       closeChatAssistant({ restoreFocus: false });
+
+      window.setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({
+          behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+          block: "start"
+        });
+
+        const firstIncompleteField =
+          !contactName?.value.trim() ? contactName : contactSubject;
+        firstIncompleteField?.focus();
+      }, prefersReducedMotion.matches ? 0 : 320);
     });
   }
 
