@@ -1400,8 +1400,8 @@
 
       <div class="chat-message assistant-message">
         <div class="chat-bubble">
-          It does not send anything automatically. Choose a topic or write a message,
-          then continue through Email, WhatsApp, or the contact form.
+          Choose a topic or write a short draft. For faster replies, include the
+          role or request, location or remote arrangement, timing, and preferred contact method.
         </div>
       </div>
     </div>
@@ -1419,6 +1419,10 @@
         IT Support Service
       </button>
 
+      <button type="button" class="chat-suggestion" data-message="I would like to discuss your availability and IT Support experience.">
+        CV &amp; Availability
+      </button>
+
       <button type="button" class="chat-suggestion" data-message="I need help with a data or field-data task.">
         Data / Field Work
       </button>
@@ -1427,23 +1431,43 @@
     <form class="chat-input-area" id="chatAssistantForm">
       <label class="sr-only" for="chatMessageInput">Write the message you want to prepare</label>
 
-      <textarea
-        id="chatMessageInput"
-        rows="2"
-        placeholder="Describe what you need..."
-        required
-      ></textarea>
+      <div class="chat-input-main">
+        <textarea
+          id="chatMessageInput"
+          rows="2"
+          maxlength="800"
+          placeholder="Describe what you need..."
+          aria-describedby="chatInputHelp chatCharacterCount"
+          required
+        ></textarea>
+
+        <div class="chat-input-meta">
+          <span id="chatInputHelp">Ctrl/⌘ + Enter to prepare</span>
+          <span id="chatCharacterCount">0 / 800</span>
+        </div>
+      </div>
 
       <button type="submit" class="chat-send-btn" aria-label="Prepare contact message">
         Prepare
       </button>
     </form>
 
+    <p class="chat-assistant-status" id="chatAssistantStatus" role="status" aria-live="polite"></p>
+
     <p class="chat-disclosure">
       This tool does not send messages automatically. Do not include passwords, identity documents, or other sensitive information.
     </p>
 
     <div class="chat-contact-actions">
+      <button
+        class="chat-action-btn"
+        id="chatCopyMessage"
+        type="button"
+        disabled
+      >
+        Copy Message
+      </button>
+
       <a
         class="chat-action-btn primary"
         id="chatEmailLink"
