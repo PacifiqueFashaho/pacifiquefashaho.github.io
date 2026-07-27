@@ -355,6 +355,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function setAssistantExposure(isExposed) {
+    if (!chatAssistant) return;
+
+    chatAssistant.setAttribute("aria-hidden", String(!isExposed));
+
+    if (isExposed) {
+      chatAssistant.removeAttribute("inert");
+    } else {
+      chatAssistant.setAttribute("inert", "");
+    }
+  }
+
   function openChatAssistant() {
     if (!chatAssistant || assistantIsOpen) return;
 
@@ -362,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
     assistantCloseTimer = null;
     assistantIsOpen = true;
     chatAssistant.hidden = false;
+    setAssistantExposure(true);
     assistantLauncher?.setAttribute("aria-expanded", "true");
 
     if (assistantLauncherWrap) {
@@ -388,6 +401,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.clearTimeout(assistantFocusTimer);
     assistantFocusTimer = null;
     chatAssistant.classList.remove("show");
+    setAssistantExposure(false);
     assistantLauncher?.setAttribute("aria-expanded", "false");
 
     assistantCloseTimer = window.setTimeout(
