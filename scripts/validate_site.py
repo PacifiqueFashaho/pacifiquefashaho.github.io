@@ -88,6 +88,7 @@ JSON_FILES = (
 
 CSS_FILES = (
     "assets/css/style.css",
+    "assets/css/contact-assistant.css",
     "assets/css/pages.css",
 )
 
@@ -506,6 +507,105 @@ def validate_css(errors: list[str]) -> None:
                 errors,
                 repository_path in REPOSITORY_FILES,
                 f"{stylesheet}: missing url() asset: {reference}",
+            )
+
+
+def validate_css_architecture(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    expected_stylesheets = {
+        "index.html": (
+            "assets/css/style.css",
+            "assets/css/contact-assistant.css",
+            "assets/css/pages.css",
+        ),
+        "fr/index.html": (
+            "../assets/css/style.css",
+            "../assets/css/contact-assistant.css",
+            "../assets/css/pages.css",
+        ),
+    }
+
+    for page, stylesheets in expected_stylesheets.items():
+        parser = parsed_pages.get(page)
+        if parser is None:
+            continue
+
+        stylesheet_references = [
+            reference
+            for tag, reference in parser.references
+            if tag == "link" and reference.endswith(".css")
+        ]
+        add_error(
+            errors,
+            all(stylesheet in stylesheet_references for stylesheet in stylesheets),
+            f"{page}: required home-page stylesheets are incomplete",
+        )
+        if all(
+            stylesheet in stylesheet_references for stylesheet in stylesheets
+        ):
+            add_error(
+                errors,
+                [
+                    stylesheet_references.index(stylesheet)
+                    for stylesheet in stylesheets
+                ]
+                == sorted(
+                    stylesheet_references.index(stylesheet)
+                    for stylesheet in stylesheets
+                ),
+                f"{page}: contact-assistant.css must load between shared "
+                "style.css and pages.css",
+            )
+
+    for page, parser in parsed_pages.items():
+        if page in expected_stylesheets:
+            continue
+
+        stylesheet_references = {
+            reference
+            for tag, reference in parser.references
+            if tag == "link"
+        }
+        add_error(
+            errors,
+            not any(
+                reference.endswith("contact-assistant.css")
+                for reference in stylesheet_references
+            ),
+            f"{page}: home-page-only contact styles must not be loaded",
+        )
+
+    shared_source = read_text("assets/css/style.css", errors)
+    contact_source = read_text("assets/css/contact-assistant.css", errors)
+
+    if shared_source is not None:
+        for selector in (".contact-section", ".assistant-launcher"):
+            add_error(
+                errors,
+                selector not in shared_source,
+                f"assets/css/style.css: home-page-only selector leaked into "
+                f"the shared stylesheet: {selector}",
+            )
+        add_error(
+            errors,
+            len(shared_source.encode("utf-8")) <= 60_000,
+            "assets/css/style.css: shared stylesheet exceeded the 60 KB "
+            "size budget",
+        )
+
+    if contact_source is not None:
+        for selector in (
+            ".contact-section",
+            ".contact-form",
+            ".assistant-launcher",
+            ".chat-assistant",
+        ):
+            add_error(
+                errors,
+                selector in contact_source,
+                f"assets/css/contact-assistant.css: missing {selector} styles",
             )
 
 
@@ -1053,6 +1153,7 @@ def main() -> int:
     validate_bilingual_pages(parsed_pages, errors)
     validate_quick_assistant(parsed_pages, errors)
     validate_javascript_architecture(errors)
+    validate_css_architecture(parsed_pages, errors)
     validate_css(errors)
     validate_json(errors)
     validate_project_catalog(errors)
