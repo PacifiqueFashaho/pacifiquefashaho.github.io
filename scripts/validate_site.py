@@ -587,10 +587,12 @@ def validate_quick_assistant(
     expected_scripts = {
         "index.html": (
             "assets/js/assistant-intents.js",
+            "assets/js/contact-assistant.js",
             "assets/js/main.js",
         ),
         "fr/index.html": (
             "../assets/js/assistant-intents.js",
+            "../assets/js/contact-assistant.js",
             "../assets/js/main.js",
         ),
     }
@@ -605,12 +607,17 @@ def validate_quick_assistant(
             for tag, reference in parser.references
             if tag == "script"
         ]
-        assistant_script, main_script = scripts
+        assistant_script, contact_script, main_script = scripts
 
         add_error(
             errors,
             assistant_script in script_references,
             f"{page}: Quick Assistant intent engine script is missing",
+        )
+        add_error(
+            errors,
+            contact_script in script_references,
+            f"{page}: contact and assistant script is missing",
         )
         add_error(
             errors,
@@ -620,13 +627,15 @@ def validate_quick_assistant(
 
         if (
             assistant_script in script_references
+            and contact_script in script_references
             and main_script in script_references
         ):
             add_error(
                 errors,
                 script_references.index(assistant_script)
+                < script_references.index(contact_script)
                 < script_references.index(main_script),
-                f"{page}: intent engine must load before main.js",
+                f"{page}: specialized scripts must load before main.js",
             )
 
         suggestion_intents = Counter(
@@ -646,6 +655,69 @@ def validate_quick_assistant(
                 bool((suggestion.get("data-message") or "").strip()),
                 f"{page}: Quick Assistant suggestion has no prepared message",
             )
+
+    for page, parser in parsed_pages.items():
+        if page in expected_scripts:
+            continue
+
+        script_references = {
+            reference
+            for tag, reference in parser.references
+            if tag == "script"
+        }
+        add_error(
+            errors,
+            not any(
+                reference.endswith(
+                    ("assistant-intents.js", "contact-assistant.js")
+                )
+                for reference in script_references
+            ),
+            f"{page}: home-page-only assistant scripts must not be loaded",
+        )
+
+
+def validate_javascript_architecture(errors: list[str]) -> None:
+    main_source = read_text("assets/js/main.js", errors)
+    contact_source = read_text("assets/js/contact-assistant.js", errors)
+
+    if main_source is not None:
+        add_error(
+            errors,
+            "assistantLauncher" not in main_source
+            and "contactForm" not in main_source,
+            "assets/js/main.js: home-page-only contact logic leaked into "
+            "the shared bundle",
+        )
+        add_error(
+            errors,
+            len(main_source.encode("utf-8")) <= 32_000,
+            "assets/js/main.js: shared bundle exceeded the 32 KB size budget",
+        )
+
+    if contact_source is not None:
+        required_contracts = (
+            "contactForm",
+            "copyEmail",
+            "assistantLauncher",
+            "QuickAssistantIntents",
+        )
+        for contract in required_contracts:
+            add_error(
+                errors,
+                contract in contact_source,
+                f"assets/js/contact-assistant.js: missing {contract} contract",
+            )
+
+    for legacy_script in (
+        "assets/js/projects.js",
+        "assets/js/certifications.js",
+    ):
+        add_error(
+            errors,
+            legacy_script not in REPOSITORY_FILES,
+            f"{legacy_script}: unused legacy script should not be restored",
+        )
 
 
 def validate_project_catalog(errors: list[str]) -> None:
@@ -980,6 +1052,7 @@ def main() -> int:
     validate_references(parsed_pages, errors)
     validate_bilingual_pages(parsed_pages, errors)
     validate_quick_assistant(parsed_pages, errors)
+    validate_javascript_architecture(errors)
     validate_css(errors)
     validate_json(errors)
     validate_project_catalog(errors)
