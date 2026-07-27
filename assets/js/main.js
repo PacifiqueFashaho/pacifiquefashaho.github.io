@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const strings = messages[language] || messages.en;
+  const assistantIntentEngine = window.QuickAssistantIntents;
   root.dataset.language = language;
   window.PORTFOLIO_LANGUAGE = language;
 
@@ -1390,108 +1391,16 @@ document.addEventListener("DOMContentLoaded", () => {
     chatCharacterCount.textContent = `${chatInput.value.length} / ${maximum}`;
   }
 
-  function normalizeAssistantText(value) {
-    return value
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  }
-
-  function includesAssistantKeyword(value, keywords) {
-    return keywords.some((keyword) => value.includes(keyword));
-  }
-
-  function getAssistantIntent(message) {
-    const normalized = normalizeAssistantText(message);
-
+  function getAssistantIntent(message, requestedIntent = "") {
     if (
-      includesAssistantKeyword(normalized, [
-        "job",
-        "opportunity",
-        "position",
-        "role",
-        "career",
-        "hire",
-        "hiring",
-        "recruit",
-        "availability",
-        "resume",
-        "cv",
-        "experience",
-        "intern",
-        "internship",
-        "emploi",
-        "opportunite",
-        "candidature",
-        "embauche",
-        "disponibilite",
-        "recrut",
-        "stage"
-      ])
+      assistantIntentEngine &&
+      assistantIntentEngine.isKnownIntent(requestedIntent)
     ) {
-      return "opportunity";
+      return requestedIntent;
     }
 
-    if (
-      includesAssistantKeyword(normalized, [
-        "dashboard",
-        "excel",
-        "report",
-        "rapport",
-        "tableau de bord",
-        "kpi"
-      ])
-    ) {
-      return "dashboard";
-    }
-
-    if (
-      includesAssistantKeyword(normalized, [
-        "it support",
-        "help desk",
-        "desktop support",
-        "technical support",
-        "support",
-        "computer",
-        "printer",
-        "network",
-        "informatique",
-        "ordinateur",
-        "imprimante",
-        "reseau",
-        "depannage",
-        "support technique",
-        "technicien support"
-      ])
-    ) {
-      return "support";
-    }
-
-    if (
-      includesAssistantKeyword(normalized, [
-        "data",
-        "clean",
-        "analysis",
-        "sql",
-        "python",
-        "donnee",
-        "nettoyage",
-        "analyse"
-      ])
-    ) {
-      return "data";
-    }
-
-    if (
-      includesAssistantKeyword(normalized, [
-        "kobo",
-        "odk",
-        "field",
-        "terrain",
-        "collecte"
-      ])
-    ) {
-      return "field";
+    if (assistantIntentEngine) {
+      return assistantIntentEngine.classify(message);
     }
 
     return "fallback";
@@ -1546,7 +1455,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function handleChatSubmit(message) {
+  function handleChatSubmit(message, requestedIntent = "") {
     const cleanMessage = message.trim();
 
     if (!cleanMessage) {
@@ -1557,7 +1466,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const intent = getAssistantIntent(cleanMessage);
+    const intent = getAssistantIntent(cleanMessage, requestedIntent);
 
     clearAssistantReplyTimers();
     clearGeneratedChatMessages();
@@ -1629,7 +1538,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const message =
         suggestion.dataset.message || suggestion.textContent || "";
 
-      handleChatSubmit(message);
+      handleChatSubmit(message, suggestion.dataset.intent || "");
     });
   });
 

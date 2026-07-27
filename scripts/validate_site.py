@@ -131,6 +131,7 @@ class PortfolioHTMLParser(HTMLParser):
         self.references: list[tuple[str, str]] = []
         self.images: list[dict[str, str | None]] = []
         self.blank_target_links: list[dict[str, str | None]] = []
+        self.assistant_suggestions: list[dict[str, str | None]] = []
         self.alternate_links: dict[str, str] = {}
         self.canonical_url: str | None = None
         self.json_ld_blocks: list[str] = []
@@ -191,6 +192,12 @@ class PortfolioHTMLParser(HTMLParser):
 
         if tag == "a" and attributes.get("target") == "_blank":
             self.blank_target_links.append(attributes)
+
+        if (
+            tag == "button"
+            and "chat-suggestion" in (attributes.get("class") or "").split()
+        ):
+            self.assistant_suggestions.append(attributes)
 
         if (
             tag == "script"
@@ -564,6 +571,83 @@ def validate_bilingual_pages(
                 )
 
 
+def validate_quick_assistant(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    expected_intents = Counter(
+        {
+            "opportunity": 3,
+            "support": 1,
+            "dashboard": 1,
+            "data": 1,
+            "field": 1,
+        }
+    )
+    expected_scripts = {
+        "index.html": (
+            "assets/js/assistant-intents.js",
+            "assets/js/main.js",
+        ),
+        "fr/index.html": (
+            "../assets/js/assistant-intents.js",
+            "../assets/js/main.js",
+        ),
+    }
+
+    for page, scripts in expected_scripts.items():
+        parser = parsed_pages.get(page)
+        if parser is None:
+            continue
+
+        script_references = [
+            reference
+            for tag, reference in parser.references
+            if tag == "script"
+        ]
+        assistant_script, main_script = scripts
+
+        add_error(
+            errors,
+            assistant_script in script_references,
+            f"{page}: Quick Assistant intent engine script is missing",
+        )
+        add_error(
+            errors,
+            main_script in script_references,
+            f"{page}: main JavaScript entry point is missing",
+        )
+
+        if (
+            assistant_script in script_references
+            and main_script in script_references
+        ):
+            add_error(
+                errors,
+                script_references.index(assistant_script)
+                < script_references.index(main_script),
+                f"{page}: intent engine must load before main.js",
+            )
+
+        suggestion_intents = Counter(
+            suggestion.get("data-intent")
+            for suggestion in parser.assistant_suggestions
+        )
+        add_error(
+            errors,
+            suggestion_intents == expected_intents,
+            f"{page}: Quick Assistant suggestion intents are incomplete "
+            f"({dict(suggestion_intents)})",
+        )
+
+        for suggestion in parser.assistant_suggestions:
+            add_error(
+                errors,
+                bool((suggestion.get("data-message") or "").strip()),
+                f"{page}: Quick Assistant suggestion has no prepared message",
+            )
+
+
 def validate_project_catalog(errors: list[str]) -> None:
     source = read_text("projects.html", errors)
     if source is None:
@@ -895,6 +979,7 @@ def main() -> int:
     parsed_pages = parse_pages(errors)
     validate_references(parsed_pages, errors)
     validate_bilingual_pages(parsed_pages, errors)
+    validate_quick_assistant(parsed_pages, errors)
     validate_css(errors)
     validate_json(errors)
     validate_project_catalog(errors)

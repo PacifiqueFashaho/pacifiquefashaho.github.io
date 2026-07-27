@@ -1300,24 +1300,32 @@
     </div>
 
     <div class="chat-suggestions" aria-label="Suggestions de messages rapides">
-      <button type="button" class="chat-suggestion" data-message="Je recrute pour un poste en support informatique.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je recrute pour un poste en support informatique.">
         Emploi en support informatique
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="Je souhaite discuter d’un stage en support informatique.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je souhaite discuter d’un stage en support informatique.">
         Stage en support informatique
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="J’ai besoin d’un service de support informatique.">
+      <button type="button" class="chat-suggestion" data-intent="support" data-message="J’ai besoin d’un service de support informatique.">
         Service de support informatique
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="Je souhaite discuter de votre disponibilité et de votre expérience en support informatique.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je souhaite discuter de votre disponibilité et de votre expérience en support informatique.">
         CV et disponibilité
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="J’ai besoin d’aide pour une tâche liée aux données ou aux données de terrain.">
-        Données / Travail terrain
+      <button type="button" class="chat-suggestion" data-intent="dashboard" data-message="J’ai besoin d’aide pour un tableau de bord ou un rapport.">
+        Tableau de bord / Rapport
+      </button>
+
+      <button type="button" class="chat-suggestion" data-intent="data" data-message="J’ai besoin d’aide pour nettoyer ou analyser des données.">
+        Assistance données
+      </button>
+
+      <button type="button" class="chat-suggestion" data-intent="field" data-message="J’ai besoin d’aide pour une collecte de données de terrain.">
+        Données de terrain
       </button>
     </div>
 
@@ -1388,6 +1396,7 @@
       Redimensionnez depuis le coin inférieur droit sur ordinateur
     </div>
   </section>
+  <script src="../assets/js/assistant-intents.js" defer></script>
   <script src="../assets/js/main.js" defer></script>
 </body>
 </html>

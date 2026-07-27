@@ -1407,24 +1407,32 @@
     </div>
 
     <div class="chat-suggestions" aria-label="Quick message suggestions">
-      <button type="button" class="chat-suggestion" data-message="I am recruiting for an IT Support position.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="I am recruiting for an IT Support position.">
         IT Support Job
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I want to discuss an IT Support internship.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="I want to discuss an IT Support internship.">
         IT Support Internship
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I need help with an IT support service.">
+      <button type="button" class="chat-suggestion" data-intent="support" data-message="I need help with an IT support service.">
         IT Support Service
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I would like to discuss your availability and IT Support experience.">
+      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="I would like to discuss your availability and IT Support experience.">
         CV &amp; Availability
       </button>
 
-      <button type="button" class="chat-suggestion" data-message="I need help with a data or field-data task.">
-        Data / Field Work
+      <button type="button" class="chat-suggestion" data-intent="dashboard" data-message="I need help with a dashboard or reporting task.">
+        Dashboard / Reporting
+      </button>
+
+      <button type="button" class="chat-suggestion" data-intent="data" data-message="I need help with a data cleaning or analysis task.">
+        Data Support
+      </button>
+
+      <button type="button" class="chat-suggestion" data-intent="field" data-message="I need help with a field-data collection task.">
+        Field Data Support
       </button>
     </div>
 
@@ -1495,6 +1503,7 @@
       Resize from the bottom-right corner on desktop
     </div>
   </section>
+  <script src="assets/js/assistant-intents.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </body>
 </html>
