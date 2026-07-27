@@ -780,19 +780,22 @@ def validate_quick_assistant(
 def validate_javascript_architecture(errors: list[str]) -> None:
     main_source = read_text("assets/js/main.js", errors)
     contact_source = read_text("assets/js/contact-assistant.js", errors)
+    workbench_source = read_text("assets/js/workbench.js", errors)
 
     if main_source is not None:
         add_error(
             errors,
             "assistantLauncher" not in main_source
-            and "contactForm" not in main_source,
-            "assets/js/main.js: home-page-only contact logic leaked into "
-            "the shared bundle",
+            and "contactForm" not in main_source
+            and "[data-workbench]" not in main_source
+            and "workbenchScenarioSets" not in main_source,
+            "assets/js/main.js: home-page-only logic leaked into the "
+            "shared bundle",
         )
         add_error(
             errors,
-            len(main_source.encode("utf-8")) <= 32_000,
-            "assets/js/main.js: shared bundle exceeded the 32 KB size budget",
+            len(main_source.encode("utf-8")) <= 16_000,
+            "assets/js/main.js: shared bundle exceeded the 16 KB size budget",
         )
 
     if contact_source is not None:
@@ -808,6 +811,27 @@ def validate_javascript_architecture(errors: list[str]) -> None:
                 contract in contact_source,
                 f"assets/js/contact-assistant.js: missing {contract} contract",
             )
+
+    if workbench_source is not None:
+        required_contracts = (
+            "[data-workbench]",
+            "[data-workbench-controls]",
+            "[data-workbench-output]",
+            "workbenchScenarioSets",
+            "prefers-reduced-motion",
+        )
+        for contract in required_contracts:
+            add_error(
+                errors,
+                contract in workbench_source,
+                f"assets/js/workbench.js: missing {contract} contract",
+            )
+        add_error(
+            errors,
+            len(workbench_source.encode("utf-8")) <= 16_000,
+            "assets/js/workbench.js: specialized bundle exceeded the "
+            "16 KB size budget",
+        )
 
     for legacy_script in (
         "assets/js/projects.js",
@@ -1011,7 +1035,20 @@ def validate_sitemap(errors: list[str]) -> None:
         )
 
 
-def validate_workbench(errors: list[str]) -> None:
+def validate_workbench(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    expected_scripts = {
+        "index.html": (
+            "assets/js/workbench.js",
+            "assets/js/main.js",
+        ),
+        "fr/index.html": (
+            "../assets/js/workbench.js",
+            "../assets/js/main.js",
+        ),
+    }
     page_tokens = (
         "data-workbench",
         "data-workbench-controls",
@@ -1022,7 +1059,7 @@ def validate_workbench(errors: list[str]) -> None:
         "<noscript",
     )
 
-    for page in ("index.html", "fr/index.html"):
+    for page, scripts in expected_scripts.items():
         source = read_text(page, errors)
         if source is None:
             continue
@@ -1034,7 +1071,51 @@ def validate_workbench(errors: list[str]) -> None:
                 f"{page}: Workbench or no-JavaScript marker missing: {token}",
             )
 
-    javascript = read_text("assets/js/main.js", errors)
+        parser = parsed_pages.get(page)
+        if parser is None:
+            continue
+
+        script_references = [
+            reference
+            for tag, reference in parser.references
+            if tag == "script"
+        ]
+        workbench_script, main_script = scripts
+        add_error(
+            errors,
+            workbench_script in script_references,
+            f"{page}: Technical Workbench script is missing",
+        )
+        if (
+            workbench_script in script_references
+            and main_script in script_references
+        ):
+            add_error(
+                errors,
+                script_references.index(workbench_script)
+                < script_references.index(main_script),
+                f"{page}: workbench.js must load before main.js",
+            )
+
+    for page, parser in parsed_pages.items():
+        if page in expected_scripts:
+            continue
+
+        script_references = {
+            reference
+            for tag, reference in parser.references
+            if tag == "script"
+        }
+        add_error(
+            errors,
+            not any(
+                reference.endswith("workbench.js")
+                for reference in script_references
+            ),
+            f"{page}: home-page-only Workbench script must not be loaded",
+        )
+
+    javascript = read_text("assets/js/workbench.js", errors)
     if javascript is not None:
         for token in (
             "[data-workbench]",
@@ -1045,7 +1126,7 @@ def validate_workbench(errors: list[str]) -> None:
             add_error(
                 errors,
                 token in javascript,
-                f"assets/js/main.js: Workbench marker missing: {token}",
+                f"assets/js/workbench.js: Workbench marker missing: {token}",
             )
 
         for route in (
@@ -1055,7 +1136,8 @@ def validate_workbench(errors: list[str]) -> None:
             add_error(
                 errors,
                 javascript.count(f'href: "{route}"') == 2,
-                f"assets/js/main.js: expected English and French Workbench routes for {route}",
+                f"assets/js/workbench.js: expected English and French "
+                f"Workbench routes for {route}",
             )
 
     stylesheet = read_text("assets/css/style.css", errors)
@@ -1159,7 +1241,7 @@ def main() -> int:
     validate_project_catalog(errors)
     validate_recruiter_documents(errors)
     validate_sitemap(errors)
-    validate_workbench(errors)
+    validate_workbench(parsed_pages, errors)
     validate_protected_resources(errors)
     smoke_test_routes(errors)
 
