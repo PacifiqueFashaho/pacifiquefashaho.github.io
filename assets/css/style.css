@@ -705,49 +705,20 @@ nav a[aria-current="page"] {
 }
 
 /* =========================
-   14. MARQUEE
+   14. SKILLS SUMMARY
 ========================= */
 
 .marquee {
-  position: relative;
   width: 100%;
-  overflow: hidden;
   margin-top: 12px;
   padding: 2px 0;
 }
 
-.marquee::before,
-.marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  width: 72px;
-  height: 100%;
-  pointer-events: none;
-}
-
-.marquee::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--card), transparent);
-}
-
-.marquee::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--card), transparent);
-}
-
 .marquee-track {
   display: flex;
+  flex-wrap: wrap;
   gap: 14px;
-  width: max-content;
-  white-space: nowrap;
-  animation: marqueeLeft 28s linear infinite;
-  will-change: transform;
-}
-
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
+  width: 100%;
 }
 
 .marquee-item {
@@ -767,16 +738,6 @@ nav a[aria-current="page"] {
   transform: translateY(-2px);
   border-color: rgba(37, 99, 235, 0.35);
   color: var(--text);
-}
-
-@keyframes marqueeLeft {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 /* =========================
@@ -1513,17 +1474,6 @@ nav a[aria-current="page"] {
     justify-content: flex-start;
   }
 
-  .marquee-track {
-    flex-wrap: wrap;
-    white-space: normal;
-    animation: none;
-  }
-
-  .marquee::before,
-  .marquee::after {
-    display: none;
-  }
-
   :root.js .project-filters {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1610,16 +1560,6 @@ nav a[aria-current="page"] {
     transform: none;
   }
 
-  .marquee-track {
-    flex-wrap: wrap;
-    white-space: normal;
-    animation: none;
-  }
-
-  .marquee::before,
-  .marquee::after {
-    display: none;
-  }
 }
 /* =========================
    23. SHARED STATUS INDICATORS

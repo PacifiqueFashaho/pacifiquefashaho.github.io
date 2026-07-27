@@ -367,6 +367,10 @@
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
+.chat-assistant[hidden] {
+  display: none;
+}
+
 .chat-assistant.show {
   opacity: 1;
   transform: translateY(0) scale(1);

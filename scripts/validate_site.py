@@ -796,6 +796,12 @@ def validate_css_architecture(
             "assets/css/style.css: shared stylesheet exceeded the 60 KB "
             "size budget",
         )
+        add_error(
+            errors,
+            "marqueeLeft" not in shared_source,
+            "assets/css/style.css: automatic skills marquee motion must not "
+            "be restored",
+        )
 
     if contact_source is not None:
         for selector in (
@@ -809,6 +815,19 @@ def validate_css_architecture(
                 selector in contact_source,
                 f"assets/css/contact-assistant.css: missing {selector} styles",
             )
+        add_error(
+            errors,
+            bool(
+                re.search(
+                    r"\.chat-assistant\[hidden\]\s*\{"
+                    r"[^}]*\bdisplay\s*:\s*none\s*;",
+                    contact_source,
+                    flags=re.DOTALL,
+                )
+            ),
+            "assets/css/contact-assistant.css: hidden assistant must use "
+            "display: none",
+        )
 
 
 def validate_json(errors: list[str]) -> None:
@@ -903,6 +922,9 @@ def validate_quick_assistant(
         parser = parsed_pages.get(page)
         if parser is None:
             continue
+        source = read_text(page, errors)
+        if source is None:
+            continue
 
         script_references = [
             reference
@@ -958,6 +980,43 @@ def validate_quick_assistant(
                 f"{page}: Quick Assistant suggestion has no prepared message",
             )
 
+        assistant_tag_match = re.search(
+            r'<section\b(?=[^>]*\bid="chatAssistant")[^>]*>',
+            source,
+            flags=re.DOTALL,
+        )
+        assistant_tag = (
+            assistant_tag_match.group(0) if assistant_tag_match else ""
+        )
+        add_error(
+            errors,
+            bool(
+                assistant_tag
+                and re.search(r"\bhidden(?:\s|>)", assistant_tag)
+                and re.search(r"\binert(?:\s|>)", assistant_tag)
+                and re.search(
+                    r'\baria-hidden\s*=\s*"true"',
+                    assistant_tag,
+                )
+            ),
+            f"{page}: closed Quick Assistant must start hidden, inert, and "
+            "aria-hidden",
+        )
+
+        skill_summaries = [
+            re.sub(r"\s+", " ", item).strip()
+            for item in re.findall(
+                r'<span class="marquee-item">([^<]+)</span>',
+                source,
+            )
+        ]
+        add_error(
+            errors,
+            len(skill_summaries) == 4
+            and len(set(skill_summaries)) == len(skill_summaries),
+            f"{page}: skills summary must contain four unique static items",
+        )
+
     for page, parser in parsed_pages.items():
         if page in expected_scripts:
             continue
@@ -1006,6 +1065,10 @@ def validate_javascript_architecture(errors: list[str]) -> None:
             "copyEmail",
             "assistantLauncher",
             "QuickAssistantIntents",
+            "setAssistantExposure",
+            'setAttribute("aria-hidden"',
+            'setAttribute("inert"',
+            'removeAttribute("inert")',
         )
         for contract in required_contracts:
             add_error(
