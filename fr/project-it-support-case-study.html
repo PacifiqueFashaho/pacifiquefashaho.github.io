@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Étude de cas en dépannage informatique | Pacifique Fashaho</title>
-  <meta name="description" content="Étude de cas pratique couvrant la configuration Windows, le dépannage matériel et logiciel, les imprimantes, les contrôles réseau, la validation et la documentation." />
+  <title>Méthode de dépannage d’un poste Windows | Pacifique Fashaho</title>
+  <meta name="description" content="Étude de cas représentative : une méthode en huit étapes pour diagnostiquer un poste Windows, protéger les données, rétablir le service et documenter l’intervention." />
   <meta name="keywords" content="Pacifique Fashaho, support informatique, help desk, dépannage Windows, imprimantes, réseau, configuration de poste" />
   <meta name="author" content="Pacifique Fashaho" /><meta name="robots" content="index, follow" /><meta name="theme-color" content="#2563eb" />
   <link rel="canonical" href="https://pacifiquefashaho.github.io/fr/project-it-support-case-study.html" />
@@ -12,11 +12,11 @@
   <link rel="alternate" hreflang="x-default" href="https://pacifiquefashaho.github.io/project-it-support-case-study.html" />
   <link rel="icon" href="../assets/images/ui/favicon.ico" /><link rel="apple-touch-icon" href="../assets/images/ui/apple-touch-icon.png" />
   <link rel="stylesheet" href="../assets/css/style.css" /><link rel="stylesheet" href="../assets/css/pages.css" />
-  <meta property="og:title" content="Étude de cas en dépannage informatique | Pacifique Fashaho" />
-  <meta property="og:description" content="Méthode pratique pour configurer et dépanner un poste Windows, puis valider et documenter le résultat." />
+  <meta property="og:title" content="Méthode de dépannage d’un poste Windows | Pacifique Fashaho" />
+  <meta property="og:description" content="Une méthode en huit étapes pour cadrer, diagnostiquer, corriger, valider et documenter un incident sur un poste Windows." />
   <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="627" /><meta property="og:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
   <meta property="og:url" content="https://pacifiquefashaho.github.io/fr/project-it-support-case-study.html" /><meta property="og:type" content="article" /><meta property="og:site_name" content="Portfolio de Pacifique Fashaho" /><meta property="og:locale" content="fr_FR" /><meta property="og:locale:alternate" content="en_US" />
-  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Étude de cas en dépannage informatique | Pacifique Fashaho" /><meta name="twitter:description" content="Configuration et dépannage structuré d’un poste Windows, de l’admission à la validation." /><meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" /><meta name="twitter:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="Méthode de dépannage d’un poste Windows | Pacifique Fashaho" /><meta name="twitter:description" content="Huit étapes pour cadrer, diagnostiquer, corriger et valider un incident informatique." /><meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" /><meta name="twitter:image:alt" content="Aperçu du portfolio de support informatique de Pacifique Fashaho" />
   <script>(function(){document.documentElement.classList.add("js");try{var savedTheme=localStorage.getItem("portfolio-theme");if(savedTheme)document.documentElement.dataset.theme=savedTheme;}catch(error){}})();</script>
   <script type="application/ld+json">
   {
@@ -24,15 +24,15 @@
     "@type": "CreativeWork",
     "name": "Étude de cas sur la configuration et le dépannage d’un poste de travail",
     "url": "https://pacifiquefashaho.github.io/fr/project-it-support-case-study.html",
-    "image": "https://pacifiquefashaho.github.io/assets/images/projects/it-support-workflow.svg",
-    "description": "Étude de cas pratique couvrant la configuration Windows, le dépannage matériel et logiciel, les imprimantes, le réseau, la validation et la documentation.",
+    "description": "Méthode représentative en huit étapes couvrant le cadrage, la protection des données, le diagnostic Windows, le matériel, les imprimantes, le réseau, la validation et la documentation.",
     "inLanguage": "fr",
+    "dateModified": "2026-07-27",
     "creator": {"@type": "Person", "name": "Pacifique Fashaho", "url": "https://pacifiquefashaho.github.io/fr/"},
     "keywords": ["support informatique", "dépannage Windows", "configuration de poste", "imprimantes", "réseau", "help desk"]
   }
   </script>
 </head>
-<body>
+<body class="case-study-page">
   <div id="loader" aria-hidden="true" hidden><div class="spinner"></div></div><a href="#main-content" class="skip-link">Aller au contenu</a><div class="progress-bar" id="progressBar" aria-hidden="true"></div><button id="toTop" type="button" aria-label="Retour en haut" hidden>↑ Haut</button>
   <header class="topbar"><div class="wrap">
     <a class="brand" href="index.html" aria-label="Aller à la page d’accueil de Pacifique Fashaho"><span class="dot" aria-hidden="true"></span><span>Pacifique Fashaho</span></a>
@@ -41,39 +41,119 @@
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Passer au mode sombre" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-text">Thème</span></button>
   </div></header>
   <main id="main-content" class="wrap">
-    <section class="card reveal" aria-labelledby="case-study-title"><div class="section-head"><div><p class="small">Étude de cas en support informatique</p><h1 class="title" id="case-study-title">Configuration et dépannage d’un poste de travail</h1><p class="summary">Cas représentatif fondé sur des tâches récurrentes issues d’une expérience pratique en support. Il présente une méthode structurée pour diagnostiquer Windows, le matériel, les logiciels, les imprimantes et le réseau, sans exposer de client ni d’information sensible.</p></div><div class="btns"><a class="btn primary" href="index.html#contact">Demander une assistance</a><a class="btn" href="projects.html">← Retour aux projets</a></div></div>
-      <div class="stats" aria-label="Résumé de l’étude de cas"><div class="stat"><span class="stat-num">4</span><span class="label">Domaines</span></div><div class="stat"><span class="stat-num">8</span><span class="label">Étapes</span></div><div class="stat"><span class="stat-num">6</span><span class="label">Contrôles types</span></div></div>
+    <section class="card reveal case-study-hero" aria-labelledby="case-study-title">
+      <div class="section-head">
+        <div>
+          <p class="small">Étude de cas représentative · Support informatique</p>
+          <h1 class="title" id="case-study-title">Dépanner un poste Windows avec une méthode claire et sûre</h1>
+          <p class="summary">Une démarche réutilisable pour comprendre l’incident, protéger les données, isoler la cause, rétablir les services essentiels et documenter le résultat. Le scénario synthétise des tâches récurrentes issues d’une expérience pratique, sans exposer de client ni d’information sensible.</p>
+          <div class="case-study-metadata" aria-label="Caractéristiques de l’étude de cas">
+            <span>Cas anonymisé</span><span>Données protégées</span><span>Validation utilisateur</span><span>Escalade documentée</span>
+          </div>
+        </div>
+        <aside class="case-study-hero-panel" aria-label="Valeur opérationnelle">
+          <span class="project-label">Objectif opérationnel</span>
+          <strong>Rétablir une tâche utilisateur utile, pas seulement faire disparaître un message d’erreur.</strong>
+          <p>Chaque action est guidée par le risque, la preuve disponible et un contrôle final du service.</p>
+        </aside>
+      </div>
+      <div class="btns"><a class="btn primary" href="#workflow-title">Explorer la méthode</a><a class="btn" href="index.html#contact">Me contacter</a><a class="btn" href="projects.html">← Retour aux projets</a></div>
+      <div class="stats" aria-label="Résumé de l’étude de cas"><div class="stat"><span class="stat-num" data-target="4">4</span><span class="label">Domaines de support</span></div><div class="stat"><span class="stat-num" data-target="8">8</span><span class="label">Étapes de méthode</span></div><div class="stat"><span class="stat-num" data-target="6">6</span><span class="label">Contrôles de validation</span></div></div>
     </section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="preview-title"><div class="section-head"><div><h2 id="preview-title">Processus représentatif de support</h2><span class="small">Une méthode documentée, de la réception à la remise</span></div></div><div class="project-preview case-study-preview"><img src="../assets/images/projects/it-support-workflow.svg" alt="Illustration d’un processus de configuration et de dépannage d’un poste informatique" width="1400" height="900" loading="eager" decoding="async" /></div></section>
+    <nav class="card reveal case-study-nav" aria-label="Sommaire de l’étude de cas">
+      <a href="#overview-title">Contexte</a><a href="#risks-title">Diagnostic</a><a href="#workflow-title">Méthode</a><a href="#validation-title">Validation</a><a href="#outcomes-title">Portée</a><a href="#skills-title">Compétences</a>
+    </nav>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="preview-title">
+      <div class="section-head"><div><h2 id="preview-title">Le parcours de résolution</h2><span class="small">Quatre phases, de l’incident à une remise vérifiée</span></div></div>
+      <ol class="case-study-flow">
+        <li><span>01</span><div><strong>Cadrer</strong><p>Impact, priorité, symptômes et périmètre.</p></div></li>
+        <li><span>02</span><div><strong>Diagnostiquer</strong><p>Matériel, Windows, logiciels, réseau et impression.</p></div></li>
+        <li><span>03</span><div><strong>Corriger</strong><p>Action sûre, ciblée et la moins perturbatrice.</p></div></li>
+        <li><span>04</span><div><strong>Valider</strong><p>Tâche utilisateur, documentation et transmission.</p></div></li>
+      </ol>
+      <p class="case-study-boundary"><strong>Limite de preuve :</strong> cette page documente une méthode représentative. Elle ne revendique ni incident client précis, ni SLA, ni amélioration chiffrée garantie.</p>
+    </section>
     <section class="card reveal" style="margin-top:16px;" aria-labelledby="overview-title"><div class="section-head"><div><h2 id="overview-title">Aperçu du cas</h2><span class="small">Contexte, problème, objectif et périmètre</span></div></div><div class="project-brief">
       <div><span class="project-label">Contexte</span><p>Un poste Windows partagé dans un petit environnement de services prend en charge les applications bureautiques, l’impression, Internet et le travail quotidien.</p></div>
       <div><span class="project-label">Problème</span><p>Les symptômes possibles incluent un démarrage lent, des erreurs logicielles, une imprimante indisponible ou une connexion réseau instable.</p></div>
       <div><span class="project-label">Objectif</span><p>Rétablir le service de façon sûre, vérifier la tâche d’origine de l’utilisateur et documenter le résultat.</p></div>
       <div><span class="project-label">Limite de preuve</span><p>Le scénario représente une méthode de travail et ne prétend pas décrire un incident client particulier.</p></div>
     </div></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="risks-title"><div class="section-head"><div><h2 id="risks-title">Symptômes et risques opérationnels</h2><span class="small">Éléments nécessitant une investigation</span></div></div><div class="project-brief">
-      <div><span class="project-label">Performance</span><p>Démarrage lent, manque d’espace disque, application bloquée ou mises à jour incomplètes.</p></div>
-      <div><span class="project-label">Périphériques</span><p>Imprimante indisponible, pilote incorrect, file bloquée ou connexion physique instable.</p></div>
-      <div><span class="project-label">Connectivité</span><p>Configuration IP incorrecte, résolution DNS défaillante ou accès intermittent aux services attendus.</p></div>
-      <div><span class="project-label">Risque utilisateur</span><p>Une intervention non contrôlée peut provoquer une perte de données, interrompre davantage le service ou masquer la cause initiale.</p></div>
-    </div></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="tools-title"><div class="section-head"><div><h2 id="tools-title">Outils et ressources techniques</h2><span class="small">Utilitaires et techniques représentés</span></div></div><ul class="check-list"><li>Paramètres Windows, Gestionnaire des tâches et Gestionnaire de périphériques</li><li>Windows Update, Services et Observateur d’événements</li><li>Gestion de l’impression, file d’attente et page de test</li><li>Invite de commandes avec <code>ipconfig</code>, <code>ping</code> et <code>nslookup</code></li><li>Listes de contrôle de configuration, validation et remise</li></ul></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="workflow-title"><div class="section-head"><div><h2 id="workflow-title">Processus en huit étapes</h2><span class="small">Du recueil des symptômes à la clôture</span></div></div><ol class="timeline">
-      <li><h3>1. Recueillir et confirmer</h3><p>Écouter l’utilisateur, reformuler le problème, noter le message d’erreur et établir l’impact ainsi que la priorité.</p></li>
-      <li><h3>2. Protéger les données et définir le périmètre</h3><p>Éviter toute action destructive, vérifier les sauvegardes pertinentes et déterminer si le problème touche un utilisateur, un appareil ou plusieurs services.</p></li>
-      <li><h3>3. Contrôler le matériel</h3><p>Vérifier l’alimentation, les câbles, les périphériques, l’espace disque et les signes visibles de défaillance.</p></li>
-      <li><h3>4. Vérifier Windows et les logiciels</h3><p>Examiner le démarrage, les mises à jour, les pilotes, les services, les journaux utiles et l’application concernée.</p></li>
-      <li><h3>5. Isoler l’impression</h3><p>Contrôler l’état de l’imprimante, la file d’attente, le spouleur, le pilote, le port et une page de test.</p></li>
-      <li><h3>6. Isoler la connectivité</h3><p>Vérifier l’adaptateur, la configuration IP, la passerelle, le DNS et la portée réseau avec des tests progressifs.</p></li>
-      <li><h3>7. Appliquer puis valider</h3><p>Choisir l’action sûre la moins perturbatrice, reproduire la tâche d’origine et confirmer le résultat avec l’utilisateur.</p></li>
-      <li><h3>8. Documenter ou escalader</h3><p>Noter les symptômes, contrôles, actions et résultats. Escalader avec des preuves claires si le problème dépasse le périmètre autorisé.</p></li>
-    </ol></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="solution-title"><div class="section-head"><div><h2 id="solution-title">Actions correctives représentatives</h2><span class="small">Actions choisies selon le diagnostic</span></div></div><ul class="check-list"><li>Libérer de l’espace ou désactiver prudemment un élément de démarrage inutile.</li><li>Installer une mise à jour approuvée ou corriger un pilote identifié.</li><li>Relancer le spouleur, nettoyer une tâche bloquée ou reconfigurer l’imprimante.</li><li>Renouveler la configuration réseau ou corriger les paramètres confirmés comme incorrects.</li><li>Réparer ou réinstaller une application uniquement après avoir protégé les données et paramètres nécessaires.</li><li>Escalader les défaillances matérielles, droits insuffisants ou problèmes d’infrastructure avec les preuves collectées.</li></ul></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="checks-title"><div class="section-head"><div><h2 id="checks-title">Exemples de contrôles</h2><span class="small">Des vérifications simples avant toute action risquée</span></div></div><ul class="check-list"><li>Gestionnaire des tâches et espace disque</li><li>Gestionnaire de périphériques et mises à jour Windows</li><li>Services Windows et Observateur d’événements</li><li>File d’attente, spouleur et page de test de l’imprimante</li><li><code>ipconfig</code>, <code>ping</code> et <code>nslookup</code></li><li>Validation finale de la tâche de l’utilisateur</li></ul></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="outcomes-title"><div class="section-head"><div><h2 id="outcomes-title">Périmètre documenté du processus</h2><span class="small">Comptages transparents de cette méthode représentative publiée</span></div></div><div class="stats" aria-label="Périmètre documenté"><div class="stat"><span class="stat-num">4</span><span class="label">Domaines de support</span></div><div class="stat"><span class="stat-num">8</span><span class="label">Étapes de méthode</span></div><div class="stat"><span class="stat-num">6</span><span class="label">Contrôles exemples</span></div></div></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="learning-title"><div class="section-head"><div><h2 id="learning-title">Enseignements</h2><span class="small">Principes pratiques démontrés</span></div></div><ul class="check-list"><li>Commencer par l’impact utilisateur et confirmer le symptôme avant d’agir.</li><li>Protéger les données et préférer l’action sûre la moins perturbatrice.</li><li>Isoler une couche à la fois pour éviter les changements inutiles.</li><li>Valider le service du point de vue de l’utilisateur, pas seulement l’outil technique.</li><li>Documenter suffisamment pour permettre le suivi ou une escalade efficace.</li></ul></section>
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="skills-title"><div class="section-head"><div><h2 id="skills-title">Compétences démontrées</h2><span class="small">Capacités techniques et professionnelles</span></div></div><div class="tag-list"><span class="tag">Support utilisateurs</span><span class="tag">Dépannage Windows</span><span class="tag">Configuration de postes</span><span class="tag">Support imprimantes</span><span class="tag">Diagnostic réseau</span><span class="tag">Documentation technique</span><span class="tag">Communication</span><span class="tag">Escalade structurée</span></div></section>
-    <section class="card reveal" style="margin-top:16px;"><div class="section-head"><div><h2>Approfondir les preuves</h2><span class="small">Processus détaillés et listes opérationnelles</span></div><div class="btns"><a class="btn primary" href="project-network-printer-case-study.html">Réseau et imprimante</a><a class="btn" href="project-workstation-user-setup.html">Configuration de poste</a><a class="btn" href="it-support-resources.html">Ressources IT</a><a class="btn" href="index.html#contact">Me contacter</a></div></div></section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="risks-title">
+      <div class="section-head"><div><h2 id="risks-title">Symptômes et risques opérationnels</h2><span class="small">Ce qu’il faut distinguer avant d’intervenir</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">01</div><div><strong>Poste lent</strong><div class="small">Démarrage et applications</div></div></div><p class="small">Charge au démarrage, stockage, mémoire, mises à jour et processus d’arrière-plan demandent une vérification structurée.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">02</div><div><strong>Impression interrompue</strong><div class="small">Périphérique partagé indisponible</div></div></div><p class="small">Connexion, pilote, file d’attente, imprimante par défaut et sortie d’une page de test doivent être isolés.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">03</div><div><strong>Réseau instable</strong><div class="small">Accès local ou Internet intermittent</div></div></div><p class="small">État de l’adaptateur, adresse IP, passerelle, DNS et câblage sont testés séparément.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">04</div><div><strong>Risque utilisateur</strong><div class="small">Données et continuité du service</div></div></div><p class="small">Une action non contrôlée peut aggraver l’incident, masquer sa cause ou compromettre des fichiers importants.</p></article>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="tools-title">
+      <div class="section-head"><div><h2 id="tools-title">Outils et ressources techniques</h2><span class="small">Des outils simples, choisis selon l’hypothèse à vérifier</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">W</div><div><strong>Administration Windows</strong><div class="small">Tâches, périphériques, paramètres et services</div></div></div><p class="small">Pour examiner les ressources, le démarrage, les pilotes, les comptes et les services nécessaires.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">&gt;_</div><div><strong>Diagnostic en ligne de commande</strong><div class="small"><code>ipconfig</code>, <code>ping</code>, <code>nslookup</code></div></div></div><p class="small">Pour séparer un problème local, une passerelle inaccessible et une résolution de noms défaillante.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">HW</div><div><strong>Inspection matérielle</strong><div class="small">Alimentation, câbles et périphériques</div></div></div><p class="small">Pour confirmer l’état physique avant de modifier un pilote ou une configuration logicielle.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">DOC</div><div><strong>Documentation de support</strong><div class="small">Symptômes, actions, tests et suite</div></div></div><p class="small">Pour rendre l’intervention compréhensible, reproductible et prête à être escaladée si nécessaire.</p></article>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="workflow-title">
+      <div class="section-head"><div><h2 id="workflow-title">Méthode représentative en huit étapes</h2><span class="small">Ouvrez chaque étape pour voir les contrôles associés</span></div></div>
+      <div class="timeline">
+        <article class="timeline-item"><details class="timeline-card" open><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">1</span></span><span class="timeline-head"><strong>Recueillir les symptômes et définir la priorité</strong><span class="small">Comprendre ce qui échoue, depuis quand et pour qui</span></span></summary><ul><li>Noter le problème, le message affiché et les changements récents.</li><li>Identifier la tâche utilisateur bloquée et l’impact opérationnel.</li><li>Reproduire le symptôme avant toute modification.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">2</span></span><span class="timeline-head"><strong>Protéger les données importantes</strong><span class="small">Réduire le risque avant la maintenance</span></span></summary><ul><li>Confirmer où se trouvent les documents importants.</li><li>Vérifier qu’une sauvegarde ou copie sûre est disponible.</li><li>Éviter toute action destructive tant que le risque n’est pas compris.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">3</span></span><span class="timeline-head"><strong>Inspecter le matériel et les connexions</strong><span class="small">Contrôler alimentation, câbles, périphériques et ventilation</span></span></summary><ul><li>Vérifier écran, clavier, souris, imprimante et connexion réseau.</li><li>Rechercher un câble mal fixé ou un dommage visible.</li><li>Distinguer une panne physique d’un problème logiciel.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">4</span></span><span class="timeline-head"><strong>Examiner Windows et le démarrage</strong><span class="small">Identifier une charge ou une consommation anormale</span></span></summary><ul><li>Contrôler processeur, mémoire, disque et activités au démarrage.</li><li>Vérifier l’espace disponible et les journaux utiles.</li><li>Confirmer le fonctionnement des services requis.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">5</span></span><span class="timeline-head"><strong>Vérifier mises à jour, pilotes et logiciels</strong><span class="small">Améliorer compatibilité, sécurité et stabilité</span></span></summary><ul><li>Examiner Windows Update et l’état des pilotes.</li><li>Tester les applications essentielles séparément.</li><li>Ne retirer que les logiciels clairement inutiles ou conflictuels.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">6</span></span><span class="timeline-head"><strong>Diagnostiquer la connectivité</strong><span class="small">Tester adaptateur, IP, passerelle et DNS</span></span></summary><ul><li>Confirmer l’état de l’adaptateur et la configuration IP.</li><li>Tester séparément réseau local, accès Internet et résolution DNS.</li><li>Documenter l’étape exacte où la communication échoue.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">7</span></span><span class="timeline-head"><strong>Rétablir l’impression</strong><span class="small">Valider connexion, pilote, file et sortie</span></span></summary><ul><li>Contrôler l’imprimante installée et celle définie par défaut.</li><li>Examiner la file, le spouleur, le port et le pilote.</li><li>Tester une page système puis un document utilisateur.</li></ul></details></article>
+        <article class="timeline-item"><details class="timeline-card"><summary><span class="timeline-marker" aria-hidden="true"></span><span class="logo-box"><span aria-hidden="true">8</span></span><span class="timeline-head"><strong>Valider, documenter et expliquer</strong><span class="small">Confirmer le service utile et préparer la suite</span></span></summary><ul><li>Répéter la tâche qui échouait avec l’utilisateur.</li><li>Noter symptômes, contrôles, actions et résultats.</li><li>Expliquer les recommandations ou escalader avec les preuves recueillies.</li></ul></details></article>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="solution-title">
+      <div class="section-head"><div><h2 id="solution-title">Actions correctives représentatives</h2><span class="small">Une correction ciblée dépend toujours du diagnostic confirmé</span></div></div>
+      <div class="project-brief">
+        <div><span class="project-label">Performance</span><p>Réduire une charge de démarrage inutile, libérer de l’espace ou appliquer une mise à jour approuvée.</p></div>
+        <div><span class="project-label">Logiciels et pilotes</span><p>Corriger un pilote identifié ou réparer une application après protection des données et paramètres nécessaires.</p></div>
+        <div><span class="project-label">Réseau et impression</span><p>Corriger la configuration confirmée comme fautive, rétablir le spouleur ou reconfigurer proprement le périphérique.</p></div>
+        <div><span class="project-label">Escalade</span><p>Transmettre les défaillances matérielles, droits insuffisants ou problèmes d’infrastructure avec des preuves précises.</p></div>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="validation-title">
+      <div class="section-head"><div><h2 id="validation-title">Six contrôles de validation</h2><span class="small">Le service n’est rétabli que lorsque la tâche utile fonctionne</span></div></div>
+      <div class="skills-grid validation-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">1</div><div><strong>Démarrage</strong><div class="small">Bureau Windows utilisable</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">2</div><div><strong>Applications</strong><div class="small">Outils essentiels fonctionnels</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">3</div><div><strong>Réseau local</strong><div class="small">Passerelle attendue joignable</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">4</div><div><strong>Internet et DNS</strong><div class="small">Accès externe et noms résolus</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">5</div><div><strong>Impression</strong><div class="small">Page de test et document utilisateur</div></div></div></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">6</div><div><strong>Parcours utilisateur</strong><div class="small">Tâche initiale répétée avec succès</div></div></div></article>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="outcomes-title">
+      <div class="section-head"><div><h2 id="outcomes-title">Portée documentée</h2><span class="small">Ce que cette publication démontre objectivement</span></div></div>
+      <div class="project-brief">
+        <div><span class="project-label">4 domaines</span><p>Windows, matériel et périphériques, impression et connectivité réseau.</p></div>
+        <div><span class="project-label">8 étapes</span><p>Du recueil des symptômes à la validation, la documentation et l’escalade.</p></div>
+        <div><span class="project-label">6 validations</span><p>Démarrage, applications, réseau local, Internet et DNS, impression et tâche utilisateur.</p></div>
+        <div><span class="project-label">1 méthode réutilisable</span><p>Une base adaptable en liste de contrôle pour de futurs incidents de poste de travail.</p></div>
+      </div>
+      <p class="case-study-boundary"><strong>Note de portée :</strong> ces nombres décrivent la méthode publiée. Ils ne représentent ni résultats client, ni volume de tickets, ni garantie de performance.</p>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="learning-title">
+      <div class="section-head"><div><h2 id="learning-title">Principes de support démontrés</h2><span class="small">Les décisions qui rendent une intervention plus fiable</span></div></div>
+      <div class="skills-grid">
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">A</div><div><strong>Partir de la tâche réelle</strong><div class="small">Le succès technique doit restaurer le travail utile</div></div></div><p class="small">Un poste n’est pas réellement rétabli tant que l’utilisateur ne peut pas refaire l’action qui échouait.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">B</div><div><strong>Séparer symptôme et cause</strong><div class="small">Une même lenteur peut avoir plusieurs origines</div></div></div><p class="small">Une méthode progressive évite les changements aléatoires et aide à isoler la couche réellement affectée.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">C</div><div><strong>Valider chaque service</strong><div class="small">Un seul test réussi ne suffit pas</div></div></div><p class="small">Windows, applications, connectivité, impression et parcours utilisateur sont contrôlés indépendamment.</p></article>
+        <article class="skill-card"><div class="skill-top"><div class="skill-ico" aria-hidden="true">D</div><div><strong>Documenter la suite</strong><div class="small">La continuité dépend de preuves claires</div></div></div><p class="small">Des notes concises permettent un suivi plus rapide et une escalade mieux préparée.</p></article>
+      </div>
+    </section>
+    <section class="card reveal" style="margin-top:16px;" aria-labelledby="skills-title">
+      <div class="section-head"><div><h2 id="skills-title">Compétences démontrées</h2><span class="small">Capacités techniques et professionnelles visibles dans la méthode</span></div></div>
+      <div class="project-tags" aria-label="Compétences démontrées"><span class="tag">Support utilisateurs</span><span class="tag">Dépannage Windows</span><span class="tag">Diagnostic matériel</span><span class="tag">Support imprimantes</span><span class="tag">Diagnostic LAN</span><span class="tag">Contrôles DNS</span><span class="tag">Validation fonctionnelle</span><span class="tag">Documentation technique</span><span class="tag">Communication</span><span class="tag">Escalade structurée</span></div>
+    </section>
+    <section class="card reveal case-study-cta" style="margin-top:16px;" aria-labelledby="cta-title"><div class="section-head"><div><h2 id="cta-title">Besoin d’un support informatique structuré ?</h2><p class="summary">Je peux contribuer à la configuration de postes Windows, au dépannage de proximité, au support imprimantes, aux contrôles réseau de base et à la documentation technique.</p></div><div class="btns"><a class="btn primary" href="index.html#contact">Me contacter</a><a class="btn" href="project-network-printer-case-study.html">Voir le cas réseau et imprimante</a><a class="btn" href="project-workstation-user-setup.html">Voir la configuration de poste</a><a class="btn" href="it-support-resources.html">Ouvrir les ressources IT</a></div></div></section>
   </main>
   <footer><div class="wrap"><p>© <span id="year"></span> Pacifique Fashaho. Tous droits réservés.</p></div></footer><script src="../assets/js/main.js" defer></script>
 </body>
