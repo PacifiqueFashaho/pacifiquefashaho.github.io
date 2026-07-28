@@ -25,6 +25,9 @@ GOOGLE_SHA256 = "70d3bfaab6f818d1c3ef14f37797e691c1a9bf4d3d2cc61d225576ea1baac0a
 ENGLISH_CV = "Pacifique_Fashaho_CV.pdf"
 FRENCH_CV = "Pacifique_Fashaho_CV_FR.pdf"
 LEGACY_DOCUMENT_BUNDLE = "assets/certificates/Pacifique-Full-files.pdf"
+PRIVATE_STUDENT_RECORD = (
+    "assets/certificates/Confirmation-of-student-status.pdf"
+)
 
 PAGE_SPECS = {
     "index.html": ("/", "en"),
@@ -1272,6 +1275,11 @@ def validate_recruiter_documents(errors: list[str]) -> None:
         errors,
         not (ROOT / LEGACY_DOCUMENT_BUNDLE).exists(),
         f"{LEGACY_DOCUMENT_BUNDLE}: legacy document bundle must remain absent",
+    )
+    add_error(
+        errors,
+        not (ROOT / PRIVATE_STUDENT_RECORD).exists(),
+        f"{PRIVATE_STUDENT_RECORD}: private student record must remain absent",
     )
 
     link_expectations = (
