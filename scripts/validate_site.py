@@ -946,15 +946,20 @@ def validate_quick_assistant(
     parsed_pages: dict[str, PortfolioHTMLParser],
     errors: list[str],
 ) -> None:
-    expected_intents = Counter(
-        {
-            "opportunity": 3,
-            "support": 1,
-            "dashboard": 1,
-            "data": 1,
-            "field": 1,
-        }
-    )
+    expected_intents = {
+        "index.html": Counter(
+            {"opportunity": 2, "support": 1, "data": 1}
+        ),
+        "fr/index.html": Counter(
+            {
+                "opportunity": 3,
+                "support": 1,
+                "dashboard": 1,
+                "data": 1,
+                "field": 1,
+            }
+        ),
+    }
     expected_scripts = {
         "index.html": (
             "assets/js/assistant-intents.js",
@@ -1018,7 +1023,7 @@ def validate_quick_assistant(
         )
         add_error(
             errors,
-            suggestion_intents == expected_intents,
+            suggestion_intents == expected_intents[page],
             f"{page}: Quick Assistant suggestion intents are incomplete "
             f"({dict(suggestion_intents)})",
         )
@@ -1053,19 +1058,33 @@ def validate_quick_assistant(
             "aria-hidden",
         )
 
-        skill_summaries = [
-            re.sub(r"\s+", " ", item).strip()
-            for item in re.findall(
-                r'<span class="marquee-item">([^<]+)</span>',
-                source,
+        if page == "index.html":
+            required_skill_headings = {
+                "IT Support &amp; Troubleshooting",
+                "Data Analytics",
+                "Field Data Tools",
+                "Development",
+            }
+            add_error(
+                errors,
+                source.count('class="skill-card ') == 4
+                and all(heading in source for heading in required_skill_headings),
+                f"{page}: skills section must contain four verified capability cards",
             )
-        ]
-        add_error(
-            errors,
-            len(skill_summaries) == 4
-            and len(set(skill_summaries)) == len(skill_summaries),
-            f"{page}: skills summary must contain four unique static items",
-        )
+        else:
+            skill_summaries = [
+                re.sub(r"\s+", " ", item).strip()
+                for item in re.findall(
+                    r'<span class="marquee-item">([^<]+)</span>',
+                    source,
+                )
+            ]
+            add_error(
+                errors,
+                len(skill_summaries) == 4
+                and len(set(skill_summaries)) == len(skill_summaries),
+                f"{page}: skills summary must contain four unique static items",
+            )
 
     for page, parser in parsed_pages.items():
         if page in expected_scripts:
@@ -1231,24 +1250,30 @@ def validate_project_catalog(errors: list[str]) -> None:
     validate_stat("Project Categories", len(set(project_categories)))
     validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
 
-    homepage_proofs = (
-        ("index.html", "portfolio projects"),
-        ("fr/index.html", "projets du portfolio"),
-    )
-    for page, label in homepage_proofs:
-        homepage = read_text(page, errors)
-        if homepage is None:
-            continue
+    english_homepage = read_text("index.html", errors)
+    if english_homepage is not None:
+        recruiter_proofs = (
+            "<strong>Current</strong>",
+            "<strong>Google</strong>",
+            "<strong>4</strong>",
+        )
+        add_error(
+            errors,
+            all(proof in english_homepage for proof in recruiter_proofs),
+            "index.html: hero must retain current-role, credential, and experience proof",
+        )
 
+    french_homepage = read_text("fr/index.html", errors)
+    if french_homepage is not None:
         proof = re.search(
-            rf"<strong>(\d+)</strong>\s*"
-            rf'<a\b[^>]*>{re.escape(label)}</a>',
-            homepage,
+            r"<strong>(\d+)</strong>\s*"
+            r'<a\b[^>]*>projets du portfolio</a>',
+            french_homepage,
         )
         add_error(
             errors,
             bool(proof and int(proof.group(1)) == project_count),
-            f"{page}: homepage project proof must match the {project_count}-project catalog",
+            f"fr/index.html: homepage project proof must match the {project_count}-project catalog",
         )
 
 
