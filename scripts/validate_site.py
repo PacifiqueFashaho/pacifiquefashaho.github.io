@@ -67,6 +67,14 @@ PAGE_SPECS = {
         "en",
     ),
     "project-sales-dashboard.html": ("/project-sales-dashboard.html", "en"),
+    "fr/project-data-cleaning-case-study.html": (
+        "/fr/project-data-cleaning-case-study.html",
+        "fr",
+    ),
+    "fr/project-sales-dashboard.html": (
+        "/fr/project-sales-dashboard.html",
+        "fr",
+    ),
 }
 
 BILINGUAL_PAGE_PAIRS = (
@@ -86,6 +94,14 @@ BILINGUAL_PAGE_PAIRS = (
         "fr/project-workstation-user-setup.html",
     ),
     ("it-support-resources.html", "fr/it-support-resources.html"),
+    (
+        "project-data-cleaning-case-study.html",
+        "fr/project-data-cleaning-case-study.html",
+    ),
+    (
+        "project-sales-dashboard.html",
+        "fr/project-sales-dashboard.html",
+    ),
 )
 
 DETAILED_CASE_STUDY_PAGES = (
@@ -122,6 +138,32 @@ SOCIAL_IMAGE_SPECS = {
         759,
         750_000,
     ),
+    **{
+        f"{SITE_ORIGIN}/assets/images/social/{file_name}": (
+            f"assets/images/social/{file_name}",
+            "image/png",
+            1200,
+            630,
+            100_000,
+        )
+        for file_name in (
+            "certifications-fr.png",
+            "certifications.png",
+            "data-cleaning.png",
+            "home-fr.png",
+            "home.png",
+            "it-support-workflow-fr.png",
+            "it-support-workflow.png",
+            "network-printer-fr.png",
+            "network-printer.png",
+            "projects-fr.png",
+            "projects.png",
+            "support-resources-fr.png",
+            "support-resources.png",
+            "workstation-setup-fr.png",
+            "workstation-setup.png",
+        )
+    },
 }
 
 
@@ -951,13 +993,7 @@ def validate_quick_assistant(
             {"opportunity": 2, "support": 1, "data": 1}
         ),
         "fr/index.html": Counter(
-            {
-                "opportunity": 3,
-                "support": 1,
-                "dashboard": 1,
-                "data": 1,
-                "field": 1,
-            }
+            {"opportunity": 2, "support": 1, "data": 1}
         ),
     }
     expected_scripts = {
@@ -1058,33 +1094,27 @@ def validate_quick_assistant(
             "aria-hidden",
         )
 
-        if page == "index.html":
-            required_skill_headings = {
+        required_skill_headings = (
+            {
                 "IT Support &amp; Troubleshooting",
                 "Data Analytics",
                 "Field Data Tools",
                 "Development",
             }
-            add_error(
-                errors,
-                source.count('class="skill-card ') == 4
-                and all(heading in source for heading in required_skill_headings),
-                f"{page}: skills section must contain four verified capability cards",
-            )
-        else:
-            skill_summaries = [
-                re.sub(r"\s+", " ", item).strip()
-                for item in re.findall(
-                    r'<span class="marquee-item">([^<]+)</span>',
-                    source,
-                )
-            ]
-            add_error(
-                errors,
-                len(skill_summaries) == 4
-                and len(set(skill_summaries)) == len(skill_summaries),
-                f"{page}: skills summary must contain four unique static items",
-            )
+            if page == "index.html"
+            else {
+                "Support informatique et dépannage",
+                "Analyse de données",
+                "Outils de collecte mobile",
+                "Développement",
+            }
+        )
+        add_error(
+            errors,
+            source.count('class="skill-card ') == 4
+            and all(heading in source for heading in required_skill_headings),
+            f"{page}: skills section must contain four verified capability cards",
+        )
 
     for page, parser in parsed_pages.items():
         if page in expected_scripts:
@@ -1572,6 +1602,228 @@ def smoke_test_routes(errors: list[str]) -> None:
         thread.join(timeout=5)
 
 
+def validate_performance_budgets(errors: list[str]) -> None:
+    """Keep shared front-end assets within low-bandwidth delivery budgets."""
+    budgets = {
+        "assets/css/style.css": 60_000,
+        "assets/css/pages.css": 60_000,
+        "assets/css/contact-assistant.css": 20_000,
+        "assets/js/main.js": 20_000,
+        "assets/js/workbench.js": 20_000,
+        "assets/js/contact-assistant.js": 25_000,
+        "assets/js/assistant-intents.js": 6_000,
+        "assets/images/profile/pacifique-profile.webp": 100_000,
+    }
+
+    for relative_path, maximum_bytes in budgets.items():
+        path = ROOT / relative_path
+        if not path.is_file():
+            errors.append(f"{relative_path}: performance-budget asset is missing")
+            continue
+
+        actual_bytes = path.stat().st_size
+        add_error(
+            errors,
+            actual_bytes <= maximum_bytes,
+            (
+                f"{relative_path}: {actual_bytes} bytes exceeds the "
+                f"{maximum_bytes}-byte performance budget"
+                    ),
+                )
+
+
+def validate_language_safe_navigation(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    """Prevent ordinary internal links from switching languages unexpectedly."""
+    pair_by_page: dict[str, str] = {}
+    for english_page, french_page in BILINGUAL_PAGE_PAIRS:
+        pair_by_page[english_page] = french_page
+        pair_by_page[french_page] = english_page
+
+    for page, parser in parsed_pages.items():
+        page_language = PAGE_SPECS[page][1]
+        for anchor in parser.anchor_links:
+            href = anchor.get("href")
+            if not href:
+                continue
+            target = local_reference_repository_path(page, href)
+            if target not in PAGE_SPECS:
+                continue
+            target_language = PAGE_SPECS[target][1]
+            if target_language == page_language:
+                continue
+            is_explicit_switch = (
+                pair_by_page.get(page) == target
+                and anchor.get("lang") == target_language
+                and anchor.get("hreflang") == target_language
+            )
+            add_error(
+                errors,
+                is_explicit_switch,
+                (
+                    f"{page}: internal link {href!r} changes language without "
+                    "an explicit reciprocal language-switcher marker"
+                ),
+            )
+
+
+def validate_case_study_conversion_paths(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    """Keep every bilingual case study connected to Projects and Contact."""
+    case_studies = {
+        page
+        for pair in BILINGUAL_PAGE_PAIRS
+        for page in pair
+        if PurePosixPath(page).name.startswith("project-")
+    }
+    for page in sorted(case_studies):
+        parser = parsed_pages.get(page)
+        if parser is None:
+            continue
+        targets = {
+            local_reference_repository_path(page, anchor.get("href") or "")
+            for anchor in parser.anchor_links
+        }
+        directory = PurePosixPath(page).parent
+        expected_projects = (directory / "projects.html").as_posix()
+        expected_home = (directory / "index.html").as_posix()
+        add_error(
+            errors,
+            expected_projects in targets,
+            f"{page}: case study is missing a same-language Projects path",
+        )
+        has_contact_path = any(
+            local_reference_repository_path(page, anchor.get("href") or "")
+            == expected_home
+            and urlparse(anchor.get("href") or "").fragment == "contact"
+            for anchor in parser.anchor_links
+        )
+        add_error(
+            errors,
+            has_contact_path,
+            f"{page}: case study is missing a same-language Contact path",
+        )
+
+
+def validate_contact_form_recovery(errors: list[str]) -> None:
+    """Require bilingual field errors and programmatic invalid-state recovery."""
+    field_ids = (
+        "contactName",
+        "contactEmail",
+        "contactSubject",
+        "contactMessage",
+    )
+
+    for page in ("index.html", "fr/index.html"):
+        source = read_text(page, errors)
+        if source is None:
+            continue
+
+        add_error(
+            errors,
+            "novalidate" in source,
+            f"{page}: contact form must use the accessible custom validation flow",
+        )
+        for field_id in field_ids:
+            error_id = f"{field_id}Error"
+            add_error(
+                errors,
+                f'aria-describedby="{error_id}"' in source,
+                f"{page}: {field_id} must describe its inline error",
+            )
+            add_error(
+                errors,
+                f'id="{error_id}"' in source,
+                f"{page}: missing inline error element {error_id}",
+            )
+
+    script = read_text("assets/js/contact-assistant.js", errors)
+    if script is not None:
+        for required_marker in (
+            'setAttribute("aria-invalid"',
+            "invalidFields[0].focus()",
+            "errorsFound(invalidFields.length)",
+            'addEventListener("blur"',
+        ):
+            add_error(
+                errors,
+                required_marker in script,
+                (
+                    "assets/js/contact-assistant.js: missing accessible "
+                    f"form-recovery behavior {required_marker!r}"
+                ),
+            )
+
+
+def validate_bilingual_component_parity(errors: list[str]) -> None:
+    """Keep translated components structurally aligned with English sources."""
+    english = read_text("index.html", errors)
+    french = read_text("fr/index.html", errors)
+    if english is None or french is None:
+        return
+
+    component_markers = (
+        "skills",
+        "featured-project-title",
+        "education",
+        "experience",
+        "services",
+        "contact",
+        "chatAssistant",
+    )
+
+    def component_signature(source: str, marker: str) -> Counter[str]:
+        section = re.search(
+            rf'<section\b(?=[^>]*(?:id|aria-labelledby)="{marker}")[^>]*>.*?</section>',
+            source,
+            flags=re.DOTALL,
+        )
+        if section is None:
+            return Counter()
+        return Counter(re.findall(r"<([a-z][a-z0-9-]*)\b", section.group(0)))
+
+    for marker in component_markers:
+        english_signature = component_signature(english, marker)
+        french_signature = component_signature(french, marker)
+        add_error(
+            errors,
+            bool(english_signature)
+            and english_signature == french_signature,
+            (
+                "fr/index.html: component structure does not match the English "
+                f"homepage for {marker}"
+            ),
+        )
+
+    english_projects = read_text("projects.html", errors)
+    french_projects = read_text("fr/projects.html", errors)
+    if english_projects is None or french_projects is None:
+        return
+
+    for marker in (
+        "projects-page-title",
+        "project-filter-title",
+        "evidence-note-title",
+        "featured-project-title",
+        "all-projects-title",
+        "project-roadmap-title",
+        "projects-cta-title",
+    ):
+        english_signature = component_signature(english_projects, marker)
+        french_signature = component_signature(french_projects, marker)
+        add_error(
+            errors,
+            bool(english_signature)
+            and english_signature == french_signature,
+            (
+                "fr/projects.html: component structure does not match the "
+                f"English Projects page for {marker}"
+            ),
+        )
 def main() -> int:
     errors: list[str] = []
 
@@ -1579,6 +1831,8 @@ def main() -> int:
     validate_social_previews(parsed_pages, errors)
     validate_references(parsed_pages, errors)
     validate_bilingual_pages(parsed_pages, errors)
+    validate_language_safe_navigation(parsed_pages, errors)
+    validate_case_study_conversion_paths(parsed_pages, errors)
     validate_quick_assistant(parsed_pages, errors)
     validate_javascript_architecture(errors)
     validate_css_architecture(parsed_pages, errors)
@@ -1589,6 +1843,9 @@ def main() -> int:
     validate_sitemap(errors)
     validate_workbench(parsed_pages, errors)
     validate_protected_resources(errors)
+    validate_performance_budgets(errors)
+    validate_contact_form_recovery(errors)
+    validate_bilingual_component_parity(errors)
     smoke_test_routes(errors)
 
     if errors:
@@ -1600,7 +1857,8 @@ def main() -> int:
     print(
         "Static portfolio validation passed: "
         f"{len(PAGE_SPECS)} pages, internal resources, accessibility markers, JSON-LD, "
-        "JSON, XML, social previews, recruiter PDFs, protected resources, and HTTP routes."
+        "JSON, XML, social previews, performance budgets, recruiter PDFs, "
+        "protected resources, and HTTP routes."
     )
     return 0
 

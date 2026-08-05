@@ -29,6 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
         switchToDark: "Switch to dark mode",
         light: "Light",
         dark: "Dark"
+      },
+      navigation: {
+        open: "Open navigation menu",
+        close: "Close navigation menu",
+        menu: "Menu",
+        closeText: "Close"
       }
     },
     fr: {
@@ -37,6 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
         switchToDark: "Passer au mode sombre",
         light: "Clair",
         dark: "Sombre"
+      },
+      navigation: {
+        open: "Ouvrir le menu de navigation",
+        close: "Fermer le menu de navigation",
+        menu: "Menu",
+        closeText: "Fermer"
       }
     }
   };
@@ -46,14 +58,90 @@ document.addEventListener("DOMContentLoaded", () => {
   window.PORTFOLIO_LANGUAGE = language;
 
   /* =========================
+     Responsive navigation
+  ========================= */
+
+  const navToggle = document.getElementById("navToggle");
+  const primaryNavigation = document.getElementById("primaryNavigation");
+  const compactNavigation = window.matchMedia("(max-width: 920px)");
+
+  function setNavigationOpen(isOpen, restoreFocus = false) {
+    if (!navToggle || !primaryNavigation) return;
+
+    primaryNavigation.classList.toggle("is-open", isOpen);
+    navToggle.classList.toggle("is-active", isOpen);
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute(
+      "aria-label",
+      isOpen ? strings.navigation.close : strings.navigation.open
+    );
+
+    const toggleText = navToggle.querySelector(".nav-toggle-text");
+    if (toggleText) {
+      toggleText.textContent = isOpen
+        ? strings.navigation.closeText
+        : strings.navigation.menu;
+    }
+
+    if (restoreFocus) navToggle.focus();
+  }
+
+  if (navToggle && primaryNavigation) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      setNavigationOpen(!isOpen);
+    });
+
+    primaryNavigation.addEventListener(
+      "click",
+      (event) => {
+        if (event.target.closest("a") && compactNavigation.matches) {
+          setNavigationOpen(false);
+        }
+      },
+      { capture: true }
+    );
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key === "Escape" &&
+        navToggle.getAttribute("aria-expanded") === "true"
+      ) {
+        setNavigationOpen(false, true);
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        compactNavigation.matches &&
+        navToggle.getAttribute("aria-expanded") === "true" &&
+        !event.target.closest(".has-compact-nav")
+      ) {
+        setNavigationOpen(false);
+      }
+    });
+
+    const handleNavigationViewportChange = (event) => {
+      if (!event.matches) setNavigationOpen(false);
+    };
+
+    if (compactNavigation.addEventListener) {
+      compactNavigation.addEventListener("change", handleNavigationViewportChange);
+    } else if (compactNavigation.addListener) {
+      compactNavigation.addListener(handleNavigationViewportChange);
+    }
+  }
+
+  /* =========================
      Footer year
   ========================= */
 
-  const year = document.getElementById("y2");
+  const currentYear = String(new Date().getFullYear());
+  const yearElements = document.querySelectorAll("[data-current-year], #y2");
 
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+  yearElements.forEach((year) => {
+    year.textContent = currentYear;
+  });
 
   /* =========================
      Experience counter
@@ -278,6 +366,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   hashLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
+      if (link.hasAttribute("data-manages-contact-focus")) return;
+
       const href = link.getAttribute("href");
 
       if (!href || href === "#") return;
@@ -361,7 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = Array.from(
     document.querySelectorAll("section[id]")
   );
-  const navLinks = document.querySelectorAll("nav a[href]");
+  const navLinks = document.querySelectorAll("nav a[data-section-link]");
 
   let sectionRanges = [];
   let scrollUiFrameId = 0;
@@ -393,8 +483,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (!activeId) return;
-
     navLinks.forEach((link) => {
       const href = link.getAttribute("href") || "";
       const isSamePageHash =
@@ -402,6 +490,12 @@ document.addEventListener("DOMContentLoaded", () => {
         href.endsWith(`#${activeId}`);
 
       link.classList.toggle("active", isSamePageHash);
+
+      if (isSamePageHash) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
   }
 

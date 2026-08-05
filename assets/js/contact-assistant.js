@@ -1,9 +1,3 @@
-/* =========================================================
-   Pacifique Fashaho Portfolio
-   Contact form and Quick Contact Assistant
-   Loaded only on the English and French home pages
-========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.documentElement;
   const language = (root.lang || "en").toLowerCase().startsWith("fr")
@@ -26,7 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
         serviceError: "The form service returned an error.",
         success: "Thank you. Your message has been sent successfully.",
         failure:
-          "Your message could not be sent. Please contact Pacifique through email or WhatsApp."
+          "Your message could not be sent. Please contact Pacifique through email or WhatsApp.",
+        errorsFound: (count) =>
+          "Please correct " + count + " " +
+          (count === 1 ? "field" : "fields") + " before sending.",
+        nameRequired: "Enter your name.",
+        emailRequired: "Enter your email address.",
+        emailInvalid: "Enter an email address in the format name@example.com.",
+        subjectRequired: "Enter the role, internship, or message subject.",
+        messageRequired: "Enter your message."
       },
       copyEmail: {
         success: "Email copied to clipboard.",
@@ -78,7 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
         success:
           "Merci. Votre message a \u00E9t\u00E9 envoy\u00E9 avec succ\u00E8s.",
         failure:
-          "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email ou WhatsApp."
+          "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email ou WhatsApp.",
+        errorsFound: (count) =>
+          "Corrigez " + count + " " +
+          (count === 1 ? "champ" : "champs") + " avant l\u2019envoi.",
+        nameRequired: "Saisissez votre nom.",
+        emailRequired: "Saisissez votre adresse email.",
+        emailInvalid: "Saisissez une adresse au format nom@exemple.com.",
+        subjectRequired: "Saisissez le poste, le stage ou l\u2019objet du message.",
+        messageRequired: "Saisissez votre message."
       },
       copyEmail: {
         success: "Adresse email copi\u00E9e.",
@@ -128,8 +138,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactSubmitButton = document.getElementById("contactSubmitButton");
   const contactSubmitText = document.getElementById("contactSubmitText");
   const contactName = document.getElementById("contactName");
+  const contactEmail = document.getElementById("contactEmail");
   const contactSubject = document.getElementById("contactSubject");
   const contactMessage = document.getElementById("contactMessage");
+  const requiredContactFields = [
+    contactName,
+    contactEmail,
+    contactSubject,
+    contactMessage
+  ].filter(Boolean);
 
   function setContactFormStatus(message, type = "") {
     if (!contactFormStatus) return;
@@ -155,6 +172,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function contactFieldError(field) {
+    if (!field?.id) return "";
+
+    if (!field.value.trim()) {
+      const requiredMessages = {
+        contactName: strings.form.nameRequired,
+        contactEmail: strings.form.emailRequired,
+        contactSubject: strings.form.subjectRequired,
+        contactMessage: strings.form.messageRequired
+      };
+
+      return requiredMessages[field.id] || strings.form.messageRequired;
+    }
+
+    if (field === contactEmail && field.validity.typeMismatch) {
+      return strings.form.emailInvalid;
+    }
+
+    return "";
+  }
+
+  function setContactFieldError(field, message = "") {
+    if (!field?.id) return;
+
+    const error = document.getElementById(`${field.id}Error`);
+    field.setAttribute("aria-invalid", String(Boolean(message)));
+    field.classList.toggle("is-invalid", Boolean(message));
+
+    if (error) {
+      error.textContent = message;
+    }
+  }
+
+  function validateContactField(field) {
+    const message = contactFieldError(field);
+    setContactFieldError(field, message);
+    return !message;
+  }
+
+  function clearContactValidation() {
+    requiredContactFields.forEach((field) => setContactFieldError(field));
+  }
+
+  function validateContactForm() {
+    return requiredContactFields.filter((field) => !validateContactField(field));
+  }
+
+  requiredContactFields.forEach((field) => {
+    field.addEventListener("blur", () => validateContactField(field));
+    field.addEventListener("input", () => {
+      if (field.getAttribute("aria-invalid") === "true") {
+        validateContactField(field);
+      }
+
+      if (requiredContactFields.every((item) => contactFieldError(item) === "")) {
+        setContactFormStatus("");
+      }
+    });
+  });
+
   serviceButtons.forEach((button) => {
     button.addEventListener("click", () => {
       serviceButtons.forEach((item) => {
@@ -165,6 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (contactSubject) {
         contactSubject.value = button.dataset.service || "";
+        setContactFieldError(contactSubject);
         contactSubject.focus();
       }
     });
@@ -174,7 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (contactForm.reportValidity && !contactForm.reportValidity()) {
+      const invalidFields = validateContactForm();
+
+      if (invalidFields.length > 0) {
+        setContactFormStatus(
+          strings.form.errorsFound(invalidFields.length),
+          "error"
+        );
+        invalidFields[0].focus();
         return;
       }
 
@@ -192,6 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (honeypot && honeypot.value.trim()) {
         contactForm.reset();
+        clearContactValidation();
         setContactFormStatus(strings.form.received, "success");
         return;
       }
@@ -228,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         contactForm.reset();
+        clearContactValidation();
         serviceButtons.forEach((button) => {
           button.classList.remove("active");
           button.setAttribute("aria-pressed", "false");
@@ -442,7 +529,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!chatInput || !chatCharacterCount) return;
 
     const maximum = Number(chatInput.maxLength) || 800;
-    chatCharacterCount.textContent = `${chatInput.value.length} / ${maximum} characters`;
+    const unit = language === "fr" ? "caractères" : "characters";
+    chatCharacterCount.textContent = `${chatInput.value.length} / ${maximum} ${unit}`;
     updateContactLinks();
   }
 
@@ -538,14 +626,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chatContactFormLink?.addEventListener("click", (event) => {
     event.preventDefault();
+    event.stopImmediatePropagation();
 
     if (chatInput.value.trim()) {
       if (contactSubject) {
         contactSubject.value = categoryDetails[selectedCategory]?.subject || "Portfolio contact";
+        setContactFieldError(contactSubject);
       }
 
       if (contactMessage) {
         contactMessage.value = chatInput.value;
+        setContactFieldError(contactMessage);
       }
 
       setContactFormStatus(strings.assistant.formPrefilled, "success");
