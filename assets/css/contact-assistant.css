@@ -8,6 +8,7 @@
 ========================= */
 
 .contact-section {
+  margin-top: 16px;
   overflow: hidden;
 }
 
@@ -167,60 +168,39 @@
   color: var(--accent);
 }
 
-.contact-topic-groups {
-  display: grid;
-  gap: 12px;
-}
-
-.contact-topic-group {
-  display: grid;
-  gap: 8px;
-}
-
-.contact-topic-label {
+.contact-response-note {
+  margin: auto 0 0;
+  padding: 11px 12px;
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
   color: var(--muted);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.service-chip-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.service-chip {
-  padding: 8px 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  background: var(--soft-surface-strong);
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 850;
-  transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
-}
-
-.service-chip:hover,
-.service-chip.active,
-.service-chip[aria-pressed="true"] {
-  color: var(--accent);
-  border-color: rgba(37, 99, 235, 0.42);
   background: var(--accent-soft);
-  transform: translateY(-1px);
-}
-
-.service-chip--priority {
-  border-color: rgba(37, 99, 235, 0.42);
-  background: var(--accent-soft);
-  color: var(--accent);
+  font-size: 12.5px;
+  line-height: 1.5;
 }
 
 /* Form */
 .contact-form {
   display: grid;
   gap: 12px;
+}
+
+.contact-form-heading {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-form-heading h3 {
+  margin: 9px 0 0;
+  color: var(--text);
+  font-size: 18px;
+}
+
+.contact-form-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
 }
 
 .form-grid {
@@ -263,12 +243,42 @@
   resize: vertical;
 }
 
+.form-row .is-invalid {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.12);
+}
+
+.form-error {
+  display: block;
+  min-height: 1.35em;
+  margin-top: 5px;
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+[data-theme="dark"] .form-error {
+  color: #fca5a5;
+}
+
 .contact-submit {
   width: 100%;
 }
 
+.contact-form-privacy {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid #d97706;
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(217, 119, 6, 0.09);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 /* Quick contact */
-.quick-contact-block {
+.professional-links-block {
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid var(--line);
@@ -276,6 +286,18 @@
 
 .quick-contact-head {
   margin-bottom: 12px;
+}
+
+.contact-grid--essential {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-section a:focus-visible,
+.contact-section button:focus-visible,
+.contact-section input:focus-visible,
+.contact-section textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.3);
+  outline-offset: 3px;
 }
 
 
@@ -746,13 +768,86 @@
 }
 
 .chat-assistant {
-  overflow: hidden;
+  height: min(660px, calc(100dvh - 110px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.chat-intro {
+  margin: 0;
+  padding: 14px 14px 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.chat-suggestions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: visible;
+  padding-bottom: 4px;
+}
+
+.chat-category-label {
+  grid-column: 1 / -1;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.chat-suggestion {
+  position: relative;
+  width: 100%;
+  white-space: normal;
+}
+
+.chat-suggestion.is-selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.chat-suggestion.is-selected::before {
+  content: "\2713";
+  margin-right: 6px;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.chat-input-area {
+  grid-template-columns: 1fr;
+}
+
+.chat-input-label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.chat-input-area textarea {
+  min-height: 150px;
+  max-height: 260px;
+  line-height: 1.5;
+}
+
+.chat-action-btn.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  pointer-events: none;
+  transform: none;
+  box-shadow: none;
 }
 
 .chat-disclosure {
-  margin: 0;
-  padding: 0 14px 10px;
-  color: var(--muted);
+  margin: 0 14px 12px;
+  padding: 10px 12px;
+  border-left: 3px solid #d97706;
+  border-radius: 8px;
+  color: var(--text);
+  background: rgba(217, 119, 6, 0.09);
   font-size: 11.5px;
   line-height: 1.45;
 }
@@ -763,7 +858,8 @@
 
 @media (max-width: 720px) {
   .chat-assistant {
-    height: min(620px, calc(100vh - 96px));
+    height: min(660px, calc(100dvh - 96px));
+    max-height: calc(100dvh - 96px);
     resize: none;
   }
 
@@ -779,7 +875,41 @@
   }
 
   .assistant-launcher-label {
-    display: none;
+    display: inline;
+  }
+
+  .assistant-launcher {
+    width: auto;
+    min-width: 58px;
+    padding: 0 14px;
+  }
+
+  .chat-assistant {
+    right: max(8px, env(safe-area-inset-right));
+    left: max(8px, env(safe-area-inset-left));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: auto;
+    max-width: none;
+    max-height: calc(100dvh - max(16px, env(safe-area-inset-top)) - max(16px, env(safe-area-inset-bottom)));
+    border-radius: 18px;
+  }
+
+  .chat-suggestions,
+  .chat-contact-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant-launcher,
+  .chat-assistant,
+  .chat-minimize,
+  .chat-close,
+  .chat-suggestion,
+  .chat-send-btn,
+  .chat-action-btn {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -791,6 +921,10 @@
   .contact-layout {
     grid-template-columns: 1fr;
   }
+
+  .contact-grid--essential {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
@@ -801,13 +935,16 @@
   }
 
   .contact-context-badge,
-  .service-chip,
   .copy-btn {
     width: 100%;
     text-align: center;
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid--essential {
     grid-template-columns: 1fr;
   }
 
@@ -821,7 +958,14 @@
 ========================= */
 
 @media (forced-colors: active) {
-  .service-chip,
+  .form-row .is-invalid {
+    border: 2px solid Mark;
+  }
+
+  .form-error {
+    color: Mark;
+  }
+
   .copy-btn,
   .assistant-launcher,
   .chat-minimize,

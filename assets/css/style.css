@@ -369,7 +369,8 @@ nav a:hover {
 }
 
 nav a.active,
-nav a[aria-current="page"] {
+nav a[aria-current="page"],
+nav a[aria-current="location"] {
   color: #fff;
   border-color: transparent;
   background: linear-gradient(135deg, var(--accent), var(--accent2));

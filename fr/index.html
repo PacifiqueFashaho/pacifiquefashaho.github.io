@@ -42,10 +42,10 @@
     property="og:description"
     content="Technicien en support informatique à Goma, en RD Congo : dépannage Windows, assistance aux utilisateurs, imprimantes, connectivité et configuration de postes."
   />
-  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/social/home-fr.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="627" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Aperçu du portfolio de Pacifique Fashaho" />
   <meta property="og:url" content="https://pacifiquefashaho.github.io/fr/" />
   <meta property="og:type" content="website" />
@@ -60,7 +60,7 @@
     name="twitter:description"
     content="Technicien en support informatique à Goma, en RD Congo : dépannage Windows, assistance aux utilisateurs, imprimantes, connectivité et configuration de postes."
   />
-  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/ui/og-image.png" />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/social/home-fr.png" />
   <meta name="twitter:image:alt" content="Aperçu du portfolio de Pacifique Fashaho" />
 
   <!-- Prevent theme flash -->
@@ -142,7 +142,7 @@
   </script>
 </head>
 
-<body>
+<body class="homepage-page">
   <noscript>
     <style>
       #loader { display: none !important; }
@@ -163,21 +163,22 @@
   </button>
 
   <!-- Header -->
-  <header class="topbar topbar-home">
+  <header class="topbar topbar-home has-compact-nav">
     <div class="wrap">
       <a class="brand" href="index.html" aria-label="Aller à la page d’accueil">
         <span class="dot" aria-hidden="true"></span>
         <span>Pacifique Fashaho</span>
       </a>
 
-      <nav aria-label="Navigation principale">
-        <a class="active" href="index.html" aria-current="page">Accueil</a>
-        <a href="#skills">Compétences</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Ouvrir le menu de navigation"><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="nav-toggle-text">Menu</span></button>
+
+      <nav id="primaryNavigation" aria-label="Navigation principale">
+        <a href="#skills" data-section-link>Compétences</a>
+        <a href="#experience" data-section-link>Expérience</a>
         <a href="projects.html">Projets</a>
         <a href="certifications.html">Certifications</a>
-        <a href="#experience">Expérience</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <a href="#services" data-section-link>Services</a>
+        <a class="nav-primary-action" href="#contact" data-section-link>Me contacter <span aria-hidden="true">&rarr;</span></a>
       </nav>
 
       <div class="language-switcher" aria-label="Sélection de la langue">
@@ -218,18 +219,16 @@
         </p>
 
         <div class="btns hero-v2__actions" aria-label="Actions principales du portfolio">
-          <a class="btn primary" href="project-it-support-case-study.html">
-            Voir l’étude de cas en support informatique
-          </a>
-          <a class="btn" href="#contact">Me contacter</a>
+          <a class="btn primary" href="../Pacifique_Fashaho_CV_FR.pdf" target="_blank" rel="noreferrer noopener">Voir mon CV</a>
+          <a class="btn" href="project-it-support-case-study.html">Voir les preuves en support informatique</a>
         </div>
 
         <div class="hero-v2__secondary-links" aria-label="Liens professionnels">
-          <a href="../Pacifique_Fashaho_CV_FR.pdf" target="_blank" rel="noreferrer noopener">Télécharger le CV</a>
-          <span aria-hidden="true">·</span>
-          <a href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer noopener">GitHub</a>
+          <a href="#contact">Me contacter</a>
           <span aria-hidden="true">·</span>
           <a href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+          <span aria-hidden="true">·</span>
+          <a href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer noopener">GitHub</a>
         </div>
 
         <div class="hero-v2__identity">
@@ -249,8 +248,6 @@
             <strong>Pacifique Fashaho</strong>
             <span class="small">Technicien en support informatique</span>
             <span class="small">Goma, RD Congo · À distance / Sur site</span>
-            <span class="small">Bachelor of Science in Computer Science — en cours</span>
-            <span class="small">Fin prévue : avril 2027</span>
           </div>
         </div>
 
@@ -308,11 +305,7 @@
           <a id="workbenchCaseStudyLink" class="btn" href="project-it-support-case-study.html">Voir l’étude de cas en support informatique</a>
         </div>
 
-        <nav class="project-actions" aria-label="Preuves de l’atelier technique">
-          <a class="pbtn" href="project-network-printer-case-study.html">Preuve réseau et imprimante</a>
-          <a class="pbtn" href="project-workstation-user-setup.html">Preuve de configuration du poste</a>
-          <a class="pbtn" href="it-support-resources.html">Ressources imprimables</a>
-        </nav>
+        <a class="workbench__all-evidence" href="projects.html">Parcourir toutes les preuves de projets <span aria-hidden="true">&rarr;</span></a>
 
         <noscript>
           <p class="small">
@@ -324,80 +317,38 @@
           </p>
         </noscript>
       </section>
-    </section>
 
-    <section class="card hero-profile-details" aria-labelledby="profile-details-title" style="margin-top:16px;">
-      <div class="section-head">
-        <div>
-          <h2 id="profile-details-title">Détails du profil professionnel</h2>
-          <span class="small">Informations complémentaires placées en dehors du message principal</span>
-        </div>
-      </div>
-
-      <details>
-        <summary>Voir les axes du profil et les compétences linguistiques</summary>
-        <div class="profile">
-          <img
-            class="profile-workstation"
-            src="../assets/images/workstations/it-workstation.webp"
-            width="1200"
-            height="700"
-            alt="Poste informatique représentant le support et le dépannage"
-            loading="lazy"
-            decoding="async"
-          />
-
-          <div class="mini-card">
-            <div class="mini-title">Axes du profil</div>
-            <div class="mini-list">
-              <div class="mini-item"><span class="mini-label">Support technique</span><strong>Windows • Imprimantes • Réseaux • Utilisateurs</strong></div>
-              <div class="mini-item"><span class="mini-label">Travail sur les données</span><strong>Nettoyage • Rapports • Tableaux de bord</strong></div>
-            </div>
-          </div>
-
-          <div class="mini-card">
-            <div class="mini-title">Compétences linguistiques</div>
-            <div class="mini-list">
-              <div class="mini-item"><span class="mini-label">Très bon niveau</span><strong>Français</strong></div>
-              <div class="mini-item"><span class="mini-label">Bon niveau</span><strong>Anglais</strong></div>
-            </div>
-          </div>
-        </div>
-      </details>
+      <aside class="hero-profile-strip" aria-label="Informations essentielles du profil">
+        <div><span>Langues</span><strong>Français — Très bon · Anglais — Bon</strong></div>
+        <div><span>Basé à</span><strong>Goma, RD Congo</strong></div>
+        <div><span>Modalités de travail</span><strong>Opportunités à distance / sur site</strong></div>
+      </aside>
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="card reveal skills-premium" style="margin-top:16px;">
-      <div class="section-head">
+    <section id="skills" class="card reveal skills-premium skills-section" aria-labelledby="skills-title">
+      <div class="section-head skills-heading">
         <div>
-          <h2>Compétences</h2>
-          <span class="small">Le support informatique en priorité, complété par des compétences en données et en développement</span>
+          <span class="section-eyebrow">Compétences techniques</span>
+          <h2 id="skills-title">Des compétences de support appliquées aux besoins des utilisateurs</h2>
+          <p class="skills-intro">Ma priorité est de maintenir le bon fonctionnement des utilisateurs, postes, imprimantes, logiciels et connexions de base. Les données et le développement complètent la documentation, les rapports et les tâches répétitives.</p>
         </div>
       </div>
 
-      <div class="marquee skills-marquee" aria-label="Résumé des compétences">
-        <div class="marquee-track">
-          <span class="marquee-item">Support informatique : Windows • Utilisateurs • Imprimantes • Réseaux • Dépannage</span>
-          <span class="marquee-item">Analyse de données : Excel • SQL • Python • Tableaux de bord</span>
-          <span class="marquee-item">Collecte mobile : KoBoToolbox • ODK • Validation des données</span>
-          <span class="marquee-item">Web : HTML • CSS • JavaScript • GitHub Pages</span>
-        </div>
-      </div>
-
-      <div class="skills-grid skills-priority-grid">
-        <article class="skill-card skill-card--primary">
+      <article class="skill-card skill-card--primary skill-primary-panel">
+        <div class="skill-primary-header">
           <div class="skill-top">
-            <div class="skill-ico" aria-hidden="true">
+            <div class="skill-ico skill-primary-icon" aria-hidden="true">
               <img src="../assets/images/ui/icon-it-support.png" width="32" height="32" alt="" loading="lazy" decoding="async" />
             </div>
             <div>
               <span class="capability-level">Compétence principale</span>
-              <strong>Support informatique</strong>
-              <div class="small">Support pratique des systèmes, utilisateurs, postes, imprimantes et connexions</div>
+              <h3>Support informatique et dépannage</h3>
+              <p>Assistance pratique pour les systèmes, utilisateurs, postes, imprimantes et connexions.</p>
             </div>
           </div>
 
-          <div class="skill-chips">
+          <div class="skill-chips" aria-label="Outils et domaines du support informatique">
             <span class="chip">Windows</span>
             <span class="chip">Assistance aux utilisateurs</span>
             <span class="chip">Matériel</span>
@@ -406,13 +357,18 @@
             <span class="chip">Imprimantes</span>
             <span class="chip">Documentation</span>
           </div>
+        </div>
 
-          <ul class="skill-evidence">
-            <li>Dépanner Windows, les logiciels, le matériel et les périphériques</li>
-            <li>Configurer les postes, les outils utilisateurs, les imprimantes et la connectivité de base</li>
-            <li>Valider le rétablissement du service et documenter les actions pour les utilisateurs et les équipes</li>
-          </ul>
-        </article>
+        <div class="skill-practice-grid" aria-label="Compétences de support mises en pratique">
+          <div><span class="skill-practice-number" aria-hidden="true">01</span><strong>Diagnostiquer</strong><p>Dépanner Windows, les logiciels, le matériel, les périphériques, l’impression et la connectivité.</p></div>
+          <div><span class="skill-practice-number" aria-hidden="true">02</span><strong>Configurer</strong><p>Préparer les postes, outils utilisateurs, pilotes, imprimantes, logiciels de productivité et réseau de base.</p></div>
+          <div><span class="skill-practice-number" aria-hidden="true">03</span><strong>Assister et documenter</strong><p>Aider les utilisateurs, confirmer le service rétabli et documenter clairement les actions pour la remise.</p></div>
+        </div>
+      </article>
+
+      <details class="skills-progressive">
+        <summary><span><span>Autres compétences</span><small>Données, terrain &amp; développement</small></span></summary>
+        <div class="skills-grid skills-supporting-grid">
 
         <article class="skill-card skill-card--secondary">
           <div class="skill-top">
@@ -421,7 +377,7 @@
             </div>
             <div>
               <span class="capability-level">Compétence complémentaire</span>
-              <strong>Analyse de données</strong>
+              <h3>Analyse de données</h3>
               <div class="small">Nettoyage, rapports et tableaux de bord</div>
             </div>
           </div>
@@ -447,7 +403,7 @@
             </div>
             <div>
               <span class="capability-level">Compétence complémentaire</span>
-              <strong>Outils de collecte mobile</strong>
+              <h3>Outils de collecte mobile</h3>
               <div class="small">Collecte mobile et validation</div>
             </div>
           </div>
@@ -472,7 +428,7 @@
             </div>
             <div>
               <span class="capability-level">Compétence complémentaire</span>
-              <strong>Développement</strong>
+              <h3>Développement</h3>
               <div class="small">Automatisation, scripts et fondamentaux du web</div>
             </div>
           </div>
@@ -490,281 +446,111 @@
             <li>Maintenir des pages de portfolio adaptatives avec un contrôle de version</li>
           </ul>
         </article>
-      </div>
+        </div>
+      </details>
     </section>
 
     <!-- Projet en vedette -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="featured-project-title">
-      <div class="section-head">
+    <section class="card reveal featured-project-section" aria-labelledby="featured-project-title">
+      <div class="section-head featured-project-heading">
         <div>
-          <h2 id="featured-project-title">Projet en vedette</h2>
-          <span class="small">Preuve principale en support informatique avec une méthode de dépannage documentée</span>
+          <span class="section-eyebrow">Étude de cas en support informatique</span>
+          <h2 id="featured-project-title">Une méthode pratique pour rétablir le service d’un poste</h2>
+          <p class="featured-project-summary">
+            Découvrez comment je structure le dépannage, du signalement et des vérifications de sécurité
+            jusqu’au diagnostic, à la validation, à la documentation et à la remise à l’utilisateur.
+          </p>
         </div>
 
-        <a class="btn" href="projects.html">
-          Voir tous les projets
+        <a class="featured-project-all" href="projects.html">
+          Parcourir tous les projets <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
 
       <article class="project featured-project-card" id="featured-it-support-workflow" data-category="it-support">
-        <div class="project-top">
-          <div>
-            <h3>Processus de configuration et de dépannage d’un poste de travail</h3>
-            <p class="small">
-              Méthode représentative fondée sur une expérience vérifiée avec Windows, les imprimantes,
-              les problèmes matériels et logiciels, la connectivité et l’assistance aux utilisateurs.
-            </p>
+        <div class="featured-project-layout">
+          <div class="featured-project-content">
+            <div class="project-top">
+              <div>
+                <span class="project-kicker">Méthode représentative de support</span>
+                <h3>Configuration et dépannage d’un poste</h3>
+              </div>
+
+              <div class="project-tags" aria-label="Technologies et domaines de support">
+                <span class="tag">Windows</span>
+                <span class="tag">Matériel</span>
+                <span class="tag">Imprimantes</span>
+                <span class="tag">Réseau</span>
+              </div>
+            </div>
+
+            <ol class="featured-project-story" aria-label="Résumé de l’étude de cas">
+              <li><span class="featured-story-number" aria-hidden="true">01</span><div><strong>Problème</strong><p>Les incidents peuvent interrompre Windows, l’impression, la connectivité et les tâches essentielles.</p></div></li>
+              <li><span class="featured-story-number" aria-hidden="true">02</span><div><strong>Approche</strong><p>Utiliser les outils Windows, l’inspection matérielle, les contrôles d’impression, les diagnostics IP et DNS et une documentation claire.</p></div></li>
+              <li><span class="featured-story-number" aria-hidden="true">03</span><div><strong>Preuve publiée</strong><p>Une méthode en huit étapes avec six exemples de validation, jusqu’à la confirmation du service et la remise à l’utilisateur.</p></div></li>
+            </ol>
+
+            <a class="btn featured-project-cta" href="project-it-support-case-study.html">
+              Voir l’étude de cas en support informatique <span aria-hidden="true">&rarr;</span>
+            </a>
           </div>
 
-          <div class="project-tags">
-            <span class="tag">Windows</span>
-            <span class="tag">Matériel</span>
-            <span class="tag">Imprimantes</span>
-            <span class="tag">Réseau</span>
+          <div class="project-preview featured-project-preview">
+            <img src="../assets/images/projects/it-support-workflow.svg" width="1400" height="900" alt="Méthode en huit étapes pour configurer et dépanner un poste, du signalement à la remise" loading="lazy" decoding="async" />
+            <p class="featured-project-caption">Huit étapes documentées &bull; Six exemples de validation</p>
           </div>
-        </div>
-
-        <div class="project-preview">
-          <img
-            src="../assets/images/projects/it-support-workflow.svg"
-            width="1400"
-            height="900"
-            alt="Processus représentatif de dépannage d’un poste de travail en huit étapes"
-            loading="lazy"
-            decoding="async"
-          />
-        </div>
-
-        <div class="project-brief">
-          <div>
-            <span class="project-label">Problème</span>
-            <p>Les incidents d’un poste peuvent perturber Windows, l’impression, la connectivité et les tâches essentielles.</p>
-          </div>
-
-          <div>
-            <span class="project-label">Outils</span>
-            <p>Outils Windows, inspection du matériel, contrôles d’impression, diagnostics IP et DNS, documentation.</p>
-          </div>
-
-          <div>
-            <span class="project-label">Méthode</span>
-            <p>Processus en huit étapes, du signalement et de la protection des données jusqu’à la validation et au compte rendu.</p>
-          </div>
-
-          <div>
-            <span class="project-label">Preuve publiée</span>
-            <p>Quatre domaines, huit étapes et six exemples de validation avec une limite de preuve clairement indiquée.</p>
-          </div>
-        </div>
-
-        <div class="project-actions">
-          <a class="pbtn primary" href="project-it-support-case-study.html">
-            Voir l’étude de cas en support
-          </a>
-
-          <a class="pbtn" href="project-network-printer-case-study.html">
-            Preuve réseau et imprimante
-          </a>
-
-          <a class="pbtn" href="project-workstation-user-setup.html">
-            Preuve de configuration du poste
-          </a>
-
-          <a class="pbtn" href="it-support-resources.html">
-            Ressources de support
-          </a>
-
-          <a class="pbtn" href="#experience">
-            Voir l’expérience associée
-          </a>
-
-          <a class="pbtn" href="certifications.html">
-            Voir les certifications
-          </a>
         </div>
       </article>
     </section>
 
-    <!-- Formation -->
-    <section id="education" class="card reveal" style="margin-top:16px;">
-      <div class="section-head">
-        <div>
-          <h2>Formation</h2>
-          <span class="small">Parcours scolaire et études en cours</span>
-        </div>
-      </div>
+    <!-- Qualifications -->
+    <section id="education" class="card reveal education-section qualifications-section" aria-labelledby="qualifications-title">
+      <div class="section-head education-heading"><div>
+        <span class="section-eyebrow">Formation et apprentissage vérifié</span>
+        <h2 id="qualifications-title">Des qualifications qui soutiennent le travail informatique pratique</h2>
+        <p class="education-intro">Les études actuelles en informatique et un programme professionnel terminé en support informatique apportent des bases académiques et un apprentissage directement lié au métier.</p>
+      </div></div>
 
-      <div class="cert-grid">
-        <article class="cert">
-          <div class="logo-box">
-            <img
-              src="../assets/images/logos/Logo-Uopeople.png"
-              width="500"
-              height="500"
-              alt="Logo de University of the People"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="meta">
-            <strong>Bachelor of Science in Computer Science — en cours</strong>
-            <div class="small">University of the People — en ligne</div>
-            <div class="small">Fin prévue : avril 2027</div>
-            <div class="small">
-              Études actuelles en programmation, bases de données, systèmes
-              informatiques, technologies numériques, résolution de problèmes
-              et disciplines liées aux données.
-            </div>
+      <div class="education-grid">
+        <article class="education-primary">
+          <div class="education-logo"><img src="../assets/images/logos/Logo-Uopeople.png" width="500" height="500" alt="Logo de University of the People" loading="lazy" decoding="async" /></div>
+          <div class="education-content">
+            <span class="education-status">En cours</span>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <dl class="education-meta"><div><dt>Établissement</dt><dd>University of the People</dd></div><div><dt>Format</dt><dd>En ligne</dd></div><div><dt>Fin prévue</dt><dd>Avril 2027</dd></div></dl>
+            <div class="education-study-areas"><strong>Domaines d’étude actuels</strong><div aria-label="Domaines actuels des études en informatique"><span>Programmation</span><span>Bases de données</span><span>Systèmes informatiques</span><span>Technologies numériques</span><span>Résolution de problèmes</span><span>Travaux liés aux données</span></div></div>
           </div>
         </article>
 
-        <article class="cert">
-          <div class="logo-box">
-            <img
-              src="../assets/images/logos/logo-edac.jpg"
-              width="500"
-              height="500"
-              alt="Logo de l’école EDAC"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="meta">
-            <strong>Diplôme d’État &mdash; pédagogie générale</strong>
-            <div class="small">École d’Application du Cepromad — Goma</div>
-
-            <div class="cert-actions">
-              <a
-                class="cert-btn"
-                href="https://diplome.cd/"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                🔎 Vérifier le résultat de l’Examen d’État
-              </a>
-            </div>
-          </div>
+        <article class="education-secondary">
+          <div class="education-logo education-logo--secondary"><img src="../assets/images/logos/logo-edac.jpg" width="500" height="500" alt="Logo de l’école EDAC" loading="lazy" decoding="async" /></div>
+          <div class="education-content"><span class="capability-level">Formation complémentaire</span><h3>Diplôme d’État — pédagogie générale</h3><p>École d’Application du Cepromad — Goma</p><a class="education-verify-link" href="https://diplome.cd/" target="_blank" rel="noreferrer noopener">Vérifier le résultat de l’Examen d’État <span aria-hidden="true">&nearr;</span></a></div>
         </article>
       </div>
-    </section>
 
-    <!-- Certifications Preview -->
-    <section id="certifications-preview" class="card reveal" style="margin-top:16px;">
-      <div class="section-head">
-        <div>
-          <h2>Certifications</h2>
-          <span class="small">Certifications vérifiées en support informatique, analyse de données, Python, réseaux et outils de productivité</span>
-        </div>
+      <div id="certifications-preview" class="qualification-credential-heading"><div><span class="section-eyebrow">Certification professionnelle principale</span><h3>Certification principale en support informatique</h3></div><a class="certifications-all-link" href="certifications.html">Voir toutes les certifications <span aria-hidden="true">&rarr;</span></a></div>
 
-        <a class="btn" href="certifications.html">
-          Voir toutes les certifications
-        </a>
-      </div>
-
-      <div class="cert-grid">
-        <article class="cert featured">
-          <div class="logo-box">
-            <img
-              src="../assets/images/logos/logo-google.webp"
-              width="500"
-              height="500"
-              alt="Google logo"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="meta">
-            <strong>Google IT Support Professional Certificate</strong>
-            <div class="small">Google • Terminé en avril 2026</div>
-            <div class="small">
-              Programme professionnel de six cours portant sur le dépannage, les réseaux, les
-              systèmes d’exploitation, l’administration des systèmes, la sécurité informatique
-              et l’assistance aux utilisateurs.
-            </div>
-
-            <div class="cert-actions">
-              <a
-                class="cert-btn"
-                href="../assets/certificates/Google-IT-Support-Professional-Certificate.pdf"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                📄 Voir le certificat
-              </a>
-
-              <a
-                class="cert-btn"
-                href="https://www.coursera.org/account/accomplishments/professional-cert/KVWU943XJLY3"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                ↗ Vérifier sur Coursera
-              </a>
-
-              <a
-                class="cert-btn"
-                href="https://www.credly.com/badges/4ad62e8d-c1d6-4f8a-9c83-fad8f38844c1"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                🎖 Vérifier le badge Credly
-              </a>
-            </div>
+      <div class="qualification-credential">
+        <article class="cert credential-primary">
+          <div class="credential-logo"><img src="../assets/images/logos/logo-google.webp" width="500" height="500" alt="Logo de Google" loading="lazy" decoding="async" /></div>
+          <div class="credential-content">
+            <span class="credential-priority">Certification IT principale</span>
+            <h3>Google IT Support Professional Certificate</h3>
+            <dl class="credential-meta"><div><dt>Émetteur</dt><dd>Google</dd></div><div><dt>Statut</dt><dd>Terminé en avril 2026</dd></div><div><dt>Programme</dt><dd>Six cours</dd></div></dl>
+            <p class="credential-description">Programme professionnel de six cours couvrant le dépannage, les réseaux, les systèmes d’exploitation, l’administration système, la sécurité informatique et l’assistance aux utilisateurs.</p>
+            <div class="credential-actions"><a class="btn credential-document-link" href="../assets/certificates/Google-IT-Support-Professional-Certificate.pdf" target="_blank" rel="noreferrer noopener">Voir le certificat PDF</a><div class="credential-verification" aria-label="Liens de vérification externes"><span>Vérification externe :</span><a href="https://www.coursera.org/account/accomplishments/professional-cert/KVWU943XJLY3" target="_blank" rel="noreferrer noopener">Coursera <span aria-hidden="true">&nearr;</span></a><a href="https://www.credly.com/badges/4ad62e8d-c1d6-4f8a-9c83-fad8f38844c1" target="_blank" rel="noreferrer noopener">Badge Credly <span aria-hidden="true">&nearr;</span></a></div></div>
           </div>
         </article>
 
-        <article class="cert">
-          <div class="logo-box">
-            <img
-              src="../assets/images/logos/logo-google.webp"
-              width="500"
-              height="500"
-              alt="Google logo"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="meta">
-            <strong>Google Data Analytics Professional Certificate</strong>
-            <div class="small">Google • 22 février 2026 • Vérifié via Credly</div>
-            <div class="small">Axe complémentaire : nettoyage, analyse, tableaux de bord et rapports.</div>
-
-            <div class="cert-actions">
-              <a
-                class="cert-btn"
-                href="../assets/certificates/Google-data-analytics.pdf"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                📄 Voir le certificat
-              </a>
-
-              <a
-                class="cert-btn"
-                href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                🎖 Vérifier le badge
-              </a>
-            </div>
-          </div>
-        </article>
+        <aside class="qualification-supporting-note"><span class="capability-level">Autres apprentissages vérifiés</span><strong>Données, bureautique, Python et travail de terrain</strong><p>La bibliothèque complète présente les certificats et leurs liens de vérification externe.</p><a href="certifications.html">Consulter toutes les certifications <span aria-hidden="true">&rarr;</span></a></aside>
       </div>
     </section>
 
     <!-- Expérience -->
-    <section id="experience" class="card reveal" style="margin-top:16px;">
-      <div class="section-head">
-        <div>
-          <h2>Expérience professionnelle</h2>
-          <span class="small">Expérience pratique en support informatique, service aux clients et collecte de données</span>
-        </div>
-      </div>
+    <section id="experience" class="card reveal experience-section" aria-labelledby="experience-title">
+      <div class="section-head experience-heading"><div><span class="section-eyebrow">Parcours professionnel</span><h2 id="experience-title">Expérience au service des utilisateurs, des systèmes et des opérations terrain</h2><p class="experience-intro">Des fonctions pratiques combinant dépannage informatique, services numériques, assistance aux clients et processus de données fiables.</p></div></div>
+
+      <div class="experience-overview" aria-label="Aperçu de l’expérience"><div><strong data-counter="experience">4</strong><span>Fonctions professionnelles</span></div><div><strong>2024&ndash;Aujourd’hui</strong><span>Parcours vérifié</span></div><div><strong>Goma, RD Congo</strong><span>Lieu de travail</span></div></div>
 
       <div class="timeline">
         <article class="timeline-item">
@@ -784,17 +570,19 @@
               </span>
 
               <span class="timeline-head">
+                <span class="experience-status">Poste actuel</span>
                 <strong>Technicien Support Informatique et Assistant des Services Numériques</strong>
-                <span class="small">Cybercafé &amp; Printing Center SMITH — Goma, RD Congo • décembre 2025 — aujourd’hui</span>
+                <span class="experience-organization">Cybercafé &amp; Printing Center SMITH</span>
+                <span class="experience-meta"><span>Goma, RD Congo</span><span>Décembre 2025 &ndash; Aujourd’hui</span></span>
+                <span class="experience-focus" aria-label="Domaines principaux"><span>Windows</span><span>Imprimantes</span><span>Support utilisateur</span></span>
               </span>
             </summary>
-
-            <ul>
+            <div class="experience-details"><strong class="experience-details-title">Responsabilités principales</strong><ul>
               <li>Assurer le support technique des ordinateurs, imprimantes, connexions Internet et applications bureautiques.</li>
               <li>Installer, configurer et maintenir Windows, les pilotes, les antivirus et les logiciels de productivité.</li>
               <li>Dépanner les problèmes matériels, logiciels, réseau, d’impression et de numérisation.</li>
               <li>Assister les clients pour les documents numériques, les services en ligne, l’impression, la numérisation et la conversion de fichiers.</li>
-            </ul>
+            </ul></div>
           </details>
         </article>
 
@@ -816,17 +604,18 @@
 
               <span class="timeline-head">
                 <strong>Enquêteur de terrain et appui technique</strong>
-                <span class="small">CAAP TUJITEGEMEE, ONG — Goma, RD Congo • juillet 2025 — novembre 2025</span>
+                <span class="experience-organization">CAAP TUJITEGEMEE, ONG</span>
+                <span class="experience-meta"><span>Goma, RD Congo</span><span>Juillet 2025 &ndash; Novembre 2025</span></span>
+                <span class="experience-focus" aria-label="Domaines principaux"><span>KoBoToolbox</span><span>ODK</span><span>Support terrain</span></span>
               </span>
             </summary>
-
-            <ul>
+            <div class="experience-details"><strong class="experience-details-title">Responsabilités principales</strong><ul>
               <li>Collecte numérique des données de terrain avec KoBoToolbox et ODK.</li>
               <li>Configuration des appareils mobiles et assistance aux équipes pendant la collecte.</li>
               <li>Nettoyage et validation des données collectées afin d’en assurer l’exhaustivité et l’exactitude.</li>
               <li>Dépannage des problèmes de connectivité et d’appareils sur le terrain.</li>
               <li>Appui aux superviseurs pour les rapports et le contrôle de la qualité des données.</li>
-            </ul>
+            </ul></div>
           </details>
         </article>
 
@@ -848,17 +637,18 @@
 
               <span class="timeline-head">
                 <strong>Assistant Support Informatique et Données</strong>
-                <span class="small">HIGH TECH BUSINESS — Goma, RD Congo • mars 2025 — juillet 2025</span>
+                <span class="experience-organization">HIGH TECH BUSINESS</span>
+                <span class="experience-meta"><span>Goma, RD Congo</span><span>Mars 2025 &ndash; Juillet 2025</span></span>
+                <span class="experience-focus" aria-label="Domaines principaux"><span>Support informatique</span><span>Excel</span><span>Rapports</span></span>
               </span>
             </summary>
-
-            <ul>
+            <div class="experience-details"><strong class="experience-details-title">Responsabilités principales</strong><ul>
               <li>Installation et configuration des ordinateurs, imprimantes et logiciels professionnels.</li>
               <li>Résolution des problèmes matériels et logiciels et appui aux opérations techniques quotidiennes.</li>
               <li>Nettoyage, organisation et analyse des données avec Excel et Google Sheets.</li>
               <li>Préparation de rapports et de tableaux de bord pour appuyer la prise de décision.</li>
               <li>Appui à la gestion des fichiers numériques, des documents administratifs et des enregistrements de données.</li>
-            </ul>
+            </ul></div>
           </details>
         </article>
 
@@ -880,73 +670,52 @@
 
               <span class="timeline-head">
                 <strong>Assistant Informatique et Administratif</strong>
-                <span class="small">Cybercafé KivuNet — Goma, RD Congo • juin 2024 — avril 2025</span>
+                <span class="experience-organization">Cybercafé KivuNet</span>
+                <span class="experience-meta"><span>Goma, RD Congo</span><span>Juin 2024 &ndash; Avril 2025</span></span>
+                <span class="experience-focus" aria-label="Domaines principaux"><span>Assistance clients</span><span>Windows</span><span>Services numériques</span></span>
               </span>
             </summary>
-
-            <ul>
+            <div class="experience-details"><strong class="experience-details-title">Responsabilités principales</strong><ul>
               <li>Support informatique quotidien et service aux clients utilisant les ordinateurs.</li>
               <li>Installation, mise à jour et maintenance de Windows et d’autres logiciels.</li>
               <li>Dépannage des problèmes de connexion Internet, d’impression, de numérisation et de postes de travail.</li>
               <li>Assistance aux clients pour les formulaires en ligne, les emails et d’autres services numériques.</li>
               <li>Appui aux tâches administratives, à l’organisation des fichiers et à la préparation des documents.</li>
-            </ul>
+            </ul></div>
           </details>
         </article>
       </div>
     </section>
 
     <!-- Services -->
-    <section id="services" class="card reveal live-services" style="margin-top:16px;">
-      <div class="section-head">
-        <div>
-          <h2>Services proposés</h2>
-          <span class="small">Le support informatique en priorité, complété par des services de données et numériques pour les équipes, PME, ONG et opérations de terrain</span>
-        </div>
+    <section id="services" class="card reveal live-services contribution-section" aria-labelledby="contribution-title">
+      <div class="section-head contribution-heading"><div><span class="section-eyebrow">Ma contribution</span><h2 id="contribution-title">Un support pratique pour les utilisateurs, les équipes et les opérations terrain</h2><p class="contribution-intro">Je peux contribuer dans un poste, un stage ou une mission ciblée de support informatique, avec des compétences complémentaires en données et processus numériques.</p></div></div>
+
+      <div class="contribution-grid">
+        <article class="service-card service-card--primary contribution-primary">
+          <div class="contribution-primary-copy"><span class="capability-level">Contribution principale</span><h3>Un support informatique qui aide les utilisateurs à reprendre leur travail</h3><p>Dépannage et configuration pratiques des systèmes, appareils et outils utilisés au quotidien.</p></div>
+          <div class="contribution-needs" aria-label="Domaines de contribution en support informatique">
+            <div><strong>Rétablir le service</strong><span>Windows, logiciels, matériel, imprimantes et périphériques</span></div>
+            <div><strong>Préparer les postes</strong><span>Applications, pilotes, outils utilisateur et connectivité de base</span></div>
+            <div><strong>Assister les utilisateurs</strong><span>Explications claires, validation et remise pratique</span></div>
+            <div><strong>Documenter le travail</strong><span>Actions, résultats et procédures réutilisables</span></div>
+          </div>
+        </article>
+
+        <article class="service-card contribution-secondary"><span class="capability-level">Contribution complémentaire</span><h3>Données et opérations terrain</h3><p>Appui aux équipes pour une collecte, une organisation, une validation et un reporting fiables.</p><div class="contribution-tags" aria-label="Domaines liés aux données et au terrain"><span>Nettoyage de feuilles de calcul</span><span>Rapports et tableaux de bord</span><span>KoBoToolbox / ODK</span><span>Appui aux appareils et équipes terrain</span></div></article>
+
+        <article class="service-card contribution-secondary"><span class="capability-level">Contribution complémentaire</span><h3>Assistance aux processus numériques</h3><p>Aide ciblée pour les processus numériques quotidiens et les outils maintenables qui soutiennent le travail existant.</p><div class="contribution-tags" aria-label="Domaines liés aux processus numériques"><span>Documents numériques</span><span>Services en ligne</span><span>Mises à jour de portfolio</span><span>Scripts simples et réutilisables</span></div></article>
       </div>
 
-      <div class="services-grid">
-        <article class="service-card service-card--primary">
-          <span class="capability-level">Service principal</span>
-          <h3>Support informatique et dépannage</h3>
-          <p>Une assistance pratique pour aider les utilisateurs et les équipes à retrouver un travail quotidien fiable.</p>
-          <ul>
-            <li>Configuration de Windows et des postes de travail</li>
-            <li>Dépannage du matériel, des logiciels, des imprimantes et des périphériques</li>
-            <li>Vérifications de base du réseau et de la connectivité</li>
-            <li>Assistance aux utilisateurs, validation et documentation technique</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <span class="capability-level">Service complémentaire</span>
-          <h3>Appui aux données et aux rapports</h3>
-          <p>Des informations opérationnelles plus claires pour les petites équipes et les programmes de terrain.</p>
-          <ul>
-            <li>Nettoyage et organisation des feuilles de calcul</li>
-            <li>Rapports, indicateurs et tableaux de bord pratiques</li>
-            <li>Appui aux formulaires, appareils et validations KoBoToolbox / ODK</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <span class="capability-level">Service complémentaire</span>
-          <h3>Assistance numérique et web</h3>
-          <p>Un appui ciblé pour les tâches numériques pratiques et les portfolios web existants.</p>
-          <ul>
-            <li>Mise à jour du contenu des portfolios et de GitHub Pages</li>
-            <li>Assistance aux services en ligne et aux documents numériques</li>
-            <li>Scripts simples pour les tâches répétitives liées aux données</li>
-          </ul>
-        </article>
-      </div>
+      <div class="contribution-action"><p>Vous avez une opportunité, un stage ou un besoin pratique en support informatique&nbsp;?</p><a class="btn primary" href="#contact">Discuter de ma contribution</a></div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="card reveal contact-section" style="margin-top:16px;">
+    <section id="contact" class="card reveal contact-section" aria-labelledby="contact-section-title">
       <div class="section-head contact-section-head">
         <div>
-          <h2>Recrutement et contact</h2>
+          <span class="section-eyebrow">Commencer une conversation</span>
+          <h2 id="contact-section-title">Recrutement et contact</h2>
           <p class="contact-intro">
             Les recruteurs et les équipes d’embauche peuvent me contacter pour un emploi ou un stage en support informatique. Les demandes de services restent les bienvenues.
           </p>
@@ -1013,24 +782,7 @@
             <span class="copy-status small" id="copyEmailStatus" role="status" aria-live="polite"></span>
           </div>
 
-          <div class="contact-topic-groups">
-            <div class="contact-topic-group">
-              <span class="contact-topic-label" id="recruitmentTopics">Recrutement</span>
-              <div class="service-chip-group" aria-labelledby="recruitmentTopics">
-                <button class="service-chip service-chip--priority" type="button" data-service="Opportunité d’emploi en support informatique" aria-pressed="false">Emploi en support informatique</button>
-                <button class="service-chip service-chip--priority" type="button" data-service="Opportunité de stage en support informatique" aria-pressed="false">Stage en support informatique</button>
-              </div>
-            </div>
-
-            <div class="contact-topic-group">
-              <span class="contact-topic-label" id="serviceTopics">Autres demandes</span>
-              <div class="service-chip-group" aria-labelledby="serviceTopics">
-                <button class="service-chip" type="button" data-service="Demande de service en support informatique" aria-pressed="false">Service de support informatique</button>
-                <button class="service-chip" type="button" data-service="Demande liée aux données et aux rapports" aria-pressed="false">Données et rapports</button>
-                <button class="service-chip" type="button" data-service="Demande de support pour les données de terrain ou le numérique" aria-pressed="false">Données terrain / Numérique</button>
-              </div>
-            </div>
-          </div>
+          <p class="contact-response-note">Indiquez si possible le poste ou la demande, le lieu ou l’option à distance, le calendrier et le moyen de réponse souhaité.</p>
         </aside>
 
         <form
@@ -1039,8 +791,11 @@
           action="https://formspree.io/f/maqrwjkk"
           method="post"
           data-endpoint="https://formspree.io/f/maqrwjkk"
+          novalidate
+          aria-labelledby="contactFormTitle"
           aria-describedby="contactFormHelp contactFormStatus"
         >
+          <div class="contact-form-heading"><span class="contact-kicker">Envoyer un message</span><h3 id="contactFormTitle">Présentez l’opportunité ou la demande</h3><p>Tous les champs sont obligatoires. Vérifiez vos informations avant l’envoi.</p></div>
           <div class="form-honeypot" hidden>
             <label for="contactWebsite">Laisser ce champ vide</label>
             <input
@@ -1060,8 +815,10 @@
                 type="text"
                 autocomplete="name"
                 placeholder="Votre nom"
+                aria-describedby="contactNameError"
                 required
               />
+              <span class="form-error" id="contactNameError"></span>
             </div>
 
             <div class="form-row">
@@ -1072,8 +829,10 @@
                 type="email"
                 autocomplete="email"
                 placeholder="you@example.com"
+                aria-describedby="contactEmailError"
                 required
               />
+              <span class="form-error" id="contactEmailError"></span>
             </div>
           </div>
 
@@ -1084,8 +843,10 @@
               name="subject"
               type="text"
               placeholder="Exemple : opportunité d’emploi en support informatique"
+              aria-describedby="contactSubjectError"
               required
             />
+            <span class="form-error" id="contactSubjectError"></span>
           </div>
 
           <div class="form-row">
@@ -1095,8 +856,10 @@
               name="message"
               rows="6"
               placeholder="Décrivez le poste ou la demande, le calendrier utile, le lieu ou l’option à distance et le meilleur moyen de vous répondre."
+              aria-describedby="contactMessageError"
               required
             ></textarea>
+            <span class="form-error" id="contactMessageError"></span>
           </div>
 
           <button
@@ -1107,21 +870,21 @@
             <span id="contactSubmitText">Envoyer le message</span>
           </button>
 
-          <p class="small" id="contactFormHelp">
+          <p class="contact-form-privacy" id="contactFormHelp">
             L’envoi de ce formulaire transmet à Formspree les informations saisies afin de livrer votre message. N’incluez pas de mot de passe, de pièce d’identité ni d’autre information sensible. L’email et WhatsApp restent disponibles.
           </p>
 
-          <p class="form-status small" id="contactFormStatus" role="status" aria-live="polite"></p>
+          <p class="form-status small" id="contactFormStatus" role="status" aria-live="polite" aria-atomic="true"></p>
         </form>
       </div>
 
-      <div class="quick-contact-block">
+      <div class="professional-links-block">
         <div class="section-head quick-contact-head">
-          <h3>Liens de contact rapides</h3>
-          <span class="small">Accès au CV, aux preuves du portfolio, aux profils professionnels et à l’email.</span>
+          <h3>Liens professionnels</h3>
+          <span class="small">CV et profils professionnels pour les recruteurs.</span>
         </div>
 
-        <div class="contact-grid" aria-label="Liens de contact rapides">
+        <div class="contact-grid contact-grid--essential" aria-label="Liens professionnels">
           <a
             class="contact-card"
             href="../Pacifique_Fashaho_CV_FR.pdf"
@@ -1133,28 +896,6 @@
               <div class="cc-meta">
                 <strong>CV</strong>
                 <div class="small">Télécharger le PDF</div>
-              </div>
-            </div>
-            <div class="cc-go" aria-hidden="true">↗</div>
-          </a>
-
-          <a class="contact-card" href="projects.html">
-            <div class="cc-left">
-              <div class="cc-ico" aria-hidden="true">PJ</div>
-              <div class="cc-meta">
-                <strong>Projets</strong>
-                <div class="small">Voir les travaux du portfolio</div>
-              </div>
-            </div>
-            <div class="cc-go" aria-hidden="true">↗</div>
-          </a>
-
-          <a class="contact-card" href="certifications.html">
-            <div class="cc-left">
-              <div class="cc-ico" aria-hidden="true">Cert</div>
-              <div class="cc-meta">
-                <strong>Certifications</strong>
-                <div class="small">Voir les certifications</div>
               </div>
             </div>
             <div class="cc-go" aria-hidden="true">↗</div>
@@ -1192,25 +933,24 @@
             <div class="cc-go" aria-hidden="true">↗</div>
           </a>
 
-          <a class="contact-card" href="mailto:pacifiquefashaho04@gmail.com">
-            <div class="cc-left">
-              <div class="cc-ico" aria-hidden="true">@</div>
-              <div class="cc-meta">
-                <strong>Email</strong>
-                <div class="small">pacifiquefashaho04@gmail.com</div>
-              </div>
-            </div>
-            <div class="cc-go" aria-hidden="true">↗</div>
-          </a>
         </div>
       </div>
 
-      <div class="contact-foot">
-        <div class="small">Contact recruteur • Emplois et stages en support informatique</div>
-        <div class="small">© <span id="y2"></span> Pacifique Fashaho</div>
-      </div>
     </section>
   </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__lead">
+        <div><a class="site-footer__brand" href="index.html" aria-label="Page d’accueil de Pacifique Fashaho"><span class="dot" aria-hidden="true"></span><span><strong>Pacifique Fashaho</strong><small>Technicien en support informatique</small></span></a><p class="site-footer__summary">Basé à Goma, RD Congo, et disponible pour un emploi, un stage ou une mission pratique en support informatique, à distance ou sur site.</p></div>
+        <div class="site-footer__actions" aria-label="Actions pour les recruteurs"><a class="btn primary" href="index.html#contact">Contacter Pacifique</a><a class="btn" href="projects.html">Voir les projets</a></div>
+      </div>
+      <div class="site-footer__links">
+        <nav aria-labelledby="footer-portfolio-title"><h2 id="footer-portfolio-title">Portfolio</h2><ul><li><a href="index.html">Accueil</a></li><li><a href="projects.html">Projets</a></li><li><a href="certifications.html">Certifications</a></li><li><a href="index.html#experience">Expérience</a></li></ul></nav>
+        <nav aria-labelledby="footer-professional-title"><h2 id="footer-professional-title">Liens professionnels</h2><ul><li><a href="mailto:pacifiquefashaho04@gmail.com">E-mail</a></li><li><a href="https://www.linkedin.com/in/pacifique-fashaho-8ab656388" target="_blank" rel="noreferrer noopener">LinkedIn <span aria-hidden="true">&nearr;</span></a></li><li><a href="https://github.com/PacifiqueFashaho" target="_blank" rel="noreferrer noopener">GitHub <span aria-hidden="true">&nearr;</span></a></li></ul></nav>
+      </div>
+      <div class="site-footer__bottom"><span>&copy; <span data-current-year>2026</span> Pacifique Fashaho</span><a class="site-footer__back" href="#main-content">Retour au début de la page <span aria-hidden="true">&uarr;</span></a></div>
+    </div>
+  </footer>
   <!-- Assistant de contact rapide -->
   <div class="assistant-launcher-wrap" id="assistantLauncherWrap">
     <button
@@ -1278,86 +1018,43 @@
       </div>
     </div>
 
-    <div
-      class="chat-assistant-body"
-      id="chatAssistantBody"
-      role="log"
-      aria-live="polite"
-      aria-relevant="additions text"
-      aria-atomic="false"
-    >
-      <div class="chat-message assistant-message">
-        <div class="chat-bubble">
-          Bonjour ! Cet outil aide les recruteurs, les équipes d’embauche et les contacts de service à préparer un message pour Pacifique. Les emplois et stages en support informatique sont prioritaires.
-        </div>
-      </div>
+    <p class="chat-intro">Sélectionnez la raison de votre prise de contact, puis créez et modifiez un brouillon professionnel.</p>
 
-      <div class="chat-message assistant-message">
-        <div class="chat-bubble">
-          Choisissez un sujet ou rédigez un court brouillon. Pour une réponse plus rapide,
-          précisez le poste ou la demande, le lieu ou l’option à distance, le délai et le moyen de contact souhaité.
-        </div>
-      </div>
-    </div>
-
-    <div class="chat-suggestions" aria-label="Suggestions de messages rapides">
-      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je recrute pour un poste en support informatique.">
-        Emploi en support informatique
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je souhaite discuter d’un stage en support informatique.">
-        Stage en support informatique
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="support" data-message="J’ai besoin d’un service de support informatique.">
-        Service de support informatique
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="opportunity" data-message="Je souhaite discuter de votre disponibilité et de votre expérience en support informatique.">
-        CV et disponibilité
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="dashboard" data-message="J’ai besoin d’aide pour un tableau de bord ou un rapport.">
-        Tableau de bord / Rapport
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="data" data-message="J’ai besoin d’aide pour nettoyer ou analyser des données.">
-        Assistance données
-      </button>
-
-      <button type="button" class="chat-suggestion" data-intent="field" data-message="J’ai besoin d’aide pour une collecte de données de terrain.">
-        Données de terrain
-      </button>
+    <div class="chat-suggestions" id="chatCategoryGroup" role="group" aria-labelledby="chatCategoryLabel" tabindex="-1">
+      <span class="chat-category-label" id="chatCategoryLabel">Sujet du contact <span aria-hidden="true">*</span></span>
+      <button type="button" class="chat-suggestion" data-category="job" data-intent="opportunity" data-message="Je souhaite discuter d’une opportunité d’emploi." aria-pressed="false">Opportunité d’emploi</button>
+      <button type="button" class="chat-suggestion" data-category="internship" data-intent="opportunity" data-message="Je souhaite discuter d’une opportunité de stage." aria-pressed="false">Stage</button>
+      <button type="button" class="chat-suggestion" data-category="support" data-intent="support" data-message="Je souhaite discuter d’une demande de support informatique." aria-pressed="false">Support informatique</button>
+      <button type="button" class="chat-suggestion" data-category="data" data-intent="data" data-message="Je souhaite discuter d’un projet de données." aria-pressed="false">Projet de données</button>
     </div>
 
     <form class="chat-input-area" id="chatAssistantForm">
-      <label class="sr-only" for="chatMessageInput">Rédigez le message à préparer</label>
+      <label class="chat-input-label" for="chatMessageInput">Votre message modifiable</label>
 
       <div class="chat-input-main">
         <textarea
           id="chatMessageInput"
-          rows="2"
-          maxlength="800"
-          placeholder="Décrivez votre besoin..."
+          rows="7"
+          maxlength="1200"
+          placeholder="Choisissez un sujet, puis sélectionnez Créer le message."
           aria-describedby="chatInputHelp chatCharacterCount"
-          required
         ></textarea>
 
         <div class="chat-input-meta">
-          <span id="chatInputHelp">Ctrl/⌘ + Entrée pour préparer</span>
-          <span id="chatCharacterCount">0 / 800</span>
+          <span id="chatInputHelp">Ctrl/&#8984; + Entrée pour créer</span>
+          <span id="chatCharacterCount" aria-live="off">0 / 1200 caractères</span>
         </div>
       </div>
 
-      <button type="submit" class="chat-send-btn" aria-label="Préparer le message de contact">
-        Préparer
+      <button type="submit" class="chat-send-btn">
+        Créer le message
       </button>
     </form>
 
     <p class="chat-assistant-status" id="chatAssistantStatus" role="status" aria-live="polite"></p>
 
     <p class="chat-disclosure">
-      Cet outil n’envoie aucun message automatiquement. N’incluez pas de mot de passe, de pièce d’identité ni d’autre information sensible.
+      Ne partagez pas de mot de passe, de pièce d’identité, d’information financière ou de donnée confidentielle.
     </p>
 
     <div class="chat-contact-actions">
@@ -1388,13 +1085,9 @@
         Continuer sur WhatsApp
       </a>
 
-      <a class="chat-action-btn" id="chatContactFormLink" href="#contact">
-        Utiliser le formulaire
+      <a class="chat-action-btn" id="chatContactFormLink" href="#contact" data-manages-contact-focus>
+        Voir les coordonnées
       </a>
-    </div>
-
-    <div class="chat-resize-hint">
-      Redimensionnez depuis le coin inférieur droit sur ordinateur
     </div>
   </section>
   <script src="../assets/js/assistant-intents.js" defer></script>
