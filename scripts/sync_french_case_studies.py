@@ -18,6 +18,19 @@ PAGES = (
     "project-data-cleaning-case-study.html",
 )
 
+META_OVERRIDES = {
+    "project-data-cleaning-case-study.html": {
+        "title": "Nettoyage de données : étude de cas | Pacifique Fashaho",
+        "description": "Étude de cas pratique sur le nettoyage de données : valeurs manquantes, doublons, normalisation, contrôles de qualité et reporting.",
+        "social_description": "Méthode pratique pour nettoyer, valider et préparer des données fiables pour le reporting.",
+    },
+    "project-sales-dashboard.html": {
+        "title": "Tableau de bord Excel : étude de cas | Pacifique Fashaho",
+        "description": "Étude de cas d’un tableau de bord Excel présentant KPI commerciaux, tendances, structure du reporting et visualisation des performances.",
+        "social_description": "Tableau de bord Excel avec KPI commerciaux, tendances et présentation claire des performances.",
+    },
+}
+
 CACHE: dict[str, str] = {
     "Home": "Accueil",
     "Projects": "Projets",
@@ -194,6 +207,37 @@ def localize_page(filename: str) -> str:
     }
     for automatic, preferred in refinements.items():
         result = result.replace(automatic, preferred)
+    metadata = META_OVERRIDES[filename]
+    result = re.sub(
+        r"<title>.*?</title>",
+        f"<title>{metadata['title']}</title>",
+        result,
+        count=1,
+        flags=re.S,
+    )
+    result = re.sub(
+        r'(<meta\s+name="description"\s+content=")[^"]+',
+        lambda match: match.group(1) + metadata["description"],
+        result,
+        count=1,
+        flags=re.S,
+    )
+    for property_name in ("og:title", "twitter:title"):
+        result = re.sub(
+            rf'(<meta\s+(?:property|name)="{property_name}"\s+content=")[^"]+',
+            lambda match: match.group(1) + metadata["title"],
+            result,
+            count=1,
+            flags=re.S,
+        )
+    for property_name in ("og:description", "twitter:description"):
+        result = re.sub(
+            rf'(<meta\s+(?:property|name)="{property_name}"\s+content=")[^"]+',
+            lambda match: match.group(1) + metadata["social_description"],
+            result,
+            count=1,
+            flags=re.S,
+        )
     return result
 
 
