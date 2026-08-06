@@ -16,8 +16,11 @@ Baseline captured on 2026-08-05: 0 clicks and 6 impressions over three months; 0
 | Excel sales dashboard case study | `/project-sales-dashboard.html` | `/fr/project-sales-dashboard.html` | Sales reporting, workbook and dashboard evidence |
 | Data cleaning and reporting case study | `/project-data-cleaning-case-study.html` | `/fr/project-data-cleaning-case-study.html` | Data quality, validation and reporting evidence |
 | Safe Windows checks before contacting IT support | `/windows-checks-before-it-support.html` | `/fr/windows-checks-before-it-support.html` | End-user symptom identification, reversible checks, stop conditions, and support-request preparation |
+| Suspicious tech-support pop-up or unsolicited support contact | `/suspicious-tech-support-pop-up.html` | `/fr/suspicious-tech-support-pop-up.html` | Warning signs, immediate stop conditions, safe reporting, and disclosure of any access, information, or payment already shared |
 
 The Windows pre-support guide must not reproduce the eight-stage technician method, the workstation provisioning workflow, or the printable incident record.
+
+The suspicious-support guide must not become a general phishing guide, malware-removal tutorial, account-recovery workflow, payment-dispute guide, or duplicate of the first guide’s broad Windows preparation steps.
 
 ## Decision rules
 

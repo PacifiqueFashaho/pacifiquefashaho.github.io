@@ -36,6 +36,24 @@ The primary navigation remains unchanged for the first release. This avoids crow
 
 **Boundary:** the guide does not provide administrative repairs, registry changes, BIOS changes, driver removal, account-policy changes, malware removal instructions, or guaranteed fixes.
 
+## Second guide decision
+
+**English route:** `/suspicious-tech-support-pop-up.html`
+
+**French route:** `/fr/suspicious-tech-support-pop-up.html`
+
+**English intent:** what to do when a suspicious tech-support pop-up or unsolicited support contact appears
+
+**French intent:** que faire face à une fenêtre de faux support technique ou à un contact de support non sollicité
+
+**Audience:** a non-administrator who sees an alarming support message, receives an unsolicited technical-support contact, or is unsure whether a request for remote access, credentials, or payment is legitimate.
+
+**Task:** stop unsafe interaction, recognize common warning signs, record only safe facts, use a trusted support or security channel, and clearly report any access, information, or payment already shared.
+
+**Boundary:** the guide does not provide malware removal, account recovery, charge-dispute, evidence-forensics, remote-access removal, or incident-response instructions. Those actions depend on the affected account, device, organization, and authorized responder.
+
+This topic is intentionally narrower than general phishing education. It owns the immediate user decision around fake technical-support contact and sends suspected compromise to an authorized security or support process.
+
 ## Guide outline
 
 1. Identify the task that failed and the visible symptom.
@@ -57,6 +75,8 @@ The knowledge system uses three user-facing categories:
 
 Future original guides may add **Setup and handover** or **Network and printing** only when their intent remains distinct from the existing case studies and checklists.
 
+The second guide remains in **Safe first checks**, with a security-focused stop-and-report task. It does not create a new taxonomy category.
+
 ## Discovery paths for release one
 
 ### English
@@ -74,6 +94,24 @@ Future original guides may add **Setup and handover** or **Network and printing*
 - `/fr/projects.html` → `/fr/#knowledge` or directly to the guide from the IT support roadmap
 
 Every guide must be reachable within two internal clicks from its locale homepage. English pages link only to English destinations in the primary content flow; French pages follow the same rule.
+
+## Discovery paths for release two
+
+The second guide remains part of the homepage knowledge collection rather than creating a standalone hub. Its three incoming paths reflect distinct user contexts: direct discovery, a stop condition during safe Windows checks, and incident documentation after suspicious contact.
+
+### English
+
+- `/` → `/#knowledge` → `/suspicious-tech-support-pop-up.html`
+- `/windows-checks-before-it-support.html#stop` → `/suspicious-tech-support-pop-up.html`
+- `/it-support-resources.html#incident-record` → `/suspicious-tech-support-pop-up.html`
+
+### French
+
+- `/fr/` → `/fr/#knowledge` → `/fr/suspicious-tech-support-pop-up.html`
+- `/fr/windows-checks-before-it-support.html#stop` → `/fr/suspicious-tech-support-pop-up.html`
+- `/fr/it-support-resources.html#incident-record` → `/fr/suspicious-tech-support-pop-up.html`
+
+These links use task-specific anchor text and occur once in each relevant source section. Both locale guides are one click from their homepage and remain inside their locale’s primary content flow.
 
 ## Guide exit paths
 

@@ -83,6 +83,14 @@ PAGE_SPECS = {
         "/fr/windows-checks-before-it-support.html",
         "fr",
     ),
+    "suspicious-tech-support-pop-up.html": (
+        "/suspicious-tech-support-pop-up.html",
+        "en",
+    ),
+    "fr/suspicious-tech-support-pop-up.html": (
+        "/fr/suspicious-tech-support-pop-up.html",
+        "fr",
+    ),
 }
 
 BILINGUAL_PAGE_PAIRS = (
@@ -113,6 +121,10 @@ BILINGUAL_PAGE_PAIRS = (
     (
         "windows-checks-before-it-support.html",
         "fr/windows-checks-before-it-support.html",
+    ),
+    (
+        "suspicious-tech-support-pop-up.html",
+        "fr/suspicious-tech-support-pop-up.html",
     ),
 )
 
