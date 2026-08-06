@@ -485,6 +485,89 @@
   outline-offset: 3px;
 }
 
+.knowledge-hub {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.05)), var(--card);
+}
+
+.knowledge-hub .section-head {
+  align-items: end;
+}
+
+.knowledge-hub__all {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 850;
+  text-underline-offset: 4px;
+}
+
+.knowledge-hub__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 12px;
+}
+
+.knowledge-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(17px, 2.5vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--soft-surface-strong);
+}
+
+.knowledge-card--featured {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
+  background: var(--card);
+}
+
+.knowledge-card h3 {
+  margin: 9px 0 8px;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.knowledge-card h3 a {
+  color: var(--text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.knowledge-card p {
+  flex: 1;
+  margin: 0 0 18px;
+  color: var(--muted);
+}
+
+.resource-guide-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 16px;
+  border-color: color-mix(in srgb, var(--primary) 34%, var(--line));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.05)), var(--card);
+}
+
+.resource-guide-callout h2 {
+  margin: 8px 0;
+}
+
+.resource-guide-callout p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.resource-guide-callout > .btn {
+  flex: 0 0 auto;
+}
+
 .profile-details-compact {
   margin-top: 16px;
   padding: clamp(16px, 2.4vw, 22px);
@@ -698,6 +781,20 @@
 
   .hero-profile-strip {
     grid-template-columns: 1fr;
+  }
+
+  .knowledge-hub__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-guide-callout {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .resource-guide-callout > .btn {
+    width: 100%;
+    justify-content: center;
   }
 
 }

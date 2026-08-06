@@ -75,6 +75,14 @@ PAGE_SPECS = {
         "/fr/project-sales-dashboard.html",
         "fr",
     ),
+    "windows-checks-before-it-support.html": (
+        "/windows-checks-before-it-support.html",
+        "en",
+    ),
+    "fr/windows-checks-before-it-support.html": (
+        "/fr/windows-checks-before-it-support.html",
+        "fr",
+    ),
 }
 
 BILINGUAL_PAGE_PAIRS = (
@@ -102,6 +110,10 @@ BILINGUAL_PAGE_PAIRS = (
         "project-sales-dashboard.html",
         "fr/project-sales-dashboard.html",
     ),
+    (
+        "windows-checks-before-it-support.html",
+        "fr/windows-checks-before-it-support.html",
+    ),
 )
 
 DETAILED_CASE_STUDY_PAGES = (
@@ -121,6 +133,7 @@ CSS_FILES = (
     "assets/css/style.css",
     "assets/css/contact-assistant.css",
     "assets/css/pages.css",
+    "assets/css/guide.css",
 )
 
 SOCIAL_IMAGE_SPECS = {
