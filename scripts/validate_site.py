@@ -62,6 +62,8 @@ PAGE_SPECS = {
         "fr",
     ),
     "fr/it-support-resources.html": ("/fr/it-support-resources.html", "fr"),
+    "it-support-knowledge.html": ("/it-support-knowledge.html", "en"),
+    "fr/it-support-knowledge.html": ("/fr/it-support-knowledge.html", "fr"),
     "project-data-cleaning-case-study.html": (
         "/project-data-cleaning-case-study.html",
         "en",
@@ -118,6 +120,7 @@ BILINGUAL_PAGE_PAIRS = (
         "fr/project-workstation-user-setup.html",
     ),
     ("it-support-resources.html", "fr/it-support-resources.html"),
+    ("it-support-knowledge.html", "fr/it-support-knowledge.html"),
     (
         "project-data-cleaning-case-study.html",
         "fr/project-data-cleaning-case-study.html",
@@ -158,6 +161,7 @@ CSS_FILES = (
     "assets/css/contact-assistant.css",
     "assets/css/pages.css",
     "assets/css/guide.css",
+    "assets/css/knowledge.css",
 )
 
 SOCIAL_IMAGE_SPECS = {
@@ -1645,6 +1649,7 @@ def validate_performance_budgets(errors: list[str]) -> None:
         "assets/css/style.css": 60_000,
         "assets/css/pages.css": 60_000,
         "assets/css/contact-assistant.css": 20_000,
+        "assets/css/knowledge.css": 10_000,
         "assets/js/main.js": 20_000,
         "assets/js/workbench.js": 20_000,
         "assets/js/contact-assistant.js": 25_000,
@@ -1704,6 +1709,50 @@ def validate_language_safe_navigation(
                     "an explicit reciprocal language-switcher marker"
                 ),
             )
+
+
+def validate_knowledge_hub_navigation(
+    parsed_pages: dict[str, PortfolioHTMLParser],
+    errors: list[str],
+) -> None:
+    """Keep the bilingual knowledge library reachable throughout the site."""
+    for page, parser in parsed_pages.items():
+        language = PAGE_SPECS[page][1]
+        expected_hub = (
+            "fr/it-support-knowledge.html"
+            if language == "fr"
+            else "it-support-knowledge.html"
+        )
+        targets = {
+            local_reference_repository_path(page, anchor.get("href") or "")
+            for anchor in parser.anchor_links
+        }
+        add_error(
+            errors,
+            expected_hub in targets,
+            f"{page}: missing same-language IT support knowledge hub path",
+        )
+
+    for hub_page in (
+        "it-support-knowledge.html",
+        "fr/it-support-knowledge.html",
+    ):
+        source = read_text(hub_page, errors)
+        if source is None:
+            continue
+        add_error(
+            errors,
+            source.count('class="knowledge-library__card"') == 3,
+            f"{hub_page}: knowledge hub must contain three guide cards",
+        )
+        add_error(
+            errors,
+            all(
+                f'id="{category}"' in source
+                for category in ("safe-checks", "security", "device-care")
+            ),
+            f"{hub_page}: knowledge hub category anchors are incomplete",
+        )
 
 
 def validate_case_study_conversion_paths(
@@ -1869,6 +1918,7 @@ def main() -> int:
     validate_references(parsed_pages, errors)
     validate_bilingual_pages(parsed_pages, errors)
     validate_language_safe_navigation(parsed_pages, errors)
+    validate_knowledge_hub_navigation(parsed_pages, errors)
     validate_case_study_conversion_paths(parsed_pages, errors)
     validate_quick_assistant(parsed_pages, errors)
     validate_javascript_architecture(errors)
