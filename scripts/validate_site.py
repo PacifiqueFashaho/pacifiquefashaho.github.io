@@ -91,6 +91,14 @@ PAGE_SPECS = {
         "/fr/suspicious-tech-support-pop-up.html",
         "fr",
     ),
+    "windows-storage-full-safe-checks.html": (
+        "/windows-storage-full-safe-checks.html",
+        "en",
+    ),
+    "fr/windows-storage-full-safe-checks.html": (
+        "/fr/windows-storage-full-safe-checks.html",
+        "fr",
+    ),
 }
 
 BILINGUAL_PAGE_PAIRS = (
@@ -125,6 +133,10 @@ BILINGUAL_PAGE_PAIRS = (
     (
         "suspicious-tech-support-pop-up.html",
         "fr/suspicious-tech-support-pop-up.html",
+    ),
+    (
+        "windows-storage-full-safe-checks.html",
+        "fr/windows-storage-full-safe-checks.html",
     ),
 )
 
