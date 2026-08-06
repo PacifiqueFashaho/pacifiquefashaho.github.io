@@ -101,6 +101,14 @@ PAGE_SPECS = {
         "/fr/windows-storage-full-safe-checks.html",
         "fr",
     ),
+    "windows-wifi-no-internet-safe-checks.html": (
+        "/windows-wifi-no-internet-safe-checks.html",
+        "en",
+    ),
+    "fr/windows-wifi-no-internet-safe-checks.html": (
+        "/fr/windows-wifi-no-internet-safe-checks.html",
+        "fr",
+    ),
 }
 
 BILINGUAL_PAGE_PAIRS = (
@@ -140,6 +148,10 @@ BILINGUAL_PAGE_PAIRS = (
     (
         "windows-storage-full-safe-checks.html",
         "fr/windows-storage-full-safe-checks.html",
+    ),
+    (
+        "windows-wifi-no-internet-safe-checks.html",
+        "fr/windows-wifi-no-internet-safe-checks.html",
     ),
 )
 
@@ -1742,14 +1754,19 @@ def validate_knowledge_hub_navigation(
             continue
         add_error(
             errors,
-            source.count('class="knowledge-library__card"') == 3,
-            f"{hub_page}: knowledge hub must contain three guide cards",
+            source.count('class="knowledge-library__card"') == 4,
+            f"{hub_page}: knowledge hub must contain four guide cards",
         )
         add_error(
             errors,
             all(
                 f'id="{category}"' in source
-                for category in ("safe-checks", "security", "device-care")
+                for category in (
+                    "safe-checks",
+                    "security",
+                    "device-care",
+                    "connectivity",
+                )
             ),
             f"{hub_page}: knowledge hub category anchors are incomplete",
         )
