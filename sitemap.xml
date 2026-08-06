@@ -155,4 +155,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.79</priority>
   </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/windows-storage-full-safe-checks.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/fr/windows-storage-full-safe-checks.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
 </urlset>

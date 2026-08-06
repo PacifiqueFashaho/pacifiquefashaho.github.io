@@ -54,6 +54,24 @@ The primary navigation remains unchanged for the first release. This avoids crow
 
 This topic is intentionally narrower than general phishing education. It owns the immediate user decision around fake technical-support contact and sends suspected compromise to an authorized security or support process.
 
+## Third guide decision
+
+**Working English route:** `/windows-storage-full-safe-checks.html`
+
+**Working French route:** `/fr/windows-storage-full-safe-checks.html`
+
+**English intent:** safe checks when Windows storage is full before contacting IT support
+
+**French intent:** vérifications sûres lorsque le stockage Windows est plein avant de contacter le support informatique
+
+**Audience:** a non-administrator who sees a low-storage warning, cannot complete a routine task because space is limited, or needs to prepare a safer support request.
+
+**Task:** confirm the affected drive and visible capacity, review Windows storage categories and cleanup recommendations, protect important files through an approved process, recheck the original task once, and stop when authorization, file consequences, hardware state, or recurring storage loss is unclear.
+
+**Boundary:** the guide does not provide manual system-folder deletion, registry or command-line cleanup, partition changes, recovery-feature changes, Windows reset or reinstall, third-party cleaner recommendations, unauthorized application removal, or movement of organizational data to personal storage.
+
+This guide owns a specific low-storage decision path. It does not become a general performance guide, Windows Update repair guide, backup tutorial, or technician storage-diagnosis workflow.
+
 ## Guide outline
 
 1. Identify the task that failed and the visible symptom.
@@ -76,6 +94,8 @@ The knowledge system uses three user-facing categories:
 Future original guides may add **Setup and handover** or **Network and printing** only when their intent remains distinct from the existing case studies and checklists.
 
 The second guide remains in **Safe first checks**, with a security-focused stop-and-report task. It does not create a new taxonomy category.
+
+The selected third guide introduces **Device storage and maintenance** as a planned category. Activate that category in navigation only after the bilingual guide is published; until then, it remains an editorial classification rather than a public destination.
 
 ## Discovery paths for release one
 
@@ -112,6 +132,24 @@ The second guide remains part of the homepage knowledge collection rather than c
 - `/fr/it-support-resources.html#incident-record` → `/fr/suspicious-tech-support-pop-up.html`
 
 These links use task-specific anchor text and occur once in each relevant source section. Both locale guides are one click from their homepage and remain inside their locale’s primary content flow.
+
+## Discovery paths for release three
+
+The third guide joins the homepage knowledge collection under **Device storage and maintenance**. Its incoming paths connect direct discovery, a visible low-storage condition during general Windows preparation, and the boundary between end-user checks and technician-led performance diagnosis.
+
+### English
+
+- `/` → `/#knowledge` → `/windows-storage-full-safe-checks.html`
+- `/windows-checks-before-it-support.html#steps` → `/windows-storage-full-safe-checks.html`
+- `/project-it-support-case-study.html` → `/windows-storage-full-safe-checks.html`
+
+### French
+
+- `/fr/` → `/fr/#knowledge` → `/fr/windows-storage-full-safe-checks.html`
+- `/fr/windows-checks-before-it-support.html#steps` → `/fr/windows-storage-full-safe-checks.html`
+- `/fr/project-it-support-case-study.html` → `/fr/windows-storage-full-safe-checks.html`
+
+Both localized guides are one click from their locale homepage and have two relevant contextual entry paths. The homepage remains the temporary discovery surface until the standalone bilingual hub is separately designed, validated, and released.
 
 ## Guide exit paths
 
