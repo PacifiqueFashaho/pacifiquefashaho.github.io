@@ -183,4 +183,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/windows-wifi-no-internet-safe-checks.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.79</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/fr/windows-wifi-no-internet-safe-checks.html</loc>
+    <lastmod>2026-08-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.77</priority>
+  </url>
 </urlset>

@@ -72,6 +72,24 @@ This topic is intentionally narrower than general phishing education. It owns th
 
 This guide owns a specific low-storage decision path. It does not become a general performance guide, Windows Update repair guide, backup tutorial, or technician storage-diagnosis workflow.
 
+## Fourth guide decision
+
+**Working English route:** `/windows-wifi-no-internet-safe-checks.html`
+
+**Working French route:** `/fr/windows-wifi-no-internet-safe-checks.html`
+
+**English intent:** safe checks when Windows is connected to Wi-Fi but has no internet before contacting IT support
+
+**French intent:** vérifications sûres lorsque Windows est connecté au Wi-Fi mais sans accès Internet avant de contacter le support informatique
+
+**Audience:** a non-administrator using an authorized Windows device and network.
+
+**Task:** distinguish a connected-without-internet state from a problem limited to one service, record the scope across permitted services or devices, complete reversible first checks, and prepare a concise support request.
+
+**Boundary:** the guide does not provide router administration, network reset, command-line repair, manual IP or DNS changes, driver removal, firewall or VPN disabling, certificate bypass, managed-network changes, or guaranteed restoration.
+
+This guide owns the end-user decision path for a specific connectivity state. The network and shared-printer case study retains technician diagnosis, built-in command use, layer isolation, corrective action, validation, and escalation.
+
 ## Guide outline
 
 1. Identify the task that failed and the visible symptom.
@@ -92,6 +110,8 @@ The knowledge system uses three user-facing categories:
 - **Operational resources:** printable intake, diagnostic, setup, handover, and escalation aids.
 
 Future original guides may add **Setup and handover** or **Network and printing** only when their intent remains distinct from the existing case studies and checklists.
+
+The selected fourth guide reserves **Connectivity and network access** as the next public category. Activate it only after the bilingual guide passes drafting, evidence review, UX, technical SEO, integration, release, and indexing checks.
 
 The second guide remains in **Safe first checks**, with a security-focused stop-and-report task. It does not create a new taxonomy category.
 
