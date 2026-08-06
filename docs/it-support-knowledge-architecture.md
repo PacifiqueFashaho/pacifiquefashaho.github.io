@@ -4,11 +4,11 @@ This document defines the information architecture for practical IT support know
 
 ## Architecture decision
 
-The first release will not create a standalone knowledge-hub page. A hub containing only one original guide would be thin, add another crawl target, and compete with the existing projects and printable-resources collections.
+The first release did not create a standalone knowledge-hub page. With three original bilingual guide pairs now published, the library meets the threshold for category-based discovery and uses `/it-support-knowledge.html` and `/fr/it-support-knowledge.html` as its permanent collection routes.
 
 Instead, the homepage will provide a compact `#knowledge` discovery section that connects the first guide to the strongest existing evidence. A standalone bilingual hub becomes appropriate only when at least three original bilingual guides are published.
 
-The primary navigation remains unchanged for the first release. This avoids crowding an existing navigation that already contains Skills, Experience, Projects, Certifications, Services, and Contact. Knowledge entry points will be contextual until the library is substantial enough to justify a global item.
+The primary navigation remains unchanged to avoid crowding Skills, Experience, Projects, Certifications, Services, and Contact. The locale homepage knowledge section, guide breadcrumbs, and footer provide stable routes into the standalone hub; the compact navigation can be reconsidered only after responsive testing supports replacing a lower-priority item.
 
 ## Content types and responsibilities
 
@@ -182,7 +182,7 @@ Structured breadcrumbs use the same hierarchy and absolute production URLs. The 
 
 ## Standalone hub threshold
 
-Create `/it-support-knowledge.html` and `/fr/it-support-knowledge.html` only when all of the following are true:
+The standalone hub was activated after all of the following became true:
 
 - at least three original bilingual guide pairs are ready;
 - each guide owns a distinct query and user task;
@@ -190,7 +190,26 @@ Create `/it-support-knowledge.html` and `/fr/it-support-knowledge.html` only whe
 - the hub can offer category-based discovery rather than a simple duplicate list;
 - global navigation still fits at supported desktop and mobile widths.
 
-At that point the hub becomes the middle breadcrumb destination, appears in the footer, and may replace a lower-priority primary-navigation item after responsive QA.
+The hub is now the middle breadcrumb destination, appears in its locale footer, and is the primary “browse all guides” destination from each homepage. It does not replace a primary-navigation item in this phase because the existing navigation is already dense and the homepage path keeps every guide within two clicks.
+
+## Standalone hub information architecture
+
+The hub organizes content by user need rather than by publishing order:
+
+1. **Safe first checks** — general Windows symptoms and support-request preparation.
+2. **Security: stop and report** — suspicious support contacts and unsafe requests.
+3. **Device care and storage** — low-space warnings and evidence gathering before cleanup.
+
+Each guide card states the suitable situation and expected outcome. A separate continuation section routes users to printable operational resources, technician evidence, or contact. The hub contains no search or filtering UI while the collection has only three guides; direct category anchors remain faster, clearer, and fully functional without JavaScript.
+
+### Permanent hub discovery paths
+
+- English homepage `/#knowledge` → `/it-support-knowledge.html` → each English guide.
+- French homepage `/fr/#knowledge` → `/fr/it-support-knowledge.html` → each French guide.
+- Every guide breadcrumb → its locale hub.
+- Each hub → printable resources, the IT support case study, and the locale contact section.
+
+The guide URLs and their primary query intents remain unchanged. The hub owns the broader collection intent “IT support knowledge guides” / “guides de support informatique” and must not compete with a specific task guide.
 
 ## Accessibility and interaction constraints
 

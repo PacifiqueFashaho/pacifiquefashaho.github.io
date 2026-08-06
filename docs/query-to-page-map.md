@@ -12,6 +12,7 @@ Baseline captured on 2026-08-05: 0 clicks and 6 impressions over three months; 0
 | Network and shared-printer troubleshooting | `/project-network-printer-case-study.html` | `/fr/project-network-printer-case-study.html` | Connectivity checks, Windows tools and escalation |
 | New workstation and user setup | `/project-workstation-user-setup.html` | `/fr/project-workstation-user-setup.html` | Updates, devices, handover and user orientation |
 | Printable IT support checklists | `/it-support-resources.html` | `/fr/it-support-resources.html` | Incident intake, diagnosis, handover and escalation notes |
+| IT support knowledge guides | `/it-support-knowledge.html` | `/fr/it-support-knowledge.html` | Category-based discovery for safe checks, security, storage, printable tools and technician evidence |
 | IT support certifications | `/certifications.html` | `/fr/certifications.html` | Google IT Support certificate and verifiable credentials |
 | Excel sales dashboard case study | `/project-sales-dashboard.html` | `/fr/project-sales-dashboard.html` | Sales reporting, workbook and dashboard evidence |
 | Data cleaning and reporting case study | `/project-data-cleaning-case-study.html` | `/fr/project-data-cleaning-case-study.html` | Data quality, validation and reporting evidence |
