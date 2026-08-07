@@ -320,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
           button.setAttribute("aria-pressed", "false");
         });
         setContactFormStatus(strings.form.success, "success");
+        window.portfolioAnalytics?.track("contact_complete", "contact_form");
       } catch (error) {
         console.error("Contact form submission failed:", error);
         setContactFormStatus(strings.form.failure, "error");

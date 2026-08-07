@@ -36,6 +36,8 @@ PAGE_SPECS = {
     "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
     "fr/certifications.html": ("/fr/certifications.html", "fr"),
+    "privacy.html": ("/privacy.html", "en"),
+    "fr/privacy.html": ("/fr/privacy.html", "fr"),
     "project-it-support-case-study.html": (
         "/project-it-support-case-study.html",
         "en",
@@ -115,6 +117,7 @@ BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
     ("projects.html", "fr/projects.html"),
     ("certifications.html", "fr/certifications.html"),
+    ("privacy.html", "fr/privacy.html"),
     (
         "project-it-support-case-study.html",
         "fr/project-it-support-case-study.html",
@@ -1665,8 +1668,9 @@ def validate_performance_budgets(errors: list[str]) -> None:
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
         "assets/js/main.js": 20_000,
+        "assets/js/conversion-analytics.js": 4_000,
         "assets/js/workbench.js": 20_000,
-        "assets/js/contact-assistant.js": 25_000,
+        "assets/js/contact-assistant.js": 25_100,
         "assets/js/assistant-intents.js": 6_000,
         "assets/images/profile/pacifique-profile.webp": 100_000,
     }

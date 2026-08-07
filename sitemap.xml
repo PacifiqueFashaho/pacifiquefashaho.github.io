@@ -197,4 +197,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.77</priority>
   </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/privacy.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.35</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.github.io/fr/privacy.html</loc>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.33</priority>
+  </url>
 </urlset>
