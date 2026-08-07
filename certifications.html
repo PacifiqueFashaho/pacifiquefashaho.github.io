@@ -111,7 +111,7 @@
   </script>
 </head>
 
-<body>
+<body class="certifications-page">
   <!-- Loader -->
   <div id="loader" aria-hidden="true" hidden>
     <div class="spinner"></div>
@@ -165,44 +165,43 @@
 
   <main id="main-content" class="wrap">
     <!-- Page Hero -->
-    <section class="card reveal" aria-labelledby="cert-page-title">
+    <section class="card reveal certifications-hero" aria-labelledby="cert-page-title">
       <div class="section-head">
         <div>
           <p class="small">Verified professional learning</p>
 
-          <h1 class="title" id="cert-page-title">
-            Certifications
-          </h1>
+          <h1 class="title" id="cert-page-title">Verified training for practical IT support</h1>
 
           <p class="summary">
-            The completed Google IT Support Professional Certificate comes first. Office-computing
-            credentials reinforce that focus, while data, Python, and field-work training remain complementary.
+            Credentials are organized by their value to an IT support role: the Google professional
+            certificate leads, workplace technology reinforces it, and data, automation, and field training
+            extend how I document, analyze, and support users.
           </p>
         </div>
-
-        <div class="btns">
-          <a
-            class="btn primary"
-            href="project-it-support-case-study.html"
-          >
-            View IT Support Case Study
-          </a>
-
-          <a class="btn" href="index.html">
-            ← Back to Home
-          </a>
-        </div>
+        <aside class="certifications-hero-panel" aria-label="Professional focus">
+          <span class="project-label">Professional focus</span>
+          <strong>User support, Windows, networking, security, and structured troubleshooting.</strong>
+          <p>Every primary claim is connected to a certificate, an external verification source, or practical portfolio evidence.</p>
+        </aside>
       </div>
-
+      <div class="btns"><a class="btn primary" href="#featured-cert-title">View primary credential</a><a class="btn" href="project-it-support-case-study.html">See skills applied</a><a class="btn" href="index.html#contact">Contact me</a></div>
+      <ul class="credential-evidence-summary" aria-label="Credential evidence summary">
+        <li><strong>Completed</strong><span>Google IT Support programme</span></li>
+        <li><strong>Verifiable</strong><span>Coursera and Credly evidence</span></li>
+        <li><strong>Applied</strong><span>Projects and support guides</span></li>
+      </ul>
+      <nav class="cert-category-summary" aria-label="Certification categories"><a href="#featured-cert-title">Primary credential</a><a href="#it-cert-title">Workplace technology</a><a href="#data-cert-title">Data &amp; automation</a><a href="#field-cert-title">Field operations</a></nav>
     </section>
 
     <!-- Featured Certification -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="featured-cert-title">
+    <section class="card reveal featured-credential" style="margin-top:16px;" aria-labelledby="featured-cert-title">
       <div class="section-head">
         <div>
-          <h2 id="featured-cert-title">Featured IT Support Credential</h2>
-          <span class="small">Completed six-course professional programme from Google</span>
+          <p class="small">Primary credential · Independently verifiable</p>
+          <h2 id="featured-cert-title">Google IT Support Professional Certificate</h2>
+          <span class="small">Google · Coursera · Completed April 1, 2026</span>
         </div>
+        <span class="credential-priority">IT Support priority</span>
       </div>
 
       <article class="cert featured">
@@ -218,31 +217,34 @@
         </div>
 
         <div class="meta">
-          <strong>Google IT Support Professional Certificate</strong>
-          <div class="small">Google • Completed April 1, 2026</div>
+          <h3>Professional programme scope</h3>
           <div class="small">
             Completed six-course professional programme covering computer hardware, operating systems,
             networking, system administration, IT security, troubleshooting, customer support, and
             entry-level IT career preparation.
           </div>
 
+          <ul class="credential-skill-list" aria-label="Skills supported by this credential"><li>Hardware &amp; peripherals</li><li>Operating systems</li><li>Computer networking</li><li>System administration</li><li>IT security</li><li>Troubleshooting &amp; service</li></ul>
+
+          <div class="credential-applied"><span>Applied evidence</span><a href="project-it-support-case-study.html">IT support case study <span aria-hidden="true">→</span></a><a href="it-support-knowledge.html">Practical support guides <span aria-hidden="true">→</span></a></div>
+
           <div class="cert-actions">
+            <a
+              class="cert-btn cert-btn-primary"
+              href="https://www.coursera.org/account/accomplishments/professional-cert/KVWU943XJLY3"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Verify on Coursera <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+
             <a
               class="cert-btn"
               href="assets/certificates/Google-IT-Support-Professional-Certificate.pdf"
               target="_blank"
               rel="noreferrer noopener"
             >
-              📄 View Certificate PDF
-            </a>
-
-            <a
-              class="cert-btn"
-              href="https://www.coursera.org/account/accomplishments/professional-cert/KVWU943XJLY3"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              ✓ Verify on Coursera
+              View certificate PDF <span class="visually-hidden">(opens in a new tab)</span>
             </a>
 
             <a
@@ -251,7 +253,7 @@
               target="_blank"
               rel="noreferrer noopener"
             >
-              🎖 Verify Credly Badge
+              View Credly badge <span class="visually-hidden">(opens in a new tab)</span>
             </a>
           </div>
         </div>
@@ -307,11 +309,12 @@
     </section>
 
     <!-- IT Support & Office Computing -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="it-cert-title">
+    <section class="card reveal credential-group" style="margin-top:16px;" aria-labelledby="it-cert-title">
       <div class="section-head">
         <div>
-          <h2 id="it-cert-title">IT Support & Office Computing Credentials</h2>
-          <span class="small">Practical workplace technology training reinforcing the featured IT support programme</span>
+          <p class="small">Direct workplace relevance</p>
+          <h2 id="it-cert-title">IT support &amp; workplace technology</h2>
+          <span class="small">Practical training for user assistance, office tools, and professional documentation</span>
         </div>
       </div>
 
@@ -329,44 +332,33 @@
           </div>
 
           <div class="meta">
-            <strong>Professional Qualification — Office Computing</strong>
-            <div class="small">INPP • October–December 2024</div>
-            <div class="small">Training in Word, Excel, PowerPoint, Internet basics, databases, and data analysis.</div>
+            <h3>Professional Qualification — Office Computing</h3>
+            <div class="small">INPP · Completed December 2024</div>
+            <ul class="credential-card-skills"><li>User productivity</li><li>Office applications</li><li>Data basics</li></ul>
+            <p class="small">Practical training in Word, Excel, PowerPoint, internet fundamentals, databases, and data analysis.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Certificat-Professionnel-INPP.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
         </article>
 
-      </div>
-    </section>
-
-    <!-- Productivity & Office Tools -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="productivity-cert-title">
-      <div class="section-head">
-        <div>
-          <h2 id="productivity-cert-title">Productivity & Office Tools</h2>
-          <span class="small">Credentials supporting professional documentation and office productivity</span>
-        </div>
-      </div>
-
-      <div class="cert-grid">
         <article class="cert">
           <div class="logo-box">
             <img src="assets/images/logos/logo-microsoft.webp" width="500" height="500" alt="Microsoft logo" loading="lazy" decoding="async" />
           </div>
 
           <div class="meta">
-            <strong>Microsoft 365 — Work Smarter with Microsoft Word</strong>
-            <div class="small">Microsoft • January 14, 2026</div>
-            <div class="small">Credential ID: XHW5D07EZZ22</div>
+            <h3>Work Smarter with Microsoft Word</h3>
+            <div class="small">Microsoft · Completed January 14, 2026</div>
+            <ul class="credential-card-skills"><li>Document structure</li><li>Formatting</li><li>Workplace productivity</li></ul>
+            <p class="small">Supports clear user documentation, procedures, reports, and professional communication.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Work-smarter-Microsoft-Word.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -375,11 +367,12 @@
     </section>
 
     <!-- Complementary Data Credential -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="data-cert-title">
+    <section class="card reveal credential-group" style="margin-top:16px;" aria-labelledby="data-cert-title">
       <div class="section-head">
         <div>
-          <h2 id="data-cert-title">Complementary Data Credential</h2>
-          <span class="small">Professional certificate retained without repeating its component-course cards</span>
+          <p class="small">Complementary analytical capability</p>
+          <h2 id="data-cert-title">Data &amp; automation</h2>
+          <span class="small">Skills that strengthen reporting, structured investigation, and repetitive-task thinking</span>
         </div>
       </div>
 
@@ -390,47 +383,34 @@
           </div>
 
           <div class="meta">
-            <strong>Google Data Analytics Professional Certificate</strong>
-            <div class="small">Google • February 22, 2026 • Verified via Credly</div>
-            <div class="small">Complementary learning in data preparation, analysis, visualization, and reporting.</div>
+            <h3>Google Data Analytics Professional Certificate</h3>
+            <div class="small">Google · Completed February 22, 2026</div>
+            <ul class="credential-card-skills"><li>Data preparation</li><li>Analysis</li><li>Visualization</li></ul>
+            <p class="small">Supports evidence-based reporting and clearer communication of operational findings.</p>
+            <div class="credential-applied"><span>Applied in</span><a href="project-sales-dashboard.html">Sales Dashboard case study <span aria-hidden="true">→</span></a></div>
 
             <div class="cert-actions">
-              <a class="cert-btn" href="assets/certificates/Google-data-analytics.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+              <a class="cert-btn cert-btn-primary" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939" target="_blank" rel="noreferrer noopener">
+                Verify badge <span class="visually-hidden">(opens in a new tab)</span>
               </a>
-
-              <a class="cert-btn" href="https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939" target="_blank" rel="noreferrer noopener">
-                🎖 Verify Badge
-              </a>
+              <a class="cert-btn" href="assets/certificates/Google-data-analytics.pdf" target="_blank" rel="noreferrer noopener">View PDF <span class="visually-hidden">(opens in a new tab)</span></a>
             </div>
           </div>
         </article>
-      </div>
-    </section>
-
-    <!-- Complementary Python Credentials -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="programming-cert-title">
-      <div class="section-head">
-        <div>
-          <h2 id="programming-cert-title">Complementary Python Credentials</h2>
-          <span class="small">Program-level credentials retained without repeating component-course cards</span>
-        </div>
-      </div>
-
-      <div class="cert-grid">
         <article class="cert">
           <div class="logo-box">
             <img src="assets/images/logos/Logo-Umich.png" width="500" height="500" alt="University of Michigan logo" loading="lazy" decoding="async" />
           </div>
 
           <div class="meta">
-            <strong>Python for Everybody</strong>
-            <div class="small">University of Michigan • December 15, 2025</div>
-            <div class="small">Completed five-course specialization in Python, web data, databases, and applied data processing.</div>
+            <h3>Python for Everybody</h3>
+            <div class="small">University of Michigan · Completed December 15, 2025</div>
+            <ul class="credential-card-skills"><li>Python fundamentals</li><li>Web data</li><li>Databases</li></ul>
+            <p class="small">Completed five-course specialization in programming and applied data processing.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Python-for-everybody.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -442,13 +422,14 @@
           </div>
 
           <div class="meta">
-            <strong>Python for Data Science, AI & Development</strong>
-            <div class="small">IBM • December 7, 2025</div>
-            <div class="small">Credential ID: QXMDBTDUU5X0</div>
+            <h3>Python for Data Science, AI &amp; Development</h3>
+            <div class="small">IBM · Completed December 7, 2025</div>
+            <ul class="credential-card-skills"><li>Applied Python</li><li>Data handling</li><li>Development basics</li></ul>
+            <p class="small">Introduces Python techniques used across data, AI, and development workflows.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Python-for-data-AI-and-Development.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -457,11 +438,12 @@
     </section>
 
     <!-- Humanitarian & Field Work -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="field-cert-title">
+    <section class="card reveal credential-group" style="margin-top:16px;" aria-labelledby="field-cert-title">
       <div class="section-head">
         <div>
-          <h2 id="field-cert-title">Humanitarian & Field Work Certifications</h2>
-          <span class="small">Credentials connected to field monitoring, humanitarian operations, and team support</span>
+          <p class="small">Transferable operational capability</p>
+          <h2 id="field-cert-title">Field &amp; professional operations</h2>
+          <span class="small">Training in monitoring, reporting, coordination, and team support</span>
         </div>
       </div>
 
@@ -479,13 +461,14 @@
           </div>
 
           <div class="meta">
-            <strong>Field Monitoring Agent</strong>
-            <div class="small">Académie Humanitaire • October 23–November 3, 2025</div>
-            <div class="small">Training related to field monitoring, follow-up, reporting, and field support.</div>
+            <h3>Field Monitoring Agent</h3>
+            <div class="small">Académie Humanitaire · Completed November 3, 2025</div>
+            <ul class="credential-card-skills"><li>Monitoring</li><li>Follow-up</li><li>Reporting</li></ul>
+            <p class="small">Strengthens accurate observation, structured follow-up, and field documentation.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Certificat-Agent-de-suivi-de-terrain.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -504,13 +487,14 @@
           </div>
 
           <div class="meta">
-            <strong>Human Resources Management in Humanitarian Context</strong>
-            <div class="small">Académie Humanitaire • November 2–11, 2025</div>
-            <div class="small">Training in humanitarian HR concepts, team support, and field context administration.</div>
+            <h3>Human Resources Management in Humanitarian Context</h3>
+            <div class="small">Académie Humanitaire · Completed November 11, 2025</div>
+            <ul class="credential-card-skills"><li>Team support</li><li>Coordination</li><li>HR fundamentals</li></ul>
+            <p class="small">Provides supporting knowledge for professional and humanitarian team environments.</p>
 
             <div class="cert-actions">
               <a class="cert-btn" href="assets/certificates/Certificat-Gestion-RH.pdf" target="_blank" rel="noreferrer noopener">
-                📄 View Certificate
+                View certificate <span class="visually-hidden">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -519,21 +503,22 @@
     </section>
 
     <!-- CTA -->
-    <section class="card reveal" style="margin-top:16px;" aria-labelledby="cert-cta-title">
+    <section class="card reveal certifications-cta" style="margin-top:16px;" aria-labelledby="cert-cta-title">
       <div class="section-head">
         <div>
-          <h2 id="cert-cta-title">How These Certifications Support My Work</h2>
+          <h2 id="cert-cta-title">From verified learning to a support method</h2>
           <p class="summary">
-            These credentials strengthen my approach to troubleshooting, networking, user support,
-            office tools, and technical documentation. Data, Python, and field-work learning remain
-            complementary capabilities.
+            The primary credential connects directly to practical evidence in Windows troubleshooting,
+            printer support, network checks, user communication, escalation, and documentation.
           </p>
         </div>
 
         <div class="btns">
           <a class="btn primary" href="project-it-support-case-study.html">
-            View IT Support Case Study
+            View the primary case study
           </a>
+
+          <a class="btn" href="projects.html">Explore projects</a>
 
           <a class="btn" href="index.html#contact">
             Contact Me
