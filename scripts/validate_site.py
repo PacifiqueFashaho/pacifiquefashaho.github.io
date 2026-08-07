@@ -172,6 +172,7 @@ CSS_FILES = (
     "assets/css/style.css",
     "assets/css/contact-assistant.css",
     "assets/css/pages.css",
+    "assets/css/certifications.css",
     "assets/css/guide.css",
     "assets/css/knowledge.css",
 )
@@ -1660,6 +1661,7 @@ def validate_performance_budgets(errors: list[str]) -> None:
     budgets = {
         "assets/css/style.css": 60_000,
         "assets/css/pages.css": 60_000,
+        "assets/css/certifications.css": 10_000,
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
         "assets/js/main.js": 20_000,

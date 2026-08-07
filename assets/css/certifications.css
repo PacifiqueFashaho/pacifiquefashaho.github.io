@@ -1,0 +1,174 @@
+/* Evidence-first enhancements loaded only by the bilingual certification pages. */
+.credential-evidence-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credential-evidence-summary li {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--soft-surface) 90%, transparent);
+}
+
+.credential-evidence-summary strong {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.credential-evidence-summary span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.credential-skill-list,
+.credential-card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credential-skill-list li,
+.credential-card-skills li {
+  padding: 6px 9px;
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: var(--radius-pill);
+  color: var(--text);
+  background: rgba(37, 99, 235, 0.07);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.credential-card-skills {
+  margin: 12px 0 4px;
+}
+
+.credential-applied {
+  display: grid;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--soft-surface);
+}
+
+.credential-applied > span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.credential-applied a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 850;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.cert-btn-primary {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.certifications-page .cert-btn,
+.certifications-page .cert-category-summary a {
+  min-height: 44px;
+}
+
+.credential-group .cert {
+  align-content: start;
+}
+
+.credential-group .cert .meta {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+}
+
+.credential-group .cert-actions {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@media (max-width: 720px) {
+  .certifications-page .certifications-hero .title {
+    font-size: clamp(2.35rem, 11vw, 3rem);
+    line-height: 1.02;
+  }
+
+  .certifications-page .certifications-hero .summary {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .certifications-page .certifications-hero-panel {
+    gap: 7px;
+    padding: 14px;
+  }
+
+  .certifications-page .certifications-hero-panel p {
+    display: none;
+  }
+
+  .certifications-page .credential-evidence-summary {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .certifications-page .credential-evidence-summary li {
+    grid-template-columns: minmax(82px, auto) minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .certifications-page .cert-category-summary {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 2px 0 6px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+
+  .certifications-page .cert-category-summary a {
+    width: auto;
+    flex: 0 0 auto;
+    padding-inline: 14px;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+}
