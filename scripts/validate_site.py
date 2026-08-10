@@ -831,6 +831,14 @@ def validate_css(errors: list[str]) -> None:
                 f"{stylesheet}: missing url() asset: {reference}",
             )
 
+    about_css = read_text("assets/css/about.css", errors)
+    if about_css is not None:
+        add_error(
+            errors,
+            "var(--border)" not in about_css and "var(--surface)" not in about_css,
+            "assets/css/about.css: uses undefined legacy design tokens",
+        )
+
 
 def validate_css_architecture(
     parsed_pages: dict[str, PortfolioHTMLParser],
@@ -1789,6 +1797,16 @@ def validate_knowledge_hub_navigation(
             ),
             f"{hub_page}: knowledge hub category anchors are incomplete",
         )
+        primary_navigation = re.search(
+            r'<nav id="primaryNavigation"[\s\S]*?</nav>', source
+        )
+        add_error(
+            errors,
+            bool(primary_navigation)
+            and 'class="active" href="projects.html"'
+            not in primary_navigation.group(0),
+            f"{hub_page}: Projects must not appear active on the knowledge hub",
+        )
 
 
 def validate_case_study_conversion_paths(
@@ -1976,6 +1994,16 @@ def validate_about_navigation_and_media(errors: list[str]) -> None:
         source = read_text(page, errors)
         if source is None:
             continue
+        expected_interaction_script = (
+            "../assets/js/about-interactions.js"
+            if page.startswith("fr/")
+            else "assets/js/about-interactions.js"
+        )
+        add_error(
+            errors,
+            expected_interaction_script in source,
+            f"{page}: accessible About journey interaction is missing",
+        )
         portrait = re.search(r'<img[^>]+pacifique-profile\.webp[^>]+>', source)
         add_error(
             errors,
