@@ -8,8 +8,12 @@ Create a bilingual personal profile that helps a visitor understand who Pacifiqu
 
 Proposed routes:
 
-- English: `/about.html`
-- French: `/fr/about.html`
+- English identity-first homepage: `/`
+- French identity-first homepage: `/fr/`
+- English full professional portfolio: `/portfolio.html`
+- French full professional portfolio: `/fr/portfolio.html`
+- Legacy `/about.html` and `/fr/about.html` routes remain as non-indexed
+  compatibility redirects to their matching homepages.
 
 Primary visitor questions:
 
