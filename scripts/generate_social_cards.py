@@ -9,8 +9,8 @@ OUTPUT = ROOT / "assets" / "images" / "social"
 WIDTH, HEIGHT = 1200, 630
 
 CARDS = {
-    "home.png": ("IT SUPPORT PORTFOLIO", "Practical Support for Users & Workstations", "Windows • Troubleshooting • Documentation", "EN"),
-    "home-fr.png": ("PORTFOLIO DE SUPPORT INFORMATIQUE", "Support pratique des utilisateurs et des postes", "Windows • Dépannage • Documentation", "FR"),
+    "home.png": ("ABOUT PACIFIQUE", "Technology, Learning & Life in Goma", "IT Support • Software Development • Data Analytics", "EN", "Technology Professional • Goma, DR Congo"),
+    "home-fr.png": ("À PROPOS DE PACIFIQUE", "Technologie, apprentissage et parcours à Goma", "Support informatique • Développement logiciel • Analyse de données", "FR", "Professionnel des technologies numériques • Goma, RD Congo"),
     "projects.png": ("PROJECT PORTFOLIO", "Practical IT Support Projects", "Windows • Workstations • Networks • Printers", "EN"),
     "projects-fr.png": ("PORTFOLIO DE PROJETS", "Projets pratiques de support informatique", "Windows • Postes • Réseaux • Imprimantes", "FR"),
     "it-support-workflow.png": ("IT SUPPORT CASE STUDY", "Workstation Setup & Troubleshooting", "8-stage method • 6 validation checks", "EN"),
@@ -31,9 +31,15 @@ def font(name: str, size: int) -> ImageFont.FreeTypeFont:
     return ImageFont.truetype(str(Path("C:/Windows/Fonts") / name), size)
 
 
-def fit_text(draw: ImageDraw.ImageDraw, value: str, maximum: int, initial: int = 62) -> ImageFont.FreeTypeFont:
+def fit_text(
+    draw: ImageDraw.ImageDraw,
+    value: str,
+    maximum: int,
+    initial: int = 62,
+    minimum: int = 38,
+) -> ImageFont.FreeTypeFont:
     size = initial
-    while size > 38:
+    while size > minimum:
         candidate = font("segoeuib.ttf", size)
         if draw.textbbox((0, 0), value, font=candidate)[2] <= maximum:
             return candidate
@@ -41,7 +47,14 @@ def fit_text(draw: ImageDraw.ImageDraw, value: str, maximum: int, initial: int =
     return font("segoeuib.ttf", size)
 
 
-def generate(filename: str, eyebrow: str, title: str, detail: str, language: str) -> None:
+def generate(
+    filename: str,
+    eyebrow: str,
+    title: str,
+    detail: str,
+    language: str,
+    role: str = "IT Support Technician • Goma, DR Congo",
+) -> None:
     image = Image.new("RGB", (WIDTH, HEIGHT), "#071527")
     draw = ImageDraw.Draw(image)
 
@@ -53,9 +66,9 @@ def generate(filename: str, eyebrow: str, title: str, detail: str, language: str
 
     eyebrow_font = font("segoeuib.ttf", 24)
     title_font = fit_text(draw, title, 900)
-    detail_font = font("segoeui.ttf", 29)
+    detail_font = fit_text(draw, detail, 900, initial=29, minimum=20)
     brand_font = font("segoeuib.ttf", 26)
-    role_font = font("segoeui.ttf", 22)
+    role_font = fit_text(draw, role, 850, initial=22, minimum=18)
     badge_font = font("segoeuib.ttf", 18)
 
     draw.text((130, 112), eyebrow, font=eyebrow_font, fill="#73b7ff")
@@ -64,7 +77,7 @@ def generate(filename: str, eyebrow: str, title: str, detail: str, language: str
     draw.line((132, 395, 1060, 395), fill="#24476b", width=2)
     draw.ellipse((132, 447, 148, 463), fill="#60a5fa")
     draw.text((168, 430), "Pacifique Fashaho", font=brand_font, fill="#f6f9fc")
-    draw.text((168, 474), "IT Support Technician • Goma, DR Congo", font=role_font, fill="#9db2c9")
+    draw.text((168, 474), role, font=role_font, fill="#9db2c9")
     draw.rounded_rectangle((1042, 504, 1102, 544), radius=20, fill="#173b61")
     bbox = draw.textbbox((0, 0), language, font=badge_font)
     draw.text((1072 - (bbox[2] - bbox[0]) / 2, 513), language, font=badge_font, fill="#dbeafe")
