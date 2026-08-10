@@ -1994,6 +1994,16 @@ def validate_about_navigation_and_media(errors: list[str]) -> None:
         source = read_text(page, errors)
         if source is None:
             continue
+        expected_interaction_script = (
+            "../assets/js/about-interactions.js"
+            if page.startswith("fr/")
+            else "assets/js/about-interactions.js"
+        )
+        add_error(
+            errors,
+            expected_interaction_script in source,
+            f"{page}: accessible About journey interaction is missing",
+        )
         portrait = re.search(r'<img[^>]+pacifique-profile\.webp[^>]+>', source)
         add_error(
             errors,
