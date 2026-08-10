@@ -752,6 +752,10 @@ nav a[aria-current="location"] {
   margin-top: 14px;
 }
 
+.skills-pillar-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}.skills-pillar-grid .skill-card{display:flex;flex-direction:column;min-height:100%;border-top:3px solid var(--hero-accent)}.skills-pillar-grid .skill-card:nth-child(2){border-top-color:var(--hero-development)}.skills-pillar-grid .skill-card:nth-child(3){border-top-color:var(--hero-data)}.skills-pillar-grid .skill-card>.small:last-child{margin-top:auto;padding-top:12px}
+
+.featured-pillar-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.featured-pillar-card{display:flex;overflow:hidden;flex-direction:column;min-width:0;border:1px solid var(--line);border-top:3px solid var(--hero-accent);border-radius:var(--radius-md);background:var(--soft-surface);box-shadow:0 12px 26px rgba(15,23,42,.07)}.featured-pillar-card--development{border-top-color:var(--hero-development)}.featured-pillar-card--data{border-top-color:var(--hero-data)}.featured-pillar-card>img{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line);background:var(--surface)}.featured-pillar-body{display:flex;flex:1;flex-direction:column;padding:18px}.featured-pillar-body h3{margin:6px 0 8px;font-size:20px;line-height:1.25}.featured-pillar-body p{margin:0;color:var(--muted);line-height:1.65}.featured-pillar-body ul{margin:14px 0 18px;padding-left:20px;color:var(--muted)}.featured-pillar-body li+li{margin-top:6px}.featured-pillar-body>a{margin-top:auto;font-weight:800;text-decoration:none}.featured-pillar-body>a:hover{text-decoration:underline}
+
 .skills-priority-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
@@ -1374,6 +1378,7 @@ nav a[aria-current="location"] {
 
   .projects-grid,
   .skills-grid,
+  .featured-pillar-grid,
   .services-grid,
   .cert-grid {
     grid-template-columns: 1fr;
@@ -1707,6 +1712,8 @@ nav a[aria-current="location"] {
   --hero-cyan-soft: rgba(6, 182, 212, 0.1);
   --hero-success: #16a34a;
   --hero-success-soft: rgba(22, 163, 74, 0.12);
+  --hero-development: #6d28d9;
+  --hero-data: #0f766e;
   --hero-panel: #0f172a;
   --hero-panel-elevated: #162033;
   --hero-panel-line: rgba(148, 163, 184, 0.2);
@@ -1725,6 +1732,8 @@ nav a[aria-current="location"] {
   --hero-cyan-soft: rgba(34, 197, 94, 0.1);
   --hero-success: #4ade80;
   --hero-success-soft: rgba(74, 222, 128, 0.12);
+  --hero-development: #c4b5fd;
+  --hero-data: #5eead4;
   --hero-panel: #080f1d;
   --hero-panel-elevated: #111c2e;
   --hero-panel-line: rgba(148, 163, 184, 0.22);
@@ -1743,6 +1752,8 @@ nav a[aria-current="location"] {
     --hero-cyan-soft: rgba(34, 197, 94, 0.1);
     --hero-success: #4ade80;
     --hero-success-soft: rgba(74, 222, 128, 0.12);
+    --hero-development: #c4b5fd;
+    --hero-data: #5eead4;
     --hero-panel: #080f1d;
     --hero-panel-elevated: #111c2e;
     --hero-panel-line: rgba(148, 163, 184, 0.22);
@@ -1817,6 +1828,17 @@ nav a[aria-current="location"] {
   font-weight: 900;
   line-height: 0.99;
   letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.hero-v2__positioning {
+  max-width: 60ch;
+  margin: 16px 0 0;
+  color: var(--hero-accent);
+  font-size: clamp(14px, 1.45vw, 17px);
+  font-weight: 900;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
@@ -1902,29 +1924,35 @@ nav a[aria-current="location"] {
 }
 
 .hero-v2__proof li {
+  --pillar-accent: var(--hero-accent);
   min-width: 0;
-  padding: 12px;
+  min-height: 104px;
+  padding: 14px;
   border: 1px solid var(--line);
+  border-top: 3px solid var(--pillar-accent);
   border-radius: 14px;
   background: var(--soft-surface);
 }
+
+.hero-v2__proof li:nth-child(2) { --pillar-accent: var(--hero-development); }
+.hero-v2__proof li:nth-child(3) { --pillar-accent: var(--hero-data); }
 
 .hero-v2__proof strong,
 .hero-v2__proof a { display: block; }
 
 .hero-v2__proof strong {
-  margin-bottom: 3px;
-  color: var(--hero-accent);
+  margin-bottom: 7px;
+  color: var(--pillar-accent);
   font-size: 22px;
   font-weight: 950;
-  line-height: 1.1;
+  line-height: 1.18;
 }
 
 .hero-v2__proof a {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 750;
-  line-height: 1.35;
+  line-height: 1.45;
   text-decoration: none;
 }
 

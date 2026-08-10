@@ -1047,10 +1047,10 @@ def validate_quick_assistant(
 ) -> None:
     expected_intents = {
         "index.html": Counter(
-            {"opportunity": 2, "support": 1, "data": 1}
+            {"opportunity": 2, "support": 1, "project": 1, "data": 1}
         ),
         "fr/index.html": Counter(
-            {"opportunity": 2, "support": 1, "data": 1}
+            {"opportunity": 2, "support": 1, "project": 1, "data": 1}
         ),
     }
     expected_scripts = {
@@ -1154,23 +1154,21 @@ def validate_quick_assistant(
         required_skill_headings = (
             {
                 "IT Support &amp; Troubleshooting",
+                "Software Development",
                 "Data Analytics",
-                "Field Data Tools",
-                "Development",
             }
             if page == "index.html"
             else {
                 "Support informatique et dépannage",
+                "Développement logiciel",
                 "Analyse de données",
-                "Outils de collecte mobile",
-                "Développement",
             }
         )
         add_error(
             errors,
-            source.count('class="skill-card ') == 4
+            source.count('class="skill-card ') == 3
             and all(heading in source for heading in required_skill_headings),
-            f"{page}: skills section must contain four verified capability cards",
+            f"{page}: skills section must contain three evidence-linked capability cards",
         )
 
     for page, parser in parsed_pages.items():
@@ -1334,34 +1332,38 @@ def validate_project_catalog(errors: list[str]) -> None:
         )
 
     validate_stat("Portfolio Projects", project_count)
-    validate_stat("Project Categories", len(set(project_categories)))
+    validate_stat("Core Technology Pillars", len(set(project_categories)))
     validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
 
-    english_homepage = read_text("index.html", errors)
-    if english_homepage is not None:
-        recruiter_proofs = (
-            "<strong>Current</strong>",
-            "<strong>Google</strong>",
-            "<strong>4</strong>",
-        )
-        add_error(
-            errors,
-            all(proof in english_homepage for proof in recruiter_proofs),
-            "index.html: hero must retain current-role, credential, and experience proof",
-        )
+    homepage_pillars = {
+        "index.html": (
+            'aria-label="Core technology capabilities"',
+            "<strong>IT Support</strong>",
+            'href="project-it-support-case-study.html"',
+            "<strong>Software Development</strong>",
+            'href="projects.html#project-portfolio"',
+            "<strong>Data Analytics</strong>",
+            'href="project-data-cleaning-case-study.html"',
+        ),
+        "fr/index.html": (
+            'aria-label="Capacités technologiques principales"',
+            "<strong>Support informatique</strong>",
+            'href="project-it-support-case-study.html"',
+            "<strong>Développement logiciel</strong>",
+            'href="projects.html#project-portfolio"',
+            "<strong>Analyse de données</strong>",
+            'href="project-data-cleaning-case-study.html"',
+        ),
+    }
 
-    french_homepage = read_text("fr/index.html", errors)
-    if french_homepage is not None:
-        proof = re.search(
-            r"<strong>(\d+)</strong>\s*"
-            r'<a\b[^>]*>projets du portfolio</a>',
-            french_homepage,
-        )
-        add_error(
-            errors,
-            bool(proof and int(proof.group(1)) == project_count),
-            f"fr/index.html: homepage project proof must match the {project_count}-project catalog",
-        )
+    for page, required_markers in homepage_pillars.items():
+        homepage = read_text(page, errors)
+        if homepage is not None:
+            add_error(
+                errors,
+                all(marker in homepage for marker in required_markers),
+                f"{page}: hero must expose all three capability evidence paths",
+            )
 
 
 def validate_recruiter_documents(errors: list[str]) -> None:
@@ -1933,6 +1935,29 @@ def validate_bilingual_component_parity(errors: list[str]) -> None:
                 f"English Projects page for {marker}"
             ),
         )
+def validate_global_professional_identity(errors: list[str]) -> None:
+    legacy_labels = (
+        "IT Support Technician</small>",
+        "Technicien en support informatique</small>",
+        "Technicien support informatique</small>",
+        "Technicien de support informatique</small>",
+    )
+    for page in PAGE_SPECS:
+        source = read_text(page, errors)
+        if source is None:
+            continue
+        expected_label = (
+            "Professionnel des technologies numériques</small>"
+            if page.startswith("fr/")
+            else "Technology Professional</small>"
+        )
+        add_error(
+            errors,
+            expected_label in source and not any(label in source for label in legacy_labels),
+            f"{page}: global professional identity is not three-pillar consistent",
+        )
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -1956,6 +1981,7 @@ def main() -> int:
     validate_performance_budgets(errors)
     validate_contact_form_recovery(errors)
     validate_bilingual_component_parity(errors)
+    validate_global_professional_identity(errors)
     smoke_test_routes(errors)
 
     if errors:
