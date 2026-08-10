@@ -872,6 +872,11 @@ nav a[aria-current="location"] {
   font-weight: 900;
 }
 
+.skill-proof{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.skill-proof__type{display:inline-flex;padding:5px 9px;border-radius:999px;color:var(--accent);background:var(--accent-soft);font:900 10px/1.2 inherit;letter-spacing:.06em;text-transform:uppercase}
+.skill-proof p{margin:9px 0 12px;color:var(--muted);font-size:13px;line-height:1.5}
+.skill-proof__actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}.skill-proof__actions a{font-size:12px;font-weight:850}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
