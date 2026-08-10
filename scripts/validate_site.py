@@ -32,6 +32,8 @@ PRIVATE_STUDENT_RECORD = (
 PAGE_SPECS = {
     "index.html": ("/", "en"),
     "fr/index.html": ("/fr/", "fr"),
+    "about.html": ("/about.html", "en"),
+    "fr/about.html": ("/fr/about.html", "fr"),
     "projects.html": ("/projects.html", "en"),
     "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
@@ -115,6 +117,7 @@ PAGE_SPECS = {
 
 BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
+    ("about.html", "fr/about.html"),
     ("projects.html", "fr/projects.html"),
     ("certifications.html", "fr/certifications.html"),
     ("privacy.html", "fr/privacy.html"),
@@ -1935,6 +1938,52 @@ def validate_bilingual_component_parity(errors: list[str]) -> None:
                 f"English Projects page for {marker}"
             ),
         )
+def validate_about_navigation_and_media(errors: list[str]) -> None:
+    """Keep the bilingual personal profile discoverable and evidence-safe."""
+    for page in PAGE_SPECS:
+        source = read_text(page, errors)
+        if source is None:
+            continue
+        primary_navigation = re.search(
+            r'<nav id="primaryNavigation"[\s\S]*?</nav>', source
+        )
+        footer = re.search(r'<footer[\s\S]*?</footer>', source)
+        expected_label = "À propos" if page.startswith("fr/") else "About"
+        add_error(
+            errors,
+            bool(primary_navigation)
+            and 'href="about.html"' in primary_navigation.group(0)
+            and expected_label in primary_navigation.group(0),
+            f"{page}: primary navigation is missing the locale-safe About link",
+        )
+        add_error(
+            errors,
+            bool(footer)
+            and 'href="about.html"' in footer.group(0)
+            and expected_label in footer.group(0),
+            f"{page}: footer is missing the locale-safe About link",
+        )
+
+    for page in ("about.html", "fr/about.html"):
+        source = read_text(page, errors)
+        if source is None:
+            continue
+        portrait = re.search(r'<img[^>]+pacifique-profile\.webp[^>]+>', source)
+        add_error(
+            errors,
+            bool(portrait)
+            and bool(re.search(r'alt="[^\"]+"', portrait.group(0)))
+            and 'width="1254"' in portrait.group(0)
+            and 'height="1254"' in portrait.group(0),
+            f"{page}: portrait needs descriptive alternative text and intrinsic dimensions",
+        )
+        add_error(
+            errors,
+            "April 2027" in source or "avril 2027" in source,
+            f"{page}: degree-in-progress accuracy marker is missing",
+        )
+
+
 def validate_global_professional_identity(errors: list[str]) -> None:
     legacy_labels = (
         "IT Support Technician</small>",
@@ -1981,6 +2030,7 @@ def main() -> int:
     validate_performance_budgets(errors)
     validate_contact_form_recovery(errors)
     validate_bilingual_component_parity(errors)
+    validate_about_navigation_and_media(errors)
     validate_global_professional_identity(errors)
     smoke_test_routes(errors)
 
