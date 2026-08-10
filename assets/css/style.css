@@ -2940,3 +2940,33 @@ li[data-workbench-step-state="complete"]
 /* =========================
    END INTERACTIVE HERO V2
 ========================= */
+
+/* Consent prompt: compact, readable and keyboard-friendly. */
+.analytics-consent {
+  position: fixed;
+  z-index: 1200;
+  right: clamp(.75rem, 3vw, 2rem);
+  bottom: clamp(.75rem, 3vw, 2rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  width: min(46rem, calc(100% - 1.5rem));
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.analytics-consent strong { display: block; margin-bottom: .25rem; }
+.analytics-consent p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.analytics-consent__actions { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: .5rem; }
+.analytics-consent__actions .btn { padding: .62rem .8rem; }
+.analytics-consent__actions a { padding: .4rem; font-size: .85rem; font-weight: 700; }
+
+@media (max-width: 680px) {
+  .analytics-consent { grid-template-columns: 1fr; }
+  .analytics-consent__actions { justify-content: flex-start; }
+}

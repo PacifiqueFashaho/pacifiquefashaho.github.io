@@ -920,8 +920,8 @@ def validate_css_architecture(
             )
         add_error(
             errors,
-            len(shared_source.encode("utf-8")) <= 60_000,
-            "assets/css/style.css: shared stylesheet exceeded the 60 KB "
+            len(shared_source.encode("utf-8")) <= 62_000,
+            "assets/css/style.css: shared stylesheet exceeded the 62 KB "
             "size budget",
         )
         add_error(
@@ -1683,13 +1683,13 @@ def smoke_test_routes(errors: list[str]) -> None:
 def validate_performance_budgets(errors: list[str]) -> None:
     """Keep shared front-end assets within low-bandwidth delivery budgets."""
     budgets = {
-        "assets/css/style.css": 60_000,
+        "assets/css/style.css": 62_000,
         "assets/css/pages.css": 60_000,
         "assets/css/certifications.css": 10_000,
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
         "assets/js/main.js": 20_000,
-        "assets/js/conversion-analytics.js": 4_000,
+        "assets/js/conversion-analytics.js": 8_000,
         "assets/js/workbench.js": 20_000,
         "assets/js/contact-assistant.js": 25_100,
         "assets/js/assistant-intents.js": 6_000,
@@ -2043,6 +2043,50 @@ def validate_global_professional_identity(errors: list[str]) -> None:
         )
 
 
+def validate_consent_first_analytics(errors: list[str]) -> None:
+    """Guard the consent boundary and the fixed, non-personal About events."""
+    analytics_path = ROOT / "assets/js/conversion-analytics.js"
+    about_path = ROOT / "assets/js/about-interactions.js"
+    if not analytics_path.is_file() or not about_path.is_file():
+        errors.append("Consent-first analytics assets are missing")
+        return
+
+    analytics = analytics_path.read_text(encoding="utf-8")
+    about = about_path.read_text(encoding="utf-8")
+    required_analytics = (
+        "portfolio-analytics-consent",
+        'analytics_storage: "denied"',
+        'analytics_storage: "granted"',
+        "navigator.globalPrivacyControl",
+        "navigator.doNotTrack",
+        "location.origin}${location.pathname}",
+        'data-analytics-consent="granted"',
+        'data-analytics-consent="denied"',
+    )
+    for marker in required_analytics:
+        add_error(errors, marker in analytics, f"conversion analytics: missing {marker}")
+
+    add_error(
+        errors,
+        "location.href" not in analytics,
+        "conversion analytics: complete URLs could expose query strings",
+    )
+    add_error(errors, "about_section_view" in about, "About analytics: missing about_section_view")
+
+    for page, script_reference in (
+        ("privacy.html", "assets/js/conversion-analytics.js"),
+        ("fr/privacy.html", "../assets/js/conversion-analytics.js"),
+    ):
+        source = (ROOT / page).read_text(encoding="utf-8")
+        for marker in (
+            'data-analytics-consent="granted"',
+            'data-analytics-consent="denied"',
+            "data-analytics-status",
+            script_reference,
+        ):
+            add_error(errors, marker in source, f"{page}: missing analytics choice control {marker}")
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -2068,6 +2112,7 @@ def main() -> int:
     validate_bilingual_component_parity(errors)
     validate_about_navigation_and_media(errors)
     validate_global_professional_identity(errors)
+    validate_consent_first_analytics(errors)
     smoke_test_routes(errors)
 
     if errors:

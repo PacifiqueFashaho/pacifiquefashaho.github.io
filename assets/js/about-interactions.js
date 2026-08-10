@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const hero = document.querySelector(".about-hero");
   const sections = {
     story: document.querySelector('[aria-labelledby="story-title"]'),
     disciplines: document.querySelector('[aria-labelledby="disciplines-title"]'),
@@ -8,52 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
     timeline: document.querySelector('[aria-labelledby="timeline-title"]')
   };
 
-  if (!hero || Object.values(sections).some((section) => !section)) return;
+  if (Object.values(sections).some((section) => !section)) return;
+  Object.entries(sections).forEach(([id, section]) => { section.id = id; });
 
-  const isFrench = document.documentElement.lang.toLowerCase().startsWith("fr");
-  const labels = isFrench
-    ? {
-        navigation: "Explorer mon parcours",
-        eyebrow: "Explorer",
-        story: "Mon parcours",
-        disciplines: "Compétences",
-        places: "Lieux",
-        values: "Valeurs",
-        timeline: "Chronologie"
-      }
-    : {
-        navigation: "Explore my story",
-        eyebrow: "Explore",
-        story: "My story",
-        disciplines: "Capabilities",
-        places: "Places",
-        values: "Values",
-        timeline: "Timeline"
-      };
-
-  const navigation = document.createElement("nav");
-  navigation.className = "about-journey";
-  navigation.setAttribute("aria-label", labels.navigation);
-
-  const eyebrow = document.createElement("span");
-  eyebrow.textContent = labels.eyebrow;
-  navigation.append(eyebrow);
-
-  const links = document.createElement("div");
-
-  Object.entries(sections).forEach(([id, section]) => {
-    section.id = id;
-
-    const link = document.createElement("a");
-    link.href = `#${id}`;
-    link.dataset.sectionLink = "";
-    link.textContent = labels[id];
-    link.addEventListener("click", () => {
-      window.history.replaceState(null, "", link.hash);
-    });
-    links.append(link);
-  });
-
-  navigation.append(links);
-  hero.insertAdjacentElement("afterend", navigation);
+  if ("IntersectionObserver" in window) {
+    const viewed = new Set();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || viewed.has(entry.target.id)) return;
+        viewed.add(entry.target.id);
+        window.portfolioAnalytics?.track("about_section_view", entry.target.id);
+      });
+    }, { threshold: 0.55 });
+    Object.values(sections).forEach((section) => observer.observe(section));
+  }
 });
