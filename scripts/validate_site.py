@@ -32,8 +32,8 @@ PRIVATE_STUDENT_RECORD = (
 PAGE_SPECS = {
     "index.html": ("/", "en"),
     "fr/index.html": ("/fr/", "fr"),
-    "about.html": ("/about.html", "en"),
-    "fr/about.html": ("/fr/about.html", "fr"),
+    "portfolio.html": ("/portfolio.html", "en"),
+    "fr/portfolio.html": ("/fr/portfolio.html", "fr"),
     "projects.html": ("/projects.html", "en"),
     "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
@@ -117,7 +117,7 @@ PAGE_SPECS = {
 
 BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
-    ("about.html", "fr/about.html"),
+    ("portfolio.html", "fr/portfolio.html"),
     ("projects.html", "fr/projects.html"),
     ("certifications.html", "fr/certifications.html"),
     ("privacy.html", "fr/privacy.html"),
@@ -837,12 +837,12 @@ def validate_css_architecture(
     errors: list[str],
 ) -> None:
     expected_stylesheets = {
-        "index.html": (
+        "portfolio.html": (
             "assets/css/style.css",
             "assets/css/contact-assistant.css",
             "assets/css/pages.css",
         ),
-        "fr/index.html": (
+        "fr/portfolio.html": (
             "../assets/css/style.css",
             "../assets/css/contact-assistant.css",
             "../assets/css/pages.css",
@@ -1004,6 +1004,14 @@ def validate_bilingual_pages(
                         language = structured_data.get("inLanguage")
                         if isinstance(language, str):
                             structured_languages.append(language)
+                        graph = structured_data.get("@graph")
+                        if isinstance(graph, list):
+                            for entity in graph:
+                                if not isinstance(entity, dict):
+                                    continue
+                                entity_language = entity.get("inLanguage")
+                                if isinstance(entity_language, str):
+                                    structured_languages.append(entity_language)
 
                 add_error(
                     errors,
@@ -1049,20 +1057,20 @@ def validate_quick_assistant(
     errors: list[str],
 ) -> None:
     expected_intents = {
-        "index.html": Counter(
+        "portfolio.html": Counter(
             {"opportunity": 2, "support": 1, "project": 1, "data": 1}
         ),
-        "fr/index.html": Counter(
+        "fr/portfolio.html": Counter(
             {"opportunity": 2, "support": 1, "project": 1, "data": 1}
         ),
     }
     expected_scripts = {
-        "index.html": (
+        "portfolio.html": (
             "assets/js/assistant-intents.js",
             "assets/js/contact-assistant.js",
             "assets/js/main.js",
         ),
-        "fr/index.html": (
+        "fr/portfolio.html": (
             "../assets/js/assistant-intents.js",
             "../assets/js/contact-assistant.js",
             "../assets/js/main.js",
@@ -1160,7 +1168,7 @@ def validate_quick_assistant(
                 "Software Development",
                 "Data Analytics",
             }
-            if page == "index.html"
+            if page == "portfolio.html"
             else {
                 "Support informatique et dépannage",
                 "Développement logiciel",
@@ -1339,7 +1347,7 @@ def validate_project_catalog(errors: list[str]) -> None:
     validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
 
     homepage_pillars = {
-        "index.html": (
+        "portfolio.html": (
             'aria-label="Core technology capabilities"',
             "<strong>IT Support</strong>",
             'href="project-it-support-case-study.html"',
@@ -1348,7 +1356,7 @@ def validate_project_catalog(errors: list[str]) -> None:
             "<strong>Data Analytics</strong>",
             'href="project-data-cleaning-case-study.html"',
         ),
-        "fr/index.html": (
+        "fr/portfolio.html": (
             'aria-label="Capacités technologiques principales"',
             "<strong>Support informatique</strong>",
             'href="project-it-support-case-study.html"',
@@ -1400,8 +1408,8 @@ def validate_recruiter_documents(errors: list[str]) -> None:
     )
 
     link_expectations = (
-        ("index.html", ENGLISH_CV, FRENCH_CV),
-        ("fr/index.html", f"../{FRENCH_CV}", f"../{ENGLISH_CV}"),
+        ("portfolio.html", ENGLISH_CV, FRENCH_CV),
+        ("fr/portfolio.html", f"../{FRENCH_CV}", f"../{ENGLISH_CV}"),
     )
     for page, expected_document, excluded_document in link_expectations:
         source = read_text(page, errors)
@@ -1477,11 +1485,11 @@ def validate_workbench(
     errors: list[str],
 ) -> None:
     expected_scripts = {
-        "index.html": (
+        "portfolio.html": (
             "assets/js/workbench.js",
             "assets/js/main.js",
         ),
-        "fr/index.html": (
+        "fr/portfolio.html": (
             "../assets/js/workbench.js",
             "../assets/js/main.js",
         ),
@@ -1804,7 +1812,7 @@ def validate_case_study_conversion_paths(
         }
         directory = PurePosixPath(page).parent
         expected_projects = (directory / "projects.html").as_posix()
-        expected_home = (directory / "index.html").as_posix()
+        expected_home = (directory / "portfolio.html").as_posix()
         add_error(
             errors,
             expected_projects in targets,
@@ -1832,7 +1840,7 @@ def validate_contact_form_recovery(errors: list[str]) -> None:
         "contactMessage",
     )
 
-    for page in ("index.html", "fr/index.html"):
+    for page in ("portfolio.html", "fr/portfolio.html"):
         source = read_text(page, errors)
         if source is None:
             continue
@@ -1875,8 +1883,8 @@ def validate_contact_form_recovery(errors: list[str]) -> None:
 
 def validate_bilingual_component_parity(errors: list[str]) -> None:
     """Keep translated components structurally aligned with English sources."""
-    english = read_text("index.html", errors)
-    french = read_text("fr/index.html", errors)
+    english = read_text("portfolio.html", errors)
+    french = read_text("fr/portfolio.html", errors)
     if english is None or french is None:
         return
 
@@ -1952,19 +1960,19 @@ def validate_about_navigation_and_media(errors: list[str]) -> None:
         add_error(
             errors,
             bool(primary_navigation)
-            and 'href="about.html"' in primary_navigation.group(0)
+            and 'href="index.html"' in primary_navigation.group(0)
             and expected_label in primary_navigation.group(0),
             f"{page}: primary navigation is missing the locale-safe About link",
         )
         add_error(
             errors,
             bool(footer)
-            and 'href="about.html"' in footer.group(0)
+            and 'href="index.html"' in footer.group(0)
             and expected_label in footer.group(0),
             f"{page}: footer is missing the locale-safe About link",
         )
 
-    for page in ("about.html", "fr/about.html"):
+    for page in ("index.html", "fr/index.html"):
         source = read_text(page, errors)
         if source is None:
             continue
