@@ -77,6 +77,14 @@ PAGE_SPECS = {
         "/fr/project-data-cleaning-case-study.html",
         "fr",
     ),
+    "project-portfolio-case-study.html": (
+        "/project-portfolio-case-study.html",
+        "en",
+    ),
+    "fr/project-portfolio-case-study.html": (
+        "/fr/project-portfolio-case-study.html",
+        "fr",
+    ),
     "fr/project-sales-dashboard.html": (
         "/fr/project-sales-dashboard.html",
         "fr",
@@ -140,6 +148,10 @@ BILINGUAL_PAGE_PAIRS = (
         "fr/project-data-cleaning-case-study.html",
     ),
     (
+        "project-portfolio-case-study.html",
+        "fr/project-portfolio-case-study.html",
+    ),
+    (
         "project-sales-dashboard.html",
         "fr/project-sales-dashboard.html",
     ),
@@ -166,6 +178,7 @@ DETAILED_CASE_STUDY_PAGES = (
     "project-network-printer-case-study.html",
     "project-workstation-user-setup.html",
     "project-data-cleaning-case-study.html",
+    "project-portfolio-case-study.html",
     "project-sales-dashboard.html",
 )
 
@@ -181,6 +194,7 @@ CSS_FILES = (
     "assets/css/certifications.css",
     "assets/css/guide.css",
     "assets/css/knowledge.css",
+    "assets/css/software-case-study.css",
 )
 
 SOCIAL_IMAGE_SPECS = {
@@ -1360,7 +1374,7 @@ def validate_project_catalog(errors: list[str]) -> None:
             "<strong>IT Support</strong>",
             'href="project-it-support-case-study.html"',
             "<strong>Software Development</strong>",
-            'href="projects.html#project-portfolio"',
+            'href="project-portfolio-case-study.html"',
             "<strong>Data Analytics</strong>",
             'href="project-data-cleaning-case-study.html"',
         ),
@@ -1369,7 +1383,7 @@ def validate_project_catalog(errors: list[str]) -> None:
             "<strong>Support informatique</strong>",
             'href="project-it-support-case-study.html"',
             "<strong>Développement logiciel</strong>",
-            'href="projects.html#project-portfolio"',
+            'href="project-portfolio-case-study.html"',
             "<strong>Analyse de données</strong>",
             'href="project-data-cleaning-case-study.html"',
         ),
@@ -1688,6 +1702,7 @@ def validate_performance_budgets(errors: list[str]) -> None:
         "assets/css/certifications.css": 10_000,
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
+        "assets/css/software-case-study.css": 8_000,
         "assets/js/main.js": 20_000,
         "assets/js/conversion-analytics.js": 8_000,
         "assets/js/workbench.js": 20_000,
