@@ -121,6 +121,7 @@
     if (/pacifique_fashaho_cv(?:_fr)?\.pdf(?:$|[?#])/.test(normalized)) return ["resume_view", "resume_pdf"];
     if (/project-[^?#]+\.html/.test(normalized)) return ["portfolio_evidence", "case_study"];
     if (/linkedin\.com/.test(normalized)) return ["professional_profile", "linkedin"];
+    if (/github\.com/.test(normalized)) return ["professional_profile", "github"];
     if (normalized.startsWith("mailto:")) return ["contact_intent", "email"];
     if (/wa\.me|whatsapp\.com/.test(normalized)) return ["contact_intent", "whatsapp"];
     if (/#contact(?:$|[?])/.test(normalized)) return ["contact_intent", "contact_section"];
