@@ -35,37 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         failure: "Copy failed. Use the email link instead."
       },
       assistant: {
-        dashboard:
-          "This looks like a dashboard or reporting request. Add the data source, required KPIs, preferred tool, and deadline so Pacifique can respond accurately.",
-        support:
-          "This looks like an IT Support request. Add the device or system, symptoms, number of affected users, urgency, and location or remote arrangement.",
-        data:
-          "This looks like a data task. Add the file format, approximate volume, quality issue, expected output, preferred tool, and deadline.",
-        field:
-          "This looks like a field-data request. Add the platform, form or device issue, field context, expected deliverable, and timeline.",
-        opportunity:
-          "This looks like a recruitment message. Add the role, employment or internship type, location or remote arrangement, start timeline, and preferred contact method.",
-        fallback:
-          "Your draft is ready. Add the desired outcome, timing, and preferred reply method if they are not already included.",
-        preparing: "Preparing your contact options...",
-        ready:
-          "Draft ready. Review it, then copy it or continue through your preferred contact method.",
-        copied: "Prepared message copied.",
         copyFailure:
           "The message could not be copied. Continue by email or use the contact form.",
         formPrefilled:
           "The assistant added the prepared subject and message. Complete your name and email, review everything, then send.",
-        subjects: {
-          opportunity: "IT Support opportunity",
-          support: "IT Support service request",
-          dashboard: "Dashboard and reporting request",
-          data: "Data support request",
-          field: "Field-data support request",
-          fallback: "Portfolio contact"
-        },
         emailGreeting: "Hello Pacifique,",
-        emailClosing: "Best regards,",
-        whatsappGreeting: "Hello Pacifique,"
+        emailClosing: "Best regards,"
       }
     },
     fr: {
@@ -96,37 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
           "La copie a \u00E9chou\u00E9. Utilisez directement le lien email."
       },
       assistant: {
-        dashboard:
-          "Votre demande concerne un tableau de bord ou un rapport. Ajoutez la source des donn\u00E9es, les indicateurs attendus, l\u2019outil souhait\u00E9 et le d\u00E9lai.",
-        support:
-          "Votre demande concerne le support informatique. Ajoutez l\u2019appareil ou le syst\u00E8me, les sympt\u00F4mes, le nombre d\u2019utilisateurs touch\u00E9s, l\u2019urgence et le lieu ou l\u2019option \u00E0 distance.",
-        data:
-          "Votre demande concerne les donn\u00E9es. Ajoutez le format, le volume approximatif, le probl\u00E8me de qualit\u00E9, le r\u00E9sultat attendu, l\u2019outil souhait\u00E9 et le d\u00E9lai.",
-        field:
-          "Votre demande concerne les donn\u00E9es de terrain. Ajoutez la plateforme, le probl\u00E8me de formulaire ou d\u2019appareil, le contexte terrain, le livrable attendu et le calendrier.",
-        opportunity:
-          "Votre message concerne une opportunit\u00E9. Ajoutez le poste, le type d\u2019emploi ou de stage, le lieu ou l\u2019option \u00E0 distance, la date de d\u00E9but et le moyen de contact souhait\u00E9.",
-        fallback:
-          "Votre brouillon est pr\u00EAt. Ajoutez le r\u00E9sultat souhait\u00E9, le d\u00E9lai et le moyen de r\u00E9ponse pr\u00E9f\u00E9r\u00E9 si ces informations manquent.",
-        preparing: "Pr\u00E9paration des options de contact...",
-        ready:
-          "Brouillon pr\u00EAt. Relisez-le, puis copiez-le ou continuez avec le moyen de contact souhait\u00E9.",
-        copied: "Message pr\u00E9par\u00E9 copi\u00E9.",
         copyFailure:
           "Le message n\u2019a pas pu \u00EAtre copi\u00E9. Continuez par email ou utilisez le formulaire.",
         formPrefilled:
           "L\u2019assistant a ajout\u00E9 l\u2019objet et le message. Compl\u00E9tez votre nom et votre email, relisez le tout, puis envoyez.",
-        subjects: {
-          opportunity: "Opportunit\u00E9 en support informatique",
-          support: "Demande de service en support informatique",
-          dashboard: "Demande de tableau de bord et de rapport",
-          data: "Demande d\u2019assistance pour les donn\u00E9es",
-          field: "Demande d\u2019assistance pour les donn\u00E9es de terrain",
-          fallback: "Contact depuis le portfolio"
-        },
         emailGreeting: "Bonjour Pacifique,",
-        emailClosing: "Cordialement,",
-        whatsappGreeting: "Bonjour Pacifique."
+        emailClosing: "Cordialement,"
       }
     }
   };
@@ -407,27 +357,44 @@ document.addEventListener("DOMContentLoaded", () => {
   let assistantIsOpen = false;
   let assistantCloseTimer = null;
   let assistantFocusTimer = null;
+  let assistantReturnFocus = null;
   let selectedCategory = "";
   let statusResetTimer = null;
 
-  const categoryDetails = {
-    job: {
-      subject: "Job opportunity",
-      draft: "Hello Pacifique,\n\nI would like to discuss a job opportunity with you.\n\nRole and organization: [add details]\nLocation or remote arrangement: [add details]\nExpected start date: [add details]\nHow to reply: [add preferred contact method]\n\nBest regards,"
+  const categoryCopy = {
+    en: {
+      job: ["Job opportunity", "a job opportunity", ["Role and organization", "Location or remote arrangement", "Expected start date", "How to reply"]],
+      internship: ["Internship opportunity", "an internship opportunity", ["Organization and internship focus", "Location or remote arrangement", "Duration and start date", "How to reply"]],
+      support: ["IT support request", "an IT support request", ["Device or system", "Issue and affected users", "Urgency and location", "How to reply"]],
+      data: ["Data project request", "a data project", ["Project goal and data format", "Expected output", "Preferred tool and deadline", "How to reply"]]
     },
-    internship: {
-      subject: "Internship opportunity",
-      draft: "Hello Pacifique,\n\nI would like to discuss an internship opportunity with you.\n\nOrganization and internship focus: [add details]\nLocation or remote arrangement: [add details]\nDuration and start date: [add details]\nHow to reply: [add preferred contact method]\n\nBest regards,"
-    },
-    support: {
-      subject: "IT support request",
-      draft: "Hello Pacifique,\n\nI would like to discuss an IT support request with you.\n\nDevice or system: [add details]\nIssue and affected users: [add details]\nUrgency and location: [add details]\nHow to reply: [add preferred contact method]\n\nBest regards,"
-    },
-    data: {
-      subject: "Data project request",
-      draft: "Hello Pacifique,\n\nI would like to discuss a data project with you.\n\nProject goal and data format: [add details]\nExpected output: [add details]\nPreferred tool and deadline: [add details]\nHow to reply: [add preferred contact method]\n\nBest regards,"
+    fr: {
+      job: ["Opportunit\u00E9 d\u2019emploi", "d\u2019une opportunit\u00E9 d\u2019emploi", ["Poste et organisation", "Lieu ou modalit\u00E9 \u00E0 distance", "Date de d\u00E9but pr\u00E9vue", "Moyen de r\u00E9ponse"]],
+      internship: ["Opportunit\u00E9 de stage", "d\u2019une opportunit\u00E9 de stage", ["Organisation et domaine du stage", "Lieu ou modalit\u00E9 \u00E0 distance", "Dur\u00E9e et date de d\u00E9but", "Moyen de r\u00E9ponse"]],
+      support: ["Demande de support informatique", "d\u2019une demande de support informatique", ["Appareil ou syst\u00E8me", "Probl\u00E8me et utilisateurs touch\u00E9s", "Urgence et lieu", "Moyen de r\u00E9ponse"]],
+      data: ["Demande de projet de donn\u00E9es", "d\u2019un projet de donn\u00E9es", ["Objectif du projet et format des donn\u00E9es", "R\u00E9sultat attendu", "Outil souhait\u00E9 et d\u00E9lai", "Moyen de r\u00E9ponse"]]
     }
   };
+  const detailPlaceholder = language === "fr"
+    ? "[ajoutez les informations]"
+    : "[add details]";
+  const categoryDetails = Object.fromEntries(
+    Object.entries(categoryCopy[language]).map(
+      ([category, [subject, topic, fields]]) => {
+        const introduction = language === "fr"
+          ? `Je souhaite discuter ${topic} avec vous.`
+          : `I would like to discuss ${topic} with you.`;
+        const draft = [
+          strings.assistant.emailGreeting,
+          introduction,
+          fields.map((field) => `${field}: ${detailPlaceholder}`).join("\n"),
+          strings.assistant.emailClosing
+        ].join("\n\n");
+
+        return [category, { subject, draft }];
+      }
+    )
+  );
 
   if (!assistantLauncher || !chatAssistant || !chatForm || !chatInput) return;
   if (chatAssistant.dataset.composerInitialized === "true") return;
@@ -464,11 +431,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function openChatAssistant() {
     if (!chatAssistant || assistantIsOpen) return;
 
+    assistantReturnFocus = document.activeElement;
     window.clearTimeout(assistantCloseTimer);
     assistantCloseTimer = null;
     assistantIsOpen = true;
     chatAssistant.hidden = false;
     setAssistantExposure(true);
+    document.body.classList.add("assistant-modal-open");
     assistantLauncher?.setAttribute("aria-expanded", "true");
 
     if (assistantLauncherWrap) {
@@ -494,6 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
     assistantFocusTimer = null;
     chatAssistant.classList.remove("show");
     setAssistantExposure(false);
+    document.body.classList.remove("assistant-modal-open");
     assistantLauncher?.setAttribute("aria-expanded", "false");
 
     assistantCloseTimer = window.setTimeout(
@@ -508,8 +478,13 @@ document.addEventListener("DOMContentLoaded", () => {
         showAssistantLauncher();
 
         if (restoreFocus) {
-          assistantLauncher?.focus();
+          const focusTarget = assistantReturnFocus?.isConnected
+            ? assistantReturnFocus
+            : assistantLauncher;
+          focusTarget?.focus();
         }
+
+        assistantReturnFocus = null;
       },
       prefersReducedMotion.matches ? 0 : 260
     );
@@ -664,9 +639,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && assistantIsOpen) {
+    if (!assistantIsOpen) return;
+
+    if (event.key === "Escape") {
       event.preventDefault();
       closeChatAssistant();
+      return;
+    }
+
+    if (event.key === "Tab") {
+      const focusable = Array.from(
+        chatAssistant.querySelectorAll(
+          'button:not([disabled]), textarea, a[href]:not([aria-disabled="true"]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => element.getClientRects().length);
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (!first || !last) {
+        event.preventDefault();
+        chatAssistant.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      } else if (!chatAssistant.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 });

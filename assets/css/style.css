@@ -8,73 +8,14 @@
    1. DESIGN TOKENS
 ========================= */
 
-:root {
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --text: #0f172a;
-  --muted: #475569;
-  --line: #e5e7eb;
-
-  --accent: #2563eb;
-  --accent2: #06b6d4;
-  --accent-soft: rgba(37, 99, 235, 0.1);
-
-  --field: #ffffff;
-  --soft-surface: rgba(255, 255, 255, 0.72);
-  --soft-surface-strong: rgba(255, 255, 255, 0.86);
-
-  --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-  --shadow-hover: 0 20px 48px rgba(37, 99, 235, 0.16);
-
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
-
-  --container: 1080px;
-
-}
+:root{--font-sans:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--font-heading:"Plus Jakarta Sans",var(--font-sans);--font-mono:"JetBrains Mono",ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;--bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#475569;--line:#e5e7eb;--accent:#2563eb;--accent2:#06b6d4;--accent-soft:rgba(37,99,235,.1);--pillar-support:#2563eb;--pillar-software:#7c3aed;--pillar-data:#0f766e;--field:#fff;--soft-surface:rgba(255,255,255,.72);--soft-surface-strong:rgba(255,255,255,.86);--shadow:0 14px 34px rgba(15,23,42,.08);--shadow-hover:0 20px 48px rgba(37,99,235,.16);--radius-sm:12px;--radius-md:16px;--radius-lg:20px;--radius-pill:999px;--container:1080px}
 
 /* Manual dark theme */
-:root[data-theme="dark"] {
-  --bg: #0b1220;
-  --card: #111827;
-  --text: #e5edf7;
-  --muted: #a8b3c7;
-  --line: #263244;
-
-  --accent: #38bdf8;
-  --accent2: #22c55e;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-
-  --field: #0f172a;
-  --soft-surface: rgba(15, 23, 42, 0.76);
-  --soft-surface-strong: rgba(30, 41, 59, 0.84);
-
-  --shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
-  --shadow-hover: 0 24px 52px rgba(56, 189, 248, 0.16);
-}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#111827;--text:#e5edf7;--muted:#a8b3c7;--line:#263244;--accent:#38bdf8;--accent2:#22c55e;--accent-soft:rgba(56,189,248,.12);--field:#0f172a;--soft-surface:rgba(15,23,42,.76);--soft-surface-strong:rgba(30,41,59,.84);--shadow:0 16px 38px rgba(0,0,0,.38);--shadow-hover:0 24px 52px rgba(56,189,248,.16)}
 
 /* System dark theme if user has not manually chosen light */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0b1220;
-    --card: #111827;
-    --text: #e5edf7;
-    --muted: #a8b3c7;
-    --line: #263244;
-
-    --accent: #38bdf8;
-    --accent2: #22c55e;
-    --accent-soft: rgba(56, 189, 248, 0.12);
-
-    --field: #0f172a;
-    --soft-surface: rgba(15, 23, 42, 0.76);
-    --soft-surface-strong: rgba(30, 41, 59, 0.84);
-
-    --shadow: 0 16px 38px rgba(0, 0, 0, 0.38);
-    --shadow-hover: 0 24px 52px rgba(56, 189, 248, 0.16);
-  }
+  :root:not([data-theme="light"]){--bg:#0b1220;--card:#111827;--text:#e5edf7;--muted:#a8b3c7;--line:#263244;--accent:#38bdf8;--accent2:#22c55e;--accent-soft:rgba(56,189,248,.12);--field:#0f172a;--soft-surface:rgba(15,23,42,.76);--soft-surface-strong:rgba(30,41,59,.84);--shadow:0 16px 38px rgba(0,0,0,.38);--shadow-hover:0 24px 52px rgba(56,189,248,.16)}
 }
 
 /* =========================
@@ -96,7 +37,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: clip;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: var(--font-sans);
   color: var(--text);
   line-height: 1.6;
   background:
@@ -143,6 +84,9 @@ input,
 textarea {
   font: inherit;
 }
+
+h1,h2,h3,h4,h5,h6,.title{font-family:var(--font-heading)}
+code,pre,kbd,.tech-badge{font-family:var(--font-mono)}
 
 button {
   cursor: pointer;
@@ -2144,7 +2088,7 @@ nav a[aria-current="location"] {
   border-radius: 11px;
   background: rgba(59, 130, 246, 0.11);
   color: var(--hero-panel-accent);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 900;
 }

@@ -23,7 +23,10 @@ CARDS = {
     "support-resources-fr.png": ("RESSOURCES IMPRIMABLES — SUPPORT IT", "Listes pratiques pour un support plus sûr", "Incident • Diagnostic • Remise • Escalade", "FR"),
     "certifications.png": ("VERIFIED LEARNING EVIDENCE", "IT Support Certifications", "Google IT Support • Office tools • Complementary learning", "EN"),
     "certifications-fr.png": ("PREUVES DE FORMATION VÉRIFIÉES", "Certifications en support informatique", "Google IT Support • Bureautique • Formations complémentaires", "FR"),
-    "data-cleaning.png": ("DATA ANALYTICS CASE STUDY", "Data Cleaning & Reporting Workflow", "7 quality issues • 6 validation checks", "EN"),
+    "data-cleaning.png": ("DATA ANALYTICS CASE STUDY", "Data Cleaning & Reporting Workflow", "7 quality issues • 6 validation checks", "EN", "Technology Professional • Goma, DR Congo"),
+    "data-cleaning-fr.png": ("ÉTUDE DE CAS — ANALYSE DE DONNÉES", "Nettoyage et reporting des données", "7 problèmes de qualité • 6 validations", "FR", "Professionnel des technologies numériques • Goma, RD Congo"),
+    "sales-dashboard.png": ("DATA ANALYTICS CASE STUDY", "Sales Performance Dashboard", "Excel KPIs • Trends • Reporting", "EN", "Technology Professional • Goma, DR Congo"),
+    "sales-dashboard-fr.png": ("ÉTUDE DE CAS — ANALYSE DE DONNÉES", "Tableau de bord des performances", "KPI Excel • Tendances • Reporting", "FR", "Professionnel des technologies numériques • Goma, RD Congo"),
 }
 
 

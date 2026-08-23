@@ -24,9 +24,12 @@ jobs:
 
       - name: Check JavaScript syntax
         run: |
+          node --check assets/js/about-interactions.js
           node --check assets/js/assistant-intents.js
           node --check assets/js/contact-assistant.js
+          node --check assets/js/conversion-analytics.js
           node --check assets/js/main.js
+          node --check assets/js/workbench.js
 
       - name: Test Quick Assistant intent classification
         run: node scripts/test_assistant_intents.js

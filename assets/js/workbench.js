@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         statusComplete: "Processus Windows et logiciels terminé",
         result: "Fonctionnement rétabli",
         linkLabel: "Voir l’étude de cas en support informatique",
-        href: "../project-it-support-case-study.html",
+        href: "project-it-support-case-study.html",
         steps: [
           "Problème signalé",
           "Vérifications de Windows et des applications",
@@ -114,6 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const workbenchScenarios =
     workbenchScenarioSets[language] || workbenchScenarioSets.en;
+  const commandCopy = language === "fr"
+    ? ["Copié.", "Copie impossible. Copiez-les manuellement."]
+    : ["Copied.", "Copy failed. Copy them manually."];
 
   /* =========================
      TECHNICAL WORKBENCH ENGINE
@@ -129,6 +132,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const result = workbench.querySelector("[data-workbench-result]");
     const stepsList = document.getElementById("workbenchSteps");
     const caseStudyLink = document.getElementById("workbenchCaseStudyLink");
+    const commandTitle = document.getElementById("workbenchCommandTitle");
+    const commandOutput = document.getElementById("workbenchCommands");
+    const copyCommandsButton = document.getElementById("workbenchCopyCommands");
+    const copyCommandsStatus = document.getElementById("workbenchCopyStatus");
     const scenarioButtons = Array.from(
       workbench.querySelectorAll("[data-workbench-scenario]")
     );
@@ -145,6 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
       result &&
       stepsList &&
       caseStudyLink &&
+      commandTitle &&
+      commandOutput &&
+      copyCommandsButton &&
+      copyCommandsStatus &&
       requiredScenarioKeys.every(
         (key) =>
           availableScenarioKeys.includes(key) &&
@@ -258,6 +269,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
+      function updateWorkbenchCommands(scenarioKey) {
+        const source = scenarioButtons.find(
+          (button) => button.dataset.workbenchScenario === scenarioKey
+        );
+        commandTitle.textContent = source.dataset.commandTitle;
+        commandOutput.textContent = source.dataset.commands;
+        copyCommandsStatus.textContent = "";
+      }
+
       function createWorkbenchStep(stepText, index, hidden) {
         const item = document.createElement("li");
         const number = document.createElement("span");
@@ -316,6 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clearWorkbenchTimers();
         setActiveScenarioButton(scenarioKey);
+        updateWorkbenchCommands(scenarioKey);
 
         const shouldAnimate =
           animate && !prefersReducedMotion.matches;
@@ -400,6 +421,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
           activateWorkbenchScenario(scenarioKey);
         });
+      });
+
+      copyCommandsButton.addEventListener("click", async () => {
+        try {
+          if (!navigator.clipboard) throw new Error();
+          await navigator.clipboard.writeText(commandOutput.textContent);
+          copyCommandsStatus.textContent = commandCopy[0];
+        } catch {
+          copyCommandsStatus.textContent = commandCopy[1];
+        }
       });
 
       const defaultScenario =
