@@ -32,6 +32,9 @@
   <link rel="apple-touch-icon" href="../assets/images/ui/apple-touch-icon.png" />
 
   <!-- CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/pages.css" />
 
@@ -41,11 +44,11 @@
     property="og:description"
     content="Méthode pratique pour nettoyer, valider et préparer des données fiables pour le reporting."
   />
-  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/social/data-cleaning.png" />
+  <meta property="og:image" content="https://pacifiquefashaho.github.io/assets/images/social/data-cleaning-fr.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Aperçu du portefeuille d&#x27;analyse de données de Pacifique Fashaho" />
+  <meta property="og:image:alt" content="Étude de cas sur le nettoyage et le reporting des données de Pacifique Fashaho" />
   <meta property="og:url" content="https://pacifiquefashaho.github.io/fr/project-data-cleaning-case-study.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Pacifique Fashaho Portfolio" />
@@ -59,8 +62,8 @@
     name="twitter:description"
     content="Méthode pratique pour nettoyer, valider et préparer des données fiables pour le reporting."
   />
-  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/social/data-cleaning.png" />
-  <meta name="twitter:image:alt" content="Aperçu du portefeuille d&#x27;analyse de données de Pacifique Fashaho" />
+  <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/social/data-cleaning-fr.png" />
+  <meta name="twitter:image:alt" content="Étude de cas sur le nettoyage et le reporting des données de Pacifique Fashaho" />
 
   <!-- Prevent theme flash -->
   <script>
@@ -82,31 +85,42 @@
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "Data Cleaning and Reporting Case Study",
+    "name": "Étude de cas sur le nettoyage et le reporting des données",
     "url": "https://pacifiquefashaho.github.io/fr/project-data-cleaning-case-study.html",
     "image": "https://pacifiquefashaho.github.io/assets/images/social/data-cleaning.png",
-    "description": "A representative practice case study covering data profiling, cleaning, validation, analysis preparation, reporting, and clear findings.",
+    "description": "Cas pratique représentatif couvrant le profilage, le nettoyage, la validation, la préparation de l’analyse et le reporting de données simulées.",
     "creator": {
       "@type": "Person",
       "name": "Pacifique Fashaho",
-      "url": "https://pacifiquefashaho.github.io/"
+      "url": "https://pacifiquefashaho.github.io/fr/"
     },
     "keywords": [
-      "data cleaning",
-      "data quality",
+      "nettoyage de données",
+      "qualité des données",
       "Excel",
       "SQL",
       "Python",
       "Google Sheets",
-      "data validation",
+      "validation des données",
       "reporting"
     ],
     "inLanguage": "fr",
     "isPartOf": {
       "@type": "WebSite",
-      "name": "Pacifique Fashaho Portfolio",
-      "url": "https://pacifiquefashaho.github.io/"
+      "name": "Portfolio de Pacifique Fashaho",
+      "url": "https://pacifiquefashaho.github.io/fr/"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "À propos", "item": "https://pacifiquefashaho.github.io/fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Projets", "item": "https://pacifiquefashaho.github.io/fr/projects.html"},
+      {"@type": "ListItem", "position": 3, "name": "Étude de cas sur le nettoyage et le reporting des données", "item": "https://pacifiquefashaho.github.io/fr/project-data-cleaning-case-study.html"}
+    ]
   }
   </script>
 </head>
@@ -133,11 +147,11 @@
       <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Ouvrir le menu de navigation"><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="nav-toggle-text">Menu</span></button>
 
       <nav id="primaryNavigation" aria-label="Navigation principale">
-        <a href="portfolio.html#skills">Compétences</a>
-        <a href="portfolio.html#experience">Expérience</a>
-        <a class="active" href="projects.html" aria-current="page">Projets</a><a href="index.html">À propos</a>
+        <a href="index.html">À propos</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="projects.html" aria-current="location">Projets</a>
         <a href="certifications.html">Certifications</a>
-        <a href="portfolio.html#services">Services</a>
+        <a href="it-support-knowledge.html">Ressources</a>
         <a class="nav-primary-action" href="portfolio.html#contact">Me contacter <span aria-hidden="true">&rarr;</span></a>
       </nav>
 

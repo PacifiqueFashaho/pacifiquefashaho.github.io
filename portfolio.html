@@ -32,6 +32,9 @@
   <link rel="apple-touch-icon" href="assets/images/ui/apple-touch-icon.png" />
 
   <!-- CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/contact-assistant.css" />
   <link rel="stylesheet" href="assets/css/pages.css" />
@@ -198,15 +201,12 @@
       </button>
 
       <nav id="primaryNavigation" aria-label="Primary navigation">
-        <a href="#skills" data-section-link>Skills</a>
-        <a href="#experience" data-section-link>Experience</a>
-        <a href="projects.html">Projects</a>
         <a href="index.html">About</a>
+        <a href="portfolio.html" aria-current="page">Portfolio</a>
+        <a href="projects.html">Projects</a>
         <a href="certifications.html">Certifications</a>
-        <a href="#services" data-section-link>Services</a>
-        <a class="nav-primary-action" href="#contact" data-section-link>
-          Contact Me <span aria-hidden="true">&rarr;</span>
-        </a>
+        <a href="it-support-knowledge.html">Knowledge</a>
+        <a class="nav-primary-action" href="#contact">Contact Me <span aria-hidden="true">&rarr;</span></a>
       </nav>
 
       <div class="language-switcher" aria-label="Language selection">
@@ -233,27 +233,22 @@
     <section class="hero hero-v2" aria-labelledby="hero-title">
       <div class="card hero-v2__intro">
         <p class="hero-v2__opportunity">
-          <span>Open to technology roles and practical collaborations</span>
+          <span>IT support first, with software and data as complementary strengths</span>
         </p>
 
         <h1 class="title" id="hero-title">
-          Pacifique Fashaho — Technology Professional
+          Pacifique Fashaho — IT Support Technician in Goma
         </h1>
 
         <p class="hero-v2__positioning">IT Support · Software Development · Data Analytics</p>
 
         <p class="hero-value">
-          I solve practical technology problems by supporting users and systems,
-          building maintainable digital tools, and turning data into clear,
-          useful information.
+          I help people keep technology working by troubleshooting Windows and devices, building practical digital tools, and organizing data into clear information.
         </p>
 
         <div class="btns hero-v2__actions" aria-label="Primary portfolio actions">
-          <a
-            class="btn primary"
-            href="projects.html"
-          >
-            Explore My Projects
+          <a class="btn primary" href="projects.html">
+            Explore Projects
           </a>
 
           <a class="btn" href="#contact">
@@ -347,6 +342,8 @@
             class="btn workbench__scenario is-active"
             type="button"
             data-workbench-scenario="windows"
+            data-command-title="Windows integrity"
+            data-commands="sfc /scannow&#10;DISM /Online /Cleanup-Image /ScanHealth"
             aria-pressed="true"
             aria-controls="workbenchOutput"
           >
@@ -357,6 +354,8 @@
             class="btn workbench__scenario"
             type="button"
             data-workbench-scenario="network"
+            data-command-title="Network and print checks"
+            data-commands="ipconfig /all&#10;ping 8.8.8.8&#10;ipconfig /flushdns&#10;sc query spooler"
             aria-pressed="false"
             aria-controls="workbenchOutput"
           >
@@ -367,6 +366,8 @@
             class="btn workbench__scenario"
             type="button"
             data-workbench-scenario="setup"
+            data-command-title="Workstation checks"
+            data-commands="systeminfo&#10;whoami /all&#10;winget list"
             aria-pressed="false"
             aria-controls="workbenchOutput"
           >
@@ -413,6 +414,17 @@
               <span>Working state restored</span>
             </li>
           </ol>
+
+          <section class="workbench__command-reference" aria-labelledby="workbenchCommandTitle" data-workbench-command-reference>
+            <div class="workbench__command-head">
+              <div><span class="small">Command reference</span><strong id="workbenchCommandTitle" data-workbench-command-title>Windows integrity checks</strong></div>
+              <button class="copy-btn" id="workbenchCopyCommands" type="button" data-workbench-copy>Copy commands</button>
+            </div>
+            <pre><code id="workbenchCommands" data-workbench-commands>sfc /scannow
+DISM /Online /Cleanup-Image /ScanHealth</code></pre>
+            <p class="small workbench__command-note">Use only on systems you are authorized to inspect. Review each command before running it.</p>
+            <span class="copy-status workbench__copy-status" id="workbenchCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
+          </section>
 
           <a
             id="workbenchCaseStudyLink"
@@ -1278,10 +1290,11 @@
     class="chat-assistant"
     id="chatAssistant"
     role="dialog"
-    aria-modal="false"
+    aria-modal="true"
     aria-labelledby="chatAssistantTitle"
     aria-describedby="chatAssistantDescription"
     aria-hidden="true"
+    tabindex="-1"
     inert
     hidden
   >

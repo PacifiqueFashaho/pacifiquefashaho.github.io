@@ -10,6 +10,9 @@
   <link rel="alternate" hreflang="en" href="https://pacifiquefashaho.github.io/privacy.html" />
   <link rel="alternate" hreflang="fr" href="https://pacifiquefashaho.github.io/fr/privacy.html" />
   <link rel="alternate" hreflang="x-default" href="https://pacifiquefashaho.github.io/privacy.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/pages.css" />
   <meta property="og:type" content="website" />
@@ -21,20 +24,67 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Portfolio de Pacifique Fashaho" />
+  <meta property="og:site_name" content="Portfolio de Pacifique Fashaho" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Confidentialité et mesure d’audience | Pacifique Fashaho" />
+  <meta name="twitter:description" content="Une explication claire de la mesure d’audience limitée du portfolio." />
   <meta name="twitter:image" content="https://pacifiquefashaho.github.io/assets/images/social/home-fr.png" />
   <meta name="twitter:image:alt" content="Portfolio de Pacifique Fashaho" />
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+
+      try {
+        var savedTheme = localStorage.getItem("portfolio-theme");
+
+        if (savedTheme) {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {}
+    })();
+  </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Confidentialité et mesure d’audience | Pacifique Fashaho","url":"https://pacifiquefashaho.github.io/fr/privacy.html","inLanguage":"fr"}</script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Aller au contenu</a>
-  <header><div class="nav-wrap"><a class="brand" href="index.html" aria-label="Accueil de Pacifique Fashaho"><span class="dot" aria-hidden="true"></span><span>Pacifique Fashaho<small>Professionnel des technologies numériques</small></span></a><nav id="primaryNavigation" aria-label="Navigation principale"><a href="index.html">Accueil</a><a href="projects.html">Projets</a><a href="index.html">À propos</a><a href="it-support-knowledge.html">Guides de support</a><a href="certifications.html">Certifications</a><a href="portfolio.html#contact">Contact</a></nav><div class="language-switcher" aria-label="Sélection de la langue"><a href="../privacy.html" lang="en" hreflang="en">EN</a><span aria-hidden="true">/</span><a href="privacy.html" lang="fr" hreflang="fr" aria-current="page">FR</a></div><button class="theme-toggle" type="button" aria-label="Changer de thème"><span aria-hidden="true">◐</span></button><button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primaryNavigation"><span></span><span></span><span></span></button></div></header>
+  <header class="topbar has-compact-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Aller à la page d'accueil de Pacifique Fashaho">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pacifique Fashaho</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Ouvrir le menu de navigation"><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="nav-toggle-text">Menu</span></button>
+
+      <nav id="primaryNavigation" aria-label="Navigation principale">
+        <a href="index.html">À propos</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="projects.html">Projets</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="it-support-knowledge.html">Ressources</a>
+        <a class="nav-primary-action" href="portfolio.html#contact">Me contacter <span aria-hidden="true">&rarr;</span></a>
+      </nav>
+
+      <div class="language-switcher" aria-label="Sélection de la langue">
+        <a href="../privacy.html" lang="en" hreflang="en">EN</a>
+        <span class="language-switcher-separator" aria-hidden="true">/</span>
+        <a href="privacy.html" lang="fr" hreflang="fr" aria-current="page">FR</a>
+      </div>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Passer au mode sombre" aria-pressed="false">
+        <span class="theme-toggle-icon" aria-hidden="true">&#x263E;</span>
+        <span class="theme-toggle-text">Thème</span>
+      </button>
+    </div>
+  </header>
   <main id="main-content" class="container">
     <section class="card reveal" aria-labelledby="privacy-title"><div class="section-head"><div><p class="small">Mise à jour le 10 août 2026</p><h1 class="title" id="privacy-title">Confidentialité et mesure d’audience</h1><p class="summary">Ce portfolio propose une mesure Google Analytics 4 facultative et soumise à votre consentement pour comprendre les visites et interactions agrégées. Elle est désactivée par défaut et ne sert ni à la publicité ni au profilage personnel.</p></div></div></section>
     <section class="card reveal" style="margin-top:16px" aria-labelledby="collection-title"><div class="section-head"><div><h2 id="collection-title">Ce qui est mesuré</h2><p class="summary">La mesure reste désactivée tant que vous ne l’autorisez pas explicitement. Si elle est autorisée, Google Analytics peut utiliser des cookies analytiques internes pour mesurer le chemin de la page, sa langue et des actions générales : consulter un CV ou un certificat, vérifier une certification, ouvrir une étude de cas ou choisir un moyen de contact. Les noms, adresses e-mail, messages et contenus du formulaire ne sont jamais envoyés à Analytics.</p></div></div><ul><li>Le stockage Analytics est refusé par défaut et le stockage publicitaire reste toujours refusé.</li><li>Google Signals et la personnalisation publicitaire sont désactivés.</li><li>Les paramètres de requête sont retirés de l’adresse transmise.</li><li>Global Privacy Control et Do Not Track empêchent le chargement de la balise Google.</li><li>Le portfolio ne crée aucun identifiant utilisateur ou visiteur ni aucune empreinte numérique.</li></ul></section>
     <section class="card reveal" style="margin-top:16px" aria-labelledby="purpose-title"><div class="section-head"><div><h2 id="purpose-title">Finalité, fournisseur et choix</h2><p class="summary">Les mesures agrégées permettent d’évaluer l’utilité des preuves du portfolio et des parcours de contact. Google traite ces mesures comme fournisseur du service. Consultez <a href="https://policies.google.com/technologies/partner-sites?hl=fr" target="_blank" rel="noreferrer noopener">l’utilisation par Google des informations provenant des sites utilisant ses services</a>. Vous pouvez modifier votre choix à tout moment ci-dessous. Global Privacy Control ou Do Not Track maintient toujours la mesure désactivée dans un navigateur compatible.</p></div></div><div class="actions"><button class="btn primary" type="button" data-analytics-consent="granted">Autoriser la mesure anonyme</button><button class="btn" type="button" data-analytics-consent="denied">Désactiver la mesure</button></div><p class="small" data-analytics-status aria-live="polite"></p><p class="small">Questions : <a href="mailto:pacifiquefashaho04@gmail.com">pacifiquefashaho04@gmail.com</a></p></section>
   </main>
-  <footer class="site-footer"><div class="wrap"><div class="site-footer__bottom"><span>&copy; <span data-current-year>2026</span> Pacifique Fashaho</span><a href="index.html">À propos</a><a href="privacy.html" aria-current="page">Confidentialité et mesure</a><a class="site-footer__back" href="#main-content">Retour au début <span aria-hidden="true">&uarr;</span></a></div></div></footer>
+  <footer class="site-footer"><div class="wrap"><div class="site-footer__bottom"><span>&copy; <span data-current-year>2026</span> Pacifique Fashaho · <small>Professionnel des technologies numériques</small></span><a href="index.html">À propos</a><a href="privacy.html" aria-current="page">Confidentialité et mesure</a><a class="site-footer__back" href="#main-content">Retour au début <span aria-hidden="true">&uarr;</span></a></div></div></footer>
   <script src="../assets/js/conversion-analytics.js" defer></script>
   <script src="../assets/js/main.js" defer></script>
 </body>

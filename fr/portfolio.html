@@ -32,6 +32,9 @@
   <link rel="apple-touch-icon" href="../assets/images/ui/apple-touch-icon.png" />
 
   <!-- CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="../assets/css/contact-assistant.css" />
   <link rel="stylesheet" href="../assets/css/pages.css" />
@@ -188,13 +191,12 @@
       <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNavigation" aria-expanded="false" aria-label="Ouvrir le menu de navigation"><span class="nav-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span><span class="nav-toggle-text">Menu</span></button>
 
       <nav id="primaryNavigation" aria-label="Navigation principale">
-        <a href="#skills" data-section-link>Compétences</a>
-        <a href="#experience" data-section-link>Expérience</a>
-        <a href="projects.html">Projets</a>
         <a href="index.html">À propos</a>
+        <a href="portfolio.html" aria-current="page">Portfolio</a>
+        <a href="projects.html">Projets</a>
         <a href="certifications.html">Certifications</a>
-        <a href="#services" data-section-link>Services</a>
-        <a class="nav-primary-action" href="#contact" data-section-link>Me contacter <span aria-hidden="true">&rarr;</span></a>
+        <a href="it-support-knowledge.html">Ressources</a>
+        <a class="nav-primary-action" href="#contact">Me contacter <span aria-hidden="true">&rarr;</span></a>
       </nav>
 
       <div class="language-switcher" aria-label="Sélection de la langue">
@@ -221,23 +223,21 @@
     <section class="hero hero-v2" aria-labelledby="hero-title">
       <div class="card hero-v2__intro">
         <p class="hero-v2__opportunity">
-          <span>Ouvert aux rôles technologiques et aux collaborations pratiques</span>
+          <span>Priorité au support informatique, avec le logiciel et les données en complément</span>
         </p>
 
         <h1 class="title" id="hero-title">
-          Pacifique Fashaho — professionnel des technologies numériques
+          Pacifique Fashaho — technicien support informatique à Goma
         </h1>
 
         <p class="hero-v2__positioning">Support informatique · Développement logiciel · Analyse de données</p>
 
         <p class="hero-value">
-          Je résous des problèmes technologiques concrets en accompagnant les
-          utilisateurs et les systèmes, en créant des outils numériques maintenables
-          et en transformant les données en informations claires et utiles.
+          J’aide les personnes à garder leurs outils technologiques opérationnels en dépannant Windows et les appareils, en créant des outils numériques pratiques et en organisant les données en informations claires.
         </p>
 
         <div class="btns hero-v2__actions" aria-label="Actions principales du portfolio">
-          <a class="btn primary" href="projects.html">Explorer mes projets</a>
+          <a class="btn primary" href="projects.html">Découvrir mes projets</a>
           <a class="btn" href="#contact">Me contacter</a>
         </div>
 
@@ -301,9 +301,9 @@
           data-workbench-controls
           hidden
         >
-          <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="windows" aria-pressed="true" aria-controls="workbenchOutput">Windows et logiciels</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="network" aria-pressed="false" aria-controls="workbenchOutput">Réseau et imprimante</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="setup" aria-pressed="false" aria-controls="workbenchOutput">Poste de travail et utilisateurs</button>
+          <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="windows" data-command-title="Intégrité Windows" data-commands="sfc /scannow&#10;DISM /Online /Cleanup-Image /ScanHealth" aria-pressed="true" aria-controls="workbenchOutput">Windows et logiciels</button>
+          <button class="btn workbench__scenario" type="button" data-workbench-scenario="network" data-command-title="Vérifications réseau et impression" data-commands="ipconfig /all&#10;ping 8.8.8.8&#10;ipconfig /flushdns&#10;sc query spooler" aria-pressed="false" aria-controls="workbenchOutput">Réseau et imprimante</button>
+          <button class="btn workbench__scenario" type="button" data-workbench-scenario="setup" data-command-title="Vérifications du poste" data-commands="systeminfo&#10;whoami /all&#10;winget list" aria-pressed="false" aria-controls="workbenchOutput">Poste de travail et utilisateurs</button>
         </div>
 
         <div id="workbenchOutput" class="workbench__output" data-workbench-output>
@@ -321,6 +321,17 @@
             <li data-workbench-step><span aria-hidden="true">03</span><span>Cause principale isolée</span></li>
             <li data-workbench-step><span aria-hidden="true">04</span><span>Fonctionnement rétabli</span></li>
           </ol>
+
+          <section class="workbench__command-reference" aria-labelledby="workbenchCommandTitle" data-workbench-command-reference>
+            <div class="workbench__command-head">
+              <div><span class="small">Référence de commandes</span><strong id="workbenchCommandTitle" data-workbench-command-title>Vérification de l’intégrité Windows</strong></div>
+              <button class="copy-btn" id="workbenchCopyCommands" type="button" data-workbench-copy>Copier les commandes</button>
+            </div>
+            <pre><code id="workbenchCommands" data-workbench-commands>sfc /scannow
+DISM /Online /Cleanup-Image /ScanHealth</code></pre>
+            <p class="small workbench__command-note">Utilisez ces commandes uniquement sur des systèmes que vous êtes autorisé à examiner. Vérifiez chaque commande avant son exécution.</p>
+            <span class="copy-status workbench__copy-status" id="workbenchCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
+          </section>
 
           <a id="workbenchCaseStudyLink" class="btn" href="project-it-support-case-study.html">Voir l’étude de cas en support informatique</a>
         </div>
@@ -944,10 +955,11 @@
     class="chat-assistant"
     id="chatAssistant"
     role="dialog"
-    aria-modal="false"
+    aria-modal="true"
     aria-labelledby="chatAssistantTitle"
     aria-describedby="chatAssistantDescription"
     aria-hidden="true"
+    tabindex="-1"
     inert
     hidden
   >

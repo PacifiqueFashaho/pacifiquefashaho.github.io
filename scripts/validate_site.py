@@ -205,13 +205,6 @@ SOCIAL_IMAGE_SPECS = {
         627,
         750_000,
     ),
-    f"{SITE_ORIGIN}/assets/images/projects/sales-dashboard-preview.jpg": (
-        "assets/images/projects/sales-dashboard-preview.jpg",
-        "image/jpeg",
-        1600,
-        759,
-        750_000,
-    ),
     **{
         f"{SITE_ORIGIN}/assets/images/social/{file_name}": (
             f"assets/images/social/{file_name}",
@@ -223,6 +216,7 @@ SOCIAL_IMAGE_SPECS = {
         for file_name in (
             "certifications-fr.png",
             "certifications.png",
+            "data-cleaning-fr.png",
             "data-cleaning.png",
             "home-fr.png",
             "home.png",
@@ -232,6 +226,8 @@ SOCIAL_IMAGE_SPECS = {
             "network-printer.png",
             "projects-fr.png",
             "projects.png",
+            "sales-dashboard-fr.png",
+            "sales-dashboard.png",
             "support-resources-fr.png",
             "support-resources.png",
             "workstation-setup-fr.png",
@@ -747,6 +743,11 @@ def validate_social_previews(
             continue
 
         mime_type, width, height, _ = metadata
+        add_error(
+            errors,
+            (width, height) == (1200, 630),
+            f"{page}: social preview must be 1200x630",
+        )
         expected_metadata = {
             "og:image:type": mime_type,
             "og:image:width": str(width),
@@ -767,6 +768,34 @@ def validate_social_previews(
             bool((properties.get("og:image:alt") or "").strip()),
             f"{page}: missing og:image:alt",
         )
+        expected_locale = "fr_FR" if parser.language == "fr" else "en_US"
+        alternate_locale = "en_US" if parser.language == "fr" else "fr_FR"
+        for property_name in (
+            "og:title",
+            "og:description",
+            "og:type",
+            "og:site_name",
+        ):
+            add_error(
+                errors,
+                bool((properties.get(property_name) or "").strip()),
+                f"{page}: missing {property_name}",
+            )
+        add_error(
+            errors,
+            properties.get("og:url") == parser.canonical_url,
+            f"{page}: og:url must match the canonical URL",
+        )
+        add_error(
+            errors,
+            properties.get("og:locale") == expected_locale,
+            f"{page}: og:locale must be {expected_locale!r}",
+        )
+        add_error(
+            errors,
+            properties.get("og:locale:alternate") == alternate_locale,
+            f"{page}: og:locale:alternate must be {alternate_locale!r}",
+        )
         add_error(
             errors,
             names.get("twitter:card") == "summary_large_image",
@@ -782,6 +811,12 @@ def validate_social_previews(
             bool((names.get("twitter:image:alt") or "").strip()),
             f"{page}: missing twitter:image:alt",
         )
+        for name in ("twitter:title", "twitter:description"):
+            add_error(
+                errors,
+                bool((names.get(name) or "").strip()),
+                f"{page}: missing {name}",
+            )
 
 
 def validate_references(

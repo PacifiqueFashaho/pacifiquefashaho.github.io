@@ -168,6 +168,17 @@
   color: var(--accent);
 }
 
+.workbench__command-reference{margin:18px 0;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--soft-surface)}
+.workbench__command-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.workbench__command-head strong,.workbench__command-head .small{display:block}
+.workbench__command-head .copy-btn{min-height:38px;padding:7px 12px;flex:0 0 auto}
+.workbench__command-reference pre{max-width:100%;margin:12px 0 8px;padding:14px;overflow:auto;border:1px solid rgba(148,163,184,.2);border-radius:10px;background:#0b1220;color:#dbeafe}
+.workbench__command-reference code{display:block;width:max-content;min-width:100%;white-space:pre;font-size:12px;line-height:1.7}
+.workbench__command-note{margin:0;color:var(--muted);line-height:1.5}
+.workbench__copy-status{display:block;margin-top:5px;font-size:12px}
+
+@media(max-width:560px){.workbench__command-head{align-items:stretch;flex-direction:column}.workbench__command-head .copy-btn{width:100%}}
+
 .contact-response-note {
   margin: auto 0 0;
   padding: 11px 12px;
@@ -397,6 +408,16 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+}
+
+body.assistant-modal-open { overflow: hidden; }
+body.assistant-modal-open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(2px);
 }
 
 .chat-assistant-header {
@@ -694,12 +715,16 @@
   }
 
   .chat-assistant {
+    top: max(12px, env(safe-area-inset-top));
     right: 14px;
     left: 14px;
-    bottom: 76px;
+    bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
+    height: auto;
     min-width: 0;
-    resize: vertical;
+    min-height: 0;
+    max-height: none;
+    resize: none;
   }
 
   .chat-contact-actions {
@@ -858,8 +883,8 @@
 
 @media (max-width: 720px) {
   .chat-assistant {
-    height: min(660px, calc(100dvh - 96px));
-    max-height: calc(100dvh - 96px);
+    height: auto;
+    max-height: none;
     resize: none;
   }
 
