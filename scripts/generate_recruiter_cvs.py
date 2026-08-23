@@ -87,7 +87,7 @@ def build(path, lang):
         Paragraph("PACIFIQUE FASHAHO", s["name"]),
         Paragraph("PROFESSIONNEL DES TECHNOLOGIES NUMÉRIQUES | SUPPORT INFORMATIQUE · DÉVELOPPEMENT LOGICIEL · ANALYSE DE DONNÉES" if fr else "TECHNOLOGY PROFESSIONAL | IT SUPPORT · SOFTWARE DEVELOPMENT · DATA ANALYTICS", s["position"]),
         Table([[""]], colWidths=[170 * mm], rowHeights=[0.5 * mm], style=TableStyle([("BACKGROUND", (0, 0), (-1, -1), ACCENT)])), Spacer(1, 5),
-        Paragraph(("Goma, RD Congo | pacifiquefashaho04@gmail.com | pacifiquefashaho.github.io/fr/<br/>linkedin.com/in/pacifique-fashaho-8ab656388 | github.com/PacifiqueFashaho" if fr else "Goma, DR Congo | pacifiquefashaho04@gmail.com | pacifiquefashaho.github.io<br/>linkedin.com/in/pacifique-fashaho-8ab656388 | github.com/PacifiqueFashaho"), s["contact"]),
+        Paragraph(("Goma, RD Congo | pacifiquefashaho04@gmail.com | pacifiquefashaho.me/fr/<br/>linkedin.com/in/pacifique-fashaho-8ab656388 | github.com/PacifiqueFashaho" if fr else "Goma, DR Congo | pacifiquefashaho04@gmail.com | pacifiquefashaho.me<br/>linkedin.com/in/pacifique-fashaho-8ab656388 | github.com/PacifiqueFashaho"), s["contact"]),
     ]
 
     story += section("PROFIL PROFESSIONNEL" if fr else "PROFESSIONAL SUMMARY", s)
@@ -140,7 +140,7 @@ def build(path, lang):
         canvas.setFont(FONT, 7.2)
         canvas.setFillColor(MUTED)
         identity = "Professionnel des technologies numériques" if fr else "Technology Professional"
-        canvas.drawCentredString(A4[0] / 2, 9 * mm, f"Pacifique Fashaho | {identity} | pacifiquefashaho.github.io")
+        canvas.drawCentredString(A4[0] / 2, 9 * mm, f"Pacifique Fashaho | {identity} | pacifiquefashaho.me")
         canvas.restoreState()
 
     doc.build(story, onFirstPage=footer, onLaterPages=footer)

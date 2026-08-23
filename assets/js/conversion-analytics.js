@@ -3,7 +3,8 @@
   "use strict";
   const measurementId = "G-2302LX7NW7";
   const consentKey = "portfolio-analytics-consent";
-  const isProduction = location.hostname === "pacifiquefashaho.github.io";
+  const productionHosts = new Set(["pacifiquefashaho.me", "www.pacifiquefashaho.me", "pacifiquefashaho.github.io"]);
+  const isProduction = productionHosts.has(location.hostname);
   const language = document.documentElement.lang.toLowerCase().startsWith("fr") ? "fr" : "en";
   const privacySignal = navigator.globalPrivacyControl === true
     || navigator.doNotTrack === "1" || window.doNotTrack === "1";

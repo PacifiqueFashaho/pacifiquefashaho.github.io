@@ -1,15 +1,15 @@
 # Pacifique Fashaho — Bilingual Technology Portfolio
 
-[![Live site](https://img.shields.io/badge/Live-GitHub%20Pages-0969da?logo=github)](https://pacifiquefashaho.github.io/)
+[![Live site](https://img.shields.io/badge/Live-GitHub%20Pages-0969da?logo=github)](https://pacifiquefashaho.me/)
 [![Quality checks](https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io/actions/workflows/quality.yml/badge.svg)](https://github.com/PacifiqueFashaho/pacifiquefashaho.github.io/actions/workflows/quality.yml)
 ![Static HTML](https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20JavaScript-0b1f3a)
 ![Languages](https://img.shields.io/badge/Languages-English%20%7C%20Fran%C3%A7ais-14b8a6)
 
 A maintained, bilingual portfolio for **Pacifique Fashaho**, an IT Support Technician based in Goma, DR Congo. It presents verified learning, practical support workflows, case studies, and knowledge guides. Software development and data analytics appear as complementary capabilities.
 
-**Live website:** [pacifiquefashaho.github.io](https://pacifiquefashaho.github.io/)
+**Live website:** [pacifiquefashaho.me](https://pacifiquefashaho.me/)
 
-**Version française:** [pacifiquefashaho.github.io/fr/](https://pacifiquefashaho.github.io/fr/)
+**Version française:** [pacifiquefashaho.me/fr/](https://pacifiquefashaho.me/fr/)
 
 ## Purpose
 
@@ -29,26 +29,26 @@ This is a static presentation website. It has no user accounts, database, privat
 [![Google IT Support Credly badge](https://img.shields.io/badge/Credly-Verify_IT_Support_Badge-ff6b00)](https://www.credly.com/badges/4ad62e8d-c1d6-4f8a-9c83-fad8f38844c1)
 [![Google Data Analytics](https://img.shields.io/badge/Google_Data_Analytics-Verified_Badge-34A853?logo=google&logoColor=white)](https://www.credly.com/badges/4e1ae728-351c-4ebe-a987-55b83c18c939)
 
-The complete, evidence-linked learning record is available on the [Certifications page](https://pacifiquefashaho.github.io/certifications.html). Credential scope is presented proportionally; a certificate is not treated as a substitute for professional experience.
+The complete, evidence-linked learning record is available on the [Certifications page](https://pacifiquefashaho.me/certifications.html). Credential scope is presented proportionally; a certificate is not treated as a substitute for professional experience.
 
 ## Main experiences
 
 | Area | English | Français |
 | --- | --- | --- |
-| About | [Homepage](https://pacifiquefashaho.github.io/) | [Accueil](https://pacifiquefashaho.github.io/fr/) |
-| Professional portfolio | [Portfolio](https://pacifiquefashaho.github.io/portfolio.html) | [Portfolio](https://pacifiquefashaho.github.io/fr/portfolio.html) |
-| Project catalogue | [Projects](https://pacifiquefashaho.github.io/projects.html) | [Projets](https://pacifiquefashaho.github.io/fr/projects.html) |
-| Credentials | [Certifications](https://pacifiquefashaho.github.io/certifications.html) | [Certifications](https://pacifiquefashaho.github.io/fr/certifications.html) |
-| IT support knowledge | [Knowledge hub](https://pacifiquefashaho.github.io/it-support-knowledge.html) | [Centre de ressources](https://pacifiquefashaho.github.io/fr/it-support-knowledge.html) |
-| Privacy | [Privacy & analytics](https://pacifiquefashaho.github.io/privacy.html) | [Confidentialité](https://pacifiquefashaho.github.io/fr/privacy.html) |
+| About | [Homepage](https://pacifiquefashaho.me/) | [Accueil](https://pacifiquefashaho.me/fr/) |
+| Professional portfolio | [Portfolio](https://pacifiquefashaho.me/portfolio.html) | [Portfolio](https://pacifiquefashaho.me/fr/portfolio.html) |
+| Project catalogue | [Projects](https://pacifiquefashaho.me/projects.html) | [Projets](https://pacifiquefashaho.me/fr/projects.html) |
+| Credentials | [Certifications](https://pacifiquefashaho.me/certifications.html) | [Certifications](https://pacifiquefashaho.me/fr/certifications.html) |
+| IT support knowledge | [Knowledge hub](https://pacifiquefashaho.me/it-support-knowledge.html) | [Centre de ressources](https://pacifiquefashaho.me/fr/it-support-knowledge.html) |
+| Privacy | [Privacy & analytics](https://pacifiquefashaho.me/privacy.html) | [Confidentialité](https://pacifiquefashaho.me/fr/privacy.html) |
 
 Selected case studies:
 
-- [Windows workstation troubleshooting](https://pacifiquefashaho.github.io/project-it-support-case-study.html)
-- [Network and shared-printer troubleshooting](https://pacifiquefashaho.github.io/project-network-printer-case-study.html)
-- [Data cleaning and reporting](https://pacifiquefashaho.github.io/project-data-cleaning-case-study.html)
-- [Sales performance dashboard](https://pacifiquefashaho.github.io/project-sales-dashboard.html)
-- [Bilingual portfolio platform](https://pacifiquefashaho.github.io/project-portfolio-case-study.html)
+- [Windows workstation troubleshooting](https://pacifiquefashaho.me/project-it-support-case-study.html)
+- [Network and shared-printer troubleshooting](https://pacifiquefashaho.me/project-network-printer-case-study.html)
+- [Data cleaning and reporting](https://pacifiquefashaho.me/project-data-cleaning-case-study.html)
+- [Sales performance dashboard](https://pacifiquefashaho.me/project-sales-dashboard.html)
+- [Bilingual portfolio platform](https://pacifiquefashaho.me/project-portfolio-case-study.html)
 
 ## Product highlights
 
@@ -145,6 +145,10 @@ The validator starts its own temporary local server and checks the public routes
 
 GitHub Actions runs the repository quality gate for pull requests and pushes to `main` through [`.github/workflows/quality.yml`](.github/workflows/quality.yml).
 
+### Production performance monitoring
+
+The `Performance monitoring` workflow audits representative English and French production routes every Monday and can also be started manually. Lighthouse CI checks performance, accessibility, best practices, SEO, loading stability, and main-thread blocking. Reports are retained as GitHub Actions artifacts for 30 days; the monitoring adds no browser cookies or tracking scripts to the public site.
+
 ## Optional asset generation
 
 The deployed website does not need Python packages, but two maintenance scripts have optional dependencies:
@@ -184,7 +188,7 @@ No open-source license is currently declared. The source is publicly visible, bu
 
 ## Contact
 
-- Website: [pacifiquefashaho.github.io](https://pacifiquefashaho.github.io/)
+- Website: [pacifiquefashaho.me](https://pacifiquefashaho.me/)
 - GitHub: [PacifiqueFashaho](https://github.com/PacifiqueFashaho)
 - LinkedIn: [Pacifique Fashaho](https://www.linkedin.com/in/pacifique-fashaho-8ab656388)
 - Email: [pacifiquefashaho04@gmail.com](mailto:pacifiquefashaho04@gmail.com)
