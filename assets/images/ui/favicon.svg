@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Pacifique Fashaho Pathmark</title>
+  <desc id="desc">A geometric personal mark combining a P with an ascending path.</desc>
+  <path
+    d="M140 432V108H274C358 108 408 150 408 220S358 332 274 332H214"
+    fill="none"
+    stroke="#0f172a"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="88"
+  />
+  <path d="M282 300H414V362H350V382H394V438H350V456H282Z" fill="#0f172a" />
+  <path
+    d="M82 432C154 398 174 342 205 282C246 204 304 138 414 78"
+    fill="none"
+    stroke="#2563eb"
+    stroke-linecap="round"
+    stroke-width="72"
+  />
+  <path
+    d="M82 432C105 421 123 406 139 387"
+    fill="none"
+    stroke="#22d3ee"
+    stroke-linecap="round"
+    stroke-width="72"
+  />
+</svg>
