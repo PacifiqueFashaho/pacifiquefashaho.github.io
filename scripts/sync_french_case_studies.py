@@ -135,8 +135,8 @@ def localize_page(filename: str) -> str:
     )
     result = result.replace('src="assets/js/', 'src="../assets/js/')
 
-    english_url = f"https://pacifiquefashaho.github.io/{filename}"
-    french_url = f"https://pacifiquefashaho.github.io/fr/{filename}"
+    english_url = f"https://pacifiquefashaho.me/{filename}"
+    french_url = f"https://pacifiquefashaho.me/fr/{filename}"
     result = result.replace(english_url, french_url)
     result = result.replace('<meta property="og:locale" content="en_US" />', '<meta property="og:locale" content="fr_FR" />\n  <meta property="og:locale:alternate" content="en_US" />')
 
@@ -244,8 +244,8 @@ def localize_page(filename: str) -> str:
 def add_english_alternates(filename: str) -> None:
     path = ROOT / filename
     source = path.read_text(encoding="utf-8")
-    english_url = f"https://pacifiquefashaho.github.io/{filename}"
-    french_url = f"https://pacifiquefashaho.github.io/fr/{filename}"
+    english_url = f"https://pacifiquefashaho.me/{filename}"
+    french_url = f"https://pacifiquefashaho.me/fr/{filename}"
     if 'hreflang="fr"' not in source:
         links = (
             f'  <link rel="alternate" hreflang="en" href="{english_url}" />\n'

@@ -19,7 +19,7 @@ from xml.etree import ElementTree
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SITE_ORIGIN = "https://pacifiquefashaho.github.io"
+SITE_ORIGIN = "https://pacifiquefashaho.me"
 GOOGLE_FILE = "google32dbf3697617861a.html"
 GOOGLE_SHA256 = "70d3bfaab6f818d1c3ef14f37797e691c1a9bf4d3d2cc61d225576ea1baac0ae"
 ENGLISH_CV = "Pacifique_Fashaho_CV.pdf"
