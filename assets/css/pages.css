@@ -452,7 +452,7 @@
 }
 
 /* Homepage skills hierarchy */
-.hero-v2__proof strong{font-size:clamp(15px,2vw,18px)}.hero-v2__proof li{display:flex;flex-direction:column;justify-content:center}.hero-v2.hero-v2--balanced{grid-template-columns:1fr}
+.hero-v2__proof strong{font-size:clamp(15px,2vw,21px)}.hero-v2__proof li{display:flex;flex-direction:column;justify-content:center}.hero-v2.hero-v2--balanced{grid-template-columns:1fr}
 
 .workbench__all-evidence {
   min-height: 44px;
@@ -796,7 +796,7 @@
 
 .skills-heading h2 {
   max-width: 760px;
-  font-size: clamp(1.5rem, 2.7vw, 2rem);
+  font-size: clamp(1.5rem, 2.7vw, 2.1rem);
   line-height: 1.12;
 }
 
