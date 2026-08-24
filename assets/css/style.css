@@ -1945,6 +1945,8 @@ nav a[aria-current="location"] {
 }
 
 .workbench__header {
+  cursor: pointer;
+  list-style: none;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--hero-panel-line);
 }
@@ -1970,7 +1972,8 @@ nav a[aria-current="location"] {
   box-shadow: 0 0 0 5px rgba(74, 222, 128, 0.1), 0 0 18px rgba(74, 222, 128, 0.28);
 }
 
-.workbench h2 {
+.workbench__title {
+  display: block;
   margin: 0;
   color: var(--hero-panel-text);
   font-size: clamp(24px, 2.5vw, 30px);
@@ -1979,6 +1982,7 @@ nav a[aria-current="location"] {
 }
 
 .workbench .summary {
+  display: block;
   max-width: 55ch;
   margin-top: 8px;
   color: var(--hero-panel-muted);
@@ -2184,6 +2188,7 @@ nav a[aria-current="location"] {
 
 .hero-v2 a:focus-visible,
 .hero-v2 button:focus-visible,
+.workbench__header:focus-visible,
 .hero-profile-details summary:focus-visible {
   outline: 3px solid rgba(96, 165, 250, 0.5);
   outline-offset: 4px;
@@ -2894,7 +2899,6 @@ li[data-workbench-step-state="complete"]
    END INTERACTIVE HERO V2
 ========================= */
 
-/* Consent prompt: compact, readable and keyboard-friendly. */
 .analytics-consent {
   position: fixed;
   z-index: 1200;

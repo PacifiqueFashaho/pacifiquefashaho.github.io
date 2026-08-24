@@ -275,20 +275,21 @@
         </ul>
       </div>
 
-      <section
+      <details
         class="card workbench workbench--specialized"
         aria-labelledby="workbench-title"
         data-workbench
         data-workbench-default="windows"
       >
-        <header class="workbench__header">
-          <p class="small">Démonstration spécialisée en systèmes informatiques</p>
-          <h2 id="workbench-title">Atelier technique</h2>
-          <p class="summary">
+        <summary class="workbench__header">
+          <span class="small">Démonstration spécialisée en systèmes informatiques</span>
+          <span id="workbench-title" class="workbench__title" role="heading" aria-level="2">Atelier technique</span>
+          <span class="summary">
             Choisissez un scénario pour découvrir les étapes pratiques que
             j’utilise afin de passer d’un problème à un résultat clair et utile.
-          </p>
-        </header>
+          </span>
+          <span class="btn workbench__summary-action">Sélectionner pour ouvrir ou fermer la démonstration</span>
+        </summary>
 
         <div
           id="workbenchScenarioGroup"
@@ -344,7 +345,7 @@ DISM /Online /Cleanup-Image /ScanHealth</code></pre>
             <a href="it-support-resources.html">Ouvrir les ressources imprimables</a>.
           </p>
         </noscript>
-      </section>
+      </details>
 
       <section id="knowledge" class="card reveal knowledge-hub" aria-labelledby="knowledge-title">
         <div class="section-head">

@@ -315,20 +315,21 @@
         </ul>
       </div>
 
-      <section
+      <details
         class="card workbench workbench--specialized"
         aria-labelledby="workbench-title"
         data-workbench
         data-workbench-default="windows"
       >
-        <header class="workbench__header">
-          <p class="small">Specialized IT systems demonstration</p>
-          <h2 id="workbench-title">IT Support Workbench</h2>
-          <p class="summary">
+        <summary class="workbench__header">
+          <span class="small">Specialized IT systems demonstration</span>
+          <span id="workbench-title" class="workbench__title" role="heading" aria-level="2">IT Support Workbench</span>
+          <span class="summary">
             Choose a scenario to see the steps I use to identify a problem,
             restore service, and confirm the result.
-          </p>
-        </header>
+          </span>
+          <span class="btn workbench__summary-action">Select to open or close the interactive demo</span>
+        </summary>
 
         <div
           id="workbenchScenarioGroup"
@@ -448,7 +449,7 @@ DISM /Online /Cleanup-Image /ScanHealth</code></pre>
             <a href="it-support-resources.html">Open printable support resources</a>.
           </p>
         </noscript>
-      </section>
+      </details>
 
       <section id="knowledge" class="card reveal knowledge-hub" aria-labelledby="knowledge-title">
         <div class="section-head">
