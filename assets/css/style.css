@@ -1731,11 +1731,12 @@ nav a[aria-current="location"] {
 
 .hero-v2__intro {
   isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: start;
+  gap: clamp(24px, 3.5vw, 46px);
   min-height: 100%;
-  padding: clamp(22px, 3.2vw, 38px);
+  padding: clamp(20px, 2.8vw, 32px);
   background:
     radial-gradient(circle at 92% 8%, var(--hero-cyan-soft), transparent 30%),
     radial-gradient(circle at 4% 96%, var(--hero-accent-soft), transparent 34%),
@@ -1743,6 +1744,9 @@ nav a[aria-current="location"] {
     var(--card);
   box-shadow: var(--hero-shadow);
 }
+
+.hero-v2__content,
+.hero-v2__profile-panel { min-width: 0; }
 
 .hero-v2__intro::after {
   content: "";
@@ -1777,7 +1781,7 @@ nav a[aria-current="location"] {
 .hero-v2__intro .title {
   max-width: 14ch;
   margin: 0;
-  font-size: clamp(36px, 4.6vw, 54px);
+  font-size: clamp(34px, 4vw, 48px);
   font-weight: 900;
   line-height: 0.99;
   letter-spacing: -0.055em;
@@ -1799,7 +1803,7 @@ nav a[aria-current="location"] {
   max-width: 62ch;
   margin-top: clamp(16px, 2vw, 22px);
   color: var(--muted);
-  font-size: clamp(15px, 1.45vw, 18px);
+  font-size: clamp(15px, 1.3vw, 17px);
   font-weight: 620;
   line-height: 1.65;
 }
@@ -1852,8 +1856,8 @@ nav a[aria-current="location"] {
 .hero-v2__identity picture { flex: 0 0 auto; }
 
 .hero-v2__identity .avatar {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 16px;
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18), 0 0 0 5px var(--hero-accent-soft);
 }
@@ -1869,9 +1873,9 @@ nav a[aria-current="location"] {
 
 .hero-v2__proof {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin: 18px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 14px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -1879,8 +1883,8 @@ nav a[aria-current="location"] {
 .hero-v2__proof li {
   --pillar-accent: var(--hero-accent);
   min-width: 0;
-  min-height: 92px;
-  padding: 12px;
+  min-height: 80px;
+  padding: 10px;
   border: 1px solid var(--line);
   border-top: 3px solid var(--pillar-accent);
   border-radius: 14px;
@@ -2486,11 +2490,6 @@ li[data-workbench-step-state="complete"]
    END WORKBENCH MICROINTERACTIONS
 ========================= */
 
-/* =========================
-   26. RESPONSIVE HERO REFINEMENT
-   Phase 6: desktop, tablet and mobile
-========================= */
-
 :root {
   --home-container: 1240px;
   --home-gutter: clamp(14px, 2.6vw, 24px);
@@ -2574,6 +2573,8 @@ li[data-workbench-step-state="complete"]
     grid-template-columns: minmax(0, 1fr);
     gap: 16px;
   }
+
+  .hero-v2__intro { grid-template-columns: minmax(0, 1fr); }
 
   .hero-v2__intro .title {
     max-width: 17ch;
@@ -2695,7 +2696,7 @@ li[data-workbench-step-state="complete"]
 
 @media (max-width: 720px) and (min-width: 561px) {
   .hero-v2__proof {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-v2__proof li {
@@ -2890,14 +2891,6 @@ li[data-workbench-step-state="complete"]
     overflow: visible;
   }
 }
-
-/* =========================
-   END RESPONSIVE HERO REFINEMENT
-========================= */
-
-/* =========================
-   END INTERACTIVE HERO V2
-========================= */
 
 .analytics-consent {
   position: fixed;
