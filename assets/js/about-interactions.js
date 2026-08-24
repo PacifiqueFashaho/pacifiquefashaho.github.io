@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     story: document.querySelector('[aria-labelledby="story-title"]'),
     disciplines: document.querySelector('[aria-labelledby="disciplines-title"]'),
     places: document.querySelector('[aria-labelledby="places-title"]'),
-    values: document.querySelector('[aria-labelledby="values-title"]'),
-    timeline: document.querySelector('[aria-labelledby="timeline-title"]')
+    values: document.querySelector('[aria-labelledby="values-title"]')
   };
 
   if (Object.values(sections).some((section) => !section)) return;

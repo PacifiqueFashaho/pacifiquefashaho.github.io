@@ -9,8 +9,8 @@ OUTPUT = ROOT / "assets" / "images" / "social"
 WIDTH, HEIGHT = 1200, 630
 
 CARDS = {
-    "home.png": ("ABOUT PACIFIQUE", "Technology, Learning & Life in Goma", "IT Support • Software Development • Data Analytics", "EN", "Technology Professional • Goma, DR Congo"),
-    "home-fr.png": ("À PROPOS DE PACIFIQUE", "Technologie, apprentissage et parcours à Goma", "Support informatique • Développement logiciel • Analyse de données", "FR", "Professionnel des technologies numériques • Goma, RD Congo"),
+    "home.png": ("PACIFIQUE FASHAHO", "Computer Science Professional", "Software Engineering • IT Systems • Data Analytics", "EN", "Technical Problem-Solving"),
+    "home-fr.png": ("PACIFIQUE FASHAHO", "Professionnel de l’informatique", "Génie logiciel • Systèmes informatiques • Analyse de données", "FR", "Résolution de problèmes techniques"),
     "projects.png": ("PROJECT PORTFOLIO", "Practical IT Support Projects", "Windows • Workstations • Networks • Printers", "EN"),
     "projects-fr.png": ("PORTFOLIO DE PROJETS", "Projets pratiques de support informatique", "Windows • Postes • Réseaux • Imprimantes", "FR"),
     "it-support-workflow.png": ("IT SUPPORT CASE STUDY", "Workstation Setup & Troubleshooting", "8-stage method • 6 validation checks", "EN"),

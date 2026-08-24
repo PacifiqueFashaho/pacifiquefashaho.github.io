@@ -32,7 +32,7 @@
 .about-eyebrow,.about-kicker { color: var(--accent); font-size: .76rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 .about-eyebrow { display: flex; align-items: center; gap: .65rem; margin: 0; }
 .about-eyebrow::before { content: ""; width: 1.75rem; height: 2px; background: linear-gradient(90deg,var(--accent),var(--accent2)); }
-.about-hero h1 { max-width: 13ch; margin: .65rem 0 1rem; font-size: clamp(2.8rem,5.3vw,4.75rem); line-height: .98; letter-spacing: -.055em; text-wrap: balance; }
+.about-hero h1 { max-width: 16ch; margin: .65rem 0 1rem; font-size: clamp(2.65rem,5vw,4.5rem); line-height: .98; letter-spacing: -.055em; text-wrap: balance; }
 .about-lede { max-width: 62ch; margin-bottom: .9rem; color: var(--text); font-size: clamp(1.06rem,1.7vw,1.22rem); line-height: 1.7; }
 .about-hero > div > p:not(.about-eyebrow,.about-lede,.about-status) { max-width: 62ch; color: var(--muted); line-height: 1.72; }
 .about-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.45rem 0 1.3rem; }
@@ -60,12 +60,13 @@
 .about-story p + p { margin-top: 1.15rem; }
 .about-story p:first-child { color: var(--text); font-size: 1.22rem; line-height: 1.65; }
 
-.about-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+.about-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; }
 .about-tile { --tile-accent: var(--accent); position: relative; display: flex; flex-direction: column; padding: clamp(1.35rem,3vw,1.85rem); overflow: hidden; border: 1px solid var(--line); border-radius: 1.1rem; background: var(--card); transition: transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
 .about-tile::before { content: ""; position: absolute; inset: 0 0 auto; height: .3rem; background: var(--tile-accent); }
 .about-tile--support { --tile-accent: var(--pillar-support); }
 .about-tile--software { --tile-accent: var(--pillar-software); }
 .about-tile--data { --tile-accent: var(--pillar-data); }
+.about-tile--problem { --tile-accent: #0e7490; }
 .about-tile--primary { border-color: color-mix(in srgb,var(--tile-accent) 36%,var(--line)); background: linear-gradient(145deg,color-mix(in srgb,var(--tile-accent) 8%,var(--card)),var(--card) 62%); }
 .about-tile:hover,.about-tile:focus-within { transform: translateY(-3px); border-color: color-mix(in srgb,var(--tile-accent) 48%,var(--line)); box-shadow: var(--shadow); }
 .about-tile__number { color: var(--tile-accent); font-size: .76rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
@@ -103,6 +104,7 @@
 .about-explore__intro { max-width: 46rem; margin: 0 auto 2rem; text-align: center; }
 .about-explore h2 { max-width: 24ch; margin: .45rem auto 0; }
 .about-explore__intro > p:last-child { max-width: 62ch; margin: 1rem auto 0; }
+.about-explore__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.5rem; }
 .about-next-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: .85rem; }
 .about-next-step { --next-accent: var(--accent); position: relative; display: flex; flex-direction: column; gap: .7rem; min-height: 15.5rem; padding: 1.3rem; overflow: hidden; border: 2px solid color-mix(in srgb,var(--next-accent) 26%,var(--line)); border-radius: 1rem; background: var(--card); color: var(--text); text-align: left; text-decoration: none; transition: transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
 .about-next-step::before { content: ""; position: absolute; inset: 0 0 auto; height: .28rem; background: var(--next-accent); }
@@ -130,16 +132,14 @@
   .about-hero { grid-template-columns: minmax(0,1.12fr) minmax(15rem,.88fr); gap: 2rem; }
   .about-hero h1 { font-size: clamp(2.65rem,6vw,4rem); }
   .about-grid { grid-template-columns: 1fr 1fr; }
-  .about-tile--primary { grid-column: 1/-1; }
   .about-next-steps { grid-template-columns: 1fr 1fr; }
   .about-next-step--primary { grid-column: 1/-1; min-height: 12rem; }
 }
 
 @media(max-width:760px) {
   .about-hero,.about-section-head { grid-template-columns: 1fr; }
-  .about-portrait { max-width: 19rem; order: -1; }
+  .about-portrait { max-width: 19rem; order: 0; }
   .about-grid,.about-places,.about-values { grid-template-columns: 1fr; }
-  .about-tile--primary { grid-column: auto; }
   .about-section-head { gap: .5rem; }
   .about-next-steps { grid-template-columns: 1fr; }
   .about-next-step--primary { grid-column: auto; }

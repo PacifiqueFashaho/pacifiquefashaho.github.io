@@ -1224,19 +1224,21 @@ def validate_quick_assistant(
                 "IT Support &amp; Troubleshooting",
                 "Software Development",
                 "Data Analytics",
+                "Technical Problem-Solving",
             }
             if page == "portfolio.html"
             else {
                 "Support informatique et dépannage",
                 "Développement logiciel",
                 "Analyse de données",
+                "Résolution de problèmes techniques",
             }
         )
         add_error(
             errors,
-            source.count('class="skill-card ') == 3
+            source.count('class="skill-card ') == 4
             and all(heading in source for heading in required_skill_headings),
-            f"{page}: skills section must contain three evidence-linked capability cards",
+            f"{page}: skills section must contain four evidence-linked capability cards",
         )
 
     for page, parser in parsed_pages.items():
@@ -1406,21 +1408,25 @@ def validate_project_catalog(errors: list[str]) -> None:
     homepage_pillars = {
         "portfolio.html": (
             'aria-label="Core technology capabilities"',
-            "<strong>IT Support</strong>",
+            "<strong>IT Systems</strong>",
             'href="project-it-support-case-study.html"',
             "<strong>Software Development</strong>",
             'href="project-portfolio-case-study.html"',
             "<strong>Data Analytics</strong>",
             'href="project-data-cleaning-case-study.html"',
+            "<strong>Technical Problem-Solving</strong>",
+            'href="projects.html"',
         ),
         "fr/portfolio.html": (
             'aria-label="Capacités technologiques principales"',
-            "<strong>Support informatique</strong>",
+            "<strong>Systèmes informatiques</strong>",
             'href="project-it-support-case-study.html"',
             "<strong>Développement logiciel</strong>",
             'href="project-portfolio-case-study.html"',
             "<strong>Analyse de données</strong>",
             'href="project-data-cleaning-case-study.html"',
+            "<strong>Résolution de problèmes techniques</strong>",
+            'href="projects.html"',
         ),
     }
 
@@ -1430,7 +1436,7 @@ def validate_project_catalog(errors: list[str]) -> None:
             add_error(
                 errors,
                 all(marker in homepage for marker in required_markers),
-                f"{page}: hero must expose all three capability evidence paths",
+                f"{page}: hero must expose all four capability evidence paths",
             )
 
 
@@ -2065,8 +2071,8 @@ def validate_about_navigation_and_media(errors: list[str]) -> None:
         )
         add_error(
             errors,
-            "April 2027" in source or "avril 2027" in source,
-            f"{page}: degree-in-progress accuracy marker is missing",
+            bool(re.search(r"april 2027|avril 2027", source, flags=re.IGNORECASE)),
+            f"{page}: degree date marker is missing",
         )
 
 
@@ -2076,20 +2082,22 @@ def validate_global_professional_identity(errors: list[str]) -> None:
         "Technicien en support informatique</small>",
         "Technicien support informatique</small>",
         "Technicien de support informatique</small>",
+        "Technology Professional</small>",
+        "Professionnel des technologies numériques</small>",
     )
     for page in PAGE_SPECS:
         source = read_text(page, errors)
         if source is None:
             continue
         expected_label = (
-            "Professionnel des technologies numériques</small>"
+            "Professionnel de l’informatique</small>"
             if page.startswith("fr/")
-            else "Technology Professional</small>"
+            else "Computer Science Professional</small>"
         )
         add_error(
             errors,
             expected_label in source and not any(label in source for label in legacy_labels),
-            f"{page}: global professional identity is not three-pillar consistent",
+            f"{page}: global Computer Science professional identity is inconsistent",
         )
 
 
