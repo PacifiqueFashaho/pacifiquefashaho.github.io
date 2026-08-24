@@ -261,7 +261,7 @@ section:focus {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 10px 16px;
+  padding: 8px 16px;
 }
 
 .brand {
@@ -1945,7 +1945,7 @@ nav a[aria-current="location"] {
 }
 
 .workbench__header {
-  padding-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--hero-panel-line);
 }
 
@@ -1973,31 +1973,31 @@ nav a[aria-current="location"] {
 .workbench h2 {
   margin: 0;
   color: var(--hero-panel-text);
-  font-size: clamp(26px, 3vw, 36px);
+  font-size: clamp(24px, 2.5vw, 30px);
   line-height: 1.1;
   letter-spacing: -0.035em;
 }
 
 .workbench .summary {
   max-width: 55ch;
-  margin-top: 12px;
+  margin-top: 8px;
   color: var(--hero-panel-muted);
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .workbench__scenario-controls {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .workbench__scenario-controls[hidden] { display: none; }
 
 .workbench__scenario.btn {
   min-width: 0;
-  min-height: 44px;
-  padding: 9px 10px;
+  min-height: 40px;
+  padding: 7px 9px;
   border-color: var(--hero-panel-line);
   border-radius: 12px;
   background: rgba(15, 23, 42, 0.5);
@@ -2020,8 +2020,8 @@ nav a[aria-current="location"] {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-top: 20px;
-  padding: clamp(16px, 2.5vw, 22px);
+  margin-top: 14px;
+  padding: clamp(14px, 2vw, 18px);
   border: 1px solid var(--hero-panel-line);
   border-radius: 18px;
   background: rgba(8, 15, 29, 0.56);
@@ -2032,7 +2032,7 @@ nav a[aria-current="location"] {
   display: flex;
   align-items: flex-start;
   gap: 11px;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--hero-panel-line);
 }
 
@@ -2049,7 +2049,7 @@ nav a[aria-current="location"] {
 .workbench__steps {
   display: grid;
   gap: 0;
-  margin: 18px 0 22px;
+  margin: 12px 0 16px;
   padding: 0;
   list-style: none;
 }
@@ -2057,11 +2057,11 @@ nav a[aria-current="location"] {
 .workbench__steps li {
   position: relative;
   display: grid;
-  grid-template-columns: 38px minmax(0, 1fr);
+  grid-template-columns: 34px minmax(0, 1fr);
   align-items: center;
   gap: 11px;
-  min-height: 50px;
-  padding: 7px 0;
+  min-height: 42px;
+  padding: 5px 0;
   color: var(--hero-panel-text);
   font-size: 14px;
   line-height: 1.45;
@@ -2070,9 +2070,9 @@ nav a[aria-current="location"] {
 .workbench__steps li:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 42px;
-  bottom: -8px;
-  left: 18px;
+  top: 36px;
+  bottom: -6px;
+  left: 16px;
   width: 1px;
   background: linear-gradient(to bottom, rgba(96, 165, 250, 0.52), rgba(148, 163, 184, 0.14));
 }
@@ -2081,8 +2081,8 @@ nav a[aria-current="location"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border: 1px solid rgba(96, 165, 250, 0.35);
   border-radius: 11px;
   background: rgba(59, 130, 246, 0.11);
@@ -2531,7 +2531,7 @@ li[data-workbench-step-state="complete"]
 }
 
 .workbench__steps {
-  min-height: 200px;
+  min-height: 168px;
   align-content: start;
 }
 
