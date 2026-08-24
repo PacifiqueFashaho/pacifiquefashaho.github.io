@@ -796,7 +796,7 @@
 
 .skills-heading h2 {
   max-width: 760px;
-  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-size: clamp(1.5rem, 2.7vw, 2.1rem);
   line-height: 1.12;
 }
 
