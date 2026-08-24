@@ -2267,11 +2267,6 @@ nav a[aria-current="location"] {
   }
 }
 
-/* =========================
-   25. WORKBENCH MICROINTERACTIONS
-   Phase 5: state-driven motion only
-========================= */
-
 .workbench {
   --workbench-pointer-x: 78%;
   --workbench-pointer-y: 12%;
@@ -2483,15 +2478,6 @@ li[data-workbench-step-state="complete"]
     animation: none;
   }
 }
-
-/* =========================
-   END WORKBENCH MICROINTERACTIONS
-========================= */
-
-/* =========================
-   26. RESPONSIVE HERO REFINEMENT
-   Phase 6: desktop, tablet and mobile
-========================= */
 
 :root {
   --home-container: 1240px;
@@ -2893,13 +2879,7 @@ li[data-workbench-step-state="complete"]
   }
 }
 
-/* =========================
-   END RESPONSIVE HERO REFINEMENT
-========================= */
-
-/* =========================
-   END INTERACTIVE HERO V2
-========================= */
+@media (min-width:921px){.hero-v2__intro{padding-right:clamp(350px,31vw,430px)}.hero-v2__identity picture{position:absolute;top:clamp(52px,6vw,78px);right:clamp(32px,4vw,60px);display:block;width:clamp(260px,23vw,340px);aspect-ratio:4/5}.hero-v2__identity .avatar{width:100%;height:100%;border-radius:28px;object-fit:cover;object-position:center 18%;box-shadow:0 28px 64px rgba(15,23,42,.24),0 0 0 8px var(--hero-accent-soft)}}
 
 .analytics-consent {
   position: fixed;
