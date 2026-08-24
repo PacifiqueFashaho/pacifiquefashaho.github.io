@@ -275,115 +275,6 @@
         </ul>
       </div>
 
-      <details
-        class="card workbench workbench--specialized"
-        aria-labelledby="workbench-title"
-        data-workbench
-        data-workbench-default="windows"
-      >
-        <summary class="workbench__header">
-          <span class="small">Démonstration spécialisée en systèmes informatiques</span>
-          <span id="workbench-title" class="workbench__title" role="heading" aria-level="2">Atelier technique</span>
-          <span class="summary">
-            Choisissez un scénario pour découvrir les étapes pratiques que
-            j’utilise afin de passer d’un problème à un résultat clair et utile.
-          </span>
-          <span class="btn workbench__summary-action">Sélectionner pour ouvrir ou fermer la démonstration</span>
-        </summary>
-
-        <div
-          id="workbenchScenarioGroup"
-          class="workbench__scenario-controls"
-          role="group"
-          aria-label="Choisir un processus technique"
-          data-workbench-controls
-          hidden
-        >
-          <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="windows" data-command-title="Intégrité Windows" data-commands="sfc /scannow&#10;DISM /Online /Cleanup-Image /ScanHealth" aria-pressed="true" aria-controls="workbenchOutput">Windows et logiciels</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="network" data-command-title="Vérifications réseau et impression" data-commands="ipconfig /all&#10;ping 8.8.8.8&#10;ipconfig /flushdns&#10;sc query spooler" aria-pressed="false" aria-controls="workbenchOutput">Réseau et imprimante</button>
-          <button class="btn workbench__scenario" type="button" data-workbench-scenario="setup" data-command-title="Vérifications du poste" data-commands="systeminfo&#10;whoami /all&#10;winget list" aria-pressed="false" aria-controls="workbenchOutput">Poste de travail et utilisateurs</button>
-        </div>
-
-        <div id="workbenchOutput" class="workbench__output" data-workbench-output>
-          <div class="workbench__status-row">
-            <span class="live-dot online" aria-hidden="true"></span>
-            <div>
-              <span id="workbenchStatus" class="small" role="status" aria-live="polite" aria-atomic="true">Processus Windows et logiciels prêt</span>
-              <strong data-workbench-result>Fonctionnement rétabli</strong>
-            </div>
-          </div>
-
-          <ol id="workbenchSteps" class="workbench__steps">
-            <li data-workbench-step><span aria-hidden="true">01</span><span>Problème signalé</span></li>
-            <li data-workbench-step><span aria-hidden="true">02</span><span>Vérifications de Windows et des applications</span></li>
-            <li data-workbench-step><span aria-hidden="true">03</span><span>Cause principale isolée</span></li>
-            <li data-workbench-step><span aria-hidden="true">04</span><span>Fonctionnement rétabli</span></li>
-          </ol>
-
-          <section class="workbench__command-reference" aria-labelledby="workbenchCommandTitle" data-workbench-command-reference>
-            <div class="workbench__command-head">
-              <div><span class="small">Référence de commandes</span><strong id="workbenchCommandTitle" data-workbench-command-title>Vérification de l’intégrité Windows</strong></div>
-              <button class="copy-btn" id="workbenchCopyCommands" type="button" data-workbench-copy>Copier les commandes</button>
-            </div>
-            <pre><code id="workbenchCommands" data-workbench-commands>sfc /scannow
-DISM /Online /Cleanup-Image /ScanHealth</code></pre>
-            <p class="small workbench__command-note">Utilisez ces commandes uniquement sur des systèmes que vous êtes autorisé à examiner. Vérifiez chaque commande avant son exécution.</p>
-            <span class="copy-status workbench__copy-status" id="workbenchCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
-          </section>
-
-          <a id="workbenchCaseStudyLink" class="btn" href="project-it-support-case-study.html">Voir l’étude de cas en support informatique</a>
-        </div>
-
-        <a class="workbench__all-evidence" href="projects.html">Parcourir toutes les preuves de projets <span aria-hidden="true">&rarr;</span></a>
-
-        <noscript>
-          <p class="small">
-            Autres processus pratiques de support :
-            <a href="project-network-printer-case-study.html"><strong>Réseau et imprimante</strong></a>
-            ·
-            <a href="project-workstation-user-setup.html"><strong>Poste de travail et utilisateurs</strong></a>.
-            <a href="it-support-resources.html">Ouvrir les ressources imprimables</a>.
-          </p>
-        </noscript>
-      </details>
-
-      <section id="knowledge" class="card reveal knowledge-hub" aria-labelledby="knowledge-title">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow">Ressources de support informatique</span>
-            <h2 id="knowledge-title">Préparer une demande de support plus claire et plus sûre</h2>
-            <p class="summary">Des conseils pratiques pour les utilisateurs, accompagnés de fiches imprimables qui aident le technicien à comprendre l’incident sans exposer de mot de passe ni de données personnelles inutiles.</p>
-          </div>
-          <a class="knowledge-hub__all" href="it-support-knowledge.html">Parcourir tous les guides <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        <div class="knowledge-hub__grid">
-          <article class="knowledge-card knowledge-card--featured">
-            <span class="project-label">Commencer ici · Guide débutant</span>
-            <h3><a href="windows-checks-before-it-support.html">Vérifications Windows avant de contacter le support</a></h3>
-            <p>Huit vérifications réversibles pour protéger le travail en cours, noter les symptômes utiles, reconnaître quand arrêter et préparer une demande efficace, sans accès administrateur.</p>
-            <a class="btn primary" href="windows-checks-before-it-support.html">Lire le guide Windows <span aria-hidden="true">&rarr;</span></a>
-          </article>
-          <article class="knowledge-card">
-            <span class="project-label">Guide de sécurité · Contact suspect</span>
-            <h3><a href="suspicious-tech-support-pop-up.html">Que faire face à une fenêtre de faux support technique</a></h3>
-            <p>Arrêtez toute interaction risquée, reconnaissez les signes d’alerte et réagissez prudemment si une personne demande un accès à distance, des identifiants, un code de sécurité ou un paiement.</p>
-            <a class="btn" href="suspicious-tech-support-pop-up.html">Lire le guide sur les contacts suspects <span aria-hidden="true">&rarr;</span></a>
-          </article>
-          <article class="knowledge-card">
-            <span class="project-label">Entretien de l’appareil · Stockage</span>
-            <h3><a href="windows-storage-full-safe-checks.html">Stockage Windows plein : vérifications sûres avant le support</a></h3>
-            <p>Confirmez le lecteur concerné, protégez les fichiers importants, examinez les recommandations de Windows et sachez quand arrêter avant de supprimer un contenu inconnu.</p>
-            <a class="btn" href="windows-storage-full-safe-checks.html">Lire le guide sur le stockage <span aria-hidden="true">&rarr;</span></a>
-          </article>
-          <article class="knowledge-card">
-            <span class="project-label">Outils imprimables</span>
-            <h3><a href="it-support-resources.html">Fiches d’incident et de dépannage</a></h3>
-            <p>Utilisez des modèles légers pour la réception d’incident, les vérifications réseau et imprimante, la remise d’un poste et les notes d’escalade.</p>
-            <a class="btn" href="it-support-resources.html#incident-record">Ouvrir la fiche d’incident</a>
-          </article>
-        </div>
-      </section>
-
       <aside class="hero-profile-strip" aria-label="Informations essentielles du profil">
         <div><span>Langues</span><strong>Français — Très bon · Anglais — Bon</strong></div>
         <div><span>Basé à</span><strong>Goma, RD Congo</strong></div>
@@ -493,6 +384,116 @@ DISM /Online /Cleanup-Image /ScanHealth</code></pre>
         <article class="featured-pillar-card featured-pillar-card--support"><img src="../assets/images/projects/it-support-workflow.svg" width="1400" height="900" alt="Processus de dépannage d’un poste en huit étapes" loading="lazy" decoding="async" /><div class="featured-pillar-body"><span class="project-kicker">Idéal pour vérifier · Raisonnement de support</span><h3>Configuration et dépannage d’un poste</h3><p>Ouvrez cette preuve pour évaluer mon passage d’un symptôme initial à une remise sûre et validée.</p><ul><li>Parcours décisionnel : de l’accueil à la vérification</li><li>Livrable : processus documenté en huit étapes</li></ul><a href="project-it-support-case-study.html">Inspecter cette preuve <span aria-hidden="true">&rarr;</span></a></div></article>
         <article class="featured-pillar-card featured-pillar-card--development"><img src="../assets/images/projects/portfolio-preview.webp" width="1200" height="750" alt="Interface adaptative du portfolio bilingue" loading="lazy" decoding="async" /><div class="featured-pillar-body"><span class="project-kicker">Idéal pour vérifier · Interface déployée</span><h3>Plateforme de portfolio bilingue</h3><p>Ouvrez cette preuve pour évaluer un produit maintenu : UX adaptative, accessibilité, performance, SEO et mises en production.</p><ul><li>Parcours décisionnel : du système visuel au déploiement</li><li>Livrable : plateforme web bilingue en production</li></ul><a href="project-portfolio-case-study.html">Inspecter cette preuve <span aria-hidden="true">&rarr;</span></a></div></article>
         <article class="featured-pillar-card featured-pillar-card--data"><img src="../assets/images/projects/google-data-case-study-preview.avif" width="1200" height="750" alt="Aperçu de l’étude sur le nettoyage et le reporting des données" loading="lazy" decoding="async" /><div class="featured-pillar-body"><span class="project-kicker">Idéal pour vérifier · Décisions analytiques</span><h3>Nettoyage et reporting des données</h3><p>Ouvrez cette preuve pour évaluer la documentation des choix de nettoyage, des contrôles, de l’analyse et de ses limites.</p><ul><li>Parcours décisionnel : de l’échantillon brut au résultat fiable</li><li>Livrable : étude d’apprentissage contrôlée par les preuves</li></ul><a href="project-data-cleaning-case-study.html">Inspecter cette preuve <span aria-hidden="true">&rarr;</span></a></div></article>
+      </div>
+    </section>
+
+    <!-- Specialized technical lab and knowledge resources -->
+    <details
+      class="card workbench workbench--specialized"
+      aria-labelledby="workbench-title"
+      data-workbench
+      data-workbench-default="windows"
+    >
+      <summary class="workbench__header">
+        <span class="small">Démonstration spécialisée en systèmes informatiques</span>
+        <span id="workbench-title" class="workbench__title" role="heading" aria-level="2">Atelier technique</span>
+        <span class="summary">
+          Choisissez un scénario pour découvrir les étapes pratiques que
+          j’utilise afin de passer d’un problème à un résultat clair et utile.
+        </span>
+          <span class="btn workbench__summary-action">Ouvrir la démonstration interactive</span>
+      </summary>
+
+      <div
+        id="workbenchScenarioGroup"
+        class="workbench__scenario-controls"
+        role="group"
+        aria-label="Choisir un processus technique"
+        data-workbench-controls
+        hidden
+      >
+        <button class="btn workbench__scenario is-active" type="button" data-workbench-scenario="windows" data-command-title="Intégrité Windows" data-commands="sfc /scannow&#10;DISM /Online /Cleanup-Image /ScanHealth" aria-pressed="true" aria-controls="workbenchOutput">Windows et logiciels</button>
+        <button class="btn workbench__scenario" type="button" data-workbench-scenario="network" data-command-title="Vérifications réseau et impression" data-commands="ipconfig /all&#10;ping 8.8.8.8&#10;ipconfig /flushdns&#10;sc query spooler" aria-pressed="false" aria-controls="workbenchOutput">Réseau et imprimante</button>
+        <button class="btn workbench__scenario" type="button" data-workbench-scenario="setup" data-command-title="Vérifications du poste" data-commands="systeminfo&#10;whoami /all&#10;winget list" aria-pressed="false" aria-controls="workbenchOutput">Poste de travail et utilisateurs</button>
+      </div>
+
+      <div id="workbenchOutput" class="workbench__output" data-workbench-output>
+        <div class="workbench__status-row">
+          <span class="live-dot online" aria-hidden="true"></span>
+          <div>
+            <span id="workbenchStatus" class="small" role="status" aria-live="polite" aria-atomic="true">Processus Windows et logiciels prêt</span>
+            <strong data-workbench-result>Fonctionnement rétabli</strong>
+          </div>
+        </div>
+
+        <ol id="workbenchSteps" class="workbench__steps">
+          <li data-workbench-step><span aria-hidden="true">01</span><span>Problème signalé</span></li>
+          <li data-workbench-step><span aria-hidden="true">02</span><span>Vérifications de Windows et des applications</span></li>
+          <li data-workbench-step><span aria-hidden="true">03</span><span>Cause principale isolée</span></li>
+          <li data-workbench-step><span aria-hidden="true">04</span><span>Fonctionnement rétabli</span></li>
+        </ol>
+
+        <section class="workbench__command-reference" aria-labelledby="workbenchCommandTitle" data-workbench-command-reference>
+          <div class="workbench__command-head">
+            <div><span class="small">Référence de commandes</span><strong id="workbenchCommandTitle" data-workbench-command-title>Vérification de l’intégrité Windows</strong></div>
+            <button class="copy-btn" id="workbenchCopyCommands" type="button" data-workbench-copy>Copier les commandes</button>
+          </div>
+          <pre><code id="workbenchCommands" data-workbench-commands>sfc /scannow
+DISM /Online /Cleanup-Image /ScanHealth</code></pre>
+          <p class="small workbench__command-note">Utilisez ces commandes uniquement sur des systèmes que vous êtes autorisé à examiner. Vérifiez chaque commande avant son exécution.</p>
+          <span class="copy-status workbench__copy-status" id="workbenchCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
+        </section>
+
+        <a id="workbenchCaseStudyLink" class="btn" href="project-it-support-case-study.html">Voir l’étude de cas en support informatique</a>
+      </div>
+
+      <a class="workbench__all-evidence" href="projects.html">Parcourir toutes les preuves de projets <span aria-hidden="true">&rarr;</span></a>
+
+      <noscript>
+        <p class="small">
+          Autres processus pratiques de support :
+          <a href="project-network-printer-case-study.html"><strong>Réseau et imprimante</strong></a>
+          ·
+          <a href="project-workstation-user-setup.html"><strong>Poste de travail et utilisateurs</strong></a>.
+          <a href="it-support-resources.html">Ouvrir les ressources imprimables</a>.
+        </p>
+      </noscript>
+    </details>
+
+    <section id="knowledge" class="card reveal knowledge-hub" aria-labelledby="knowledge-title">
+      <div class="section-head">
+        <div>
+          <span class="section-eyebrow">Ressources de support informatique</span>
+          <h2 id="knowledge-title">Préparer une demande de support plus claire et plus sûre</h2>
+          <p class="summary">Des conseils pratiques pour les utilisateurs, accompagnés de fiches imprimables qui aident le technicien à comprendre l’incident sans exposer de mot de passe ni de données personnelles inutiles.</p>
+        </div>
+        <a class="knowledge-hub__all" href="it-support-knowledge.html">Parcourir tous les guides <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="knowledge-hub__grid">
+        <article class="knowledge-card knowledge-card--featured">
+          <span class="project-label">Commencer ici · Guide débutant</span>
+          <h3><a href="windows-checks-before-it-support.html">Vérifications Windows avant de contacter le support</a></h3>
+          <p>Huit vérifications réversibles pour protéger le travail en cours, noter les symptômes utiles, reconnaître quand arrêter et préparer une demande efficace, sans accès administrateur.</p>
+          <a class="btn primary" href="windows-checks-before-it-support.html">Lire le guide Windows <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="knowledge-card">
+          <span class="project-label">Guide de sécurité · Contact suspect</span>
+          <h3><a href="suspicious-tech-support-pop-up.html">Que faire face à une fenêtre de faux support technique</a></h3>
+          <p>Arrêtez toute interaction risquée, reconnaissez les signes d’alerte et réagissez prudemment si une personne demande un accès à distance, des identifiants, un code de sécurité ou un paiement.</p>
+          <a class="btn" href="suspicious-tech-support-pop-up.html">Lire le guide sur les contacts suspects <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="knowledge-card">
+          <span class="project-label">Entretien de l’appareil · Stockage</span>
+          <h3><a href="windows-storage-full-safe-checks.html">Stockage Windows plein : vérifications sûres avant le support</a></h3>
+          <p>Confirmez le lecteur concerné, protégez les fichiers importants, examinez les recommandations de Windows et sachez quand arrêter avant de supprimer un contenu inconnu.</p>
+          <a class="btn" href="windows-storage-full-safe-checks.html">Lire le guide sur le stockage <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="knowledge-card">
+          <span class="project-label">Outils imprimables</span>
+          <h3><a href="it-support-resources.html">Fiches d’incident et de dépannage</a></h3>
+          <p>Utilisez des modèles légers pour la réception d’incident, les vérifications réseau et imprimante, la remise d’un poste et les notes d’escalade.</p>
+          <a class="btn" href="it-support-resources.html#incident-record">Ouvrir la fiche d’incident</a>
+        </article>
       </div>
     </section>
 

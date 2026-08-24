@@ -1920,6 +1920,7 @@ nav a[aria-current="location"] {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  margin-top: 16px;
   padding: clamp(20px, 2.8vw, 30px);
   border-color: rgba(148, 163, 184, 0.16);
   color: var(--hero-panel-text);
@@ -1977,6 +1978,7 @@ nav a[aria-current="location"] {
   margin: 0;
   color: var(--hero-panel-text);
   font-size: clamp(24px, 2.5vw, 30px);
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.035em;
 }
@@ -2288,7 +2290,7 @@ nav a[aria-current="location"] {
   --workbench-state-accent-soft: rgba(167, 139, 250, 0.16);
 }
 
-.hero.hero-v2 > .workbench::before {
+.workbench::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -2305,7 +2307,7 @@ nav a[aria-current="location"] {
   transition: opacity 0.28s var(--hero-ease);
 }
 
-.hero.hero-v2 > .workbench[data-workbench-pointer="active"]::before {
+.workbench[data-workbench-pointer="active"]::before {
   opacity: 0.82;
 }
 
