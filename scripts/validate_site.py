@@ -34,6 +34,8 @@ PAGE_SPECS = {
     "fr/index.html": ("/fr/", "fr"),
     "portfolio.html": ("/portfolio.html", "en"),
     "fr/portfolio.html": ("/fr/portfolio.html", "fr"),
+    "services.html": ("/services.html", "en"),
+    "fr/services.html": ("/fr/services.html", "fr"),
     "projects.html": ("/projects.html", "en"),
     "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
@@ -126,6 +128,7 @@ PAGE_SPECS = {
 BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
     ("portfolio.html", "fr/portfolio.html"),
+    ("services.html", "fr/services.html"),
     ("projects.html", "fr/projects.html"),
     ("certifications.html", "fr/certifications.html"),
     ("privacy.html", "fr/privacy.html"),
@@ -195,6 +198,7 @@ CSS_FILES = (
     "assets/css/guide.css",
     "assets/css/knowledge.css",
     "assets/css/software-case-study.css",
+    "assets/css/services.css",
 )
 
 SOCIAL_IMAGE_SPECS = {
@@ -1744,6 +1748,7 @@ def validate_performance_budgets(errors: list[str]) -> None:
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
         "assets/css/software-case-study.css": 8_000,
+        "assets/css/services.css": 12_000,
         "assets/js/main.js": 20_000,
         "assets/js/conversion-analytics.js": 8_000,
         "assets/js/workbench.js": 20_000,

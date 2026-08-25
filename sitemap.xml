@@ -31,6 +31,20 @@
   </url>
 
   <url>
+    <loc>https://pacifiquefashaho.me/services.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://pacifiquefashaho.me/fr/services.html</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
     <loc>https://pacifiquefashaho.me/projects.html</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>weekly</changefreq>
