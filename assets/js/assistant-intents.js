@@ -4,8 +4,10 @@
   const FALLBACK_INTENT = "fallback";
 
   const intentRules = Object.freeze([
+    Object.freeze({ intent: "collaboration", terms: Object.freeze(["collaboration", "collaborate", "partnership", "partenariat"]) }),
+    Object.freeze({ intent: "automation", terms: Object.freeze(["automation", "automatisation", "workflow", "web", "website", "site web", "javascript", "html", "css", "api", "ux", "python"]) }),
     Object.freeze({
-      intent: "opportunity",
+      intent: "employment",
       terms: Object.freeze([
         "job",
         "opportunity",
@@ -21,8 +23,6 @@
         "resume",
         "cv",
         "experience",
-        "intern",
-        "internship",
         "employment",
         "emploi",
         "opportunite",
@@ -31,11 +31,10 @@
         "disponibilite",
         "recrutement",
         "recruteur",
-        "stage"
       ])
     }),
     Object.freeze({
-      intent: "field",
+      intent: "data",
       terms: Object.freeze([
         "kobo",
         "kobotoolbox",
@@ -48,7 +47,7 @@
       ])
     }),
     Object.freeze({
-      intent: "dashboard",
+      intent: "data",
       terms: Object.freeze([
         "dashboard",
         "reporting",

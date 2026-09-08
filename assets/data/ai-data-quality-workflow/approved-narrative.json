@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "dataset_label": "SYNTHETIC",
+  "title": "FieldLink Synthetic Operational Summary",
+  "claims": [
+    {"claim_id": "C-01", "claim_type": "SCOPE", "statement": "Synthetic data shows 900 raw source rows, 840 accepted requests, and 60 rejected requests.", "metric_refs": ["M-001", "M-002", "M-003"], "limitation_refs": ["LIM-001"]},
+    {"claim_id": "C-02", "claim_type": "QUALITY", "statement": "The rejection rate is 6.66666667%, and the rejected request count is 60.", "metric_refs": ["M-003", "M-004"], "limitation_refs": ["LIM-003"]},
+    {"claim_id": "C-03", "claim_type": "WORKLOAD", "statement": "Accepted requests total 840, and affected units total 21,015.", "metric_refs": ["M-002", "M-010"], "limitation_refs": ["LIM-001"]},
+    {"claim_id": "C-04", "claim_type": "RESOLUTION", "statement": "Resolved requests total 588, and the resolution rate is 70.00000000%.", "metric_refs": ["M-005", "M-006"], "limitation_refs": ["LIM-004"]},
+    {"claim_id": "C-05", "claim_type": "RESOLUTION", "statement": "Median resolution time is 18.00 hours, and the within-target rate is 75.00000000%.", "metric_refs": ["M-007", "M-008"], "limitation_refs": ["LIM-005"]},
+    {"claim_id": "C-06", "claim_type": "FOLLOW_UP", "statement": "Unresolved requests total 252.", "metric_refs": ["M-009"], "limitation_refs": ["LIM-004"]}
+  ],
+  "limitations": [
+    {"id": "LIM-001", "text": "Data is synthetic and represents no real organization, person, or result."},
+    {"id": "LIM-002", "text": "The report covers only the fixed June-August 2026 demonstration period."},
+    {"id": "LIM-003", "text": "Rejected records are excluded from operational indicators and reported separately."},
+    {"id": "LIM-004", "text": "Patterns do not establish causes; operational follow-up is required."},
+    {"id": "LIM-005", "text": "Service targets are fictional project rules, not employer commitments."}
+  ],
+  "follow_up_checks": ["Review unresolved requests for the 252 recorded cases.", "Verify rejection handling against the 60 rejected requests.", "Compare resolution outcomes with the 588 resolved requests."],
+  "narrative_source": "AI-assisted summary - human reviewed and approved"
+}

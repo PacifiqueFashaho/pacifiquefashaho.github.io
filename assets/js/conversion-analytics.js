@@ -80,7 +80,7 @@
     prompt.setAttribute("aria-labelledby", "analytics-consent-title");
     prompt.innerHTML = language === "fr"
       ? '<div><strong id="analytics-consent-title">Mesure d’audience facultative</strong><p>Autorisez des mesures agrégées pour améliorer ce portfolio. Aucun formulaire, message ou identifiant personnalisé n’est envoyé.</p></div><div class="analytics-consent__actions"><button class="btn primary" type="button" data-analytics-consent="granted">Autoriser</button><button class="btn" type="button" data-analytics-consent="denied">Continuer sans mesure</button><a href="privacy.html">Détails</a></div>'
-      : '<div><strong id="analytics-consent-title">Optional anonymous analytics</strong><p>Allow aggregate measurements that help improve this portfolio. No form values, messages, or custom identifiers are sent.</p></div><div class="analytics-consent__actions"><button class="btn primary" type="button" data-analytics-consent="granted">Allow</button><button class="btn" type="button" data-analytics-consent="denied">Continue without analytics</button><a href="privacy.html">Details</a></div>';
+      : '<div><strong id="analytics-consent-title">Optional analytics</strong><p>Allow aggregate measurements that help improve this portfolio. No form values, messages, or custom identifiers are sent.</p></div><div class="analytics-consent__actions"><button class="btn primary" type="button" data-analytics-consent="granted">Allow</button><button class="btn" type="button" data-analytics-consent="denied">Continue without analytics</button><a href="privacy.html">Details</a></div>';
     document.body.append(prompt);
   }
 
@@ -123,7 +123,6 @@
     if (/project-[^?#]+\.html/.test(normalized)) return ["portfolio_evidence", "case_study"];
     if (/linkedin\.com/.test(normalized)) return ["professional_profile", "linkedin"];
     if (normalized.startsWith("mailto:")) return ["contact_intent", "email"];
-    if (/wa\.me|whatsapp\.com/.test(normalized)) return ["contact_intent", "whatsapp"];
     if (/#contact(?:$|[?])/.test(normalized)) return ["contact_intent", "contact_section"];
     return null;
   }

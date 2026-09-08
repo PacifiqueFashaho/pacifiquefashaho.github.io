@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "verification_date": "2026-09-06",
+  "dataset_label": "SYNTHETIC",
+  "scenario": "FieldLink Operations Network",
+  "scope": "CONTROLLED_LOCAL_DEMONSTRATION",
+  "provider": "OpenAI",
+  "endpoint": "Responses API",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "structured_output": true,
+  "tools_enabled": false,
+  "automatic_retries": 0,
+  "store_requested": false,
+  "transport": {"http_status": 200, "elapsed_seconds": 3.015},
+  "usage": {"input_tokens": 3439, "output_tokens": 482, "total_tokens": 3921},
+  "automated_validation": {"result": "PASS", "checks": ["schema", "identity", "references", "numeric_grounding", "semantic_grounding", "prohibited_language", "privacy", "limitations", "claim_count"]},
+  "human_review": {"decision": "APPROVE", "final_state": "APPROVED", "checklist_items_passed": 10},
+  "fallback_verified": true,
+  "temporary_credential_revoked": true,
+  "production_deployment_claimed": false
+}

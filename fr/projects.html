@@ -63,13 +63,14 @@
       "@type": "ItemList",
       "numberOfItems": 7,
       "itemListElement": [
-        {"@type": "CreativeWork", "position": 1, "name": "Configuration et dépannage d’un poste de travail", "url": "https://pacifiquefashaho.me/fr/project-it-support-case-study.html"},
-        {"@type": "TechArticle", "position": 2, "name": "Dépannage réseau et imprimante partagée", "url": "https://pacifiquefashaho.me/fr/project-network-printer-case-study.html"},
-        {"@type": "TechArticle", "position": 3, "name": "Configuration d’un nouveau poste et d’un utilisateur", "url": "https://pacifiquefashaho.me/fr/project-workstation-user-setup.html"},
-        {"@type": "CreativeWork", "position": 4, "name": "Tableau de bord des performances commerciales", "url": "https://pacifiquefashaho.me/fr/project-sales-dashboard.html"},
-        {"@type": "CreativeWork", "position": 5, "name": "Portfolio professionnel", "url": "https://pacifiquefashaho.me/fr/project-portfolio-case-study.html"},
-        {"@type": "CreativeWork", "position": 6, "name": "Étude de cas sur le nettoyage des données", "url": "https://pacifiquefashaho.me/fr/project-data-cleaning-case-study.html"},
-        {"@type": "CreativeWork", "position": 7, "name": "Collecte et suivi de données terrain", "url": "https://pacifiquefashaho.me/fr/projects.html#field-data"}
+        {"@type": "SoftwareSourceCode", "position": 1, "name": "Workflow de qualité des données et de reporting assisté par l’IA", "url": "https://pacifiquefashaho.me/fr/project-ai-data-quality-workflow.html"},
+        {"@type": "CreativeWork", "position": 2, "name": "Configuration et dépannage d’un poste de travail", "url": "https://pacifiquefashaho.me/fr/project-it-support-case-study.html"},
+        {"@type": "TechArticle", "position": 3, "name": "Dépannage réseau et imprimante partagée", "url": "https://pacifiquefashaho.me/fr/project-network-printer-case-study.html"},
+        {"@type": "TechArticle", "position": 4, "name": "Configuration d’un nouveau poste et d’un utilisateur", "url": "https://pacifiquefashaho.me/fr/project-workstation-user-setup.html"},
+        {"@type": "CreativeWork", "position": 5, "name": "Tableau de bord des performances commerciales", "url": "https://pacifiquefashaho.me/fr/project-sales-dashboard.html"},
+        {"@type": "CreativeWork", "position": 6, "name": "Portfolio professionnel", "url": "https://pacifiquefashaho.me/fr/project-portfolio-case-study.html"},
+        {"@type": "CreativeWork", "position": 7, "name": "Étude de cas sur le nettoyage des données", "url": "https://pacifiquefashaho.me/fr/project-data-cleaning-case-study.html"},
+        {"@type": "CreativeWork", "position": 8, "name": "Collecte et suivi de données terrain", "url": "https://pacifiquefashaho.me/fr/projects.html#field-data"}
       ]
     }
   }
@@ -116,7 +117,7 @@
         </div>
 
         <div class="btns">
-          <a class="btn primary" href="project-it-support-case-study.html">
+          <a class="btn primary" href="project-ai-data-quality-workflow.html">
             Explorer les preuves principales
           </a>
 
@@ -133,17 +134,17 @@
 
       <div class="stats" aria-label="Projects summary">
         <div class="stat">
-          <span class="stat-num" data-target="7">7</span>
+          <span class="stat-num" data-target="8">8</span>
           <span class="label">Projets du portfolio</span>
         </div>
 
         <div class="stat">
-          <span class="stat-num" data-target="3">3</span>
+          <span class="stat-num" data-target="4">4</span>
           <span class="label">Piliers technologiques</span>
         </div>
 
         <div class="stat">
-          <span class="stat-num" data-target="5">5</span>
+          <span class="stat-num" data-target="7">7</span>
           <span class="label">Études de cas détaillées</span>
         </div>
       </div>
@@ -175,6 +176,10 @@
           Développement logiciel
         </button>
 
+        <button class="filter-btn" type="button" data-filter="ai-automation" aria-pressed="false">
+          IA et automatisation
+        </button>
+
       </div>
 
       <p class="project-empty small" id="projectEmpty" aria-live="polite" hidden>
@@ -203,7 +208,22 @@
         </div>
       </div>
 
-      <article class="project featured-project-card" id="project-it-support-featured" data-category="it-support">
+      <article class="project featured-project-card" id="project-ai-data-quality-featured" data-category="ai-automation">
+        <div class="project-top">
+          <div><h3>Workflow de qualité des données et de reporting assisté par l’IA</h3><p class="small">Implémentation Python, SQL, reporting et intégration IA contrôlée</p></div>
+          <div class="project-tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">API OpenAI</span><span class="tag">Automatisation</span></div>
+        </div>
+        <div class="project-brief">
+          <div><span class="project-label">Problème</span><p>Les données opérationnelles exigent une validation reproductible, des indicateurs fiables, des rapports utilisables et des garde-fous autour du texte généré par l’IA.</p></div>
+          <div><span class="project-label">Implémentation</span><p>Génération déterministe, validation ordonnée, analyse transactionnelle SQLite, rapports Excel et HTML et contrôles structurés des affirmations IA.</p></div>
+          <div><span class="project-label">Résultat vérifié</span><p>900 enregistrements synthétiques traités, 66 anomalies injectées et 10 indicateurs SQL réconciliés, avec 93 tests automatisés réussis.</p></div>
+          <div><span class="project-label">Preuve IA en direct</span><p>Une réponse structurée de l’API Responses a réussi les contrôles automatiques avant une approbation humaine enregistrée séparément.</p></div>
+          <div><span class="project-label">Limite de la preuve</span><p>Projet autonome avec données fictives ; aucun déploiement client, usage IA en production, échelle d’entreprise ou impact organisationnel mesuré n’est revendiqué.</p></div>
+        </div>
+        <div class="project-actions"><a class="pbtn primary" href="project-ai-data-quality-workflow.html">Voir l’étude de cas</a><a class="pbtn" href="../assets/data/ai-data-quality-workflow/evidence-manifest.json">Examiner le manifeste</a><a class="pbtn" href="portfolio.html#skills">Voir les compétences associées</a></div>
+      </article>
+
+      <article class="project featured-project-card" id="project-it-support-featured" data-category="it-support" style="margin-top:16px;">
         <div class="project-top">
           <div>
             <h3>Processus de configuration et de dépannage d’un poste</h3>
