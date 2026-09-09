@@ -1,3 +1,414 @@
+/* Homepage-critical copies of the shared navigation, footer and print rules.
+   Keep these component rules synchronized with assets/css/pages.css. */
+
+/* =========================
+   ACCESSIBLE HOME NAVIGATION
+========================= */
+
+.nav-toggle {
+  display: none;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--soft-surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.topbar.has-compact-nav #primaryNavigation a {
+  min-height: 40px;
+}
+
+.nav-toggle-icon {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.nav-toggle-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.nav-toggle.is-active .nav-toggle-icon span:first-child {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-active .nav-toggle-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-active .nav-toggle-icon span:last-child {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.topbar.has-compact-nav nav a.nav-primary-action {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.topbar.has-compact-nav nav a.nav-primary-action:hover {
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.2);
+}
+
+.nav-toggle:focus-visible,
+.topbar nav a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 38%, transparent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 920px) {
+  .topbar.has-compact-nav .wrap {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .topbar.has-compact-nav .brand {
+    grid-row: 1;
+    grid-column: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .topbar.has-compact-nav .language-switcher {
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0;
+  }
+
+  .topbar.has-compact-nav .theme-toggle {
+    grid-row: 1;
+    grid-column: 3;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  :root.js .topbar.has-compact-nav .nav-toggle {
+    display: inline-flex;
+  }
+
+  .topbar.has-compact-nav .nav-toggle {
+    grid-row: 1;
+    grid-column: 4;
+  }
+
+  .topbar.has-compact-nav #primaryNavigation {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    overflow: visible;
+    padding: 8px 0 2px;
+  }
+
+  :root.js .topbar.has-compact-nav #primaryNavigation:not(.is-open) {
+    display: none;
+  }
+
+  .topbar.has-compact-nav #primaryNavigation a {
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 9px 12px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .topbar.has-compact-nav #primaryNavigation .nav-primary-action {
+    grid-column: 1 / -1;
+  }
+
+  main section[id] {
+    scroll-margin-top: 84px;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar.has-compact-nav #primaryNavigation {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar.has-compact-nav #primaryNavigation .nav-primary-action {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .topbar.has-compact-nav .brand > span:last-child {
+    font-size: 0;
+  }
+
+  .topbar.has-compact-nav .brand > span:last-child::after {
+    content: "PF";
+    font-size: 14px;
+  }
+
+  .topbar.has-compact-nav .nav-toggle {
+    width: 44px;
+    min-width: 44px;
+    padding: 0;
+  }
+
+  .topbar.has-compact-nav .nav-toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* =========================
+   GLOBAL SITE FOOTER
+========================= */
+
+.site-footer {
+  margin-top: clamp(28px, 5vw, 56px);
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.1), transparent 30%),
+    var(--card);
+}
+
+.site-footer > .wrap {
+  padding-top: clamp(28px, 4vw, 44px);
+  padding-bottom: 24px;
+}
+
+.site-footer__lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-footer__brand .dot {
+  flex: 0 0 auto;
+}
+
+.site-footer__brand strong,
+.site-footer__brand span:last-child {
+  display: block;
+}
+
+.site-footer__brand strong {
+  font-size: 1.05rem;
+}
+
+.site-footer__brand small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.site-footer__summary {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.site-footer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.site-footer__actions .btn {
+  min-height: 44px;
+}
+
+.site-footer__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 5vw, 64px);
+  padding: 26px 0;
+}
+
+.site-footer nav {
+  display: block;
+}
+
+.site-footer nav h2 {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 0.8rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.site-footer nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer nav a {
+  min-height: 44px;
+  padding: 9px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.site-footer nav a:hover {
+  transform: none;
+  color: var(--primary);
+}
+
+.site-footer a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary) 38%, transparent);
+  outline-offset: 3px;
+}
+
+.site-footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.site-footer__back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.site-footer__back:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 720px) {
+  .site-footer__lead {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__actions {
+    justify-content: flex-start;
+  }
+
+  .site-footer__links {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .site-footer nav ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px 14px;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-footer__actions,
+  .site-footer__actions .btn {
+    width: 100%;
+  }
+
+  .site-footer__actions .btn {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer nav ul {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* Homepage print safeguards copied from assets/css/pages.css. */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .topbar,
+  #loader,
+  #toTop,
+  .progress-bar,
+  .theme-toggle,
+  .site-footer,
+  .marquee,
+  .case-study-nav,
+  .cert-category-summary,
+  .projects-category-nav,
+  .btns,
+  .project-actions,
+  .cert-actions,
+  .contact-foot {
+    display: none !important;
+  }
+
+  .card,
+  .project,
+  .cert,
+  .skill-card,
+  .timeline-card {
+    box-shadow: none !important;
+    border-color: #cccccc !important;
+    break-inside: avoid;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: none !important;
+  }
+}
+
 .about-page main {
   padding-block: clamp(1.25rem,3vw,2.75rem);
 }
