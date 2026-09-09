@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "dataset_label": "SYNTHETIC",
+  "decision": "APPROVE",
+  "final_state": "APPROVED",
+  "reviewer_code": "PF",
+  "reviewed_at": "2026-09-06T13:28:26+00:00",
+  "checklist": {"fallback_available": true, "follow_ups_are_checks": true, "no_private_content": true, "no_unsupported_claims": true, "numbers_match": true, "plain_language": true, "rejections_visible": true, "revisions_recorded": true, "statements_supported": true, "synthetic_clear": true},
+  "evidence_hashes": {"response_sha256": "9fdd110cc570858d046d07487b82f67b7f00e477b64ae29d7864b54b49c05c77", "automated_validation_sha256": "6749cef156088d6a855664e59eb24b861cd7c8cdcfcbbf7cad1cc834594abb3e", "final_claims_sha256": "1b5c51f09b385a5485a1188f4399557b42184e79c842451bfa45ca23247d4a36", "review_id": "58ebee999ab071936e8cb772ee2215109f4275ceb2da8064ad8d701d4b3a6995"}
+}

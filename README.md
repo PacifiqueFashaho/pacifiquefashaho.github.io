@@ -56,7 +56,7 @@ Selected case studies:
 - Responsive layouts for desktop, tablet, and small mobile screens.
 - Semantic landmarks, skip links, visible focus, keyboard operation, reduced-motion support, and useful alternative text.
 - An interactive IT Support Workbench with scenario-specific steps and copyable diagnostic command references.
-- An accessible contact assistant that creates editable drafts before redirecting to email, WhatsApp, or the contact section.
+- An accessible contact assistant that creates editable drafts before redirecting to email or the professional contact section.
 - Consent-based, privacy-restricted analytics that remains disabled by default.
 - Open Graph, Twitter Card, JSON-LD, sitemap, and social-preview safeguards.
 - Automated validation for routes, links, assets, bilingual parity, accessibility markers, structured data, and performance budgets.
@@ -136,12 +136,25 @@ node --check assets/js/main.js
 node --check assets/js/assistant-intents.js
 node --check assets/js/contact-assistant.js
 node --check assets/js/workbench.js
+node --check scripts/generate_certification_pages.mjs
+node scripts/generate_certification_pages.mjs --check
 node scripts/test_assistant_intents.js
 python scripts/validate_site.py
 git diff --check
 ```
 
 The validator starts its own temporary local server and checks the public routes, internal links, images, JSON-LD, sitemap, bilingual relationships, accessibility markers, social previews, protected resources, and front-end performance budgets.
+
+### Bilingual certification catalogue
+
+`assets/data/certifications.json` is the single source of truth for credential order, dates, verification and PDF links, programme scope, skill labels, evidence links, and English/French wording. After reviewing a credential and updating that file, regenerate both static pages:
+
+```bash
+node scripts/generate_certification_pages.mjs
+node scripts/generate_certification_pages.mjs --check
+```
+
+The first command writes `certifications.html` and `fr/certifications.html`. The second is read-only and fails when either page differs from the structured source. GitHub Actions runs the synchronization check on every pull request and push to `main`.
 
 GitHub Actions runs the repository quality gate for pull requests and pushes to `main` through [`.github/workflows/quality.yml`](.github/workflows/quality.yml).
 
@@ -151,7 +164,7 @@ The `Performance monitoring` workflow audits representative English and French p
 
 ## Optional asset generation
 
-The deployed website does not need Python packages, but two maintenance scripts have optional dependencies:
+The deployed website does not need Python or Node packages. Social-card and legacy CV maintenance use the following optional dependencies:
 
 ```bash
 python -m pip install Pillow reportlab
@@ -160,6 +173,21 @@ python scripts/generate_recruiter_cvs.py
 ```
 
 Social cards are generated deterministically at `1200×630`. Review binary diffs before committing regenerated assets.
+
+### Accessible bilingual CV candidates
+
+The professional CV workflow deliberately generates temporary candidate filenames; it does not replace the public PDFs. It requires Python 3 with `pypdf` and `pdfplumber`, Playwright for Node, and an installed Chrome or Edge browser:
+
+```bash
+python -m pip install pypdf pdfplumber
+npm install --no-save playwright
+node scripts/generate_accessible_cv_candidates.mjs
+python scripts/validate_accessible_cv_candidates.py \
+  output/pdf/Pacifique_Fashaho_CV_candidate.pdf \
+  output/pdf/Pacifique_Fashaho_CV_FR_candidate.pdf
+```
+
+Review both candidates visually and with a tagged-PDF-aware screen reader before replacing `Pacifique_Fashaho_CV.pdf` or `Pacifique_Fashaho_CV_FR.pdf`. The completed automated and visual QA record is in [`docs/phase-6-accessible-cv-candidate-generation-and-qa.md`](docs/phase-6-accessible-cv-candidate-generation-and-qa.md).
 
 ## Contribution safeguards
 

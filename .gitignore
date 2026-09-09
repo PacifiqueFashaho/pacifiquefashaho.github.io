@@ -1,9 +1,17 @@
+# Editor settings
 .idea/
+*.iml
 
 # Local Lighthouse CI output
 .lighthouseci/
 lighthouse-reports/
-*.iml
-.idea/
 
-.idea/
+# Local QA, generated review outputs, and Python caches
+tmp/
+output/
+scripts/__pycache__/
+*.py[cod]
+
+# Private planning and evidence-review records
+docs/phase-[1-9]-*.md
+docs/professional-portfolio-improvement-roadmap-*.md

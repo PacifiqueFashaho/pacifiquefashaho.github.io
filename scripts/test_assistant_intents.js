@@ -4,17 +4,17 @@ const assert = require("node:assert/strict");
 const intentEngine = require("../assets/js/assistant-intents.js");
 
 const classificationCases = [
-  ["I am recruiting for an IT Support position.", "opportunity"],
-  ["I want to discuss an IT Support internship.", "opportunity"],
-  ["Je recrute pour un stage en support informatique.", "opportunity"],
+  ["I am recruiting for an IT Support position.", "employment"],
+  ["I would like to discuss a technology collaboration.", "collaboration"],
+  ["Je souhaite discuter d’un projet d’automatisation web.", "automation"],
   ["My internet connection is not working.", "support"],
   ["Mon imprimante affiche une erreur réseau.", "support"],
-  ["I need a Power BI dashboard with five KPIs.", "dashboard"],
-  ["Je souhaite créer un tableau de bord.", "dashboard"],
+  ["I need a Power BI dashboard with five KPIs.", "data"],
+  ["Je souhaite créer un tableau de bord.", "data"],
   ["Please clean this Excel dataset.", "data"],
   ["J’ai besoin d’une analyse de données.", "data"],
-  ["I need help with a Kobo field-data form.", "field"],
-  ["La collecte de données de terrain est bloquée.", "field"],
+  ["I need help with a Kobo field-data form.", "data"],
+  ["La collecte de données de terrain est bloquée.", "data"],
   ["I have an international inquiry.", "fallback"],
   ["Bonjour, je souhaite vous écrire.", "fallback"],
   ["", "fallback"]

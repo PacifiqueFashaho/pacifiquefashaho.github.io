@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "release_candidate": "0.1.0-local",
+  "dataset_label": "SYNTHETIC",
+  "verification_status": "HUMAN_APPROVED",
+  "public_release_status": "NOT_PUBLISHED",
+  "artifacts": {
+    "approved-narrative.json": {"sha256": "5aca5d5628d6b9dcf7c1d5a1b190c5153dfc5d1be9cbf041e145bb7098c464c4", "bytes": 2200},
+    "review-receipt.json": {"sha256": "37533aa86f03bc5cf3bd2a0fc6f355d1c36c09fee57913cfe796fdcf15825e04", "bytes": 861},
+    "verification-summary.json": {"sha256": "1fa826fcfa1c177dd7614bd57d2016782185c433f9ec39c6c26a5d650c504ff7", "bytes": 946}
+  }
+}

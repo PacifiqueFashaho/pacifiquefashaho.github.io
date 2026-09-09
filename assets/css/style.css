@@ -83,7 +83,7 @@ button,
 input,
 textarea {
   font: inherit;
-}
+}input::placeholder,textarea::placeholder{color:var(--muted)}
 
 h1,h2,h3,h4,h5,h6,.title{font-family:var(--font-heading)}
 code,pre,kbd,.tech-badge{font-family:var(--font-mono)}
@@ -1467,6 +1467,7 @@ nav a[aria-current="location"] {
   }
 
   #toTop {
+    display: none; /* The footer retains an in-flow back-to-top link on mobile. */
     right: 14px;
     bottom: 14px;
   }

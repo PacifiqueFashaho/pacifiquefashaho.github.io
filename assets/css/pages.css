@@ -659,7 +659,7 @@
 
 .hero-profile-strip strong {
   color: var(--text);
-  font-size: 0.82rem;
+  font-size: .82rem;
   line-height: 1.4;
 }
 
@@ -1780,7 +1780,7 @@
 }
 
 .cert.featured::after {
-  content: "Featured";
+  content: attr(data-featured-label);
   position: absolute;
   top: 12px;
   right: 12px;
@@ -2045,15 +2045,8 @@
   text-underline-offset: 3px;
 }
 
-/* Make certification pages easier to scan */
-#data-cert-title,
-#programming-cert-title,
-#it-cert-title,
-#productivity-cert-title,
-#field-cert-title,
-#full-cert-title {
-  scroll-margin-top: 100px;
-}
+/* Keep certification anchors clear of the sticky header. */
+.certifications-page h2[id]{scroll-margin-top:116px}
 
 /* =========================
    6. PROJECT FILTER PAGE SUPPORT
@@ -2746,6 +2739,7 @@
     padding-left: 30px;
   }
 }
+
 
 /* =========================
    ACCESSIBLE HOME NAVIGATION

@@ -30,6 +30,10 @@ jobs:
           node --check assets/js/conversion-analytics.js
           node --check assets/js/main.js
           node --check assets/js/workbench.js
+          node --check scripts/generate_certification_pages.mjs
+
+      - name: Verify generated certification pages
+        run: node scripts/generate_certification_pages.mjs --check
 
       - name: Test Quick Assistant intent classification
         run: node scripts/test_assistant_intents.js

@@ -28,12 +28,20 @@ LEGACY_DOCUMENT_BUNDLE = "assets/certificates/Pacifique-Full-files.pdf"
 PRIVATE_STUDENT_RECORD = (
     "assets/certificates/Confirmation-of-student-status.pdf"
 )
+EXCLUDED_PUBLIC_CREDENTIAL = "assets/certificates/Certificat-Professionnel-INPP.pdf"
+JUNIOR_CONTEXT_PATTERN = re.compile(
+    r"\b(beginner|débutant(?:e)?|aspiring|aspirant(?:e)?|internship|"
+    r"student developer|emerging professional)\b",
+    re.IGNORECASE,
+)
 
 PAGE_SPECS = {
     "index.html": ("/", "en"),
     "fr/index.html": ("/fr/", "fr"),
     "portfolio.html": ("/portfolio.html", "en"),
     "fr/portfolio.html": ("/fr/portfolio.html", "fr"),
+    "services.html": ("/services.html", "en"),
+    "fr/services.html": ("/fr/services.html", "fr"),
     "projects.html": ("/projects.html", "en"),
     "fr/projects.html": ("/fr/projects.html", "fr"),
     "certifications.html": ("/certifications.html", "en"),
@@ -89,6 +97,14 @@ PAGE_SPECS = {
         "/fr/project-sales-dashboard.html",
         "fr",
     ),
+    "project-ai-data-quality-workflow.html": (
+        "/project-ai-data-quality-workflow.html",
+        "en",
+    ),
+    "fr/project-ai-data-quality-workflow.html": (
+        "/fr/project-ai-data-quality-workflow.html",
+        "fr",
+    ),
     "windows-checks-before-it-support.html": (
         "/windows-checks-before-it-support.html",
         "en",
@@ -126,6 +142,7 @@ PAGE_SPECS = {
 BILINGUAL_PAGE_PAIRS = (
     ("index.html", "fr/index.html"),
     ("portfolio.html", "fr/portfolio.html"),
+    ("services.html", "fr/services.html"),
     ("projects.html", "fr/projects.html"),
     ("certifications.html", "fr/certifications.html"),
     ("privacy.html", "fr/privacy.html"),
@@ -156,6 +173,10 @@ BILINGUAL_PAGE_PAIRS = (
         "fr/project-sales-dashboard.html",
     ),
     (
+        "project-ai-data-quality-workflow.html",
+        "fr/project-ai-data-quality-workflow.html",
+    ),
+    (
         "windows-checks-before-it-support.html",
         "fr/windows-checks-before-it-support.html",
     ),
@@ -180,11 +201,16 @@ DETAILED_CASE_STUDY_PAGES = (
     "project-data-cleaning-case-study.html",
     "project-portfolio-case-study.html",
     "project-sales-dashboard.html",
+    "project-ai-data-quality-workflow.html",
 )
 
 JSON_FILES = (
     "assets/data/projects.json",
     "assets/data/certifications.json",
+    "assets/data/ai-data-quality-workflow/approved-narrative.json",
+    "assets/data/ai-data-quality-workflow/evidence-manifest.json",
+    "assets/data/ai-data-quality-workflow/review-receipt.json",
+    "assets/data/ai-data-quality-workflow/verification-summary.json",
 )
 
 CSS_FILES = (
@@ -195,6 +221,7 @@ CSS_FILES = (
     "assets/css/guide.css",
     "assets/css/knowledge.css",
     "assets/css/software-case-study.css",
+    "assets/css/services.css",
 )
 
 SOCIAL_IMAGE_SPECS = {
@@ -1019,6 +1046,61 @@ def validate_json(errors: list[str]) -> None:
             errors.append(f"{json_file}: invalid JSON ({error})")
 
 
+def validate_ai_evidence_package(errors: list[str]) -> None:
+    """Protect the public allowlist, hashes, approval state, and privacy boundary."""
+    package = ROOT / "assets/data/ai-data-quality-workflow"
+    manifest_path = package / "evidence-manifest.json"
+    expected_files = {
+        "approved-narrative.json",
+        "evidence-manifest.json",
+        "review-receipt.json",
+        "verification-summary.json",
+    }
+    actual_files = {path.name for path in package.iterdir() if path.is_file()}
+    add_error(errors, actual_files == expected_files, "AI evidence: file allowlist changed")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        errors.append("AI evidence: manifest unavailable")
+        return
+    add_error(
+        errors,
+        manifest.get("dataset_label") == "SYNTHETIC"
+        and manifest.get("verification_status") == "HUMAN_APPROVED"
+        and manifest.get("public_release_status") == "NOT_PUBLISHED",
+        "AI evidence: required scope or status marker changed",
+    )
+    artifacts = manifest.get("artifacts", {})
+    add_error(
+        errors,
+        set(artifacts) == expected_files - {"evidence-manifest.json"},
+        "AI evidence: manifest allowlist changed",
+    )
+    for name, expected in artifacts.items():
+        artifact = package / name
+        if not artifact.is_file():
+            errors.append(f"AI evidence: missing {name}")
+            continue
+        actual_hash = hashlib.sha256(artifact.read_bytes()).hexdigest()
+        add_error(
+            errors,
+            artifact.stat().st_size == expected.get("bytes")
+            and actual_hash == expected.get("sha256"),
+            f"AI evidence: integrity mismatch for {name}",
+        )
+    private_pattern = re.compile(
+        r"(?:C:\\Users\\|/home/|/Users/|sk-(?:proj-)?[A-Za-z0-9_-]{20,}|"
+        r"bearer\s+[A-Za-z0-9._-]+|[\w.+-]+@[\w.-]+\.\w+)",
+        re.IGNORECASE,
+    )
+    for path in package.glob("*.json"):
+        add_error(
+            errors,
+            private_pattern.search(path.read_text(encoding="utf-8")) is None,
+            f"AI evidence: private pattern in {path.name}",
+        )
+
+
 def validate_bilingual_pages(
     parsed_pages: dict[str, PortfolioHTMLParser],
     errors: list[str],
@@ -1115,10 +1197,10 @@ def validate_quick_assistant(
 ) -> None:
     expected_intents = {
         "portfolio.html": Counter(
-            {"opportunity": 2, "support": 1, "project": 1, "data": 1}
+            {"employment": 1, "collaboration": 1, "support": 1, "automation": 1, "data": 1}
         ),
         "fr/portfolio.html": Counter(
-            {"opportunity": 2, "support": 1, "project": 1, "data": 1}
+            {"employment": 1, "collaboration": 1, "support": 1, "automation": 1, "data": 1}
         ),
     }
     expected_scripts = {
@@ -1221,17 +1303,17 @@ def validate_quick_assistant(
 
         required_skill_headings = (
             {
-                "IT Support &amp; Troubleshooting",
-                "Software Development",
                 "Data Analytics",
-                "Technical Problem-Solving",
+                "Artificial Intelligence",
+                "IT Systems",
+                "Automation &amp; Programming",
             }
             if page == "portfolio.html"
             else {
-                "Support informatique et dépannage",
-                "Développement logiciel",
                 "Analyse de données",
-                "Résolution de problèmes techniques",
+                "Intelligence artificielle",
+                "Systèmes informatiques",
+                "Automatisation et programmation",
             }
         )
         add_error(
@@ -1405,38 +1487,38 @@ def validate_project_catalog(errors: list[str]) -> None:
     validate_stat("Core Technology Pillars", len(set(project_categories)))
     validate_stat("Detailed Case Studies", len(DETAILED_CASE_STUDY_PAGES))
 
-    homepage_pillars = {
+    portfolio_first_sections = {
         "portfolio.html": (
-            'aria-label="Core technology capabilities"',
-            "<strong>IT Systems</strong>",
+            'href="#selected-work"',
+            'id="selected-work"',
+            "AI-Assisted Data Quality &amp; Reporting Workflow",
+            'href="project-ai-data-quality-workflow.html"',
+            "Data Cleaning &amp; Reporting",
             'href="project-it-support-case-study.html"',
-            "<strong>Software Development</strong>",
+            "Artificial Intelligence",
+            "Automation &amp; Programming",
             'href="project-portfolio-case-study.html"',
-            "<strong>Data Analytics</strong>",
-            'href="project-data-cleaning-case-study.html"',
-            "<strong>Technical Problem-Solving</strong>",
-            'href="projects.html"',
         ),
         "fr/portfolio.html": (
-            'aria-label="Capacités technologiques principales"',
-            "<strong>Systèmes informatiques</strong>",
+            'href="#selected-work"',
+            'id="selected-work"',
+            "Workflow de qualité des données et de reporting assisté par l’IA",
+            'href="project-ai-data-quality-workflow.html"',
+            "Nettoyage des données et reporting",
             'href="project-it-support-case-study.html"',
-            "<strong>Développement logiciel</strong>",
+            "Intelligence artificielle",
+            "Automatisation et programmation",
             'href="project-portfolio-case-study.html"',
-            "<strong>Analyse de données</strong>",
-            'href="project-data-cleaning-case-study.html"',
-            "<strong>Résolution de problèmes techniques</strong>",
-            'href="projects.html"',
         ),
     }
 
-    for page, required_markers in homepage_pillars.items():
+    for page, required_markers in portfolio_first_sections.items():
         homepage = read_text(page, errors)
         if homepage is not None:
             add_error(
                 errors,
                 all(marker in homepage for marker in required_markers),
-                f"{page}: hero must expose all four capability evidence paths",
+                f"{page}: first three sections must expose the approved professional identity and evidence paths",
             )
 
 
@@ -1744,6 +1826,7 @@ def validate_performance_budgets(errors: list[str]) -> None:
         "assets/css/contact-assistant.css": 20_000,
         "assets/css/knowledge.css": 10_000,
         "assets/css/software-case-study.css": 8_000,
+        "assets/css/services.css": 12_000,
         "assets/js/main.js": 20_000,
         "assets/js/conversion-analytics.js": 8_000,
         "assets/js/workbench.js": 20_000,
@@ -1990,8 +2073,8 @@ def validate_bilingual_component_parity(errors: list[str]) -> None:
             bool(english_signature)
             and english_signature == french_signature,
             (
-                "fr/index.html: component structure does not match the English "
-                f"homepage for {marker}"
+                "fr/portfolio.html: component structure does not match the English "
+                f"portfolio for {marker}"
             ),
         )
 
@@ -2101,6 +2184,24 @@ def validate_global_professional_identity(errors: list[str]) -> None:
         )
 
 
+def validate_release_hygiene(errors: list[str]) -> None:
+    """Prevent excluded evidence and junior-positioning language from shipping."""
+    add_error(
+        errors,
+        not (ROOT / EXCLUDED_PUBLIC_CREDENTIAL).exists(),
+        f"excluded public credential is still present: {EXCLUDED_PUBLIC_CREDENTIAL}",
+    )
+    for page in PAGE_SPECS:
+        source = read_text(page, errors)
+        if source is None:
+            continue
+        add_error(
+            errors,
+            JUNIOR_CONTEXT_PATTERN.search(source) is None,
+            f"{page}: junior-context wording remains in public content or metadata",
+        )
+
+
 def validate_consent_first_analytics(errors: list[str]) -> None:
     """Guard the consent boundary and the fixed, non-personal About events."""
     analytics_path = ROOT / "assets/js/conversion-analytics.js"
@@ -2160,6 +2261,7 @@ def main() -> int:
     validate_css_architecture(parsed_pages, errors)
     validate_css(errors)
     validate_json(errors)
+    validate_ai_evidence_package(errors)
     validate_project_catalog(errors)
     validate_recruiter_documents(errors)
     validate_sitemap(errors)
@@ -2170,6 +2272,7 @@ def main() -> int:
     validate_bilingual_component_parity(errors)
     validate_about_navigation_and_media(errors)
     validate_global_professional_identity(errors)
+    validate_release_hygiene(errors)
     validate_consent_first_analytics(errors)
     smoke_test_routes(errors)
 

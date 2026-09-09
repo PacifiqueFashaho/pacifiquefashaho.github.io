@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   );
-  const assistantIntentEngine = window.QuickAssistantIntents;
+  const intentEngine = window.QuickAssistantIntents;
 
   const messages = {
     en: {
@@ -14,20 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
         sending: "Sending...",
         submit: "Send Message",
         notConfigured:
-          "The contact form is not configured yet. Please use email or WhatsApp.",
+          "The contact form is not configured yet. Please use email.",
         received: "Thank you. Your message has been received.",
         sendingStatus: "Sending your message...",
         serviceError: "The form service returned an error.",
         success: "Thank you. Your message has been sent successfully.",
         failure:
-          "Your message could not be sent. Please contact Pacifique through email or WhatsApp.",
+          "Your message could not be sent. Please contact Pacifique through email.",
         errorsFound: (count) =>
           "Please correct " + count + " " +
           (count === 1 ? "field" : "fields") + " before sending.",
         nameRequired: "Enter your name.",
         emailRequired: "Enter your email address.",
         emailInvalid: "Enter an email address in the format name@example.com.",
-        subjectRequired: "Enter the role, internship, or message subject.",
+        subjectRequired: "Enter the role, project, or message subject.",
         messageRequired: "Enter your message."
       },
       copyEmail: {
@@ -48,21 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
         sending: "Envoi en cours...",
         submit: "Envoyer le message",
         notConfigured:
-          "Le formulaire de contact n\u2019est pas encore configur\u00E9. Utilisez l\u2019email ou WhatsApp.",
+          "Le formulaire de contact n\u2019est pas encore configur\u00E9. Utilisez l\u2019email.",
         received: "Merci. Votre message a bien \u00E9t\u00E9 re\u00E7u.",
         sendingStatus: "Envoi de votre message...",
         serviceError: "Le service du formulaire a retourn\u00E9 une erreur.",
         success:
           "Merci. Votre message a \u00E9t\u00E9 envoy\u00E9 avec succ\u00E8s.",
         failure:
-          "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email ou WhatsApp.",
+          "Votre message n\u2019a pas pu \u00EAtre envoy\u00E9. Contactez Pacifique par email.",
         errorsFound: (count) =>
           "Corrigez " + count + " " +
           (count === 1 ? "champ" : "champs") + " avant l\u2019envoi.",
         nameRequired: "Saisissez votre nom.",
         emailRequired: "Saisissez votre adresse email.",
         emailInvalid: "Saisissez une adresse au format nom@exemple.com.",
-        subjectRequired: "Saisissez le poste, le stage ou l\u2019objet du message.",
+        subjectRequired: "Saisissez le poste, le projet ou l\u2019objet du message.",
         messageRequired: "Saisissez votre message."
       },
       copyEmail: {
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .join(" ");
             }
           } catch (error) {
-            // Keep the localized default when the response is not JSON.
+            // Non-JSON: use default.
           }
 
           throw new Error(errorMessage);
@@ -347,7 +347,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatInput = document.getElementById("chatMessageInput");
   const chatSuggestions = document.querySelectorAll(".chat-suggestion");
   const chatEmailLink = document.getElementById("chatEmailLink");
-  const chatWhatsappLink = document.getElementById("chatWhatsappLink");
   const chatContactFormLink = document.getElementById("chatContactFormLink");
   const chatCopyMessage = document.getElementById("chatCopyMessage");
   const chatCharacterCount = document.getElementById("chatCharacterCount");
@@ -359,31 +358,122 @@ document.addEventListener("DOMContentLoaded", () => {
   let assistantFocusTimer = null;
   let assistantReturnFocus = null;
   let selectedCategory = "";
+  const inlineLauncher = document.getElementById("assistantInlineLauncher");
+  let draftCategory = "";
   let statusResetTimer = null;
 
   const categoryCopy = {
-    en: {
-      job: ["Job opportunity", "a job opportunity", ["Role and organization", "Location or remote arrangement", "Expected start date", "How to reply"]],
-      internship: ["Internship opportunity", "an internship opportunity", ["Organization and internship focus", "Location or remote arrangement", "Duration and start date", "How to reply"]],
-      support: ["IT support request", "an IT support request", ["Device or system", "Issue and affected users", "Urgency and location", "How to reply"]],
-      data: ["Data project request", "a data project", ["Project goal and data format", "Expected output", "Preferred tool and deadline", "How to reply"]]
-    },
-    fr: {
-      job: ["Opportunit\u00E9 d\u2019emploi", "d\u2019une opportunit\u00E9 d\u2019emploi", ["Poste et organisation", "Lieu ou modalit\u00E9 \u00E0 distance", "Date de d\u00E9but pr\u00E9vue", "Moyen de r\u00E9ponse"]],
-      internship: ["Opportunit\u00E9 de stage", "d\u2019une opportunit\u00E9 de stage", ["Organisation et domaine du stage", "Lieu ou modalit\u00E9 \u00E0 distance", "Dur\u00E9e et date de d\u00E9but", "Moyen de r\u00E9ponse"]],
-      support: ["Demande de support informatique", "d\u2019une demande de support informatique", ["Appareil ou syst\u00E8me", "Probl\u00E8me et utilisateurs touch\u00E9s", "Urgence et lieu", "Moyen de r\u00E9ponse"]],
-      data: ["Demande de projet de donn\u00E9es", "d\u2019un projet de donn\u00E9es", ["Objectif du projet et format des donn\u00E9es", "R\u00E9sultat attendu", "Outil souhait\u00E9 et d\u00E9lai", "Moyen de r\u00E9ponse"]]
-    }
-  };
+  "en": {
+    "employment": [
+      "Employment Opportunity",
+      "I would like to discuss a professional opportunity.",
+      [
+        "Organization and context",
+        "Expected contribution or result",
+        "Timing and working arrangement",
+        "How to reply"
+      ]
+    ],
+    "collaboration": [
+      "Collaboration",
+      "I would like to discuss a technology collaboration.",
+      [
+        "Organization and context",
+        "Expected contribution or result",
+        "Timing and working arrangement",
+        "How to reply"
+      ]
+    ],
+    "data": [
+      "Data & Reporting",
+      "I would like to discuss a data analysis or reporting need.",
+      [
+        "Organization and context",
+        "Expected contribution or result",
+        "Timing and working arrangement",
+        "How to reply"
+      ]
+    ],
+    "support": [
+      "IT Systems Support",
+      "I would like to discuss an IT systems or user-support need.",
+      [
+        "Organization and context",
+        "Expected contribution or result",
+        "Timing and working arrangement",
+        "How to reply"
+      ]
+    ],
+    "automation": [
+      "Automation or Web Project",
+      "I would like to discuss an automation, web programming, or UX project.",
+      [
+        "Organization and context",
+        "Expected contribution or result",
+        "Timing and working arrangement",
+        "How to reply"
+      ]
+    ]
+  },
+  "fr": {
+    "employment": [
+      "Opportunité professionnelle",
+      "Je souhaite discuter d’une opportunité professionnelle.",
+      [
+        "Organisation et contexte",
+        "Contribution ou résultat attendu",
+        "Délai et modalité de travail",
+        "Moyen de réponse"
+      ]
+    ],
+    "collaboration": [
+      "Collaboration",
+      "Je souhaite discuter d’une collaboration technologique.",
+      [
+        "Organisation et contexte",
+        "Contribution ou résultat attendu",
+        "Délai et modalité de travail",
+        "Moyen de réponse"
+      ]
+    ],
+    "data": [
+      "Données et reporting",
+      "Je souhaite discuter d’un besoin en analyse de données ou en reporting.",
+      [
+        "Organisation et contexte",
+        "Contribution ou résultat attendu",
+        "Délai et modalité de travail",
+        "Moyen de réponse"
+      ]
+    ],
+    "support": [
+      "Support des systèmes informatiques",
+      "Je souhaite discuter d’un besoin en systèmes informatiques ou en support utilisateur.",
+      [
+        "Organisation et contexte",
+        "Contribution ou résultat attendu",
+        "Délai et modalité de travail",
+        "Moyen de réponse"
+      ]
+    ],
+    "automation": [
+      "Projet d’automatisation ou web",
+      "Je souhaite discuter d’un projet d’automatisation, de programmation web ou d’UX.",
+      [
+        "Organisation et contexte",
+        "Contribution ou résultat attendu",
+        "Délai et modalité de travail",
+        "Moyen de réponse"
+      ]
+    ]
+  }
+};
   const detailPlaceholder = language === "fr"
     ? "[ajoutez les informations]"
     : "[add details]";
   const categoryDetails = Object.fromEntries(
     Object.entries(categoryCopy[language]).map(
-      ([category, [subject, topic, fields]]) => {
-        const introduction = language === "fr"
-          ? `Je souhaite discuter ${topic} avec vous.`
-          : `I would like to discuss ${topic} with you.`;
+      ([category, [subject, introduction, fields]]) => {
         const draft = [
           strings.assistant.emailGreeting,
           introduction,
@@ -439,6 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setAssistantExposure(true);
     document.body.classList.add("assistant-modal-open");
     assistantLauncher?.setAttribute("aria-expanded", "true");
+    inlineLauncher?.setAttribute("aria-expanded", "true");
 
     if (assistantLauncherWrap) {
       assistantLauncherWrap.hidden = true;
@@ -465,6 +556,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setAssistantExposure(false);
     document.body.classList.remove("assistant-modal-open");
     assistantLauncher?.setAttribute("aria-expanded", "false");
+    inlineLauncher?.setAttribute("aria-expanded", "false");
 
     assistantCloseTimer = window.setTimeout(
       () => {
@@ -519,24 +611,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateContactLinks() {
     const message = chatInput.value.trim();
-    const details = categoryDetails[selectedCategory];
-    const subject = details?.subject || "Portfolio contact";
+    const details = categoryDetails[draftCategory];
+    const subject = details?.subject || (language === "fr" ? "Contact professionnel" : "Professional contact");
     const enabled = Boolean(message);
 
     chatCopyMessage.disabled = !enabled;
     setActionAvailability(chatEmailLink, enabled);
-    setActionAvailability(chatWhatsappLink, enabled);
     if (enabled) {
       chatEmailLink.href = `mailto:pacifiquefashaho04@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(chatInput.value)}`;
-      chatWhatsappLink.href = `https://wa.me/243859477758?text=${encodeURIComponent(chatInput.value)}`;
     } else {
       chatEmailLink.removeAttribute("href");
-      chatWhatsappLink.removeAttribute("href");
     }
   }
 
   showAssistantLauncher();
   assistantLauncher?.addEventListener("click", openChatAssistant);
+  inlineLauncher?.addEventListener("click", openChatAssistant);
   chatClose?.addEventListener("click", () => closeChatAssistant());
   chatMinimize?.addEventListener("click", () => closeChatAssistant());
 
@@ -545,13 +635,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const details = categoryDetails[selectedCategory];
     if (!details) {
-      setAssistantStatus("Choose a contact topic before creating a message.", "error");
+      setAssistantStatus(language === "fr" ? "Choisissez un sujet avant de créer le message." : "Choose a contact topic before creating a message.", "error");
       (chatCategoryGroup || chatSuggestions[0])?.focus();
       return;
     }
     chatInput.value = details.draft;
+    draftCategory = selectedCategory;
     updateAssistantCharacterCount();
-    setAssistantStatus("Draft created. Review and edit it before choosing how to send it.", "success");
+    setAssistantStatus(language === "fr" ? "Brouillon créé. Relisez-le et modifiez-le avant de choisir le mode d’envoi." : "Draft created. Review and edit it before choosing how to send it.", "success");
     chatInput.focus();
   });
 
@@ -568,9 +659,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chatSuggestions.forEach((suggestion) => {
     suggestion.addEventListener("click", () => {
-      selectedCategory = suggestion.dataset.category ||
-        (suggestion.dataset.intent === "support" ? "support" :
-          suggestion.dataset.intent === "data" ? "data" : "job");
+      selectedCategory = intentEngine?.isKnownIntent(suggestion.dataset.category)
+        ? suggestion.dataset.category : "";
       chatSuggestions.forEach((item) => {
         const active = item === suggestion;
         item.classList.toggle("is-selected", active);
@@ -592,7 +682,7 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Clipboard copy unavailable");
       }
 
-      setAssistantStatus("Message copied.", "success");
+      setAssistantStatus(language === "fr" ? "Message copié." : "Message copied.", "success");
       window.clearTimeout(statusResetTimer);
       statusResetTimer = window.setTimeout(() => setAssistantStatus(""), 2500);
     } catch (error) {
@@ -606,7 +696,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (chatInput.value.trim()) {
       if (contactSubject) {
-        contactSubject.value = categoryDetails[selectedCategory]?.subject || "Portfolio contact";
+        contactSubject.value = categoryDetails[draftCategory]?.subject || (language === "fr" ? "Contact professionnel" : "Professional contact");
         setContactFieldError(contactSubject);
       }
 
@@ -633,7 +723,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("pagehide", clearAssistantTimers, { once: true });
-  [chatEmailLink, chatWhatsappLink].forEach((link) => {
+  [chatEmailLink].forEach((link) => {
     link?.addEventListener("click", (event) => {
       if (!chatInput.value.trim()) event.preventDefault();
     });
