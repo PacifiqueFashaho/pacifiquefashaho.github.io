@@ -577,7 +577,9 @@
 
 @media(max-width:760px) {
   .about-hero,.about-section-head { grid-template-columns: 1fr; }
-  .about-portrait { max-width: 20rem; justify-self: center; order: 0; }
+  .about-portrait { max-width: 10rem; justify-self: start; order: -1; }
+  .about-portrait img { aspect-ratio: 1; border-radius: 1.35rem; }
+  .about-portrait figcaption { display: none; }
   .about-grid,.about-proof-grid,.about-foundation-grid,.about-places,.about-values { grid-template-columns: 1fr; }
   .about-section-head { gap: .5rem; }
   .about-next-steps { grid-template-columns: 1fr; }
@@ -595,7 +597,7 @@
   .about-status { align-items: flex-start; border-radius: .85rem; }
   .about-credentials { display: grid; grid-template-columns: 1fr; }
   .about-credentials li { width: fit-content; }
-  .about-portrait { display: none; }
+  .about-portrait { display: block; max-width: 8rem; }
   .about-section { padding-block: 2.8rem; }
   .about-section[id] { scroll-margin-top: 6rem; }
   .about-timeline { gap: .6rem; }
